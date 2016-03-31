@@ -1,9 +1,15 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context="com.syaona.petalierapp.fragment.ChooseCardFragment">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
 
     <include
         android:id="@+id/app_bar"
@@ -42,29 +48,67 @@
         android:layout_centerHorizontal="true"/>
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider1"
+        android:gravity="center_horizontal"
+        android:id="@+id/relative">
+
+
 
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/circle"
-        android:layout_below="@+id/divider1"
         android:layout_marginLeft="20dp"/>
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/card1"
-        android:layout_below="@+id/divider1"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="10dp"
         android:id="@+id/card1"/>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/linearrow1">
+
+            <View
+                android:layout_below="@+id/card1"
+                android:layout_marginTop="10dp"
+                android:layout_width="20dp"
+                android:layout_height="1dip"
+                android:background="@color/colorLightGary"
+                android:id="@+id/divider"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card 1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textSize="17sp"
+                android:textAllCaps="true"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+
 
 
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/circle"
-        android:layout_below="@+id/divider1"
         android:layout_marginLeft="50dp"
         android:layout_toRightOf="@+id/card1"
         />
@@ -73,19 +117,101 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/card2"
-        android:layout_below="@+id/divider1"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="10dp"
         android:id="@+id/card2"
         android:layout_toRightOf="@+id/card1"/>
 
 
+        <LinearLayout
+            android:layout_toRightOf="@+id/card1"
+            android:layout_marginTop="15dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/linearrow2">
+
+            <View
+                android:layout_below="@+id/card1"
+                android:layout_marginTop="10dp"
+                android:layout_width="20dp"
+                android:layout_height="1dip"
+                android:background="@color/colorLightGary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card 2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textSize="17sp"
+                android:textAllCaps="true"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/linearrow1"
+            android:src="@drawable/circle"
+            android:layout_marginLeft="20dp"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/card3"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:id="@+id/card3"
+            android:layout_below="@+id/linearrow1"/>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card3"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/linearrow3">
+
+            <View
+                android:layout_below="@+id/card1"
+                android:layout_marginTop="10dp"
+                android:layout_width="20dp"
+                android:layout_height="1dip"
+                android:background="@color/colorLightGary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card 3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:textSize="17sp"
+                android:textAllCaps="true"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
     <LinearLayout
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginLeft="10dp"
-        android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
         android:id="@+id/linearfive">
 
@@ -129,6 +255,6 @@
 
     </LinearLayout>
 
+    </RelativeLayout>
 
-
-</RelativeLayout>
+</ScrollView>

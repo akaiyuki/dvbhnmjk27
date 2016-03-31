@@ -26,7 +26,8 @@
         android:hint="Email"
         android:padding="15dp"
         android:textColorHint="@color/colorLightGary"
-        android:id="@+id/edit_email"/>
+        android:id="@+id/edit_email"
+        android:textColor="@color/colorLightGary"/>
 
 
     <EditText
@@ -41,7 +42,9 @@
         android:hint="Password"
         android:padding="15dp"
         android:textColorHint="@color/colorLightGary"
-        android:id="@+id/edit_password"/>
+        android:id="@+id/edit_password"
+        android:inputType="textPassword"
+        android:textColor="@color/colorLightGary"/>
 
     <Button
         android:id="@+id/btnloginemail"

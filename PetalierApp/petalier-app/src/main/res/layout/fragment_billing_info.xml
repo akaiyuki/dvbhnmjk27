@@ -61,17 +61,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginRight="10dp">
+            android:gravity="center_vertical">
 
             <CheckBox
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:id="@+id/check_default"
                 android:button="@drawable/custom_checkbox"
                 />
 
             <TextView
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Use Default Billing Information"
@@ -121,13 +121,14 @@
             android:layout_marginRight="10dp">
 
             <CheckBox
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:id="@+id/check_new"
                 android:button="@drawable/custom_checkbox"
                 />
 
             <TextView
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Billing Information"

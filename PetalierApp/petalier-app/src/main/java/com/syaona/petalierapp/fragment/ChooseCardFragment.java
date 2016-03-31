@@ -24,6 +24,7 @@ public class ChooseCardFragment extends Fragment {
 
     private ImageView mImageCard1;
     private ImageView mImageCard2;
+    private ImageView mImageCard3;
 
     public ChooseCardFragment() {
         // Required empty public constructor
@@ -59,6 +60,7 @@ public class ChooseCardFragment extends Fragment {
 
         mImageCard1 = (ImageView) view.findViewById(R.id.card1);
         mImageCard2 = (ImageView) view.findViewById(R.id.card2);
+        mImageCard3 = (ImageView) view.findViewById(R.id.card3);
 
         Picasso.with(AppController.getInstance())
                 .load(R.drawable.card1)
@@ -73,6 +75,11 @@ public class ChooseCardFragment extends Fragment {
                 .fit()
                 .into(mImageCard2);
 
+        Picasso.with(AppController.getInstance())
+                .load(R.drawable.card3)
+                .transform(new CircleTransform())
+                .fit()
+                .into(mImageCard3);
 
 
 

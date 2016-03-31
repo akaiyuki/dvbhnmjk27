@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
@@ -18,6 +19,7 @@ import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.view.CircleTransform;
+import com.syaona.petalierapp.view.Fonts;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +67,14 @@ public class ChooseCollectionFragment extends Fragment {
 
             }
         });
+
+        TextView mTextTitle = (TextView) view.findViewById(R.id.txttitle);
+        mTextTitle.setTypeface(Fonts.gothambookregular);
+
+        TextView mTextSub = (TextView) view.findViewById(R.id.txtsub);
+        mTextSub.setTypeface(Fonts.gothambold);
+
+
 
         mImageBeatriz = (ImageView) view.findViewById(R.id.beatriz);
         mImageLucy = (ImageView) view.findViewById(R.id.lucy);

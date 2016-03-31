@@ -74,7 +74,10 @@
                android:layout_height="wrap_content"
                android:background="@drawable/ic_small_box"
                android:layout_marginTop="5dp"
-               android:padding="10dp"/>
+               android:paddingLeft="20dp"
+               android:paddingRight="20dp"
+               android:textColor="@color/colorLightGary"
+               android:singleLine="true"/>
 
 
             <TextView
@@ -89,7 +92,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_small_box"
                 android:layout_marginTop="5dp"
-                android:padding="10dp"/>
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/colorLightGary"
+                android:singleLine="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,7 +109,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_note"
-                android:padding="10dp"/>
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/colorLightGary"/>
 
         </LinearLayout>
 
