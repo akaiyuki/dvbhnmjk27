@@ -1,0 +1,346 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.syaona.petalierapp.fragment.ChooseCollectionFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose your"
+        android:layout_below="@+id/app_bar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textSize="17sp"
+        android:id="@+id/textchoose"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Collection"
+        android:layout_below="@+id/textchoose"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorButtonInactive"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textSize="19sp"
+        android:id="@+id/textcollection"/>
+
+        <View
+            android:layout_below="@+id/textcollection"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="20dp"
+            android:layout_height="5dip"
+            android:background="@color/colorLightGary"
+            android:id="@+id/divider1"
+            android:layout_centerHorizontal="true"/>
+
+
+
+        <!--below is just a sample images-->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:id="@+id/relative">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/beatriz"
+        android:id="@+id/beatriz"/>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/beatriz"
+            android:orientation="vertical"
+            android:id="@+id/linearrow1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="beatriz"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:id="@+id/txtbeatriz"
+            android:textColor="@color/colorButtonBackground"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_line_active"
+                android:layout_below="@+id/txtbeatriz"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="P3,000.00"
+                android:textColor="@color/colorButtonBackground"/>
+
+        </LinearLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/lucy"
+        android:layout_toRightOf="@+id/beatriz"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/lucy"/>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lucy"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/beatriz"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lucy"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="@color/colorButtonBackground"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_line_inactive"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="P4,000.00"
+                android:textColor="@color/colorButtonBackground"/>
+
+        </LinearLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/lauren"
+        android:layout_toRightOf="@+id/lucy"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/lauren"/>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lucy"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/lucy"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lauren"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="@color/colorButtonBackground"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_line_inactive"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="P8,000.00"
+                android:textColor="@color/colorButtonBackground"/>
+
+        </LinearLayout>
+
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/chloe"
+            android:layout_below="@+id/linearrow1"
+            android:id="@+id/chloe"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chloe"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="chloe"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="@color/colorButtonBackground"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_line_inactive"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="P8,800.00"
+                android:textColor="@color/colorButtonBackground"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/diana"
+            android:layout_below="@+id/linearrow1"
+            android:id="@+id/diana"
+            android:layout_toRightOf="@+id/chloe"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/diana"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/chloe"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="diana"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="@color/colorButtonBackground"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_line_inactive"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="P9,900.00"
+                android:textColor="@color/colorButtonBackground"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/felicima"
+            android:layout_below="@+id/linearrow1"
+            android:id="@+id/felicima"
+            android:layout_toRightOf="@+id/diana"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"/>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/diana"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/diana"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Felicima"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="@color/colorButtonBackground"/>
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_line_inactive"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="P11,000.00"
+                android:textColor="@color/colorButtonBackground"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relative"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Design your Box Now!"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_background"
+            android:textColor="@color/colorTextWhite"
+            android:textStyle="normal"
+            android:textAllCaps="false"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/btndesign"/>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</ScrollView>

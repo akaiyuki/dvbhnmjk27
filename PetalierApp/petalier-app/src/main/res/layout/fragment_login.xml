@@ -1,0 +1,160 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.syaona.petalierapp.fragment.LoginFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:src="@drawable/petalierlogo"
+        android:layout_marginTop="90dp"
+        android:id="@+id/petalogo"
+        android:layout_centerHorizontal="true"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/petalogo"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ic_small_box"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:singleLine="true"
+        android:hint="Email"
+        android:padding="15dp"
+        android:textColorHint="@color/colorLightGary"
+        android:id="@+id/edit_email"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_email"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_small_box"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:singleLine="true"
+        android:hint="Password"
+        android:padding="15dp"
+        android:textColorHint="@color/colorLightGary"
+        android:id="@+id/edit_password"/>
+
+    <Button
+        android:id="@+id/btnloginemail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_password"
+        android:text="Log In with Email"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextWhite"
+        android:background="@drawable/button_background"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"/>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/btnloginemail"
+        android:id="@+id/linear">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/btnloginemail"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@color/colorLightGary"
+                android:id="@+id/divider"
+                android:layout_marginLeft="30dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="or"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginRight="10dp">
+
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/btnloginemail"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@color/colorLightGary"
+                android:layout_marginRight="30dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_fb"
+        android:id="@+id/fbimage"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log In with Facebook"
+            android:layout_toRightOf="@+id/fbimage"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorFb"/>
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

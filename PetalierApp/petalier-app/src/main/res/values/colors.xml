@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#dbb86a</color>
+    <color name="colorPrimaryDark">#dbab40</color>
+    <color name="colorAccent">#dbab40</color>
+
+    <color name="colorLightGary">#CDCDCD</color>
+    <color name="color3DBackground">#E4E3E3</color>
+    <color name="colorFieldIcon">#C7C8C6</color>
+
+    <color name="colorBackground">#FFFFFF</color>
+
+
+    <color name="colorButtonBackground">#505050</color>
+    <color name="colorButtonActive">#DBAB40</color>
+    <color name="colorButtonInactive">#DBB86A</color>
+
+    <color name="colorText">#000000</color>
+    <color name="colorTextWhite">#FFFFFF</color>
+    <color name="colorFb">#4a90e2</color>
+</resources>
