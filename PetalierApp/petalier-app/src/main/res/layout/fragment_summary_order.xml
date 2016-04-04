@@ -1,0 +1,470 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context="com.syaona.petalierapp.fragment.SummaryOrderFragment">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Summary of"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textSize="17sp"
+            android:id="@+id/textchoose"
+            android:layout_below="@+id/app_bar"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="order"
+            android:layout_below="@+id/textchoose"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorButtonInactive"
+            android:textAllCaps="true"
+            android:textSize="19sp"
+            android:id="@+id/textbox"/>
+
+        <View
+            android:layout_below="@+id/textbox"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="20dp"
+            android:layout_height="5dip"
+            android:background="@color/colorLightGary"
+            android:id="@+id/divider"
+            android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We greatly respect our clientele's privacy and we
+            guarantee that no personal data gathered henceforth
+            will be disclosed to any third party.The sole purpose
+            of the information needed below is to ensure an
+            efficient ordering and delivery system."
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"
+            android:id="@+id/textdetails"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_below="@+id/divider"
+            android:textColor="@color/colorButtonBackground"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="order #123"
+            android:layout_marginTop="20dp"
+            android:textSize="17sp"
+            android:id="@+id/textodernumber"
+            android:layout_below="@+id/textdetails"
+            android:layout_marginLeft="10dp"
+            android:textAllCaps="true"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_below="@+id/textodernumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/linear">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product"
+                    android:layout_marginTop="20dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorButtonInactive"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1  Beatriz"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"/>
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/colorLightGary"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3  Diana"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"/>
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/colorLightGary"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subtotal"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorButtonInactive"/>
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/colorLightGary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shipping"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"/>
+
+                <View
+                    android:layout_marginTop="21dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/colorLightGary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorButtonInactive"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="right"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:layout_marginTop="20dp"
+                    android:textSize="17sp"
+                    android:id="@+id/textprice"
+                    android:textColor="@color/colorButtonInactive"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PHP 3,000.00"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"/>
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/colorLightGary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PHP 29,700.00"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"/>
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/colorLightGary"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PHP 32,700.00"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"/>
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/colorLightGary"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PHP 0.00"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Free Shipping"
+                    android:textSize="9sp"/>
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/colorLightGary"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PHP 32,700.00"
+                    android:layout_marginTop="10dp"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear"
+            android:background="@color/color3DBackground"
+            android:padding="10dp"
+            android:id="@+id/linear2">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOTE: Upload your receipt to confirm orders"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:textSize="14sp"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="payment method"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:id="@+id/textpaymentmethod"
+            android:layout_below="@+id/linear2"
+            android:layout_marginLeft="10dp"
+            android:textAllCaps="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/linear3"
+            android:layout_below="@+id/textpaymentmethod"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/check_default"
+                    android:button="@drawable/custom_checkbox"
+                    />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Direct Bank Transfer"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/check_default"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp">
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Make your payment directly into our bank account. PLease use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account"
+                    android:textSize="12sp"
+                    />
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/linear4"
+            android:layout_below="@+id/linear3"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/check_default1"
+                    android:button="@drawable/custom_checkbox"
+                    />
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paypal"
+                    android:layout_toRightOf="@+id/check_default1"/>
+
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="What is Paypal?"
+                    android:layout_toRightOf="@+id/check_default1"
+                    android:textColor="@color/colorButtonInactive"
+                    android:textSize="13sp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="10dp">
+
+               <ImageView
+                   android:layout_width="50dp"
+                   android:layout_height="50dp"
+                   android:src="@drawable/mastercard"/>
+
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/visa"
+                    android:layout_marginLeft="15dp"/>
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/discover"
+                    android:layout_marginLeft="15dp"/>
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/americanexpress"
+                    android:layout_marginLeft="15dp"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/linear4"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="@color/colorLightGary"
+            android:id="@+id/divider5"
+            android:layout_marginBottom="30dp"
+            />
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider5"
+            android:layout_marginBottom="30dp">
+
+            <Button
+
+                android:id="@+id/btnplaceorder"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Checkout Order"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"
+                android:background="@drawable/button_background"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"/>
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

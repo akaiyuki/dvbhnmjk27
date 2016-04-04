@@ -7,20 +7,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.BaseActivity;
-import com.syaona.petalierapp.core.PEngine;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DeliveryDetailsFragment extends Fragment {
+public class SummaryOrderFragment extends Fragment {
 
 
-    public DeliveryDetailsFragment() {
+    public SummaryOrderFragment() {
         // Required empty public constructor
     }
 
@@ -29,9 +27,9 @@ public class DeliveryDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_delivery_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_summary_order, container, false);
 
-          /* Initialize toolbar */
+        /* Initialize toolbar */
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.app_bar);
         ((BaseActivity) getActivity()).setSupportActionBar(toolbar);
         ((BaseActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
@@ -41,14 +39,7 @@ public class DeliveryDetailsFragment extends Fragment {
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);
 
-        Button btnCheckout = (Button) view.findViewById(R.id.next);
-        btnCheckout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
-            }
-        });
 
 
 
