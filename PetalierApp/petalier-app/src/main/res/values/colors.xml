@@ -18,4 +18,6 @@
     <color name="colorText">#000000</color>
     <color name="colorTextWhite">#FFFFFF</color>
     <color name="colorFb">#4a90e2</color>
+
+    <color name="colorTransparent">#00FFFFFF</color>
 </resources>

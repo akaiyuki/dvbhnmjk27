@@ -35,7 +35,18 @@
         android:layout_height="20dp"
         android:src="@drawable/ic_profile"
         android:layout_alignParentRight="true"
-        android:id="@+id/profile"/>
+        android:id="@+id/profile"
+        android:visibility="visible"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_settings"
+            android:layout_alignParentRight="true"
+            android:id="@+id/settings"
+            android:visibility="gone"/>
+
+
 
     </RelativeLayout>
 

@@ -59,6 +59,16 @@ public class ChooseCollectionFragment extends Fragment {
         mTxtTitle.setTypeface(Fonts.gothambookregular);
 
 
+        ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
+        mImageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PEngine.switchFragment((BaseActivity) getActivity(), new ProfileFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+            }
+        });
+
+
 
 
         Button mButtonDesign = (Button) view.findViewById(R.id.btndesign);
