@@ -10,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.LoginActivity;
+import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.view.Fonts;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +41,18 @@ public class SendNoteFragment extends Fragment {
         ((BaseActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
         ((BaseActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((BaseActivity) getActivity()).getSupportActionBar().setTitle("");
+
+        toolbar.setNavigationIcon(R.drawable.arrow);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.INSTANCE.onBackPressed();
+            }
+        });
+
+        TextView mTxtTitle = (TextView) toolbar.findViewById(R.id.txtsub);
+        mTxtTitle.setText("Send a Note");
+        mTxtTitle.setTypeface(Fonts.gothambookregular);
 
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);

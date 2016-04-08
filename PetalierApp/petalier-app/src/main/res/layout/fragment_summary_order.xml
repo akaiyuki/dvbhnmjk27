@@ -15,53 +15,102 @@
             android:id="@+id/app_bar"
             layout="@layout/app_bar" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Summary of"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textSize="17sp"
-            android:id="@+id/textchoose"
-            android:layout_below="@+id/app_bar"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Summary of"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:textSize="17sp"-->
+            <!--android:id="@+id/textchoose"-->
+            <!--android:layout_below="@+id/app_bar"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="order"
-            android:layout_below="@+id/textchoose"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/colorButtonInactive"
-            android:textAllCaps="true"
-            android:textSize="19sp"
-            android:id="@+id/textbox"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="order"-->
+            <!--android:layout_below="@+id/textchoose"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:textColor="@color/colorButtonInactive"-->
+            <!--android:textAllCaps="true"-->
+            <!--android:textSize="19sp"-->
+            <!--android:id="@+id/textbox"/>-->
 
-        <View
-            android:layout_below="@+id/textbox"
-            android:layout_marginTop="10dp"
+        <!--<View-->
+            <!--android:layout_below="@+id/textbox"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="5dip"-->
+            <!--android:background="@color/colorLightGary"-->
+            <!--android:id="@+id/divider"-->
+            <!--android:layout_centerHorizontal="true"/>-->
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_width="20dp"
-            android:layout_height="5dip"
-            android:background="@color/colorLightGary"
-            android:id="@+id/divider"
-            android:layout_centerHorizontal="true"/>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="We greatly respect our clientele's privacy and we
-            guarantee that no personal data gathered henceforth
-            will be disclosed to any third party.The sole purpose
-            of the information needed below is to ensure an
-            efficient ordering and delivery system."
-            android:layout_centerHorizontal="true"
-            android:textSize="12sp"
             android:id="@+id/textdetails"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_below="@+id/divider"
-            android:textColor="@color/colorButtonBackground"/>
+            android:layout_below="@+id/app_bar"
+            android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="We greatly respect our clientele's privacy and we"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" guarantee that no personal data gathered henceforth"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="will be disclosed to any third party.The sole purpose"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="of the information needed below is to ensure an"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="efficient ordering and delivery system."/>
+
+
+        </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <TextView

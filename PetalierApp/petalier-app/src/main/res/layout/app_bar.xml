@@ -8,17 +8,27 @@
     android:fitsSystemWindows="true"
     app:popupTheme="@style/MyCustomToolbarTheme">
 
-    <ImageView
-        android:layout_width="130dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_petalier_toolbar"/>
-
+    <!--<ImageView-->
+        <!--android:layout_width="130dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:src="@drawable/ic_petalier_toolbar"/>-->
+    <!-- -->
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_alignParentRight="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorTextWhite"
+            android:textSize="16sp"
+            android:id="@+id/txtsub"
+            android:layout_marginLeft="10dp"
+            android:textStyle="italic"/>
 
     <ImageView
         android:layout_width="20dp"

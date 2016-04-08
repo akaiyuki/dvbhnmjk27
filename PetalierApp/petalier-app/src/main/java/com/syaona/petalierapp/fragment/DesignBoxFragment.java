@@ -9,13 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.view.CircleTransform;
+import com.syaona.petalierapp.view.Fonts;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,9 +41,23 @@ public class DesignBoxFragment extends Fragment {
          /* Initialize toolbar */
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.app_bar);
         ((BaseActivity) getActivity()).setSupportActionBar(toolbar);
-        ((BaseActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
-        ((BaseActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((BaseActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(false);
+        ((BaseActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         ((BaseActivity) getActivity()).getSupportActionBar().setTitle("");
+
+
+        toolbar.setNavigationIcon(R.drawable.arrow);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.INSTANCE.onBackPressed();
+            }
+        });
+
+        TextView mTxtTitle = (TextView) toolbar.findViewById(R.id.txtsub);
+        mTxtTitle.setText("Design your Box");
+        mTxtTitle.setTypeface(Fonts.gothambookregular);
+
 
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);

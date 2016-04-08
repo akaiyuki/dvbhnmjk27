@@ -14,37 +14,37 @@
         android:id="@+id/app_bar"
         layout="@layout/app_bar" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose your"
-        android:layout_below="@+id/app_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="17sp"
-        android:id="@+id/txttitle"/>
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Choose your"-->
+        <!--android:layout_below="@+id/app_bar"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:textSize="17sp"-->
+        <!--android:id="@+id/txttitle"/>-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Collection"
-        android:layout_below="@+id/txttitle"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorButtonInactive"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="19sp"
-        android:id="@+id/txtsub"/>
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Collection"-->
+        <!--android:layout_below="@+id/txttitle"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:textColor="@color/colorButtonInactive"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="19sp"-->
+        <!--android:id="@+id/txtsubtitle"/>-->
 
-        <View
-            android:layout_below="@+id/txtsub"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
-            android:layout_width="20dp"
-            android:layout_height="5dip"
-            android:background="@color/colorLightGary"
-            android:id="@+id/divider1"
-            android:layout_centerHorizontal="true"/>
+        <!--<View-->
+            <!--android:layout_below="@+id/txtsubtitle"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginBottom="30dp"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="5dip"-->
+            <!--android:background="@color/colorLightGary"-->
+            <!--android:id="@+id/divider1"-->
+            <!--android:layout_centerHorizontal="true"/>-->
 
 
 
@@ -53,10 +53,11 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/divider1"
+        android:layout_below="@+id/app_bar"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
+        android:layout_marginTop="50dp"
         android:id="@+id/relative">
 
     <ImageView
@@ -116,6 +117,7 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                android:id="@+id/txtlucy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="lucy"
@@ -157,6 +159,7 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                android:id="@+id/txtlauren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="lauren"
@@ -198,6 +201,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtchloe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="chloe"
@@ -242,6 +246,7 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                android:id="@+id/txtdiana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="diana"
@@ -286,6 +291,7 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                android:id="@+id/txtfelicima"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Felicima"

@@ -8,9 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.activity.MainActivity;
+import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.view.Fonts;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +39,18 @@ public class SummaryOrderFragment extends Fragment {
         ((BaseActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
         ((BaseActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((BaseActivity) getActivity()).getSupportActionBar().setTitle("");
+
+        toolbar.setNavigationIcon(R.drawable.arrow);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OrderActivity.INSTANCE.onBackPressed();
+            }
+        });
+
+        TextView mTxtTitle = (TextView) toolbar.findViewById(R.id.txtsub);
+        mTxtTitle.setText("Summary of Order");
+        mTxtTitle.setTypeface(Fonts.gothambookregular);
 
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);

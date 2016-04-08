@@ -52,10 +52,14 @@ public class ChooseCollectionFragment extends Fragment {
         ((BaseActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(false);
         ((BaseActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         ((BaseActivity) getActivity()).getSupportActionBar().setTitle("");
+//        ((BaseActivity) getActivity()).getSupportActionBar().setIcon(R.drawable.arrow);
 
-        final Drawable upArrow = getResources().getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
-        upArrow.setColorFilter(getResources().getColor(R.color.colorTextWhite), PorterDuff.Mode.SRC_ATOP);
-        ((BaseActivity) getActivity()).getSupportActionBar().setHomeAsUpIndicator(upArrow);
+        TextView mTxtTitle = (TextView) toolbar.findViewById(R.id.txtsub);
+        mTxtTitle.setText("Choose your Collection");
+        mTxtTitle.setTypeface(Fonts.gothambookregular);
+
+
+
 
         Button mButtonDesign = (Button) view.findViewById(R.id.btndesign);
         mButtonDesign.setOnClickListener(new View.OnClickListener() {
@@ -68,12 +72,29 @@ public class ChooseCollectionFragment extends Fragment {
             }
         });
 
-        TextView mTextTitle = (TextView) view.findViewById(R.id.txttitle);
-        mTextTitle.setTypeface(Fonts.gothambookregular);
+//        TextView mTextTitle = (TextView) view.findViewById(R.id.txttitle);
+//        mTextTitle.setTypeface(Fonts.gothambookregular);
+//
+//        TextView mTextSub = (TextView) view.findViewById(R.id.txtsubtitle);
+//        mTextSub.setTypeface(Fonts.gothambold);
 
-        TextView mTextSub = (TextView) view.findViewById(R.id.txtsub);
-        mTextSub.setTypeface(Fonts.gothambold);
+        TextView txtBeatriz = (TextView) view.findViewById(R.id.txtbeatriz);
+        txtBeatriz.setTypeface(Fonts.gothambold);
 
+        TextView txtLucy = (TextView) view.findViewById(R.id.txtlucy);
+        txtLucy.setTypeface(Fonts.gothambold);
+
+        TextView txtLauren = (TextView) view.findViewById(R.id.txtlauren);
+        txtLauren.setTypeface(Fonts.gothambold);
+
+        TextView txtChloe = (TextView) view.findViewById(R.id.txtchloe);
+        txtChloe.setTypeface(Fonts.gothambold);
+
+        TextView txtDiana = (TextView) view.findViewById(R.id.txtdiana);
+        txtDiana.setTypeface(Fonts.gothambold);
+
+        TextView txtFelicima = (TextView) view.findViewById(R.id.txtfelicima);
+        txtFelicima.setTypeface(Fonts.gothambold);
 
 
         mImageBeatriz = (ImageView) view.findViewById(R.id.beatriz);

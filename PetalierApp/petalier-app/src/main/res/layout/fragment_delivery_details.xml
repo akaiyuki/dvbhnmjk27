@@ -16,36 +16,36 @@
             android:id="@+id/app_bar"
             layout="@layout/app_bar" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delivery"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textSize="17sp"
-            android:id="@+id/textchoose"
-            android:layout_below="@+id/app_bar"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Delivery"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:textSize="17sp"-->
+            <!--android:id="@+id/textchoose"-->
+            <!--android:layout_below="@+id/app_bar"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Details"
-            android:layout_below="@+id/textchoose"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/colorButtonInactive"
-            android:textAllCaps="false"
-            android:textSize="19sp"
-            android:id="@+id/textbox"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Details"-->
+            <!--android:layout_below="@+id/textchoose"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:textColor="@color/colorButtonInactive"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:textSize="19sp"-->
+            <!--android:id="@+id/textbox"/>-->
 
-        <View
-            android:layout_below="@+id/textbox"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
-            android:layout_width="20dp"
-            android:layout_height="5dip"
-            android:background="@color/colorLightGary"
-            android:id="@+id/divider"
-            android:layout_centerHorizontal="true"/>
+        <!--<View-->
+            <!--android:layout_below="@+id/textbox"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginBottom="30dp"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="5dip"-->
+            <!--android:background="@color/colorLightGary"-->
+            <!--android:id="@+id/divider"-->
+            <!--android:layout_centerHorizontal="true"/>-->
 
 
         <LinearLayout
@@ -54,7 +54,8 @@
             android:orientation="vertical"
             android:layout_marginLeft="40dp"
             android:id="@+id/linear"
-            android:layout_below="@+id/divider"
+            android:layout_below="@+id/app_bar"
+            android:layout_marginTop="20dp"
             >
 
             <LinearLayout
