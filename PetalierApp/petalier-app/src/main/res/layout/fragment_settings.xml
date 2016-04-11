@@ -7,8 +7,7 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <include
             android:id="@+id/app_bar"
@@ -17,77 +16,79 @@
 
         <LinearLayout
             android:id="@+id/linear"
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/app_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginBottom="40dp">
+            android:layout_marginTop="30dp"
+            android:orientation="vertical">
 
 
             <ImageButton
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@drawable/rate_background"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rate_background" />
 
             <TextView
+                android:id="@+id/txtrate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rate the App"
                 android:layout_gravity="center_horizontal"
-                />
+                android:layout_marginTop="10dp"
+                android:text="Rate the App" />
 
             <ImageButton
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@drawable/inquire_background"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:background="@drawable/inquire_background" />
 
             <TextView
+                android:id="@+id/txtinquire"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Inquire Now"
                 android:layout_gravity="center_horizontal"
-                />
+                android:layout_marginTop="10dp"
+                android:text="Inquire Now" />
 
             <ImageButton
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:background="@drawable/contact_background"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:background="@drawable/contact_background" />
 
             <TextView
+                android:id="@+id/txtcontact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contact Us"
                 android:layout_gravity="center_horizontal"
-                />
-
+                android:layout_marginTop="10dp"
+                android:text="Contact Us" />
 
 
         </LinearLayout>
 
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/btnlogout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Logout"
-            android:textAllCaps="false"
-            android:textColor="@color/colorTextWhite"
-            android:background="@drawable/button_background"
             android:layout_below="@+id/linear"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="20dp"/>
+            android:background="@drawable/button_background"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextWhite" />
 
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 
 </ScrollView>

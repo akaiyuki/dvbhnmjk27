@@ -69,7 +69,7 @@
 
             <TextView
                 android:id="@+id/txt1"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="We greatly respect our clientele's privacy and we"/>
@@ -77,14 +77,14 @@
 
             <TextView
                 android:id="@+id/txt2"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" guarantee that no personal data gathered henceforth"/>
 
             <TextView
                 android:id="@+id/txt3"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="will be disclosed to any third party.The sole purpose"/>
@@ -92,14 +92,14 @@
 
             <TextView
                 android:id="@+id/txt4"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="of the information needed below is to ensure an"/>
 
             <TextView
                 android:id="@+id/txt5"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="efficient ordering and delivery system."/>
@@ -352,7 +352,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:id="@+id/linear3"
             android:layout_below="@+id/textpaymentmethod"
             >
@@ -412,7 +412,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="30dp"
             android:id="@+id/linear4"
             android:layout_below="@+id/linear3"
             >

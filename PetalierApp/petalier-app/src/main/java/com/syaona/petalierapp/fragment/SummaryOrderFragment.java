@@ -75,7 +75,7 @@ public class SummaryOrderFragment extends Fragment {
         txt5.setTypeface(Fonts.gothambookregular);
 
         TextView txtOrderNumber = (TextView) view.findViewById(R.id.textodernumber);
-        txtOrderNumber.setTypeface(Fonts.gothambookregular);
+        txtOrderNumber.setTypeface(Fonts.gothambold);
 
         TextView txtNote = (TextView) view.findViewById(R.id.txtnote);
         txtNote.setTypeface(Fonts.gothambookregular);

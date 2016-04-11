@@ -1,18 +1,24 @@
 package com.syaona.petalierapp.fragment;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
@@ -22,6 +28,11 @@ import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
 import com.syaona.petalierapp.view.SlidingTabLayout;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +46,10 @@ public class ProfileFragment extends Fragment {
     private SamplePagerAdapter mPageAdapter;
     private SlidingTabLayout mSlidingTabLayout;
     private int mLastPage = 0;
+
+    private ListView mListViewPager;
+    private OrderListAdapter mAdapter;
+    private ArrayList<JSONObject> mResultset = new ArrayList<>();
 
 
     public ProfileFragment() {
@@ -87,6 +102,19 @@ public class ProfileFragment extends Fragment {
                 .transform(new CircleTransform())
                 .fit()
                 .into(mProfile);
+
+
+        ImageView mEditProfile = (ImageView) view.findViewById(R.id.editprofile);
+        mEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+            }
+        });
+
+
+
 
         return view;
     }
@@ -147,6 +175,27 @@ public class ProfileFragment extends Fragment {
             // Add the newly created View to the ViewPager
             container.addView(view);
 
+            // Retrieve a ListView and populate
+            mListViewPager = (ListView) view.findViewById(R.id.listview);
+
+            if (position == 0) {
+                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultset);
+                mAdapter.notifyDataSetChanged();
+            }
+
+
+            mListViewPager.setAdapter(mAdapter);
+
+            mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                }
+            });
+
+
+
 
 
             // Return the View
@@ -192,6 +241,73 @@ public class ProfileFragment extends Fragment {
     private void updateLastPage(int page) {
 
     }
+
+
+
+
+
+
+
+
+
+
+    public class OrderListAdapter extends ArrayAdapter<JSONObject> {
+
+        Context mContext;
+        ArrayList<JSONObject> mData = new ArrayList<>();
+        int mResId;
+        int column;
+
+        public OrderListAdapter(Context context, int resource, ArrayList<JSONObject> data) {
+            super(context, resource, data);
+            this.mContext = context;
+            this.mResId = resource;
+            this.mData = data;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+
+            if (convertView == null) {
+                //Inflate layout
+                LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+                convertView = inflater.inflate(mResId, null);
+//                convertView = inflater.inflate(R.layout.custom_row_pager, null);
+                holder = new ViewHolder();
+
+                holder.text1 = (TextView) convertView.findViewById(R.id.textview_order);
+                holder.text2 = (TextView) convertView.findViewById(R.id.textview_price);
+                holder.text3 = (TextView) convertView.findViewById(R.id.textview_date);
+                holder.imageView = (ImageView) convertView.findViewById(R.id.imageview_flower);
+
+
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            JSONObject row = mData.get(position);
+
+
+
+
+
+
+
+
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView text1;
+            TextView text2;
+            TextView text3;
+            ImageView imageView;
+        }
+    }
+
+
 
 
 

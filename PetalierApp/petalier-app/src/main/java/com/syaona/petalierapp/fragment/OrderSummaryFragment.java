@@ -13,16 +13,17 @@ import android.widget.TextView;
 
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
+import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.view.Fonts;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingsFragment extends Fragment {
+public class OrderSummaryFragment extends Fragment {
 
 
-    public SettingsFragment() {
+    public OrderSummaryFragment() {
         // Required empty public constructor
     }
 
@@ -31,9 +32,9 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_order_summary, container, false);
 
-         /* Initialize toolbar */
+        /* Initialize toolbar */
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.app_bar);
         ((BaseActivity) getActivity()).setSupportActionBar(toolbar);
         ((BaseActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
@@ -49,24 +50,26 @@ public class SettingsFragment extends Fragment {
         });
 
         TextView mTxtTitle = (TextView) toolbar.findViewById(R.id.txtsub);
-        mTxtTitle.setText("Settings");
+        mTxtTitle.setText("Order Summary");
         mTxtTitle.setTypeface(Fonts.gothambookregular);
 
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);
 
+        TextView txtOrder = (TextView) view.findViewById(R.id.txtorder);
+        txtOrder.setTypeface(Fonts.gothambold);
 
-        TextView txtRate = (TextView) view.findViewById(R.id.txtrate);
-        txtRate.setTypeface(Fonts.gothambookregular);
+        TextView txtDate = (TextView) view.findViewById(R.id.txtdate);
+        txtDate.setTypeface(Fonts.gothambookregular);
 
-        TextView txtInquire = (TextView) view.findViewById(R.id.txtinquire);
-        txtInquire.setTypeface(Fonts.gothambookregular);
+        TextView txtNote = (TextView) view.findViewById(R.id.txtnote);
+        txtNote.setTypeface(Fonts.gothambookregular);
 
-        TextView txtContact = (TextView) view.findViewById(R.id.txtcontact);
-        txtContact.setTypeface(Fonts.gothambookregular);
+        TextView txtUpload = (TextView) view.findViewById(R.id.txtupload);
+        txtUpload.setTypeface(Fonts.gothambold);
 
-        Button btnLogout = (Button) view.findViewById(R.id.btnlogout);
-        btnLogout.setTypeface(Fonts.gothambookregular);
+        Button btnDone = (Button) view.findViewById(R.id.btndone);
+        btnDone.setTypeface(Fonts.gothambookregular);
 
 
 
