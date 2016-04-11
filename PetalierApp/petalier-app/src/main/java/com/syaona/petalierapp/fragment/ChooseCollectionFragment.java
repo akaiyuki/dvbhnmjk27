@@ -72,6 +72,7 @@ public class ChooseCollectionFragment extends Fragment {
 
 
         Button mButtonDesign = (Button) view.findViewById(R.id.btndesign);
+        mButtonDesign.setTypeface(Fonts.gothambookregular);
         mButtonDesign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +82,27 @@ public class ChooseCollectionFragment extends Fragment {
 
             }
         });
+
+
+
+        TextView txtPriceBea = (TextView) view.findViewById(R.id.pricebea);
+        txtPriceBea.setTypeface(Fonts.gothambookregular);
+
+        TextView txtPriceLucy = (TextView) view.findViewById(R.id.pricelucy);
+        txtPriceLucy.setTypeface(Fonts.gothambookregular);
+
+        TextView txtPriceLauren = (TextView) view.findViewById(R.id.pricelauren);
+        txtPriceLauren.setTypeface(Fonts.gothambookregular);
+
+        TextView txtPriceChloe = (TextView) view.findViewById(R.id.pricechloe);
+        txtPriceChloe.setTypeface(Fonts.gothambookregular);
+
+        TextView txtPriceDiana = (TextView) view.findViewById(R.id.pricediana);
+        txtPriceDiana.setTypeface(Fonts.gothambookregular);
+
+        TextView txtPriceFeli = (TextView) view.findViewById(R.id.pricefeli);
+        txtPriceFeli.setTypeface(Fonts.gothambookregular);
+
 
 //        TextView mTextTitle = (TextView) view.findViewById(R.id.txttitle);
 //        mTextTitle.setTypeface(Fonts.gothambookregular);

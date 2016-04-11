@@ -92,6 +92,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
+                android:id="@+id/pricebea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -134,6 +135,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
+                android:id="@+id/pricelucy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -176,6 +178,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
+                android:id="@+id/pricelauren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -218,6 +221,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
+                android:id="@+id/pricechloe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -263,6 +267,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
+                android:id="@+id/pricediana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -308,6 +313,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
+                android:id="@+id/pricefeli"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

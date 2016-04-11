@@ -20,36 +20,36 @@
         android:background="@color/color3DBackground"
         android:id="@+id/relative">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Design your"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textSize="17sp"
-            android:id="@+id/textchoose"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Design your"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:textSize="17sp"-->
+            <!--android:id="@+id/textchoose"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Box"
-            android:layout_below="@+id/textchoose"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/colorButtonInactive"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textSize="19sp"
-            android:id="@+id/textbox"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Box"-->
+            <!--android:layout_below="@+id/textchoose"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:textColor="@color/colorButtonInactive"-->
+            <!--android:textAllCaps="true"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="19sp"-->
+            <!--android:id="@+id/textbox"/>-->
 
-        <View
-            android:layout_below="@+id/textbox"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
-            android:layout_width="20dp"
-            android:layout_height="5dip"
-            android:background="@color/colorLightGary"
-            android:id="@+id/divider1"
-            android:layout_centerHorizontal="true"/>
+        <!--<View-->
+            <!--android:layout_below="@+id/textbox"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginBottom="30dp"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="5dip"-->
+            <!--android:background="@color/colorLightGary"-->
+            <!--android:id="@+id/divider1"-->
+            <!--android:layout_centerHorizontal="true"/>-->
 
 
         <ImageView
@@ -58,7 +58,6 @@
             android:src="@drawable/flower3d"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_below="@+id/divider1"
             />
 
     </RelativeLayout>
