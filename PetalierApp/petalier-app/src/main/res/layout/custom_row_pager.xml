@@ -39,7 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Total Price: PHP 32,700"/>
+            android:text="Total Price: PHP 32,700"
+            android:drawableRight="@drawable/ic_disclosure"
+            android:layout_marginRight="5dp"/>
 
         <TextView
             android:id="@+id/textview_date"

@@ -72,6 +72,7 @@
                 />
 
             <TextView
+                android:id="@+id/txtdefault"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,6 +130,7 @@
                 />
 
             <TextView
+                android:id="@+id/txtnewbilling"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -174,6 +176,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtfullname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Full Name"/>
@@ -204,6 +207,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtcontact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Contact Number"/>
@@ -237,6 +241,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtemail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email Address"/>
@@ -267,6 +272,7 @@
                 android:id="@+id/divider4"/>
 
             <TextView
+                android:id="@+id/txtlocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location"
@@ -289,6 +295,7 @@
                     android:layout_marginTop="10dp">
 
                     <TextView
+                        android:id="@+id/txtgprs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Turn on GPRS"/>
@@ -328,6 +335,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtstreet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Street Address"/>
@@ -360,6 +368,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtunit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Apartment, Suite, Unit, etc. (Optional)"/>
@@ -391,6 +400,7 @@
 
 
                 <TextView
+                    android:id="@+id/txttown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Town or City"/>
@@ -421,6 +431,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtstate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="State or City"/>
@@ -451,6 +462,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtpostal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Postal Code or ZIP Code"/>
@@ -480,6 +492,7 @@
                 />
 
             <TextView
+                android:id="@+id/txtotherinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Other Information Required"
@@ -497,6 +510,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtoccupation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Occupation"/>
@@ -527,6 +541,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Age"/>
@@ -557,6 +572,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtrel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sender's Relationship to the Recipient"/>
@@ -587,6 +603,7 @@
 
 
                 <TextView
+                    android:id="@+id/txtabout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Where did you hear about us?"/>

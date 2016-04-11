@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.OrderActivity;
+import com.syaona.petalierapp.view.Fonts;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +33,7 @@ public class LoginFragment extends Fragment {
 
 
         Button btnLoginEmail = (Button) view.findViewById(R.id.btnloginemail);
+        btnLoginEmail.setTypeface(Fonts.gothambookregular);
         btnLoginEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,6 +41,8 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        TextView txtLogin = (TextView) view.findViewById(R.id.txtlogin);
+        txtLogin.setTypeface(Fonts.gothambookregular);
 
         return view;
     }

@@ -68,28 +68,38 @@
 
 
             <TextView
+                android:id="@+id/txt1"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="We greatly respect our clientele's privacy and we"/>
 
 
             <TextView
+                android:id="@+id/txt2"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" guarantee that no personal data gathered henceforth"/>
 
             <TextView
+                android:id="@+id/txt3"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="will be disclosed to any third party.The sole purpose"/>
 
 
             <TextView
+                android:id="@+id/txt4"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="of the information needed below is to ensure an"/>
 
             <TextView
+                android:id="@+id/txt5"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="efficient ordering and delivery system."/>
@@ -315,6 +325,7 @@
 
 
             <TextView
+                android:id="@+id/txtnote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NOTE: Upload your receipt to confirm orders"
@@ -361,6 +372,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/txtdirectbank"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -380,6 +392,7 @@
             android:layout_marginRight="10dp">
 
                 <TextView
+                    android:id="@+id/txtdirectnote"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -419,6 +432,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/txtpaypal"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -426,6 +440,7 @@
                     android:layout_toRightOf="@+id/check_default1"/>
 
                 <TextView
+                    android:id="@+id/txtwhatpaypal"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

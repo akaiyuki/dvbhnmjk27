@@ -67,6 +67,7 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
+                    android:id="@+id/txtdeldate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date of Delivery"
@@ -96,6 +97,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/txtspecial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Special Instructions"
@@ -135,6 +137,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/txtfullname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Full Name"
@@ -165,6 +168,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/txtcontact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Contact Number"
@@ -195,6 +199,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/txtemail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email Address"
@@ -225,6 +230,7 @@
                 android:id="@+id/divider3"/>
 
             <TextView
+                android:id="@+id/txtlocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location"
@@ -232,6 +238,7 @@
                 android:layout_marginTop="5dp"/>
 
             <TextView
+                android:id="@+id/txtgprs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Turn on GPRS"
@@ -248,6 +255,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/txtstreet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Street Address"
@@ -278,6 +286,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/txtunit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Appartment, Suite, Unit, etc. (Optional)"
@@ -308,6 +317,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/txttown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Town or City"
@@ -338,6 +348,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/txtstate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="State or City"
@@ -368,6 +379,7 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
+                    android:id="@+id/txtpostal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Postal Code or Zip Code"
@@ -423,7 +435,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Order More"
-                    android:id="@+id/skip"
+                    android:id="@+id/btnorder"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextWhite"
                     android:background="@drawable/button_background_black"/>

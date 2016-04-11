@@ -63,6 +63,7 @@ public class ChooseCardFragment extends Fragment {
         mImageProfile.setVisibility(View.GONE);
 
         Button btnNext = (Button) view.findViewById(R.id.next);
+        btnNext.setTypeface(Fonts.gothambookregular);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +71,18 @@ public class ChooseCardFragment extends Fragment {
 
             }
         });
+
+        Button btnSkip = (Button) view.findViewById(R.id.skip);
+        btnSkip.setTypeface(Fonts.gothambookregular);
+
+        TextView txtCard1 = (TextView) view.findViewById(R.id.txtcard1);
+        txtCard1.setTypeface(Fonts.gothambold);
+
+        TextView txtCard2 = (TextView) view.findViewById(R.id.txtcard2);
+        txtCard2.setTypeface(Fonts.gothambold);
+
+        TextView txtCard3 = (TextView) view.findViewById(R.id.txtcard3);
+        txtCard3.setTypeface(Fonts.gothambold);
 
 
 
@@ -95,6 +108,8 @@ public class ChooseCardFragment extends Fragment {
                 .transform(new CircleTransform())
                 .fit()
                 .into(mImageCard3);
+
+
 
 
 

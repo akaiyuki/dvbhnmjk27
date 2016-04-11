@@ -58,6 +58,7 @@ public class DeliveryDetailsFragment extends Fragment {
         mImageProfile.setVisibility(View.GONE);
 
         Button btnCheckout = (Button) view.findViewById(R.id.next);
+        btnCheckout.setTypeface(Fonts.gothambookregular);
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +66,46 @@ public class DeliveryDetailsFragment extends Fragment {
 
             }
         });
+
+        Button btnOrderMore = (Button) view.findViewById(R.id.btnorder);
+        btnOrderMore.setTypeface(Fonts.gothambookregular);
+
+
+        TextView txtDeliveryDate = (TextView) view.findViewById(R.id.txtdeldate);
+        txtDeliveryDate.setTypeface(Fonts.gothambold);
+
+        TextView txtSpecial = (TextView) view.findViewById(R.id.txtspecial);
+        txtSpecial.setTypeface(Fonts.gothambold);
+
+        TextView txtFullname = (TextView) view.findViewById(R.id.txtfullname);
+        txtFullname.setTypeface(Fonts.gothambold);
+
+        TextView txtContact = (TextView) view.findViewById(R.id.txtcontact);
+        txtContact.setTypeface(Fonts.gothambold);
+
+        TextView txtEmail = (TextView) view.findViewById(R.id.txtemail);
+        txtEmail.setTypeface(Fonts.gothambold);
+
+        TextView txtLocation = (TextView) view.findViewById(R.id.txtlocation);
+        txtLocation.setTypeface(Fonts.gothambold);
+
+        TextView txtGPRS = (TextView) view.findViewById(R.id.txtgprs);
+        txtGPRS.setTypeface(Fonts.gothambookregular);
+
+        TextView txtStreet = (TextView) view.findViewById(R.id.txtstreet);
+        txtStreet.setTypeface(Fonts.gothambold);
+
+        TextView txtUnit = (TextView) view.findViewById(R.id.txtunit);
+        txtUnit.setTypeface(Fonts.gothambold);
+
+        TextView txtTown = (TextView) view.findViewById(R.id.txttown);
+        txtTown.setTypeface(Fonts.gothambold);
+
+        TextView txtState = (TextView) view.findViewById(R.id.txtstate);
+        txtState.setTypeface(Fonts.gothambold);
+
+        TextView txtPostal = (TextView) view.findViewById(R.id.txtpostal);
+        txtPostal.setTypeface(Fonts.gothambold);
 
 
 

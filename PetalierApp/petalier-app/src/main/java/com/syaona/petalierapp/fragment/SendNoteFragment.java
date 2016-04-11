@@ -59,12 +59,23 @@ public class SendNoteFragment extends Fragment {
 
 
         Button btnNext = (Button) view.findViewById(R.id.btnnext);
+        btnNext.setTypeface(Fonts.gothambookregular);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
+
+
+        TextView txtTo = (TextView) view.findViewById(R.id.txtto);
+        txtTo.setTypeface(Fonts.gothambookregular);
+
+        TextView txtFrom = (TextView) view.findViewById(R.id.txtfrom);
+        txtFrom.setTypeface(Fonts.gothambookregular);
+
+        TextView txtNote = (TextView) view.findViewById(R.id.txtnote);
+        txtNote.setTypeface(Fonts.gothambookregular);
 
 
         return view;
