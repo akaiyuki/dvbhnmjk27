@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,9 @@ import com.syaona.petalierapp.view.Fonts;
  * A simple {@link Fragment} subclass.
  */
 public class SendNoteFragment extends Fragment {
+
+    private EditText mEditTo;
+    private EditText mEditMessage;
 
 
     public SendNoteFragment() {
@@ -57,13 +61,21 @@ public class SendNoteFragment extends Fragment {
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);
 
+        mEditTo = (EditText) view.findViewById(R.id.edit_to);
+        mEditMessage = (EditText) view.findViewById(R.id.edit_message);
+
+
 
         Button btnNext = (Button) view.findViewById(R.id.btnnext);
         btnNext.setTypeface(Fonts.gothambookregular);
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), LoginActivity.class));
+
+                if (mEditTo.getText().length() != 0 && mEditMessage.getText().length() != 0){
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                }
+
             }
         });
 
@@ -76,6 +88,7 @@ public class SendNoteFragment extends Fragment {
 
         TextView txtNote = (TextView) view.findViewById(R.id.txtnote);
         txtNote.setTypeface(Fonts.gothambookregular);
+
 
 
         return view;

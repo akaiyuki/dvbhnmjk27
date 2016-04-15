@@ -21,6 +21,7 @@ public class PRequest {
 
 
     /* Post */
+    public static String apiMethoPostLogin = "v1/login";
 
 
 

@@ -150,9 +150,6 @@ public class ProfileFragment extends Fragment {
         mTextEmail = (TextView) view.findViewById(R.id.email);
 
 
-
-
-
         return view;
     }
 

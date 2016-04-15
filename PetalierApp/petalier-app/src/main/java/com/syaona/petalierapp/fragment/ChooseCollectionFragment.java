@@ -337,7 +337,7 @@ public class ChooseCollectionFragment extends Fragment {
 
     public void requestApiGetCollections() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = PConfiguration.testURL+"v1/products/getAll";
+        String url = PConfiguration.testURL+PRequest.apiMethodGetAllProducts;
         StringRequest postRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>()
                 {

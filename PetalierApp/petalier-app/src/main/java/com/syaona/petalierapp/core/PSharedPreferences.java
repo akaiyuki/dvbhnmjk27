@@ -3,6 +3,11 @@ package com.syaona.petalierapp.core;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
+
 /**
  * Created by smartwavedev on 4/15/16.
  */
@@ -39,6 +44,20 @@ public class PSharedPreferences {
         PDebug.logDebug("clearAllPreferences", "PREF CLEARED! LOGOUT!");
 //        mSharedPreferences.edit().clear().commit();
         mSharedPreferences.edit().clear().apply();
+    }
+
+    public static void saveJsonToSharedPref(JSONObject jsonObj, String keyOffset) {
+
+        Iterator<String> iter = jsonObj.keys();
+        while (iter.hasNext()) {
+            String key = iter.next();
+            try {
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(), keyOffset+key, jsonObj.getString(key));
+                PDebug.logDebug("saveJsonToSharedPref", key + " = " + jsonObj.getString(key));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
