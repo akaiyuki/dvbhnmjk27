@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorVeryLightGray">
 
     <!--<com.android.volley.toolbox.NetworkImageView-->
     <!--android:id="@+id/imageview_dashboard_event"-->
@@ -30,9 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Order 111"
-            android:textAllCaps="true"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorButtonInactive"/>
 
         <TextView
             android:id="@+id/textview_price"
@@ -41,13 +42,17 @@
             android:layout_marginTop="5dp"
             android:text="Total Price: PHP 32,700"
             android:drawableRight="@drawable/ic_disclosure"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/textview_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="March 24,2016"/>
+            android:text="March 24,2016"
+            android:textSize="11sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorButtonBackground"/>
 
     </LinearLayout>
 

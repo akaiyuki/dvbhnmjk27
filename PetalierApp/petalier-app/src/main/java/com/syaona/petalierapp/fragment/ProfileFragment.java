@@ -18,21 +18,37 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.core.PConfiguration;
 import com.syaona.petalierapp.core.PEngine;
+import com.syaona.petalierapp.core.PRequest;
+import com.syaona.petalierapp.core.PResponseErrorListener;
+import com.syaona.petalierapp.core.PResponseListener;
+import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
 import com.syaona.petalierapp.view.SlidingTabLayout;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,9 +67,25 @@ public class ProfileFragment extends Fragment {
     private OrderListAdapter mAdapter;
     private ArrayList<JSONObject> mResultset = new ArrayList<>();
 
+    private ArrayList<JSONObject> mResultProfile = new ArrayList<>();
+
+    private TextView mTextName;
+    private TextView mTextEmail;
+
+    private ArrayList<JSONObject> mResultOrders = new ArrayList<>();
 
     public ProfileFragment() {
         // Required empty public constructor
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        requestApiGetProfile();
+        requestApiGetAllOrders();
+
     }
 
 
@@ -108,10 +140,15 @@ public class ProfileFragment extends Fragment {
         mEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//                PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
             }
         });
+
+
+        mTextName = (TextView) view.findViewById(R.id.name);
+        mTextEmail = (TextView) view.findViewById(R.id.email);
+
 
 
 
@@ -179,7 +216,7 @@ public class ProfileFragment extends Fragment {
             mListViewPager = (ListView) view.findViewById(R.id.listview);
 
             if (position == 0) {
-                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultset);
+                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultOrders);
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -289,11 +326,17 @@ public class ProfileFragment extends Fragment {
 
             JSONObject row = mData.get(position);
 
+            try {
+                holder.text1.setText(row.getString("post_title"));
+                holder.text1.setTypeface(Fonts.gothambold);
+                holder.text2.setText(row.getString("post_date"));
+                holder.text2.setTypeface(Fonts.gothambookregular);
+                holder.text3.setText(row.getString("post_status"));
+                holder.text3.setTypeface(Fonts.gothambookregular);
 
-
-
-
-
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
 
             return convertView;
@@ -306,6 +349,192 @@ public class ProfileFragment extends Fragment {
             ImageView imageView;
         }
     }
+
+
+
+
+//    /* api call */
+//    public void requestApiGetProfile() {
+//
+//        HashMap<String, String> params = new HashMap<>();
+////        params.put("items_per_page", "5");
+////        params.put("page_number", "0");
+//
+//        PRequest request = new PRequest(PRequest.apiMethodGetCards, params,
+//                new PResponseListener(){
+//                    @Override
+//                    public void onResponse(JSONObject jsonObject) {
+//                        super.onResponse(jsonObject);
+//
+//
+//                        try {
+//
+//                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+//
+//                                mResultProfile.add(jsonObject.getJSONObject("Data").getJSONObject("profile"));
+//
+//                            }
+//
+//                            Log.i("resultprofile", String.valueOf(mResultProfile.size()));
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }, new PResponseErrorListener(){
+//            @Override
+//            public void onErrorResponse(VolleyError volleyError) {
+//                super.onErrorResponse(volleyError);
+//            }
+//        });
+//
+//        request.execute();
+//    }
+
+
+
+
+
+    public void requestApiGetProfile() {
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String url = PConfiguration.testURL+"v1/profile/getProfile?id=1";
+        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                mResultProfile.add(jsonObject.getJSONObject("Data").getJSONObject("profile"));
+
+                            }
+
+                            populateUserInfo();
+                            Log.i("resultprofile", String.valueOf(mResultProfile.size()));
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        Log.d("ERROR", "error => " + error.toString());
+
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+//                params.put("User-Agent", "Nintendo Gameboy");
+//                params.put("Accept-Language", "fr");
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
+
+    }
+
+
+    public void populateUserInfo(){
+
+        for (int i = 0; i<mResultProfile.size(); i++){
+
+            try {
+                String fName = mResultProfile.get(i).getJSONObject("userDetails").getString("first_name");
+                String lName = mResultProfile.get(i).getJSONObject("userDetails").getString("last_name");
+
+                String email = mResultProfile.get(i).getJSONObject("accountDetails").getString("user_email");
+
+                mTextName.setText(fName+" "+lName);
+                mTextName.setTypeface(Fonts.gothambold);
+                mTextEmail.setText(email);
+                mTextEmail.setTypeface(Fonts.gothambookregular);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+
+    }
+
+
+    public void requestApiGetAllOrders() {
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String url = PConfiguration.testURL+"v1/history/get?userId=1";
+        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("history");
+
+                                for (int i = 0; i<jsonArray.length(); i++){
+
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    mResultOrders.add(jsonObject1);
+
+                                }
+
+
+                            }
+
+                            mViewPager.setAdapter(mPageAdapter);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        Log.d("ERROR", "error => " + error.toString());
+
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+//                params.put("User-Agent", "Nintendo Gameboy");
+//                params.put("Accept-Language", "fr");
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
+
+    }
+
 
 
 

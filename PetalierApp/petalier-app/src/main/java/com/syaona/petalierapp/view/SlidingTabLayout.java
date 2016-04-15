@@ -73,9 +73,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private static final int SELECTED_TEXTVIEW_COLOR = 0xFFdbb86a;
     private static final int DEFAULT_TEXTVIEW_COLOR = 0xFFC0C0C0;
 
-    private static final int TITLE_OFFSET_DIPS = 20;
-    private static final int TAB_VIEW_PADDING_DIPS = 12;
-    private static final int TAB_VIEW_TEXT_SIZE_SP = 12;
+    private static final int TITLE_OFFSET_DIPS = 18;
+    private static final int TAB_VIEW_PADDING_DIPS = 10;
+    private static final int TAB_VIEW_TEXT_SIZE_SP = 10;
 
     private int mTitleOffset;
 

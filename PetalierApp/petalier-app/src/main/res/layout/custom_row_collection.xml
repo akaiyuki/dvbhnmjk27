@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/beatriz"
+        android:id="@+id/beatriz"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/beatriz"
+        android:orientation="vertical"
+        android:id="@+id/linearrow1"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="beatriz"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:id="@+id/txtbeatriz"
+            android:textColor="@color/colorButtonBackground"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_line_active"
+            android:layout_below="@+id/txtbeatriz"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/lineactive"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_line_inactive"
+            android:id="@+id/lineinactive"
+            android:layout_below="@+id/txtbeatriz"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/pricebea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="P3,000.00"
+            android:textColor="@color/colorButtonBackground"/>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

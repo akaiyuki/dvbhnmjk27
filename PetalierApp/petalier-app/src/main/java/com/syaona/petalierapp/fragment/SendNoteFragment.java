@@ -51,7 +51,7 @@ public class SendNoteFragment extends Fragment {
         });
 
         TextView mTxtTitle = (TextView) toolbar.findViewById(R.id.txtsub);
-        mTxtTitle.setText("Send a Note");
+        mTxtTitle.setText("Send a Message");
         mTxtTitle.setTypeface(Fonts.gothambookregular);
 
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
@@ -71,8 +71,8 @@ public class SendNoteFragment extends Fragment {
         TextView txtTo = (TextView) view.findViewById(R.id.txtto);
         txtTo.setTypeface(Fonts.gothambookregular);
 
-        TextView txtFrom = (TextView) view.findViewById(R.id.txtfrom);
-        txtFrom.setTypeface(Fonts.gothambookregular);
+//        TextView txtFrom = (TextView) view.findViewById(R.id.txtfrom);
+//        txtFrom.setTypeface(Fonts.gothambookregular);
 
         TextView txtNote = (TextView) view.findViewById(R.id.txtnote);
         txtNote.setTypeface(Fonts.gothambookregular);

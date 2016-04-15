@@ -37,7 +37,7 @@ public class AppController extends Application {
         mInstance = this;
 //        initDatabase();
 //        JodaTimeAndroid.init(this);
-//        PSSharedPreferences.init(mInstance);
+        PSharedPreferences.init(mInstance);
         mRequestQueue = new PRequestQueue(getApplicationContext());
 
 

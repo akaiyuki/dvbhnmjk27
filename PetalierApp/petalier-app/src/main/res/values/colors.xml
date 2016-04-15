@@ -14,10 +14,12 @@
     <color name="colorButtonBackground">#505050</color>
     <color name="colorButtonActive">#DBAB40</color>
     <color name="colorButtonInactive">#DBB86A</color>
+    <color name="colorButtonGrayActive">#2D2C2C</color>
 
     <color name="colorText">#000000</color>
     <color name="colorTextWhite">#FFFFFF</color>
     <color name="colorFb">#4a90e2</color>
 
     <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorVeryLightGray">#dfdede</color>
 </resources>

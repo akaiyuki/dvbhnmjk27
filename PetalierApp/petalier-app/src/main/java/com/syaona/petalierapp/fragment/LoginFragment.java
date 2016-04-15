@@ -41,8 +41,8 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        TextView txtLogin = (TextView) view.findViewById(R.id.txtlogin);
-        txtLogin.setTypeface(Fonts.gothambookregular);
+//        TextView txtLogin = (TextView) view.findViewById(R.id.txtlogin);
+//        txtLogin.setTypeface(Fonts.gothambookregular);
 
         return view;
     }

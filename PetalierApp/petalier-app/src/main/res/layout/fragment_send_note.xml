@@ -68,7 +68,7 @@
                 android:id="@+id/txtto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="To"
+                android:text="Name to be printed on the card"
                 android:textSize="16sp"/>
 
            <EditText
@@ -82,29 +82,29 @@
                android:singleLine="true"/>
 
 
-            <TextView
-                android:id="@+id/txtfrom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="From"
-                android:textSize="16sp"
-                android:layout_marginTop="20dp"/>
+            <!--<TextView-->
+                <!--android:id="@+id/txtfrom"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="From"-->
+                <!--android:textSize="16sp"-->
+                <!--android:layout_marginTop="20dp"/>-->
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_small_box"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:textColor="@color/colorLightGary"
-                android:singleLine="true"/>
+            <!--<EditText-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/ic_small_box"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:paddingLeft="20dp"-->
+                <!--android:paddingRight="20dp"-->
+                <!--android:textColor="@color/colorLightGary"-->
+                <!--android:singleLine="true"/>-->
 
             <TextView
                 android:id="@+id/txtnote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Note"
+                android:text="Message"
                 android:textSize="16sp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"/>
@@ -147,18 +147,71 @@
             android:layout_below="@+id/divider"
             >
 
-        <Button
-            android:id="@+id/btnnext"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Next"
-            android:textAllCaps="false"
-            android:textColor="@color/colorTextWhite"
-            android:background="@drawable/button_background"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="30dp"/>
+        <!--<Button-->
+            <!--android:id="@+id/btnnext"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="Next"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:textColor="@color/colorTextWhite"-->
+            <!--android:background="@drawable/button_background"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:layout_marginRight="30dp"-->
+            <!--android:layout_marginBottom="30dp"/>-->
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/linearfive">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="10dp">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Add to Cart"
+                        android:id="@+id/skip"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorTextWhite"
+                        android:background="@drawable/button_background_black"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+                    <Button
+                        android:id="@+id/btnnext"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Next"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorTextWhite"
+                        android:background="@drawable/button_background"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
 
         </RelativeLayout>
 

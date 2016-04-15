@@ -15,6 +15,9 @@ import java.util.Map;
 public class PRequest {
 
     /* Get */
+    public static String apiMethodGetCards = "v1/cards";
+    public static String apiMethodGetAllProducts = "v1/products/getAll";
+    public static String apiMethodGetProfileById = "v1/profile/getProfile";
 
 
     /* Post */
@@ -42,20 +45,20 @@ public class PRequest {
 
     }
 
-//    public static String getApiRootForResource() {
-//        if (PSConfiguration.DEBUG) {
-//            return PSConfiguration.testURL;
-//        } else {
-//            return PSConfiguration.liveURL;
-//        }
-//    }
+    public static String getApiRootForResource() {
+        if (PConfiguration.DEBUG) {
+            return PConfiguration.testURL;
+        } else {
+            return PConfiguration.liveURL;
+        }
+    }
 
     public void execute() {
-//        this.mUrl = getApiRootForResource() + mResource;
+        this.mUrl = getApiRootForResource() + mResource;
         this.mReqMethod = getRequestMethod(mResource);
 
 
-//        CustomRequest req = createJsonRequest();
+        CustomRequest req = createJsonRequest();
 //        if (mResource.equalsIgnoreCase(kApiMethodGetVenues)) {
 //            req.setRetryPolicy(new DefaultRetryPolicy(10000,
 //                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -80,23 +83,28 @@ public class PRequest {
 //                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 //        }
 
-//        AppController.getRequestQueue().addToRequestQueue(req, mResource);
+        AppController.getRequestQueue().addToRequestQueue(req, mResource);
     }
 
-//    private CustomRequest createJsonRequest() {
+    private CustomRequest createJsonRequest() {
+
+        PDebug.logDebug("PRequest", "Request url: " + mUrl);
+
+        return new CustomRequest(mReqMethod, mUrl, mParams, mResponseListener, mResponseErrorListener) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                //Add session token header
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Session-Token", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token"));
 //
-//        PDebug.logDebug("PRequest", "Request url: " + mUrl);
-//
-//        return new CustomRequest(mReqMethod, mUrl, mParams, mResponseListener, mResponseErrorListener) {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                //Add session token header
-//                Map<String, String> headers = new HashMap<>();
-//                headers.put("Session-Token", PSSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token"));
-//                return headers;
-//            }
-//        };
-//    }
+//                if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token").isEmpty()){
+//                    headers.put("Session-Token", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token"));
+//                }
+
+                return headers;
+            }
+        };
+    }
 
     private int getRequestMethod(String resource) {
         if (

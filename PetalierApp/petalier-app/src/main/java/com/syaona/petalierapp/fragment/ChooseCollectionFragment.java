@@ -1,44 +1,77 @@
 package com.syaona.petalierapp.fragment;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.core.PConfiguration;
 import com.syaona.petalierapp.core.PEngine;
+import com.syaona.petalierapp.core.PRequest;
+import com.syaona.petalierapp.core.PResponseErrorListener;
+import com.syaona.petalierapp.core.PResponseListener;
+import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ChooseCollectionFragment extends Fragment {
 
-    private ImageView mImageBeatriz;
-    private ImageView mImageLucy;
-    private ImageView mImageLauren;
+    private GridView mGridView;
+    private ArrayList<JSONObject> mResultCollection = new ArrayList<>();
+    private CollectionListAdapter mAdapter;
 
-    private ImageView mImageChloe;
-    private ImageView mImageDiana;
-    private ImageView mImageFelicima;
+    public String selectedFlower;
 
 
     public ChooseCollectionFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        requestApiGetCollections();
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,12 +96,17 @@ public class ChooseCollectionFragment extends Fragment {
         mImageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PEngine.switchFragment((BaseActivity) getActivity(), new ProfileFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token").isEmpty()
+                        ){
+                    PEngine.switchFragment((BaseActivity) getActivity(), new ProfileFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                } else {
+                    PEngine.switchFragment((BaseActivity) getActivity(), new LoginFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                }
+
 
             }
         });
-
-
 
 
         Button mButtonDesign = (Button) view.findViewById(R.id.btndesign);
@@ -83,98 +121,289 @@ public class ChooseCollectionFragment extends Fragment {
             }
         });
 
+        mGridView = (GridView) view.findViewById(R.id.gridview);
 
+        mAdapter = new CollectionListAdapter(getActivity(), R.layout.custom_row_collection, mResultCollection);
+        mAdapter.notifyDataSetChanged();
+        mGridView.setAdapter(mAdapter);
 
-        TextView txtPriceBea = (TextView) view.findViewById(R.id.pricebea);
-        txtPriceBea.setTypeface(Fonts.gothambookregular);
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-        TextView txtPriceLucy = (TextView) view.findViewById(R.id.pricelucy);
-        txtPriceLucy.setTypeface(Fonts.gothambookregular);
+                selectedFlower = adapterView.getItemAtPosition(i).toString();
 
-        TextView txtPriceLauren = (TextView) view.findViewById(R.id.pricelauren);
-        txtPriceLauren.setTypeface(Fonts.gothambookregular);
+                mAdapter.notifyDataSetChanged();
+            }
+        });
 
-        TextView txtPriceChloe = (TextView) view.findViewById(R.id.pricechloe);
-        txtPriceChloe.setTypeface(Fonts.gothambookregular);
-
-        TextView txtPriceDiana = (TextView) view.findViewById(R.id.pricediana);
-        txtPriceDiana.setTypeface(Fonts.gothambookregular);
-
-        TextView txtPriceFeli = (TextView) view.findViewById(R.id.pricefeli);
-        txtPriceFeli.setTypeface(Fonts.gothambookregular);
-
-
-//        TextView mTextTitle = (TextView) view.findViewById(R.id.txttitle);
-//        mTextTitle.setTypeface(Fonts.gothambookregular);
-//
-//        TextView mTextSub = (TextView) view.findViewById(R.id.txtsubtitle);
-//        mTextSub.setTypeface(Fonts.gothambold);
-
-        TextView txtBeatriz = (TextView) view.findViewById(R.id.txtbeatriz);
-        txtBeatriz.setTypeface(Fonts.gothambold);
-
-        TextView txtLucy = (TextView) view.findViewById(R.id.txtlucy);
-        txtLucy.setTypeface(Fonts.gothambold);
-
-        TextView txtLauren = (TextView) view.findViewById(R.id.txtlauren);
-        txtLauren.setTypeface(Fonts.gothambold);
-
-        TextView txtChloe = (TextView) view.findViewById(R.id.txtchloe);
-        txtChloe.setTypeface(Fonts.gothambold);
-
-        TextView txtDiana = (TextView) view.findViewById(R.id.txtdiana);
-        txtDiana.setTypeface(Fonts.gothambold);
-
-        TextView txtFelicima = (TextView) view.findViewById(R.id.txtfelicima);
-        txtFelicima.setTypeface(Fonts.gothambold);
-
-
-        mImageBeatriz = (ImageView) view.findViewById(R.id.beatriz);
-        mImageLucy = (ImageView) view.findViewById(R.id.lucy);
-        mImageLauren = (ImageView) view.findViewById(R.id.lauren);
-
-        mImageChloe = (ImageView) view.findViewById(R.id.chloe);
-        mImageDiana = (ImageView) view.findViewById(R.id.diana);
-        mImageFelicima = (ImageView) view.findViewById(R.id.felicima);
-
-
-        Picasso.with(AppController.getInstance())
-                .load(R.drawable.beatriz)
-                .transform(new CircleTransform())
-                .fit()
-                .into(mImageBeatriz);
-
-        Picasso.with(AppController.getInstance())
-                .load(R.drawable.lucy)
-                .transform(new CircleTransform())
-                .fit()
-                .into(mImageLucy);
-
-        Picasso.with(AppController.getInstance())
-                .load(R.drawable.lauren)
-                .transform(new CircleTransform())
-                .fit()
-                .into(mImageLauren);
-
-        Picasso.with(AppController.getInstance())
-                .load(R.drawable.chloe)
-                .transform(new CircleTransform())
-                .fit()
-                .into(mImageChloe);
-
-        Picasso.with(AppController.getInstance())
-                .load(R.drawable.diana)
-                .transform(new CircleTransform())
-                .fit()
-                .into(mImageDiana);
-
-        Picasso.with(AppController.getInstance())
-                .load(R.drawable.felicima)
-                .transform(new CircleTransform())
-                .fit()
-                .into(mImageFelicima);
 
         return view;
     }
+
+
+
+
+    public class CollectionListAdapter extends ArrayAdapter<JSONObject> {
+
+        Context mContext;
+        ArrayList<JSONObject> mData = new ArrayList<>();
+        int mResId;
+
+        public CollectionListAdapter(Context context, int resource, ArrayList<JSONObject> data) {
+            super(context, resource, data);
+            this.mContext = context;
+            this.mResId = resource;
+            this.mData = data;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final ViewHolder holder;
+
+            if (convertView == null) {
+                //Inflate layout
+                LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+                convertView = inflater.inflate(mResId, null);
+                holder = new ViewHolder();
+
+                holder.text1 = (TextView) convertView.findViewById(R.id.txtbeatriz);
+                holder.imageView = (ImageView) convertView.findViewById(R.id.beatriz);
+                holder.text2 = (TextView) convertView.findViewById(R.id.pricebea);
+                holder.lineActiveImage = (ImageView) convertView.findViewById(R.id.lineactive);
+                holder.lineInactiveImage = (ImageView) convertView.findViewById(R.id.lineinactive);
+
+
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            final JSONObject row = mData.get(position);
+
+            try {
+                holder.text1.setText(row.getString("productHeader"));
+                holder.text1.setTypeface(Fonts.gothambold);
+
+                if (holder.text1.getText().toString().equalsIgnoreCase("beatriz")){
+                    Picasso.with(mContext)
+                            .load(R.drawable.beatriz)
+                            .fit()
+                            .transform(new CircleTransform())
+                            .into(holder.imageView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+
+                                }
+
+                                @Override
+                                public void onError() {
+                                }
+                            });
+                } if (holder.text1.getText().toString().equalsIgnoreCase("lucy")){
+                    Picasso.with(mContext)
+                            .load(R.drawable.lucy)
+                            .fit()
+                            .transform(new CircleTransform())
+                            .into(holder.imageView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+
+                                }
+
+                                @Override
+                                public void onError() {
+                                }
+                            });
+                } if (holder.text1.getText().toString().equalsIgnoreCase("lauren")){
+                    Picasso.with(mContext)
+                            .load(R.drawable.lauren)
+                            .fit()
+                            .transform(new CircleTransform())
+                            .into(holder.imageView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+
+                                }
+
+                                @Override
+                                public void onError() {
+                                }
+                            });
+                } if (holder.text1.getText().toString().equalsIgnoreCase("chloe")){
+                    Picasso.with(mContext)
+                            .load(R.drawable.chloe)
+                            .fit()
+                            .transform(new CircleTransform())
+                            .into(holder.imageView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+
+                                }
+
+                                @Override
+                                public void onError() {
+                                }
+                            });
+                } if (holder.text1.getText().toString().equalsIgnoreCase("diana")){
+                    Picasso.with(mContext)
+                            .load(R.drawable.diana)
+                            .fit()
+                            .transform(new CircleTransform())
+                            .into(holder.imageView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+
+                                }
+
+                                @Override
+                                public void onError() {
+                                }
+                            });
+                } if (holder.text1.getText().toString().equalsIgnoreCase("felicisima")){
+                    Picasso.with(mContext)
+                            .load(R.drawable.felicima)
+                            .fit()
+                            .transform(new CircleTransform())
+                            .into(holder.imageView, new Callback() {
+                                @Override
+                                public void onSuccess() {
+
+                                }
+
+                                @Override
+                                public void onError() {
+                                }
+                            });
+                }
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if (selectedFlower != null){
+
+                try {
+                    JSONObject jsonObject = new JSONObject(selectedFlower);
+
+                    if (jsonObject.getString("productName").equalsIgnoreCase(holder.text1.getText().toString())){
+                        holder.lineActiveImage.setVisibility(View.VISIBLE);
+                        holder.lineInactiveImage.setVisibility(View.GONE);
+                    } else {
+                        holder.lineActiveImage.setVisibility(View.GONE);
+                        holder.lineInactiveImage.setVisibility(View.VISIBLE);
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+//            holder.imageView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    if (holder.lineActiveImage.getVisibility() == View.VISIBLE) {
+//                        holder.lineActiveImage.setVisibility(View.GONE);
+//                        holder.lineInactiveImage.setVisibility(View.VISIBLE);
+//                    } else {
+//                        holder.lineActiveImage.setVisibility(View.VISIBLE);
+//                        holder.lineInactiveImage.setVisibility(View.GONE);
+//                    }
+//
+//
+//                }
+//            });
+
+
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView text1;
+            TextView text2;
+            TextView text3;
+            TextView text4;
+            ImageView imageView;
+            ImageView lineActiveImage;
+            ImageView lineInactiveImage;
+        }
+    }
+
+
+
+    public void requestApiGetCollections() {
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String url = PConfiguration.testURL+"v1/products/getAll";
+        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS){
+
+                                JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("products");
+
+                                for (int i = 0; i<jsonArray.length(); i++){
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    mResultCollection.add(jsonObject1);
+
+                                }
+
+                                mAdapter = new CollectionListAdapter(getActivity(), R.layout.custom_row_collection, mResultCollection);
+                                mAdapter.notifyDataSetChanged();
+                                mGridView.setAdapter(mAdapter);
+
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        Log.d("ERROR", "error => " + error.toString());
+
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+//                params.put("User-Agent", "Nintendo Gameboy");
+//                params.put("Accept-Language", "fr");
+
+//                params.put("Session-Token", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token"));
+//
+
+                return params;
+            }
+        };
+        queue.add(postRequest);
+
+    }
+
+
+
+
+
+
+
 
 }
