@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.PConfiguration;
@@ -27,6 +28,7 @@ import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.Fonts;
 
@@ -90,7 +92,7 @@ public class LoginFragment extends Fragment {
         params.put("username", mEditEmail.getText().toString());
         params.put("password", mEditPassword.getText().toString());
 
-        PRequest request = new PRequest(PRequest.apiMethoPostLogin, params,
+        PRequest request = new PRequest(PRequest.apiMethodPostLogin, params,
                 new PResponseListener(){
                     @Override
                     public void onResponse(JSONObject jsonObject) {
@@ -99,9 +101,22 @@ public class LoginFragment extends Fragment {
                         try {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
-                                PSharedPreferences.saveJsonToSharedPref(jsonObject.getJSONObject("Data"),"");
-                                startActivity(new Intent(getActivity(), OrderActivity.class));
+                                PSharedPreferences.saveJsonToSharedPref(jsonObject.getJSONObject("Data"), "");
+
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "user_id", jsonObject.getJSONObject("Data").getJSONObject("user").getString("id"));
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "session_token", jsonObject.getJSONObject("Data").getString("session_token"));
+
+                                if (Singleton.getLoginFromMain() == 1){
+                                    startActivity(new Intent(getActivity(), MainActivity.class));
+                                    getActivity().finish();
+                                } else {
+                                    startActivity(new Intent(getActivity(), OrderActivity.class));
+                                    getActivity().finish();
+                                }
+
                             }
+
+                            Log.i("userid", jsonObject.getJSONObject("Data").getJSONObject("user").getString("id"));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -116,5 +131,9 @@ public class LoginFragment extends Fragment {
 
         request.execute();
     }
+
+
+
+
 
 }

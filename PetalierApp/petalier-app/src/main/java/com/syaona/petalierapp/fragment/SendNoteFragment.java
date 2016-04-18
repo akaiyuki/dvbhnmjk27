@@ -17,6 +17,7 @@ import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.view.Fonts;
 
 /**
@@ -73,6 +74,7 @@ public class SendNoteFragment extends Fragment {
             public void onClick(View view) {
 
                 if (mEditTo.getText().length() != 0 && mEditMessage.getText().length() != 0){
+                    Singleton.setLoginFromMain(0);
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
 

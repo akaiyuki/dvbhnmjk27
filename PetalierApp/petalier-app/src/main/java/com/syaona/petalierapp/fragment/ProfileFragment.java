@@ -36,6 +36,7 @@ import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
+import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
@@ -392,58 +393,58 @@ public class ProfileFragment extends Fragment {
 
 
 
-    public void requestApiGetProfile() {
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = PConfiguration.testURL+"v1/profile/getProfile?id=1";
-        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        Log.d("Response", response);
-
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-
-                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
-
-                                mResultProfile.add(jsonObject.getJSONObject("Data").getJSONObject("profile"));
-
-                            }
-
-                            populateUserInfo();
-                            Log.i("resultprofile", String.valueOf(mResultProfile.size()));
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-                        Log.d("ERROR", "error => " + error.toString());
-
-                    }
-                }
-        ) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-//                params.put("User-Agent", "Nintendo Gameboy");
-//                params.put("Accept-Language", "fr");
-
-                return params;
-            }
-        };
-        queue.add(postRequest);
-
-    }
+//    public void requestApiGetProfile() {
+//        RequestQueue queue = Volley.newRequestQueue(getActivity());
+//        String url = PConfiguration.testURL+"v1/profile/getProfile?id=1";
+//        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
+//                new Response.Listener<String>()
+//                {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        // response
+//                        Log.d("Response", response);
+//
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(response);
+//
+//                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+//
+//                                mResultProfile.add(jsonObject.getJSONObject("Data").getJSONObject("profile"));
+//
+//                            }
+//
+//                            populateUserInfo();
+//                            Log.i("resultprofile", String.valueOf(mResultProfile.size()));
+//
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                },
+//                new Response.ErrorListener()
+//                {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        // TODO Auto-generated method stub
+//                        Log.d("ERROR", "error => " + error.toString());
+//
+//                    }
+//                }
+//        ) {
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+////                params.put("User-Agent", "Nintendo Gameboy");
+////                params.put("Accept-Language", "fr");
+//
+//                return params;
+//            }
+//        };
+//        queue.add(postRequest);
+//
+//    }
 
 
     public void populateUserInfo(){
@@ -472,19 +473,116 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    public void requestApiGetAllOrders() {
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = PConfiguration.testURL+"v1/history/get?userId=1";
-        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>()
-                {
+//    public void requestApiGetAllOrders() {
+//        RequestQueue queue = Volley.newRequestQueue(getActivity());
+//        String url = PConfiguration.testURL+"v1/history/get?userId=1";
+//        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
+//                new Response.Listener<String>()
+//                {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        // response
+//                        Log.d("Response", response);
+//
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(response);
+//
+//                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+//
+//                                JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("history");
+//
+//                                for (int i = 0; i<jsonArray.length(); i++){
+//
+//                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+//                                    mResultOrders.add(jsonObject1);
+//
+//                                }
+//
+//                            }
+//
+//                            mViewPager.setAdapter(mPageAdapter);
+//
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                },
+//                new Response.ErrorListener()
+//                {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        // TODO Auto-generated method stub
+//                        Log.d("ERROR", "error => " + error.toString());
+//
+//                    }
+//                }
+//        ) {
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+////                params.put("User-Agent", "Nintendo Gameboy");
+////                params.put("Accept-Language", "fr");
+//
+//                return params;
+//            }
+//        };
+//        queue.add(postRequest);
+//
+//    }
+
+
+
+    public void requestApiGetProfile() {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
+
+        PRequest request = new PRequest(PRequest.apiMethodGetProfileById, params,
+                new PResponseListener(){
                     @Override
-                    public void onResponse(String response) {
-                        // response
-                        Log.d("Response", response);
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
 
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                    mResultProfile.add(jsonObject.getJSONObject("Data").getJSONObject("profile"));
+
+                                    Log.i("resultprofile", String.valueOf(mResultProfile.size()));
+                            }
+
+                            populateUserInfo();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new PResponseErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+            }
+        });
+
+        request.execute();
+    }
+
+
+    public void requestApiGetAllOrders() {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("userId", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
+
+        PRequest request = new PRequest(PRequest.apiMethodGetOrderHistory, params,
+                new PResponseListener(){
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
@@ -497,39 +595,22 @@ public class ProfileFragment extends Fragment {
 
                                 }
 
-
                             }
 
                             mViewPager.setAdapter(mPageAdapter);
 
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-                        Log.d("ERROR", "error => " + error.toString());
-
-                    }
-                }
-        ) {
+                }, new PResponseErrorListener(){
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-//                params.put("User-Agent", "Nintendo Gameboy");
-//                params.put("Accept-Language", "fr");
-
-                return params;
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
             }
-        };
-        queue.add(postRequest);
+        });
 
+        request.execute();
     }
 
 

@@ -18,10 +18,12 @@ public class PRequest {
     public static String apiMethodGetCards = "v1/cards";
     public static String apiMethodGetAllProducts = "v1/products/getAll";
     public static String apiMethodGetProfileById = "v1/profile/getProfile";
+    public static String apiMethodGetOrderHistory = "v1/history/get";
 
 
     /* Post */
-    public static String apiMethoPostLogin = "v1/login";
+    public static String apiMethodPostLogin = "v1/login";
+    public static String apiMethodPostBillingInfo = "v1/billing/postUpdate";
 
 
 

@@ -3,6 +3,7 @@ package com.syaona.petalierapp.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PConfiguration;
@@ -37,6 +39,7 @@ import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
@@ -101,7 +104,10 @@ public class ChooseCollectionFragment extends Fragment {
                         ){
                     PEngine.switchFragment((BaseActivity) getActivity(), new ProfileFragment(), ((BaseActivity) getActivity()).getFrameLayout());
                 } else {
-                    PEngine.switchFragment((BaseActivity) getActivity(), new LoginFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                    Singleton.setLoginFromMain(1);
+//                    PEngine.switchFragment((BaseActivity) getActivity(), new LoginFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+
                 }
 
 

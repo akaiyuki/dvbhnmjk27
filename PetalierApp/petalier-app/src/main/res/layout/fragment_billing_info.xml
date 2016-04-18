@@ -10,11 +10,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
 
-    <!--<TextView-->
+        <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:text="Billing"-->
@@ -24,7 +24,7 @@
         <!--android:id="@+id/textchoose"-->
         <!--android:layout_below="@+id/app_bar"/>-->
 
-    <!--<TextView-->
+        <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:text="information"-->
@@ -36,7 +36,7 @@
         <!--android:textSize="19sp"-->
         <!--android:id="@+id/textbox"/>-->
 
-    <!--<View-->
+        <!--<View-->
         <!--android:layout_below="@+id/textbox"-->
         <!--android:layout_marginTop="10dp"-->
         <!--android:layout_marginBottom="30dp"-->
@@ -47,42 +47,40 @@
         <!--android:layout_centerHorizontal="true"/>-->
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="30dp"
-        android:id="@+id/linear"
-        android:layout_below="@+id/app_bar"
-        android:layout_marginTop="20dp"
-        >
-
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/app_bar"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:id="@+id/check_default"
-                android:button="@drawable/custom_checkbox"
-                />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtdefault"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Use Default Billing Information"
-                android:layout_toRightOf="@+id/check_default"/>
+                <CheckBox
+                    android:id="@+id/check_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:button="@drawable/custom_checkbox" />
+
+                <TextView
+                    android:id="@+id/txtdefault"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/check_default"
+                    android:text="Use Default Billing Information" />
 
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <!--<LinearLayout-->
+            <!--<LinearLayout-->
             <!--android:layout_width="0dp"-->
             <!--android:layout_height="match_parent"-->
             <!--android:layout_weight="1"-->
@@ -92,139 +90,202 @@
             <!--android:layout_marginRight="10dp">-->
             <!-- -->
             <!-- -->
-        <!--</LinearLayout>-->
-
-    </LinearLayout>
-
-    <View
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/linear"
-        android:layout_width="fill_parent"
-        android:layout_height="3dip"
-        android:background="@color/colorLightGary"
-        android:id="@+id/divider1"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="30dp"
-        android:id="@+id/linear2"
-        android:layout_below="@+id/divider1">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginRight="10dp">
-
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:id="@+id/check_new"
-                android:button="@drawable/custom_checkbox"
-                />
-
-            <TextView
-                android:id="@+id/txtnewbilling"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Billing Information"
-                android:layout_toRightOf="@+id/check_default"/>
-
+            <!--</LinearLayout>-->
 
         </LinearLayout>
 
-    </LinearLayout>
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="fill_parent"
+            android:layout_height="3dip"
+            android:layout_below="@+id/linear"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorLightGary" />
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"
+            android:layout_marginLeft="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/check_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:button="@drawable/custom_checkbox" />
+
+                <TextView
+                    android:id="@+id/txtnewbilling"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/check_default"
+                    android:text="New Billing Information" />
 
 
-    <View
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/linear2"
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:background="@color/colorLightGary"
-        android:id="@+id/divider2"
-        />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:layout_below="@+id/linear2"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorLightGary" />
 
 
         <LinearLayout
+            android:id="@+id/linear3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="30dp"
-            android:id="@+id/linear3"
             android:layout_below="@+id/divider2"
-            android:layout_marginTop="15dp"
             android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginRight="10dp"
-            >
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:layout_marginRight="10dp">
-
+                android:orientation="vertical">
 
 
                 <TextView
-                    android:id="@+id/txtfullname"
+                    android:id="@+id/txtfirstname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Full Name"/>
+                    android:text="First Name" />
 
                 <EditText
+                    android:id="@+id/edit_firstname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_name"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
             <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/txtlastname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Last Name" />
+
+                <EditText
+                    android:id="@+id/edit_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/ic_small_box"
+                    android:drawableLeft="@drawable/ic_name"
+                    android:drawablePadding="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/txtcompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Company" />
+
+                <EditText
+                    android:id="@+id/edit_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/ic_small_box"
+                    android:drawableLeft="@drawable/ic_occupation"
+                    android:drawablePadding="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtcontact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contact Number"/>
+                    android:text="Contact Number" />
 
                 <EditText
+                    android:id="@+id/edit_contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_contact"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
@@ -232,84 +293,84 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
-
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtemail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email Address"/>
+                    android:text="Email Address" />
 
                 <EditText
+                    android:id="@+id/edit_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_email"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
             <View
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="5dp"
+                android:id="@+id/divider4"
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
-                android:background="@color/colorLightGary"
-                android:id="@+id/divider4"/>
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorLightGary" />
 
             <TextView
                 android:id="@+id/txtlocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Location"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
 
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtgprs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Turn on GPRS"/>
+                        android:text="Turn on GPRS" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
 
                     <Switch
                         android:layout_width="45dp"
@@ -320,38 +381,35 @@
             </LinearLayout>
 
 
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
-
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtstreet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Street Address"/>
+                    android:text="Street Address" />
 
                 <EditText
+                    android:id="@+id/edit_street"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_location"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
@@ -359,267 +417,274 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
-
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtunit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Apartment, Suite, Unit, etc. (Optional)"/>
+                    android:text="Apartment, Suite, Unit, etc. (Optional)" />
 
                 <EditText
+                    android:id="@+id/edit_unit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_location"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
-
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txttown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Town or City"/>
+                    android:text="Town or City" />
 
                 <EditText
+                    android:id="@+id/edit_town"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_location"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtstate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="State or City"/>
+                    android:text="State or City" />
 
                 <EditText
+                    android:id="@+id/edit_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_location"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtpostal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Postal Code or ZIP Code"/>
+                    android:text="Postal Code or ZIP Code" />
 
                 <EditText
+                    android:id="@+id/edit_postal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_location"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
             <View
-                android:layout_marginTop="20dp"
+                android:id="@+id/divider3"
                 android:layout_width="fill_parent"
                 android:layout_height="1dip"
-                android:background="@color/colorLightGary"
-                android:id="@+id/divider3"
                 android:layout_marginRight="30dp"
-                />
+                android:layout_marginTop="20dp"
+                android:background="@color/colorLightGary" />
 
             <TextView
                 android:id="@+id/txtotherinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Other Information Required"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"/>
+                android:text="Other Information Required"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtoccupation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Occupation"/>
+                    android:text="Occupation" />
 
                 <EditText
+                    android:id="@+id/edit_occupation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_occupation"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Age"/>
+                    android:text="Age" />
 
                 <EditText
+                    android:id="@+id/edit_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_age"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary"
+                    android:inputType="number"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtrel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sender's Relationship to the Recipient"/>
+                    android:text="Sender's Relationship to the Recipient" />
 
                 <EditText
+                    android:id="@+id/edit_relationship"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_relationship"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
 
                 <TextView
                     android:id="@+id/txtabout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Where did you hear about us?"/>
+                    android:text="Where did you hear about us?" />
 
                 <EditText
+                    android:id="@+id/edit_hear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_hear"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
 
             </LinearLayout>
 
@@ -627,14 +692,13 @@
         </LinearLayout>
 
         <View
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/linear3"
+            android:id="@+id/divider5"
             android:layout_width="fill_parent"
             android:layout_height="1dip"
-            android:background="@color/colorLightGary"
-            android:id="@+id/divider5"
+            android:layout_below="@+id/linear3"
             android:layout_marginBottom="30dp"
-            />
+            android:layout_marginTop="10dp"
+            android:background="@color/colorLightGary" />
 
 
         <RelativeLayout
@@ -643,28 +707,21 @@
             android:layout_below="@+id/divider5"
             android:layout_marginBottom="30dp">
 
-        <Button
-
-            android:id="@+id/btncheckout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Checkout Order"
-            android:textAllCaps="false"
-            android:textColor="@color/colorTextWhite"
-            android:background="@drawable/button_background"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            <Button
+                android:id="@+id/btncheckout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/button_background"
+                android:text="Checkout Order"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite" />
 
         </RelativeLayout>
 
 
-
     </RelativeLayout>
-
-
-
-
-
 
 
 </ScrollView>

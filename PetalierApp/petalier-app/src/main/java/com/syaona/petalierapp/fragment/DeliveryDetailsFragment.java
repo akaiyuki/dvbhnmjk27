@@ -8,20 +8,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
+import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PEngine;
+import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.view.Fonts;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DeliveryDetailsFragment extends Fragment {
+
+    private EditText mEditDelDate;
+    private EditText mEditInstructions;
+    private EditText mEditFullname;
+    private EditText mEditContact;
+    private EditText mEditEmail;
+    private EditText mEditStreet;
+    private EditText mEditUnit;
+    private EditText mEditTown;
+    private EditText mEditState;
+    private EditText mEditPostal;
 
 
     public DeliveryDetailsFragment() {
@@ -71,6 +85,19 @@ public class DeliveryDetailsFragment extends Fragment {
         btnOrderMore.setTypeface(Fonts.gothambookregular);
 
 
+
+        mEditDelDate = (EditText) view.findViewById(R.id.edit_deldate);
+        mEditInstructions = (EditText) view.findViewById(R.id.edit_instructions);
+        mEditFullname = (EditText) view.findViewById(R.id.edit_fullname);
+        mEditContact = (EditText) view.findViewById(R.id.edit_contact);
+        mEditEmail = (EditText) view.findViewById(R.id.edit_email);
+        mEditStreet = (EditText) view.findViewById(R.id.edit_street);
+        mEditUnit = (EditText) view.findViewById(R.id.edit_unit);
+        mEditTown = (EditText) view.findViewById(R.id.edit_town);
+        mEditState = (EditText) view.findViewById(R.id.edit_state);
+        mEditPostal = (EditText) view.findViewById(R.id.edit_postal);
+
+
         TextView txtDeliveryDate = (TextView) view.findViewById(R.id.txtdeldate);
         txtDeliveryDate.setTypeface(Fonts.gothambold);
 
@@ -108,8 +135,32 @@ public class DeliveryDetailsFragment extends Fragment {
         txtPostal.setTypeface(Fonts.gothambold);
 
 
+        populateEditTexts();
+
 
         return view;
     }
+
+
+
+    public void populateEditTexts(){
+        mEditDelDate.setText("");
+        mEditInstructions.setText("");
+        mEditFullname.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"first_name"));
+        mEditContact.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"contact"));
+        mEditEmail.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"email"));
+        mEditStreet.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"street"));
+        mEditUnit.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"unit"));
+        mEditTown.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"city"));
+        mEditState.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"state"));
+        mEditPostal.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"postal_code"));
+
+
+    }
+
+
+
+
+
 
 }
