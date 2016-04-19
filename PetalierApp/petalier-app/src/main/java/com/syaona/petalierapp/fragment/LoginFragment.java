@@ -2,6 +2,12 @@ package com.syaona.petalierapp.fragment;
 
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -20,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.AppController;
@@ -46,6 +53,7 @@ public class LoginFragment extends Fragment {
 
     private EditText mEditEmail;
     private EditText mEditPassword;
+    private TextView mTextError;
 
 
     public LoginFragment() {
@@ -80,6 +88,8 @@ public class LoginFragment extends Fragment {
 //        TextView txtLogin = (TextView) view.findViewById(R.id.txtlogin);
 //        txtLogin.setTypeface(Fonts.gothambookregular);
 
+        mTextError = (TextView) view.findViewById(R.id.txterror);
+
         return view;
     }
 
@@ -87,6 +97,8 @@ public class LoginFragment extends Fragment {
 
 
     public void requestApiLogin() {
+
+        LoginActivity.INSTANCE.startAnim();
 
         HashMap<String, String> params = new HashMap<>();
         params.put("username", mEditEmail.getText().toString());
@@ -114,18 +126,60 @@ public class LoginFragment extends Fragment {
                                     getActivity().finish();
                                 }
 
+                            } else {
+                                Log.i("Error login", jsonObject.getJSONObject("Data").getString("alert"));
+
+//                                // Create a border programmatically
+//                                ShapeDrawable shape = new ShapeDrawable(new RectShape());
+//                                shape.getPaint().setColor(Color.RED);
+//                                shape.getPaint().setStyle(Paint.Style.STROKE);
+//                                shape.getPaint().setStrokeWidth(3);
+//
+//                                // Assign the created border to EditText widget
+//                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                                    mEditEmail.setBackground(shape);
+//                                    mEditPassword.setBackground(shape);
+//                                }
+
+//                                // Initialize a new GradientDrawable
+//                                GradientDrawable gd = new GradientDrawable();
+//
+//                                // Specify the shape of drawable
+//                                gd.setShape(GradientDrawable.RECTANGLE);
+//
+//                                // Set the fill color of drawable
+//                                gd.setColor(Color.TRANSPARENT); // make the background transparent
+//
+//                                // Create a 2 pixels width red colored border for drawable
+//                                gd.setStroke(2, Color.RED); // border width and color
+//
+//                                // Make the border rounded
+//                                gd.setCornerRadius(15.0f); // border corner radius
+//
+//                                // Finally, apply the GradientDrawable as TextView background
+//                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                                    mEditEmail.setBackground(gd);
+//                                    mEditPassword.setBackground(gd);
+//                                }
+
+
+                                mTextError.setVisibility(View.VISIBLE);
+                                mTextError.setText(jsonObject.getJSONObject("Data").getString("alert"));
+
                             }
 
-                            Log.i("userid", jsonObject.getJSONObject("Data").getJSONObject("user").getString("id"));
+                            LoginActivity.INSTANCE.stopAnim();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            LoginActivity.INSTANCE.stopAnim();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
+                LoginActivity.INSTANCE.stopAnim();
             }
         });
 

@@ -64,23 +64,23 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txtto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name to be printed on the card"
-                    android:textSize="16sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/txtto"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Name to be printed on the card"-->
+                    <!--android:textSize="16sp" />-->
 
-                <EditText
-                    android:id="@+id/edit_to"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_small_box"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:singleLine="true"
-                    android:textColor="@color/colorLightGary" />
+                <!--<EditText-->
+                    <!--android:id="@+id/edit_to"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:background="@drawable/ic_small_box"-->
+                    <!--android:paddingLeft="20dp"-->
+                    <!--android:paddingRight="20dp"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:textColor="@color/colorLightGary" />-->
 
 
                 <!--<TextView-->
@@ -119,6 +119,14 @@
                     android:paddingRight="20dp"
                     android:textColor="@color/colorLightGary" />
 
+                    <TextView
+                    android:id="@+id/txtinstruction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*Maximum of 300 characters. Please note that we will print the exact message format submitted here."
+                    android:textSize="12sp"
+                        android:layout_marginTop="50dp"/>
+
             </LinearLayout>
 
             <!--<LinearLayout-->
@@ -140,7 +148,7 @@
             android:layout_width="fill_parent"
             android:layout_height="1dip"
             android:layout_below="@+id/linear"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:background="@color/colorLightGary" />
 
         <RelativeLayout

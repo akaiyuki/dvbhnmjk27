@@ -89,4 +89,13 @@ public class MainActivity extends BaseActivity {
     {
         super.onBackPressed();
     }
+
+    public void startAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+
+    public void stopAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+    }
+
 }

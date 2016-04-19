@@ -22,4 +22,5 @@
 
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="colorVeryLightGray">#dfdede</color>
+    <color name="colorError">#e90a0a</color>
 </resources>

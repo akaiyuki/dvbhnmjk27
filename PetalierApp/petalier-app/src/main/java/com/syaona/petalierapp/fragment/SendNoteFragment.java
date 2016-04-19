@@ -62,7 +62,7 @@ public class SendNoteFragment extends Fragment {
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);
 
-        mEditTo = (EditText) view.findViewById(R.id.edit_to);
+//        mEditTo = (EditText) view.findViewById(R.id.edit_to);
         mEditMessage = (EditText) view.findViewById(R.id.edit_message);
 
 
@@ -73,7 +73,7 @@ public class SendNoteFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (mEditTo.getText().length() != 0 && mEditMessage.getText().length() != 0){
+                if (mEditMessage.getText().length() != 0){
                     Singleton.setLoginFromMain(0);
                     startActivity(new Intent(getActivity(), LoginActivity.class));
                 }
@@ -82,8 +82,8 @@ public class SendNoteFragment extends Fragment {
         });
 
 
-        TextView txtTo = (TextView) view.findViewById(R.id.txtto);
-        txtTo.setTypeface(Fonts.gothambookregular);
+//        TextView txtTo = (TextView) view.findViewById(R.id.txtto);
+//        txtTo.setTypeface(Fonts.gothambookregular);
 
 //        TextView txtFrom = (TextView) view.findViewById(R.id.txtfrom);
 //        txtFrom.setTypeface(Fonts.gothambookregular);

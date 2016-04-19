@@ -31,6 +31,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.LoginActivity;
+import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PConfiguration;
@@ -190,6 +191,8 @@ public class ChooseCollectionFragment extends Fragment {
             try {
                 holder.text1.setText(row.getString("productHeader"));
                 holder.text1.setTypeface(Fonts.gothambold);
+                holder.text2.setText("Php "+row.getString("regular_price"));
+                holder.text2.setTypeface(Fonts.gothambookregular);
 
                 if (holder.text1.getText().toString().equalsIgnoreCase("beatriz")){
                     Picasso.with(mContext)
@@ -342,6 +345,9 @@ public class ChooseCollectionFragment extends Fragment {
 
 
     public void requestApiGetCollections() {
+
+        MainActivity.INSTANCE.startAnim();
+
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String url = PConfiguration.testURL+PRequest.apiMethodGetAllProducts;
         StringRequest postRequest = new StringRequest(Request.Method.GET, url,
@@ -372,9 +378,12 @@ public class ChooseCollectionFragment extends Fragment {
 
                             }
 
+                            MainActivity.INSTANCE.stopAnim();
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            MainActivity.INSTANCE.stopAnim();
                         }
 
                     }
@@ -385,6 +394,8 @@ public class ChooseCollectionFragment extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                         // TODO Auto-generated method stub
                         Log.d("ERROR", "error => " + error.toString());
+
+                        MainActivity.INSTANCE.stopAnim();
 
                     }
                 }

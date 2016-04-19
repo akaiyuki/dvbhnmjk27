@@ -52,4 +52,13 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    public void startAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+
+    public void stopAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+    }
+
+
 }
