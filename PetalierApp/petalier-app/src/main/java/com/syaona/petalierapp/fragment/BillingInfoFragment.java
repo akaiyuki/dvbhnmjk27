@@ -215,8 +215,6 @@ public class BillingInfoFragment extends Fragment {
 
                                 PSharedPreferences.saveJsonToSharedPref(jsonObject.getJSONObject("Data"), "");
 
-                                String fName = jsonObject.getJSONObject("Data").getJSONObject("billing").getJSONObject("userDetails").getString("first_name");
-                                String lName = jsonObject.getJSONObject("Data").getJSONObject("billing").getJSONObject("userDetails").getString("last_name");
                                 String contact = jsonObject.getJSONObject("Data").getJSONObject("billing").getJSONObject("billing").getString("billing_phone");
                                 String email = jsonObject.getJSONObject("Data").getJSONObject("billing").getJSONObject("billing").getString("billing-email");
                                 String street = jsonObject.getJSONObject("Data").getJSONObject("billing").getJSONObject("billing").getString("billing_address_1");
@@ -225,8 +223,6 @@ public class BillingInfoFragment extends Fragment {
                                 String state = jsonObject.getJSONObject("Data").getJSONObject("billing").getJSONObject("billing").getString("billing_state");
                                 String postCode = jsonObject.getJSONObject("Data").getJSONObject("billing").getJSONObject("billing").getString("billing_postcode");
 
-                                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"first_name",fName);
-                                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"last_name", lName);
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(),"contact",contact);
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(),"email",email);
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(),"street",street);

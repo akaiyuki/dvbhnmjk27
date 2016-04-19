@@ -76,6 +76,9 @@
 
                 <EditText
                     android:id="@+id/edit_deldate"
+                    android:focusable="false"
+                    android:focusableInTouchMode="true"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_small_box"
@@ -88,36 +91,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp">
 
-                <TextView
-                    android:id="@+id/txtspecial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Special Instructions"
-                    android:textColor="@color/colorPrimary"
-                    android:textStyle="bold"/>
-
-                <EditText
-                    android:id="@+id/edit_instructions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_small_box"
-                    android:paddingLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    android:singleLine="true"
-                    android:paddingRight="10dp"
-                    android:textColor="@color/colorLightGary"/>
-
-            </LinearLayout>
 
             <View
                 android:layout_marginTop="20dp"
@@ -139,14 +113,46 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/txtfullname"
+                    android:id="@+id/txtfname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Full Name"
+                    android:text="Recipient First Name"
                     android:textStyle="bold"/>
 
                 <EditText
-                    android:id="@+id/edit_fullname"
+                    android:id="@+id/edit_fname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_small_box"
+                    android:drawableLeft="@drawable/ic_name"
+                    android:paddingLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:singleLine="true"
+                    android:paddingRight="10dp"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/colorLightGary"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txtlname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recipient Last Name"
+                    android:textStyle="bold"/>
+
+                <EditText
+                    android:id="@+id/edit_lname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_small_box"
@@ -174,7 +180,7 @@
                     android:id="@+id/txtcontact"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contact Number"
+                    android:text="Recipient Contact Number"
                     android:textStyle="bold"/>
 
                 <EditText
@@ -263,7 +269,7 @@
                     android:id="@+id/txtstreet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Street Address"
+                    android:text="House/Lot/Unit #/Street Name"
                     android:textStyle="bold"/>
 
                 <EditText
@@ -295,7 +301,7 @@
                     android:id="@+id/txtunit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Appartment, Suite, Unit, etc. (Optional)"
+                    android:text="Subd./Apt./Condo/Bldg."
                     android:textStyle="bold"/>
 
                 <EditText
@@ -356,14 +362,14 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/txtstate"
+                    android:id="@+id/txtlandmark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="State or City"
+                    android:text="Landmark"
                     android:textStyle="bold"/>
 
                 <EditText
-                    android:id="@+id/edit_state"
+                    android:id="@+id/edit_landmark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_small_box"
@@ -378,6 +384,38 @@
 
             </LinearLayout>
 
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_marginTop="10dp">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/txtpostal"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Postal Code or Zip Code"-->
+                    <!--android:textStyle="bold"/>-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/edit_postal"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@drawable/ic_small_box"-->
+                    <!--android:drawableLeft="@drawable/ic_location"-->
+                    <!--android:paddingLeft="15dp"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:paddingRight="10dp"-->
+                    <!--android:drawablePadding="5dp"-->
+                    <!--android:textColor="@color/colorLightGary"/>-->
+
+            <!--</LinearLayout>-->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -388,24 +426,23 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/txtpostal"
+                    android:id="@+id/txtspecial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Postal Code or Zip Code"
+                    android:text="Special Instructions"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold"/>
 
                 <EditText
-                    android:id="@+id/edit_postal"
+                    android:id="@+id/edit_instructions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_small_box"
-                    android:drawableLeft="@drawable/ic_location"
                     android:paddingLeft="15dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="15dp"
                     android:singleLine="true"
                     android:paddingRight="10dp"
-                    android:drawablePadding="5dp"
                     android:textColor="@color/colorLightGary"/>
 
             </LinearLayout>

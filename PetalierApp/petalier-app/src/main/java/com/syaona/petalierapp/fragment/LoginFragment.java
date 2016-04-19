@@ -30,11 +30,13 @@ import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.AppController;
+import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PConfiguration;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.dialog.PDialog;
 import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.Fonts;
@@ -53,7 +55,7 @@ public class LoginFragment extends Fragment {
 
     private EditText mEditEmail;
     private EditText mEditPassword;
-    private TextView mTextError;
+//    private TextView mTextError;
 
 
     public LoginFragment() {
@@ -88,7 +90,7 @@ public class LoginFragment extends Fragment {
 //        TextView txtLogin = (TextView) view.findViewById(R.id.txtlogin);
 //        txtLogin.setTypeface(Fonts.gothambookregular);
 
-        mTextError = (TextView) view.findViewById(R.id.txterror);
+//        mTextError = (TextView) view.findViewById(R.id.txterror);
 
         return view;
     }
@@ -162,9 +164,10 @@ public class LoginFragment extends Fragment {
 //                                    mEditPassword.setBackground(gd);
 //                                }
 
+                                PDialog.showDialogError((BaseActivity) getActivity(), jsonObject.getJSONObject("Data").getString("alert"));
 
-                                mTextError.setVisibility(View.VISIBLE);
-                                mTextError.setText(jsonObject.getJSONObject("Data").getString("alert"));
+//                                mTextError.setVisibility(View.VISIBLE);
+//                                mTextError.setText(jsonObject.getJSONObject("Data").getString("alert"));
 
                             }
 

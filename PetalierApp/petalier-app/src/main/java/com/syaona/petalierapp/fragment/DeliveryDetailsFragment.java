@@ -17,6 +17,7 @@ import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.core.PDatePicker;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.view.Fonts;
@@ -28,14 +29,13 @@ public class DeliveryDetailsFragment extends Fragment {
 
     private EditText mEditDelDate;
     private EditText mEditInstructions;
-    private EditText mEditFullname;
     private EditText mEditContact;
     private EditText mEditEmail;
     private EditText mEditStreet;
     private EditText mEditUnit;
     private EditText mEditTown;
-    private EditText mEditState;
-    private EditText mEditPostal;
+    private EditText mEditLandmark;
+//    private EditText mEditPostal;
 
 
     public DeliveryDetailsFragment() {
@@ -88,14 +88,13 @@ public class DeliveryDetailsFragment extends Fragment {
 
         mEditDelDate = (EditText) view.findViewById(R.id.edit_deldate);
         mEditInstructions = (EditText) view.findViewById(R.id.edit_instructions);
-        mEditFullname = (EditText) view.findViewById(R.id.edit_fullname);
         mEditContact = (EditText) view.findViewById(R.id.edit_contact);
         mEditEmail = (EditText) view.findViewById(R.id.edit_email);
         mEditStreet = (EditText) view.findViewById(R.id.edit_street);
         mEditUnit = (EditText) view.findViewById(R.id.edit_unit);
         mEditTown = (EditText) view.findViewById(R.id.edit_town);
-        mEditState = (EditText) view.findViewById(R.id.edit_state);
-        mEditPostal = (EditText) view.findViewById(R.id.edit_postal);
+        mEditLandmark = (EditText) view.findViewById(R.id.edit_landmark);
+//        mEditPostal = (EditText) view.findViewById(R.id.edit_postal);
 
 
         TextView txtDeliveryDate = (TextView) view.findViewById(R.id.txtdeldate);
@@ -104,8 +103,8 @@ public class DeliveryDetailsFragment extends Fragment {
         TextView txtSpecial = (TextView) view.findViewById(R.id.txtspecial);
         txtSpecial.setTypeface(Fonts.gothambold);
 
-        TextView txtFullname = (TextView) view.findViewById(R.id.txtfullname);
-        txtFullname.setTypeface(Fonts.gothambold);
+//        TextView txtFullname = (TextView) view.findViewById(R.id.txtfullname);
+//        txtFullname.setTypeface(Fonts.gothambold);
 
         TextView txtContact = (TextView) view.findViewById(R.id.txtcontact);
         txtContact.setTypeface(Fonts.gothambold);
@@ -128,14 +127,27 @@ public class DeliveryDetailsFragment extends Fragment {
         TextView txtTown = (TextView) view.findViewById(R.id.txttown);
         txtTown.setTypeface(Fonts.gothambold);
 
-        TextView txtState = (TextView) view.findViewById(R.id.txtstate);
-        txtState.setTypeface(Fonts.gothambold);
+        TextView txtLandmark = (TextView) view.findViewById(R.id.txtlandmark);
+        txtLandmark.setTypeface(Fonts.gothambold);
 
-        TextView txtPostal = (TextView) view.findViewById(R.id.txtpostal);
-        txtPostal.setTypeface(Fonts.gothambold);
+//        TextView txtPostal = (TextView) view.findViewById(R.id.txtpostal);
+//        txtPostal.setTypeface(Fonts.gothambold);
+
+        TextView txtFirstName = (TextView) view.findViewById(R.id.txtfname);
+        txtFirstName.setTypeface(Fonts.gothambold);
+
+        TextView txtLastName = (TextView) view.findViewById(R.id.txtlname);
+        txtLastName.setTypeface(Fonts.gothambold);
 
 
-        populateEditTexts();
+//        populateEditTexts();
+
+        mEditDelDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PDatePicker datePicker = new PDatePicker((BaseActivity) getActivity(), (EditText)view);
+            }
+        });
 
 
         return view;
@@ -143,20 +155,19 @@ public class DeliveryDetailsFragment extends Fragment {
 
 
 
-    public void populateEditTexts(){
-        mEditDelDate.setText("");
-        mEditInstructions.setText("");
-        mEditFullname.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"first_name"));
-        mEditContact.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"contact"));
-        mEditEmail.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"email"));
-        mEditStreet.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"street"));
-        mEditUnit.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"unit"));
-        mEditTown.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"city"));
-        mEditState.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"state"));
-        mEditPostal.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"postal_code"));
+//    public void populateEditTexts(){
+//        mEditDelDate.setText("");
+//        mEditInstructions.setText("");
+//        mEditContact.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"contact"));
+//        mEditEmail.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"email"));
+//        mEditStreet.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"street"));
+//        mEditUnit.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"unit"));
+//        mEditTown.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"city"));
+//        mEditLandmark.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"state"));
+//        mEditPostal.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"postal_code"));
 
 
-    }
+//    }
 
 
 
