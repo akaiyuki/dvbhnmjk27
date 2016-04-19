@@ -119,6 +119,7 @@ public class LoginFragment extends Fragment {
 
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(), "user_id", jsonObject.getJSONObject("Data").getJSONObject("user").getString("id"));
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(), "session_token", jsonObject.getJSONObject("Data").getString("session_token"));
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "user_name", jsonObject.getJSONObject("Data").getJSONObject("user").getString("userName"));
 
                                 if (Singleton.getLoginFromMain() == 1){
                                     startActivity(new Intent(getActivity(), MainActivity.class));

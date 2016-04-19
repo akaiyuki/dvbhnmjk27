@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorBackground"
+    tools:context="com.syaona.petalierapp.activity.ProfileActivity">
+
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avloadingIndicatorView"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:indicator="BallPulse"
+        app:indicator_color="@color/colorPrimary"
+        android:layout_centerInParent="true"
+        />
+
+
+
+</RelativeLayout>

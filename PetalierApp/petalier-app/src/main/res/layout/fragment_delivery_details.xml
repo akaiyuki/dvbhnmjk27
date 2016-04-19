@@ -89,6 +89,16 @@
                     android:paddingRight="10dp"
                     android:textColor="@color/colorLightGary"/>
 
+
+                <TextView
+                    android:id="@+id/txtdisclaimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="We don't deliver on Wednesdays and Thursdays"
+                    android:textSize="10sp"
+                    android:layout_marginTop="15dp"/>
+
+
             </LinearLayout>
 
 

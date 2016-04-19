@@ -6,6 +6,15 @@ package com.syaona.petalierapp.enums;
 public class Singleton {
 
     public static int loginFromMain;
+    public static int selectedDay;
+
+    public static int getSelectedDay() {
+        return selectedDay;
+    }
+
+    public static void setSelectedDay(int selectedDay) {
+        Singleton.selectedDay = selectedDay;
+    }
 
     public static int getLoginFromMain() {
         return loginFromMain;

@@ -29,6 +29,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
+import com.syaona.petalierapp.activity.ProfileActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PConfiguration;
@@ -536,6 +537,8 @@ public class ProfileFragment extends Fragment {
 
     public void requestApiGetProfile() {
 
+        MainActivity.INSTANCE.startAnim();
+
         HashMap<String, String> params = new HashMap<>();
         params.put("id", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
 
@@ -556,14 +559,18 @@ public class ProfileFragment extends Fragment {
 
                             populateUserInfo();
 
+                            MainActivity.INSTANCE.stopAnim();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            MainActivity.INSTANCE.stopAnim();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
+                MainActivity.INSTANCE.stopAnim();
             }
         });
 

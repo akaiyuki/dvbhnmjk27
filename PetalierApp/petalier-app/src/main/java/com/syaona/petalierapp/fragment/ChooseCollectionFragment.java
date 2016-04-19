@@ -32,6 +32,7 @@ import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.activity.MainActivity;
+import com.syaona.petalierapp.activity.ProfileActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PConfiguration;
@@ -104,6 +105,9 @@ public class ChooseCollectionFragment extends Fragment {
                 if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token").isEmpty()
                         ){
                     PEngine.switchFragment((BaseActivity) getActivity(), new ProfileFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+//                    startActivity(new Intent(getActivity(), ProfileActivity.class));
+
                 } else {
                     Singleton.setLoginFromMain(1);
 //                    PEngine.switchFragment((BaseActivity) getActivity(), new LoginFragment(), ((BaseActivity) getActivity()).getFrameLayout());

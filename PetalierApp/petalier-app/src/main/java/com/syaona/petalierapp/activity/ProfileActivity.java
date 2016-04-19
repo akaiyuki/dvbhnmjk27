@@ -2,30 +2,25 @@ package com.syaona.petalierapp.activity;
 
 import android.graphics.Color;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PEngine;
-import com.syaona.petalierapp.fragment.BillingInfoFragment;
 import com.syaona.petalierapp.fragment.DeliveryDetailsFragment;
+import com.syaona.petalierapp.fragment.ProfileFragment;
 
-public class OrderActivity extends BaseActivity {
+public class ProfileActivity extends BaseActivity {
 
-    public static OrderActivity INSTANCE = null;
+    public static ProfileActivity INSTANCE = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_profile);
 
         INSTANCE = this;
 
@@ -50,7 +45,7 @@ public class OrderActivity extends BaseActivity {
         }
 
 
-        PEngine.switchFragment(INSTANCE, new BillingInfoFragment(), getFrameLayout());
+        PEngine.switchFragment(INSTANCE, new ProfileFragment(), getFrameLayout());
 
 
 
@@ -61,5 +56,14 @@ public class OrderActivity extends BaseActivity {
     {
         super.onBackPressed();
     }
+
+    public void startAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+    }
+
+    public void stopAnim(){
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+    }
+
 
 }

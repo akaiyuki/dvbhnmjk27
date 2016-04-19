@@ -1,6 +1,7 @@
 package com.syaona.petalierapp.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
+import com.syaona.petalierapp.activity.SplashActivity;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.view.Fonts;
 
 /**
@@ -67,6 +70,13 @@ public class SettingsFragment extends Fragment {
 
         Button btnLogout = (Button) view.findViewById(R.id.btnlogout);
         btnLogout.setTypeface(Fonts.gothambookregular);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PSharedPreferences.clearAllPreferences();
+                startActivity(new Intent(getActivity(), SplashActivity.class));
+            }
+        });
 
 
 

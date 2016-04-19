@@ -1,6 +1,9 @@
 package com.syaona.petalierapp.fragment;
 
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +23,11 @@ import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PDatePicker;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.view.Fonts;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -142,10 +149,12 @@ public class DeliveryDetailsFragment extends Fragment {
 
 //        populateEditTexts();
 
+
         mEditDelDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 PDatePicker datePicker = new PDatePicker((BaseActivity) getActivity(), (EditText)view);
+
             }
         });
 
