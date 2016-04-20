@@ -83,7 +83,11 @@ public class DeliveryDetailsFragment extends Fragment {
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                if (Singleton.getSelectedDay() != 1){
+                    PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                }
+
 
             }
         });

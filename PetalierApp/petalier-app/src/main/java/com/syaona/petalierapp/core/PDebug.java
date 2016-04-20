@@ -7,8 +7,8 @@ import android.util.Log;
  */
 public class PDebug {
     public static void logDebug(String tag, String message) {
-//        if (PSConfiguration.DEBUG) {
-//            Log.i("DEBUG_" + tag, message);
-//        }
+        if (PConfiguration.DEBUG) {
+            Log.i("DEBUG_" + tag, message);
+        }
     }
 }

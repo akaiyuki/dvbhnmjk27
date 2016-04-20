@@ -151,6 +151,10 @@ public class ProfileFragment extends Fragment {
         mTextName = (TextView) view.findViewById(R.id.name);
         mTextEmail = (TextView) view.findViewById(R.id.email);
 
+        if (mResultProfile.size() != 0){
+            populateUserInfo();
+        }
+
 
         return view;
     }
@@ -602,6 +606,8 @@ public class ProfileFragment extends Fragment {
 
                                 }
 
+                            } else {
+                                Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
                             }
 
                             mViewPager.setAdapter(mPageAdapter);

@@ -19,6 +19,7 @@ public class PRequest {
     public static String apiMethodGetAllProducts = "v1/products/getAll";
     public static String apiMethodGetProfileById = "v1/profile/getProfile";
     public static String apiMethodGetOrderHistory = "v1/history/get";
+    public static String apiMethodGetBilling = "v1/billing/getBilling";
 
 
     /* Post */
@@ -98,7 +99,7 @@ public class PRequest {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 //Add session token header
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Session-Token", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token"));
+                headers.put("petalier_session_token", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token"));
 //
 //                if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token").isEmpty()){
 //                    headers.put("Session-Token", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token"));

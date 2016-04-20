@@ -110,19 +110,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -135,6 +122,8 @@
             android:textAllCaps="true"
             android:textStyle="bold"/>
 
+
+
         <LinearLayout
             android:layout_below="@+id/textodernumber"
             android:layout_width="match_parent"
@@ -142,7 +131,7 @@
             android:orientation="horizontal"
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="10dp"
-            android:id="@+id/linear">
+            android:id="@+id/linearheader">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -159,33 +148,57 @@
                     android:textSize="17sp"
                     android:textColor="@color/colorButtonInactive"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1  Beatriz"
-                    android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
+            </LinearLayout>
 
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
-
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="right"
+                android:layout_marginRight="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3  Diana"
-                    android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
+                    android:text="Price"
+                    android:layout_marginTop="20dp"
+                    android:textSize="17sp"
+                    android:id="@+id/textprice"
+                    android:textColor="@color/colorButtonInactive"/>
 
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
+            </LinearLayout>
 
+        </LinearLayout>
+
+
+
+
+
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearheader"
+            android:id="@+id/listview">
+
+        </ListView>
+
+
+        <LinearLayout
+            android:layout_below="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/linear">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -234,45 +247,13 @@
                 android:gravity="right"
                 android:layout_marginRight="10dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Price"
-                    android:layout_marginTop="20dp"
-                    android:textSize="17sp"
-                    android:id="@+id/textprice"
-                    android:textColor="@color/colorButtonInactive"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PHP 3,000.00"
-                    android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
-
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PHP 29,700.00"
-                    android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
 
 
                 <TextView
+                    android:id="@+id/txt_subtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PHP 32,700.00"
+                    android:text="PHP 0.00"
                     android:layout_marginTop="10dp"
                     android:textSize="17sp"/>
 
@@ -284,6 +265,7 @@
 
 
                 <TextView
+                    android:id="@+id/txt_shipping"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="PHP 0.00"
@@ -303,9 +285,10 @@
                     android:background="@color/colorLightGary"/>
 
                 <TextView
+                    android:id="@+id/txt_total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PHP 32,700.00"
+                    android:text="PHP 0.00"
                     android:layout_marginTop="10dp"
                     android:textSize="17sp"
                     android:textStyle="bold"/>
@@ -314,6 +297,9 @@
             </LinearLayout>
 
         </LinearLayout>
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
