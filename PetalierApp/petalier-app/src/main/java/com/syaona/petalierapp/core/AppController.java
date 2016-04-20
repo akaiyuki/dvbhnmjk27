@@ -4,6 +4,7 @@ import android.app.Application;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.facebook.FacebookSdk;
 
 
 /**
@@ -39,6 +40,8 @@ public class AppController extends Application {
 //        JodaTimeAndroid.init(this);
         PSharedPreferences.init(mInstance);
         mRequestQueue = new PRequestQueue(getApplicationContext());
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
 
     }

@@ -25,6 +25,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.activity.MainActivity;
@@ -45,6 +52,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,6 +65,9 @@ public class LoginFragment extends Fragment {
     private EditText mEditEmail;
     private EditText mEditPassword;
 //    private TextView mTextError;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
+    private GraphRequest request;
 
 
     public LoginFragment() {
@@ -91,6 +103,87 @@ public class LoginFragment extends Fragment {
 //        txtLogin.setTypeface(Fonts.gothambookregular);
 
 //        mTextError = (TextView) view.findViewById(R.id.txterror);
+
+
+
+        callbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) view.findViewById(R.id.button_fb);
+//        loginButton.setReadPermissions("user_friends");
+//        loginButton.setReadPermissions("AccessToken");
+        loginButton.setReadPermissions("email", "user_friends");
+        // If using in a fragment
+        loginButton.setFragment(this);
+        // Other app specific specialization
+
+        // Callback registration
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+
+
+                Log.i("name user", String.valueOf(loginResult.getAccessToken().getUserId()));
+
+                request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        try {
+                            Log.i("fbuser", response.toString() + " " + response.getJSONObject().getString("name"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        try {
+                            String id = object.getString("id");
+                            try {
+                                URL profile_pic = new URL(
+                                        "http://graph.facebook.com/" + id + "/picture?type=large");
+                                Log.i("profile_pic",
+                                        profile_pic + "");
+
+                            } catch (MalformedURLException e) {
+                                e.printStackTrace();
+                            }
+                            String name = object.getString("name");
+                            String email = object.getString("email");
+                            String gender = object.getString("gender");
+                            String birthday = object.getString("birthday");
+
+                            String firstname = object.getString("first_name");
+
+                            Log.i("emailuser", name);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                });
+
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,link,gender,birthday,email");
+                request.setParameters(parameters);
+                request.executeAsync();
+
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+                Log.i("login user", "canceled");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+                Log.i("login user", exception.toString());
+            }
+        });
+
+
+
+
+
 
         return view;
     }
