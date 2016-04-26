@@ -144,6 +144,7 @@ public class ChooseCollectionFragment extends Fragment {
 
                 selectedFlower = adapterView.getItemAtPosition(i).toString();
 
+
                 mAdapter.notifyDataSetChanged();
             }
         });
@@ -304,6 +305,13 @@ public class ChooseCollectionFragment extends Fragment {
                     if (jsonObject.getString("productName").equalsIgnoreCase(holder.text1.getText().toString())){
                         holder.lineActiveImage.setVisibility(View.VISIBLE);
                         holder.lineInactiveImage.setVisibility(View.GONE);
+
+                        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "flower_name", jsonObject.getString("productName"));
+                        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"flower_price", jsonObject.getString("regular_price"));
+                        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"flower_excerpt",jsonObject.getString("productExcerpt"));
+
+                        Log.i("selectedflowerclick", jsonObject.getString("productName"));
+
                     } else {
                         holder.lineActiveImage.setVisibility(View.GONE);
                         holder.lineInactiveImage.setVisibility(View.VISIBLE);

@@ -157,6 +157,15 @@ public class DesignBoxFragment extends Fragment {
             }
         });
 
+        TextView mTextFlowerName = (TextView) view.findViewById(R.id.flowername);
+        mTextFlowerName.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_name"));
+
+        TextView mTextFlowerPrice = (TextView) view.findViewById(R.id.flowerprice);
+        mTextFlowerPrice.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_price"));
+
+        TextView mTextFlowerExcerpt = (TextView) view.findViewById(R.id.productexcerpt);
+        mTextFlowerExcerpt.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_excerpt"));
+
         return view;
     }
 
