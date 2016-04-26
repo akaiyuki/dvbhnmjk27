@@ -76,6 +76,8 @@ public class ProfileFragment extends Fragment {
 
     private ArrayList<JSONObject> mResultOrders = new ArrayList<>();
 
+    private String selectedOrder;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -229,6 +231,10 @@ public class ProfileFragment extends Fragment {
             mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    selectedOrder = adapterView.getItemAtPosition(i).toString();
+                    mAdapter.notifyDataSetChanged();
+
                     PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
                 }
@@ -339,6 +345,32 @@ public class ProfileFragment extends Fragment {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+
+
+            if (selectedOrder != null){
+
+                try {
+                    JSONObject jsonObject = new JSONObject(selectedOrder);
+
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_name",jsonObject.getString("order_name"));
+
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"date_created",jsonObject.getString("date_created"));
+
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_total", jsonObject.getJSONObject("order_meta").getString("order_total"));
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+
+
+
             }
 
 

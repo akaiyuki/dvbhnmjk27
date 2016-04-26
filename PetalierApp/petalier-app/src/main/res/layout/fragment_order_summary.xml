@@ -6,11 +6,6 @@
     tools:context="com.syaona.petalierapp.fragment.OrderSummaryFragment">
 
 
-
-
-
-
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -22,50 +17,48 @@
 
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="order #123"
-        android:layout_below="@+id/app_bar"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorButtonInactive"
-        android:textAllCaps="true"
-        android:textSize="19sp"
-        android:layout_marginTop="20dp"
-        android:id="@+id/txtorder"/>
+            android:id="@+id/txtorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/app_bar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="order #123"
+            android:textAllCaps="true"
+            android:textColor="@color/colorButtonInactive"
+            android:textSize="19sp" />
 
 
         <TextView
+            android:id="@+id/txtdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="March 24, 2006"
-            android:layout_centerHorizontal="true"
-            android:textSize="12sp"
-            android:id="@+id/txtdate"
             android:layout_below="@+id/txtorder"
-            android:textColor="@color/colorLightGary"/>
-
+            android:layout_centerHorizontal="true"
+            android:text="March 24, 2006"
+            android:textColor="@color/colorLightGary"
+            android:textSize="12sp" />
 
 
         <View
-        android:layout_below="@+id/txtdate"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="20dp"
-        android:layout_height="5dip"
-        android:background="@color/colorLightGary"
-        android:id="@+id/divider"
-        android:layout_centerHorizontal="true"/>
-
+            android:id="@+id/divider"
+            android:layout_width="20dp"
+            android:layout_height="5dip"
+            android:layout_below="@+id/txtdate"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorLightGary" />
 
 
         <LinearLayout
-            android:layout_below="@+id/divider"
+            android:id="@+id/linearheader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/divider"
             android:layout_marginBottom="10dp"
-            android:id="@+id/linear">
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -77,74 +70,95 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Product"
                     android:layout_marginTop="20dp"
-                    android:textSize="17sp"
-                    android:textColor="@color/colorButtonInactive"/>
+                    android:text="Product"
+                    android:textColor="@color/colorButtonInactive"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Price"
+                    android:textColor="@color/colorButtonInactive"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearheader">
+
+        </ListView>
+
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listview"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1  Beatriz"
                     android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
-
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3  Diana"
-                    android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
-
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="Subtotal"
-                    android:layout_marginTop="10dp"
-                    android:textSize="17sp"
-                    android:textColor="@color/colorButtonInactive"/>
+                    android:textColor="@color/colorButtonInactive"
+                    android:textSize="17sp" />
+
                 <View
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorLightGary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="Shipping"
-                    android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
+                    android:textSize="17sp" />
 
                 <View
-                    android:layout_marginTop="21dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
+                    android:layout_marginTop="21dp"
+                    android:background="@color/colorLightGary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total"
                     android:layout_marginTop="10dp"
-                    android:textSize="17sp"
+                    android:text="Total"
                     android:textAllCaps="true"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorButtonInactive"/>
+                    android:textColor="@color/colorButtonInactive"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -152,136 +166,106 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
                 android:gravity="right"
-                android:layout_marginRight="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Price"
-                    android:layout_marginTop="20dp"
-                    android:textSize="17sp"
-                    android:id="@+id/textprice"
-                    android:textColor="@color/colorButtonInactive"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PHP 3,000.00"
-                    android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
-
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PHP 29,700.00"
-                    android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
+                android:orientation="vertical">
 
 
                 <TextView
+                    android:id="@+id/txt_subtotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PHP 32,700.00"
                     android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
-
-                <View
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="PHP 0.00"
+                    android:textSize="17sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dip"
                     android:layout_marginTop="10dp"
-                    android:textSize="17sp"/>
+                    android:background="@color/colorLightGary" />
+
+
+                <TextView
+                    android:id="@+id/txt_shipping"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="PHP 0.00"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Free Shipping"
-                    android:textSize="9sp"/>
+                    android:textSize="9sp" />
 
                 <View
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dip"
-                    android:background="@color/colorLightGary"/>
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorLightGary" />
 
                 <TextView
+                    android:id="@+id/txt_total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PHP 32,700.00"
                     android:layout_marginTop="10dp"
+                    android:text="PHP 0.00"
                     android:textSize="17sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
 
         </LinearLayout>
 
+
         <LinearLayout
+            android:id="@+id/linear2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear"
             android:background="@color/colorTextWhite"
-            android:padding="10dp"
-            android:id="@+id/linear2">
+            android:padding="10dp">
 
 
             <TextView
                 android:id="@+id/txtnote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NOTE: Upload your receipt to confirm orders"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
-                android:layout_marginLeft="10dp"
-                android:textSize="12sp"/>
+                android:text="NOTE: Upload your receipt to confirm orders"
+                android:textSize="12sp" />
 
 
         </LinearLayout>
 
 
         <LinearLayout
+            android:id="@+id/linear3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linear2"
             android:background="@color/color3DBackground"
-            android:padding="20dp"
-            android:id="@+id/linear3"
-            android:gravity="center_horizontal">
+            android:gravity="center_horizontal"
+            android:padding="20dp">
 
 
             <TextView
                 android:id="@+id/txtupload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upload Receipt Photo"
-                android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:textSize="14sp"
+                android:layout_marginTop="10dp"
                 android:drawableLeft="@drawable/ic_upload"
-                android:drawablePadding="20dp"/>
+                android:drawablePadding="20dp"
+                android:gravity="center_vertical"
+                android:text="Upload Receipt Photo"
+                android:textSize="14sp" />
 
 
         </LinearLayout>
@@ -299,30 +283,17 @@
                 android:id="@+id/btndone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/button_background"
                 android:text="Done"
                 android:textAllCaps="false"
-                android:textColor="@color/colorTextWhite"
-                android:background="@drawable/button_background"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"/>
+                android:textColor="@color/colorTextWhite" />
 
         </RelativeLayout>
 
 
     </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </ScrollView>

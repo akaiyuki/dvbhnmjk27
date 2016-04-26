@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
+import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.view.Fonts;
 
 /**
@@ -58,15 +60,20 @@ public class OrderSummaryFragment extends Fragment {
 
         TextView txtOrder = (TextView) view.findViewById(R.id.txtorder);
         txtOrder.setTypeface(Fonts.gothambold);
+        txtOrder.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "order_name"));
 
         TextView txtDate = (TextView) view.findViewById(R.id.txtdate);
         txtDate.setTypeface(Fonts.gothambookregular);
+        txtDate.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "date_created"));
 
         TextView txtNote = (TextView) view.findViewById(R.id.txtnote);
         txtNote.setTypeface(Fonts.gothambookregular);
 
         TextView txtUpload = (TextView) view.findViewById(R.id.txtupload);
         txtUpload.setTypeface(Fonts.gothambold);
+
+        TextView txtTotal = (TextView) view.findViewById(R.id.txt_total);
+        txtTotal.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"order_total"));
 
         Button btnDone = (Button) view.findViewById(R.id.btndone);
         btnDone.setTypeface(Fonts.gothambookregular);
