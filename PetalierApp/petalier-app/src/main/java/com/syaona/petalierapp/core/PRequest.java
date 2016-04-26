@@ -15,16 +15,17 @@ import java.util.Map;
 public class PRequest {
 
     /* Get */
-    public static String apiMethodGetCards = "v1/cards";
-    public static String apiMethodGetAllProducts = "v1/products/getAll";
-    public static String apiMethodGetProfileById = "v1/profile/getProfile";
-    public static String apiMethodGetOrderHistory = "v1/history/get";
-    public static String apiMethodGetBilling = "v1/billing/getBilling";
+    public static String apiMethodGetCards = "cards";
+    public static String apiMethodGetAllProducts = "products/getAll";
+    public static String apiMethodGetProfileById = "profile/getProfile";
+    public static String apiMethodGetOrderHistory = "history/get";
+    public static String apiMethodGetBilling = "billing/getBilling";
+    public static String apiMethodGetColors = "colors";
 
 
     /* Post */
-    public static String apiMethodPostLogin = "v1/login";
-    public static String apiMethodPostBillingInfo = "v1/billing/postUpdate";
+    public static String apiMethodPostLogin = "login";
+    public static String apiMethodPostBillingInfo = "billing/postUpdate";
 
 
 
