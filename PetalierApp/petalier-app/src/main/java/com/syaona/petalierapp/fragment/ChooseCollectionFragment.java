@@ -126,8 +126,9 @@ public class ChooseCollectionFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                PEngine.switchFragment((BaseActivity) getActivity(), new DesignBoxFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-
+                if (Singleton.getSelectedCollection() == 1) {
+                    PEngine.switchFragment((BaseActivity) getActivity(), new DesignBoxFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                }
 
             }
         });
@@ -144,6 +145,7 @@ public class ChooseCollectionFragment extends Fragment {
 
                 selectedFlower = adapterView.getItemAtPosition(i).toString();
 
+                Singleton.setSelectedCollection(1);
 
                 mAdapter.notifyDataSetChanged();
             }
@@ -310,11 +312,10 @@ public class ChooseCollectionFragment extends Fragment {
                         PSharedPreferences.setSomeStringValue(AppController.getInstance(),"flower_price", jsonObject.getString("regular_price"));
                         PSharedPreferences.setSomeStringValue(AppController.getInstance(),"flower_excerpt",jsonObject.getString("productExcerpt"));
 
-                        Log.i("selectedflowerclick", jsonObject.getString("productName"));
-
                     } else {
                         holder.lineActiveImage.setVisibility(View.GONE);
                         holder.lineInactiveImage.setVisibility(View.VISIBLE);
+
                     }
 
                 } catch (JSONException e) {

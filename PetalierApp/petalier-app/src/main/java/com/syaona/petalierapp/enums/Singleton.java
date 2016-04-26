@@ -7,6 +7,15 @@ public class Singleton {
 
     public static int loginFromMain;
     public static int selectedDay;
+    public static int selectedCollection;
+
+    public static int getSelectedCollection() {
+        return selectedCollection;
+    }
+
+    public static void setSelectedCollection(int selectedCollection) {
+        Singleton.selectedCollection = selectedCollection;
+    }
 
     public static int getSelectedDay() {
         return selectedDay;
