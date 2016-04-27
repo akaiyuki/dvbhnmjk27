@@ -171,7 +171,8 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:textSize="16sp"
-            android:padding="50dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
             android:background="@color/colorTransparent"
             android:textColor="@color/colorFb"/>
 

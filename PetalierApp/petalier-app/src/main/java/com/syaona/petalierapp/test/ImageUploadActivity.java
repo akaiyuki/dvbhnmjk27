@@ -236,6 +236,7 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
 
     class ImageUploadTask extends AsyncTask<Void, Void, String> {
 
+        final ProgressDialog loading = ProgressDialog.show(ImageUploadActivity.INSTANCE,"Uploading...","Please wait...",false,false);
 
         @Override
         protected void onPreExecute() {
@@ -291,6 +292,8 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
 
         @Override
         protected void onPostExecute(String sResponse) {
+
+            loading.dismiss();
 
             try {
 

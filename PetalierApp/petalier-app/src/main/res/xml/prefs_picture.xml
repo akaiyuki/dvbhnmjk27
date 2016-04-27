@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="ffc"
+        android:title="Use front-facing camera"/>
+    <SwitchPreference
+        android:key="exact_match"
+        android:title="Fail if no camera match"/>
+    <SwitchPreference
+        android:key="file"
+        android:title="Save full image to file"
+        android:summary="If off, captures a thumbnail instead"/>
+    <SwitchPreference
+        android:key="updateMediaStore"
+        android:dependency="file"
+        android:title="Update MediaStore"/>
+    <SwitchPreference
+        android:key="confirm"
+        android:title="Show confirmation screen"/>
+    <SwitchPreference
+        android:key="debug"
+        android:title="Enable debug mode"/>
+    <SwitchPreference
+        android:key="debugSavePreview"
+        android:title="Save preview frame"/>
+    <SwitchPreference
+        android:key="forceClassic"
+        android:title="Force classic API"/>
+    <SwitchPreference
+        android:key="highQuality"
+        android:title="Use high quality"/>
+    <SwitchPreference
+        android:key="mirrorPreview"
+        android:title="Mirror preview"/>
+    <ListPreference
+        android:key="focusMode"
+        android:entries="@array/focusModes"
+        android:entryValues="@array/focusModeValues"
+        android:title="Focus mode" />
+    <ListPreference
+        android:key="flashMode"
+        android:entries="@array/flashModes"
+        android:entryValues="@array/flashModeValues"
+        android:title="Flash mode" />
+    <ListPreference
+        android:key="zoomStyle"
+        android:title="Zoom style"
+        android:entries="@array/zoomStyles"
+        android:entryValues="@array/zoomStyleValues"/>
+    <ListPreference
+        android:key="confirmationQuality"
+        android:title="Confirmation quality"
+        android:entries="@array/confirmationQuality"
+        android:entryValues="@array/confirmationQuality"/>
+    <!--
+      <SwitchPreference
+        android:key="allowSwitchFlashMode"
+        android:title="@string/title_allow_switch_flash_mode"/>
+    -->
+    <SwitchPreference
+        android:key="useChooser"
+        android:title="Use chooser"/>
+
+</PreferenceScreen>

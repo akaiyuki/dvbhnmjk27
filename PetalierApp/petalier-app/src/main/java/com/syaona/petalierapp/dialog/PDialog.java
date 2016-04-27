@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.test.ImageUploadActivity;
+import com.syaona.petalierapp.test.PictureActivity;
+import com.syaona.petalierapp.test.TakePhotoActivity;
 import com.syaona.petalierapp.view.Fonts;
 
 /**
@@ -63,6 +65,8 @@ public class PDialog {
             @Override
             public void onClick(View v) {
 
+
+                baseActivity.startActivity(new Intent(baseActivity, PictureActivity.class));
 
                 dialog.dismiss();
 

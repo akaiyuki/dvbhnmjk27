@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+    android:id="@+id/take_picture"
+    android:icon="@drawable/ic_camera_white_24dp"
+    android:showAsAction="always"
+    android:title="Take Picture"
+      tools:ignore="AppCompatResource" />
+  <item
+    android:id="@+id/picture_activity"
+    android:icon="@drawable/ic_camera_white_24dp"
+    android:showAsAction="always"
+    android:title="Switch Picture"
+    android:visible="false"
+      tools:ignore="AppCompatResource" />
+  <item
+    android:id="@+id/video_activity"
+    android:icon="@drawable/ic_videocam_white_24dp"
+    android:showAsAction="always"
+    android:title="Switch Video"
+    android:visible="false"
+      tools:ignore="AppCompatResource" />
+</menu>

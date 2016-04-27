@@ -45,4 +45,6 @@ dependencies {
     compile files('libs/httpclient-android-4.3.3.jar')
     compile files('libs/httpmime-4.2.6.jar')
     compile files('libs/httpmime-4.1.2.jar')
+    compile project(':cam2')
+    compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.1.4'
 }

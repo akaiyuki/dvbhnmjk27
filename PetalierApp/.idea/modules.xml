@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PetalierApp.iml" filepath="$PROJECT_DIR$/PetalierApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cam2/cam2.iml" filepath="$PROJECT_DIR$/cam2/cam2.iml" />
       <module fileurl="file://$PROJECT_DIR$/petalier-app/petalier-app.iml" filepath="$PROJECT_DIR$/petalier-app/petalier-app.iml" />
     </modules>
   </component>
