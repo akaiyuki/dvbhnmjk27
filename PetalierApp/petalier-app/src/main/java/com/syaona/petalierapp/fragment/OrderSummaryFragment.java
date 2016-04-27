@@ -1,14 +1,18 @@
 package com.syaona.petalierapp.fragment;
 
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.syaona.petalierapp.R;
@@ -17,6 +21,9 @@ import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.dialog.PDialog;
+import com.syaona.petalierapp.test.ImageUploadActivity;
+import com.syaona.petalierapp.test.UploadPhoto;
 import com.syaona.petalierapp.view.Fonts;
 
 /**
@@ -73,14 +80,29 @@ public class OrderSummaryFragment extends Fragment {
         txtUpload.setTypeface(Fonts.gothambold);
 
         TextView txtTotal = (TextView) view.findViewById(R.id.txt_total);
-        txtTotal.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"order_total"));
+        txtTotal.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "order_total"));
 
         Button btnDone = (Button) view.findViewById(R.id.btndone);
         btnDone.setTypeface(Fonts.gothambookregular);
+
+        LinearLayout uploadButton = (LinearLayout) view.findViewById(R.id.linear3);
+        uploadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PDialog.showChoosePhoto((BaseActivity) getActivity());
+
+            }
+        });
 
 
 
         return view;
     }
+
+
+
+
+
 
 }

@@ -351,6 +351,7 @@ public class ProfileFragment extends Fragment {
             if (selectedOrder != null){
 
                 try {
+
                     JSONObject jsonObject = new JSONObject(selectedOrder);
 
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_name",jsonObject.getString("order_name"));
