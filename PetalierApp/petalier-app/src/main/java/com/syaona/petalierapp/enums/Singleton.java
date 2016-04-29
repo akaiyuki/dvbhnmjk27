@@ -1,6 +1,7 @@
 package com.syaona.petalierapp.enums;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
@@ -15,6 +16,24 @@ public class Singleton {
     public static int selectedCollection;
     public static ImageSource imageUri;
     public static Bitmap imageBitmap;
+    public static int selectedFlower;
+    public static Bitmap chosenColor;
+
+    public static Bitmap getChosenColor() {
+        return chosenColor;
+    }
+
+    public static void setChosenColor(Bitmap chosenColor) {
+        Singleton.chosenColor = chosenColor;
+    }
+
+    public static int getSelectedFlower() {
+        return selectedFlower;
+    }
+
+    public static void setSelectedFlower(int selectedFlower) {
+        Singleton.selectedFlower = selectedFlower;
+    }
 
     public static ImageSource getImageUri() {
         return imageUri;

@@ -127,12 +127,12 @@ public class ChooseCollectionFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (Singleton.getSelectedCollection() == 1) {
-//                    PEngine.switchFragment((BaseActivity) getActivity(), new DesignBoxFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//                if (Singleton.getSelectedCollection() == 1) {
+////                    PEngine.switchFragment((BaseActivity) getActivity(), new DesignBoxFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
                     startActivity(new Intent(getActivity(), DesignBoxActivity.class));
 
-                }
+//                }
 
             }
         });
@@ -205,97 +205,103 @@ public class ChooseCollectionFragment extends Fragment {
                 holder.text2.setText("Php "+row.getString("regular_price"));
                 holder.text2.setTypeface(Fonts.gothambookregular);
 
-                if (holder.text1.getText().toString().equalsIgnoreCase("beatriz")){
-                    Picasso.with(mContext)
-                            .load(R.drawable.beatriz)
-                            .fit()
-                            .transform(new CircleTransform())
-                            .into(holder.imageView, new Callback() {
-                                @Override
-                                public void onSuccess() {
+//                if (holder.text1.getText().toString().equalsIgnoreCase("beatriz")){
+//                    Picasso.with(mContext)
+//                            .load(R.drawable.beatriz)
+//                            .fit()
+//                            .transform(new CircleTransform())
+//                            .into(holder.imageView, new Callback() {
+//                                @Override
+//                                public void onSuccess() {
+//
+//                                }
+//
+//                                @Override
+//                                public void onError() {
+//                                }
+//                            });
+//                } if (holder.text1.getText().toString().equalsIgnoreCase("lucy")){
+//                    Picasso.with(mContext)
+//                            .load(R.drawable.lucy)
+//                            .fit()
+//                            .transform(new CircleTransform())
+//                            .into(holder.imageView, new Callback() {
+//                                @Override
+//                                public void onSuccess() {
+//
+//                                }
+//
+//                                @Override
+//                                public void onError() {
+//                                }
+//                            });
+//                } if (holder.text1.getText().toString().equalsIgnoreCase("lauren")){
+//                    Picasso.with(mContext)
+//                            .load(R.drawable.lauren)
+//                            .fit()
+//                            .transform(new CircleTransform())
+//                            .into(holder.imageView, new Callback() {
+//                                @Override
+//                                public void onSuccess() {
+//
+//                                }
+//
+//                                @Override
+//                                public void onError() {
+//                                }
+//                            });
+//                } if (holder.text1.getText().toString().equalsIgnoreCase("chloe")){
+//                    Picasso.with(mContext)
+//                            .load(R.drawable.chloe)
+//                            .fit()
+//                            .transform(new CircleTransform())
+//                            .into(holder.imageView, new Callback() {
+//                                @Override
+//                                public void onSuccess() {
+//
+//                                }
+//
+//                                @Override
+//                                public void onError() {
+//                                }
+//                            });
+//                } if (holder.text1.getText().toString().equalsIgnoreCase("diana")){
+//                    Picasso.with(mContext)
+//                            .load(R.drawable.diana)
+//                            .fit()
+//                            .transform(new CircleTransform())
+//                            .into(holder.imageView, new Callback() {
+//                                @Override
+//                                public void onSuccess() {
+//
+//                                }
+//
+//                                @Override
+//                                public void onError() {
+//                                }
+//                            });
+//                } if (holder.text1.getText().toString().equalsIgnoreCase("felicisima")){
+//                    Picasso.with(mContext)
+//                            .load(R.drawable.felicima)
+//                            .fit()
+//                            .transform(new CircleTransform())
+//                            .into(holder.imageView, new Callback() {
+//                                @Override
+//                                public void onSuccess() {
+//
+//                                }
+//
+//                                @Override
+//                                public void onError() {
+//                                }
+//                            });
+//                }
 
-                                }
-
-                                @Override
-                                public void onError() {
-                                }
-                            });
-                } if (holder.text1.getText().toString().equalsIgnoreCase("lucy")){
-                    Picasso.with(mContext)
-                            .load(R.drawable.lucy)
-                            .fit()
-                            .transform(new CircleTransform())
-                            .into(holder.imageView, new Callback() {
-                                @Override
-                                public void onSuccess() {
-
-                                }
-
-                                @Override
-                                public void onError() {
-                                }
-                            });
-                } if (holder.text1.getText().toString().equalsIgnoreCase("lauren")){
-                    Picasso.with(mContext)
-                            .load(R.drawable.lauren)
-                            .fit()
-                            .transform(new CircleTransform())
-                            .into(holder.imageView, new Callback() {
-                                @Override
-                                public void onSuccess() {
-
-                                }
-
-                                @Override
-                                public void onError() {
-                                }
-                            });
-                } if (holder.text1.getText().toString().equalsIgnoreCase("chloe")){
-                    Picasso.with(mContext)
-                            .load(R.drawable.chloe)
-                            .fit()
-                            .transform(new CircleTransform())
-                            .into(holder.imageView, new Callback() {
-                                @Override
-                                public void onSuccess() {
-
-                                }
-
-                                @Override
-                                public void onError() {
-                                }
-                            });
-                } if (holder.text1.getText().toString().equalsIgnoreCase("diana")){
-                    Picasso.with(mContext)
-                            .load(R.drawable.diana)
-                            .fit()
-                            .transform(new CircleTransform())
-                            .into(holder.imageView, new Callback() {
-                                @Override
-                                public void onSuccess() {
-
-                                }
-
-                                @Override
-                                public void onError() {
-                                }
-                            });
-                } if (holder.text1.getText().toString().equalsIgnoreCase("felicisima")){
-                    Picasso.with(mContext)
-                            .load(R.drawable.felicima)
-                            .fit()
-                            .transform(new CircleTransform())
-                            .into(holder.imageView, new Callback() {
-                                @Override
-                                public void onSuccess() {
-
-                                }
-
-                                @Override
-                                public void onError() {
-                                }
-                            });
-                }
+                Picasso.with(mContext)
+                        .load(row.getString("thumbnail"))
+                        .fit()
+                        .transform(new CircleTransform())
+                        .into(holder.imageView);
 
 
 
@@ -308,7 +314,7 @@ public class ChooseCollectionFragment extends Fragment {
                 try {
                     JSONObject jsonObject = new JSONObject(selectedFlower);
 
-                    if (jsonObject.getString("productName").equalsIgnoreCase(holder.text1.getText().toString())){
+                    if (jsonObject.getString("productHeader").equalsIgnoreCase(holder.text1.getText().toString())){
                         holder.lineActiveImage.setVisibility(View.VISIBLE);
                         holder.lineInactiveImage.setVisibility(View.GONE);
 

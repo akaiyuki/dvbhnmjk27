@@ -2,6 +2,10 @@ package com.syaona.petalierapp.test;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +42,7 @@ import com.syaona.petalierapp.core.PConfiguration;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.fragment.SendNoteFragment;
 import com.syaona.petalierapp.test.CustomScrollView;
@@ -47,6 +52,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -239,6 +248,16 @@ public class DesignBoxActivity extends BaseActivity {
                     try {
                         assert data != null;
                         Log.i("hexcodeflower", data.getString("content"));
+
+
+                        Bitmap bitmap = getBitmapFromURL(data.getString("color_image_link"));
+
+                        Bitmap resizeBitmap = Bitmap.createScaledBitmap(bitmap, 32, 32, false);
+
+
+                        Singleton.setChosenColor(bitmap);
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -330,6 +349,23 @@ public class DesignBoxActivity extends BaseActivity {
     }
 
 
+    public static Bitmap getBitmapFromURL(String src) {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
 

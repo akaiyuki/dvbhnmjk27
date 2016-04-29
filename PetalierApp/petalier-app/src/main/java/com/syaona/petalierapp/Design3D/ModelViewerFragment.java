@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.test.DesignBoxActivity;
 
 import org.rajawali3d.Object3D;
@@ -220,8 +221,16 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             Material material = object.getMaterial();
             material.getTextureList().clear();
             try {
-                material.addTexture(new Texture("petalTexture", FlowerTexture.randomize().getResource()));
-//                material.addTexture(new Texture("petalTexture", R.drawable.viowhite));
+//                material.addTexture(new Texture("petalTexture", FlowerTexture.randomize().getResource()));
+
+
+//                    material.addTexture(new Texture("petalTexture", Singleton.getChosenColor()));
+
+
+                Texture mytexture = new Texture("texture", Singleton.getChosenColor());
+                material.addTexture(mytexture);
+
+
             } catch (ATexture.TextureException e) {
                 e.printStackTrace();
             }
