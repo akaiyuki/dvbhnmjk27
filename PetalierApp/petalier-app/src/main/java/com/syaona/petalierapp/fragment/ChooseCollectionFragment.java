@@ -43,6 +43,7 @@ import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
+import com.syaona.petalierapp.test.DesignBoxActivity;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
 
@@ -127,7 +128,10 @@ public class ChooseCollectionFragment extends Fragment {
             public void onClick(View view) {
 
                 if (Singleton.getSelectedCollection() == 1) {
-                    PEngine.switchFragment((BaseActivity) getActivity(), new DesignBoxFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//                    PEngine.switchFragment((BaseActivity) getActivity(), new DesignBoxFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                    startActivity(new Intent(getActivity(), DesignBoxActivity.class));
+
                 }
 
             }

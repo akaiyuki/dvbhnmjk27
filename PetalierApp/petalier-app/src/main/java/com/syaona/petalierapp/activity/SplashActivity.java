@@ -38,6 +38,7 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 Intent i = new Intent(SplashActivity.INSTANCE, MainActivity.class);
+                i.putExtra("goto","collection");
                 startActivity(i);
                 finish(); // close this activity
 //                    }

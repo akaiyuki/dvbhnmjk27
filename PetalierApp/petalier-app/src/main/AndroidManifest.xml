@@ -16,7 +16,9 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -73,12 +75,11 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.ProfileActivity" />
-
-        <activity android:name=".test.ImageUploadActivity"></activity>
-        <activity android:name=".test.TakePhotoActivity"></activity>
-        <activity android:name=".test.PictureActivity"></activity>
-
-        <activity android:name=".test.PhotoFromCameraActivity"></activity>
+        <activity android:name=".test.ImageUploadActivity" />
+        <activity android:name=".test.TakePhotoActivity" />
+        <activity android:name=".test.PictureActivity" />
+        <activity android:name=".test.PhotoFromCameraActivity" />
+        <activity android:name=".test.DesignBoxActivity"></activity>
     </application>
 
 </manifest>

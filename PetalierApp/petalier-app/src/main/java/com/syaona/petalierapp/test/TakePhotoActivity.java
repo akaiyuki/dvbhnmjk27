@@ -242,7 +242,9 @@ public class TakePhotoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(TakePhotoActivity.this, MainActivity.class));
+                Intent i = new Intent(TakePhotoActivity.this, MainActivity.class);
+                i.putExtra("goto","collection");
+                startActivity(i);
                 finish();
                 dialog.dismiss();
 

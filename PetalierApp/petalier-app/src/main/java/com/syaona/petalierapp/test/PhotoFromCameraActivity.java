@@ -180,7 +180,9 @@ public class PhotoFromCameraActivity extends BaseActivity implements View.OnClic
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(PhotoFromCameraActivity.this, MainActivity.class));
+                Intent i = new Intent(PhotoFromCameraActivity.this, MainActivity.class);
+                i.putExtra("goto","collection");
+                startActivity(i);
                 finish();
                 dialog.dismiss();
 

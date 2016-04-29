@@ -19,7 +19,7 @@
         android:id="@+id/avloadingIndicatorView"
         android:layout_width="70dp"
         android:layout_height="60dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:indicator="BallPulse"
         app:indicator_color="@color/colorPrimary"
         android:layout_centerInParent="true"

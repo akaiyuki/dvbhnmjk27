@@ -1,10 +1,12 @@
 package com.syaona.petalierapp.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.fragment.ChooseCollectionFragment;
+import com.syaona.petalierapp.fragment.SendNoteFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -57,7 +60,35 @@ public class MainActivity extends BaseActivity {
             tintManager.setStatusBarTintColor(actionBarColor);
         }
 
-        PEngine.switchFragment(INSTANCE, new ChooseCollectionFragment(), getFrameLayout());
+//        PEngine.switchFragment(INSTANCE, new ChooseCollectionFragment(), getFrameLayout());
+
+
+
+
+        /* switch fragment */
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+
+            Bundle bundle = new Bundle();
+
+            Fragment newFragment = null;
+            if (extras.getString("goto").equalsIgnoreCase("collection")) {
+                newFragment = new ChooseCollectionFragment();
+            } else if (extras.getString("goto").equalsIgnoreCase("send_note")) {
+                newFragment = new SendNoteFragment();
+            }
+
+            assert newFragment != null;
+            newFragment.setArguments(bundle);
+            PEngine.switchFragment(INSTANCE, newFragment, getFrameLayout());
+
+        }
+
+
+
+
+
 
 
     }

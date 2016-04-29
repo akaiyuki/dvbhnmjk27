@@ -339,7 +339,9 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(ImageUploadActivity.this, MainActivity.class));
+                Intent i = new Intent(ImageUploadActivity.this, MainActivity.class);
+                i.putExtra("goto","collection");
+                startActivity(i);
                 finish();
                 dialog.dismiss();
 
