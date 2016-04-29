@@ -23,7 +23,6 @@ import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.dialog.PDialog;
 import com.syaona.petalierapp.test.ImageUploadActivity;
-import com.syaona.petalierapp.test.UploadPhoto;
 import com.syaona.petalierapp.view.Fonts;
 
 /**

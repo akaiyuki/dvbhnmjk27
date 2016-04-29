@@ -73,7 +73,6 @@ public class TakePhotoActivity extends BaseActivity {
 
         imgFavorite = (ImageView)findViewById(R.id.imageView1);
         btnUpload = (Button) findViewById(R.id.btnUpload);
-        btnCrop = (Button) findViewById(R.id.btnCrop);
         btnNewImage = (Button) findViewById(R.id.btnNewImage);
 
         open();

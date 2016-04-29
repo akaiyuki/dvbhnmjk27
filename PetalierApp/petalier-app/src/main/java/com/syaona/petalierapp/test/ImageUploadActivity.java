@@ -223,7 +223,8 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
 
         if(v == buttonChoose){
-            showFileChooser();
+//            showFileChooser();
+            openGallery();
         }
 
         if(v == buttonUpload){

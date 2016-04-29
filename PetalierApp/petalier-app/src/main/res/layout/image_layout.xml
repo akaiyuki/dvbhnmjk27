@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
 
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_above="@+id/btnNewImage"
+        android:layout_above="@+id/divider4"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="10dp"
@@ -22,97 +22,121 @@
         />
 
 
-
     <!--<Button-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-
-    <!--android:id="@+id/btnUpload"-->
-    <!--android:text="Upload Image"-->
-    <!--android:textAlignment="center"-->
-    <!--android:textSize="@dimen/abc_text_size_large_material"-->
-    <!--android:textAllCaps="true"-->
-    <!--android:background="@drawable/button_purple_selector"-->
-    <!--android:textColor="@color/primaryTextColor"-->
-    <!--android:layout_alignParentBottom="true"-->
-
-    <!--/>-->
+        <!--android:id="@+id/btnNewImage"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_marginRight="15dp"-->
+        <!--android:layout_toLeftOf="@+id/btnUpload"-->
+        <!--android:text="New"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textSize="@dimen/abc_text_size_medium_material"-->
+        <!--android:layout_marginEnd="15dp"-->
+        <!--android:layout_toStartOf="@+id/btnUpload"/>-->
 
 
     <!--<Button-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/btnCrop"-->
-    <!--android:text="Crop Image"-->
-    <!--android:textSize="@dimen/abc_text_size_large_material"-->
-    <!--android:textAllCaps="true"-->
-    <!--android:background="@drawable/button_purple_selector"-->
-    <!--android:textColor="@color/primaryTextColor"-->
-
-    <!--android:layout_above="@+id/btnUpload"-->
-    <!--android:textAlignment="center"/>-->
+        <!--android:id="@+id/btnCrop"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_toRightOf="@+id/btnUpload"-->
+        <!--android:text="Crop"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textSize="@dimen/abc_text_size_medium_material"-->
+        <!--android:layout_marginStart="15dp"-->
+        <!--android:layout_toEndOf="@+id/btnUpload"-->
+        <!--/>-->
 
     <!--<Button-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentRight="true"-->
-    <!--android:text="New Image"-->
-    <!--android:textSize="@dimen/abc_text_size_large_material"-->
-    <!--android:textAllCaps="true"-->
-    <!--android:background="@drawable/button_purple_selector"-->
-    <!--android:textColor="@color/primaryTextColor"-->
-    <!--android:id="@+id/btnNewImage"-->
+        <!--android:id="@+id/btnUpload"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
 
-    <!--android:layout_above="@+id/btnCrop" />-->
-    <!---->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:text="Upload"-->
+        <!--android:textAllCaps="true"-->
+        <!--android:textSize="@dimen/abc_text_size_medium_material"-->
 
 
-    <Button
-        android:id="@+id/btnNewImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        <!--/>-->
+
+
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/linear"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@color/colorLightGary"
+        android:id="@+id/divider4"
         android:layout_marginBottom="20dp"
-        android:layout_marginRight="15dp"
-        android:layout_toLeftOf="@+id/btnUpload"
-        android:text="New"
-        android:textAllCaps="true"
-        android:textSize="@dimen/abc_text_size_medium_material"
-        android:layout_marginEnd="15dp"
-        android:layout_toStartOf="@+id/btnUpload"/>
-
-
-    <Button
-        android:id="@+id/btnCrop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_toRightOf="@+id/btnUpload"
-        android:text="Crop"
-        android:textAllCaps="true"
-        android:textSize="@dimen/abc_text_size_medium_material"
-        android:layout_marginStart="15dp"
-        android:layout_toEndOf="@+id/btnUpload"
+        android:layout_above="@+id/linear2"
         />
 
-    <Button
-        android:id="@+id/btnUpload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
 
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="Upload"
-        android:textAllCaps="true"
-        android:textSize="@dimen/abc_text_size_medium_material"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/linear2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginRight="10dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="New Image"
+                android:id="@+id/btnNewImage"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"
+                android:background="@drawable/button_background_black"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <Button
+                android:id="@+id/btnUpload"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Upload"
+                android:textAllCaps="false"
+                android:textColor="@color/colorTextWhite"
+                android:background="@drawable/button_background"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
-        />
+
+
+
+
+
 
 
 </RelativeLayout>
