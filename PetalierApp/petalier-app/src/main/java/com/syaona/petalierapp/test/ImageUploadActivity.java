@@ -108,12 +108,14 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
 
         openGallery();
 
+//        showFileChooser();
+
 
     }
 
     public void openGallery() {
 
-        startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), 3);
+        startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), PICK_IMAGE_REQUEST);
 
     }
 
@@ -201,19 +203,19 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
         }
 
 
-        if (requestCode == 3 && resultCode == Activity.RESULT_OK) {
-            assert data != null;
-            Uri filePath = data.getData();
-            try {
-                //Getting the Bitmap from Gallery
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                //Setting the Bitmap to ImageView
-                imageView.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
+//        if (requestCode == 3 && resultCode == Activity.RESULT_OK) {
+//            assert data != null;
+//            Uri filePath = data.getData();
+//            try {
+//                //Getting the Bitmap from Gallery
+//                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+//                //Setting the Bitmap to ImageView
+//                imageView.setImageBitmap(bitmap);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
 
 
 
@@ -306,7 +308,8 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
                         showSuccessDialog("Photo has been uploaded");
 
                     }
-//                    Log.i("uploadimage", JResponse.getJSONObject("Data").getJSONObject("Deposit Slip").getString("meta_value"));
+
+                    Log.i("uploadimage", JResponse.getJSONObject("Data").getJSONObject("Deposit Slip").getString("meta_value"));
 
                 }
             } catch (Exception e) {

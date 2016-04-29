@@ -17,10 +17,14 @@ package com.syaona.petalierapp.test;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Toast;
+
+import com.syaona.petalierapp.enums.Singleton;
 
 public class PictureActivity extends Activity
     implements PictureFragment.Contract {
@@ -97,12 +101,43 @@ public class PictureActivity extends Activity
       if (resultCode == Activity.RESULT_OK) {
         Bitmap bitmap=data.getParcelableExtra("data");
 
-        if (bitmap == null) {
+
+
+          int width = bitmap.getWidth();
+          int height = bitmap.getHeight();
+          int newWidth = bitmap.getWidth();
+          int newHeight = bitmap.getHeight();
+
+          // calculate the scale - in this case = 0.4f
+          float scaleWidth = ((float) newWidth) / width;
+          float scaleHeight = ((float) newHeight) / height;
+
+          // createa matrix for the manipulation
+          Matrix matrix = new Matrix();
+          // resize the bit map
+          matrix.postScale(scaleWidth, scaleHeight);
+          // rotate the Bitmap
+          matrix.postRotate(90);
+          // recreate the new Bitmap
+          Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0,
+                  bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+
+          BitmapDrawable bmd = new BitmapDrawable(resizedBitmap);
+
+
+
+
+
+          if (bitmap == null) {
           result.setImage(output);
         }
         else {
-          result.setImage(bitmap);
-        }
+          result.setImage(resizedBitmap);
+              Singleton.setImageBitmap(resizedBitmap);
+              startActivity(new Intent(PictureActivity.this, PhotoFromCameraActivity.class));
+              finish();
+
+          }
 
         getFragmentManager()
             .beginTransaction()

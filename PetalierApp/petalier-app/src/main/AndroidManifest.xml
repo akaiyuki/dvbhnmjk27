@@ -73,14 +73,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.ProfileActivity" />
-        <activity
-            android:name=".test.UploadPhoto"
-            android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
+
         <activity android:name=".test.ImageUploadActivity"></activity>
         <activity android:name=".test.TakePhotoActivity"></activity>
         <activity android:name=".test.PictureActivity"></activity>
+
+        <activity android:name=".test.PhotoFromCameraActivity"></activity>
     </application>
 
 </manifest>

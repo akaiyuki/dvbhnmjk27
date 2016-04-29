@@ -78,7 +78,7 @@ public class PictureFragment extends PreferenceFragment {
   @Override
   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
     inflater.inflate(R.menu.actions, menu);
-    menu.findItem(R.id.video_activity).setVisible(true);
+    menu.findItem(R.id.video_activity).setVisible(false);
   }
 
   @Override
