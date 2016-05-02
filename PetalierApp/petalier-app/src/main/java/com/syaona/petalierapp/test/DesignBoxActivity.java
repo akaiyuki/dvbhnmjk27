@@ -251,7 +251,7 @@ public class DesignBoxActivity extends BaseActivity {
                         Log.i("hexcodeflower", data.getString("content"));
 
 
-                        Bitmap bitmap = getBitmapFromURL(data.getString("color_image_link"));
+                        Bitmap bitmap = getBitmapFromURL(data.getString("texture_image_link"));
 
                         Bitmap resizeBitmap = Bitmap.createScaledBitmap(bitmap, 32, 32, false);
 
