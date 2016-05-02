@@ -180,8 +180,9 @@ public class DesignBoxActivity extends BaseActivity {
 //                PEngine.switchFragment((BaseActivity) getActivity(), new SendNoteFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
                 Intent intent = new Intent(DesignBoxActivity.this, MainActivity.class);
-                intent.putExtra("goto","send_note");
+                intent.putExtra("goto","send_card");
                 startActivity(intent);
+                finish();
 
             }
         });

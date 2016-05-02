@@ -78,6 +78,8 @@ public class SendNoteFragment extends Fragment {
 
                 if (mEditMessage.getText().length() != 0){
 
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"note",mEditMessage.getText().toString());
+
                     if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token").isEmpty()){
                         startActivity(new Intent(getActivity(), OrderActivity.class));
                     } else {

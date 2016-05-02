@@ -153,7 +153,7 @@ public class DesignBoxFragment extends Fragment {
         btnWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PEngine.switchFragment((BaseActivity) getActivity(), new SendNoteFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                PEngine.switchFragment((BaseActivity) getActivity(), new ChooseCardFragment(), ((BaseActivity) getActivity()).getFrameLayout());
             }
         });
 

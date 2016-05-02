@@ -1,6 +1,8 @@
 package com.syaona.petalierapp.Design3D;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
@@ -14,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.enums.Singleton;
 
 import org.rajawali3d.renderer.ISurfaceRenderer;
 import org.rajawali3d.renderer.Renderer;
@@ -63,8 +66,11 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
         mRenderer = createRenderer();
         onBeforeApplyRenderer();
         applyRenderer();
+
+
         return mLayout;
     }
+
 
     protected void onBeforeApplyRenderer() {
     }

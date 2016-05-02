@@ -27,6 +27,7 @@ public class PRequest {
     public static String apiMethodPostLogin = "login";
     public static String apiMethodPostBillingInfo = "billing/postUpdate";
     public static String apiMethodPostDepositSlip = "orders/postUploadDepositSlip";
+    public static String apiMethodPostAddItem = "cart/postAddItem";
 
 
 

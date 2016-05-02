@@ -35,6 +35,7 @@ import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
+import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
@@ -238,24 +239,18 @@ public class ChooseCardFragment extends Fragment {
 
 
 
-//            holder.imageView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                    PSingleton.setChosenEvent(String.valueOf(row.getPid()));
-//                    PSingleton.setVenueName(row.getVenueName());
-//
-////                    PSEngine.switchFragment((BaseActivity)getActivity(), new EventFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-//
-//                    PSSharedPreferences.setSomeStringValue(AppController.getInstance(),"venue_id", String.valueOf(row.getPid()));
-//                    PSSharedPreferences.setSomeStringValue(AppController.getInstance(), "venue_name", row.getVenueName());
-//
-//                    Intent intent = new Intent(getActivity(), EventsActivity.class);
-//                    intent.putExtra("goto", "event_page");
-//                    startActivity(intent);
-//
-//                }
-//            });
+            holder.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    try {
+                        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"card",row.getString("card_image_link"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
 
 
             return convertView;
@@ -274,7 +269,7 @@ public class ChooseCardFragment extends Fragment {
 
     public void requestApiGetCards() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = PConfiguration.testURL+"v1/cards";
+        String url = PConfiguration.testURL+PRequest.apiMethodGetCards;
         StringRequest postRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>()
                 {

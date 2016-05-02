@@ -18,6 +18,15 @@ public class Singleton {
     public static Bitmap imageBitmap;
     public static int selectedFlower;
     public static Bitmap chosenColor;
+    public static Bitmap image3D;
+
+    public static Bitmap getImage3D() {
+        return image3D;
+    }
+
+    public static void setImage3D(Bitmap image3D) {
+        Singleton.image3D = image3D;
+    }
 
     public static Bitmap getChosenColor() {
         return chosenColor;

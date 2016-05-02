@@ -50,7 +50,7 @@ public class OrderActivity extends BaseActivity {
         }
 
 
-        PEngine.switchFragment(INSTANCE, new BillingInfoFragment(), getFrameLayout());
+        PEngine.switchFragment(INSTANCE, new DeliveryDetailsFragment(), getFrameLayout());
 
 
 

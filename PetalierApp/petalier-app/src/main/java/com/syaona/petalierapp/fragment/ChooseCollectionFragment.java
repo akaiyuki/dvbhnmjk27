@@ -322,6 +322,8 @@ public class ChooseCollectionFragment extends Fragment {
                         PSharedPreferences.setSomeStringValue(AppController.getInstance(),"flower_price", jsonObject.getString("regular_price"));
                         PSharedPreferences.setSomeStringValue(AppController.getInstance(),"flower_excerpt",jsonObject.getString("productExcerpt"));
 
+                        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"id",row.getString("id"));
+
                     } else {
                         holder.lineActiveImage.setVisibility(View.GONE);
                         holder.lineInactiveImage.setVisibility(View.VISIBLE);

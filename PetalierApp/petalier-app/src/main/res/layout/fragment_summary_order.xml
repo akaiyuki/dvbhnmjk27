@@ -498,7 +498,7 @@
                 android:id="@+id/btnplaceorder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Checkout Order"
+                android:text="Place Order"
                 android:textAllCaps="false"
                 android:textColor="@color/colorTextWhite"
                 android:background="@drawable/button_background"

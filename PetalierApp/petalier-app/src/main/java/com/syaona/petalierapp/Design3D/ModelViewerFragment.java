@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 
 import com.syaona.petalierapp.R;
@@ -60,16 +62,26 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
                 View v = ((View) mRenderSurface);
                 v.setDrawingCacheEnabled(true);
                 Bitmap bitmap = v.getDrawingCache();
+//
+//
+//                /* trial */
+//                v.buildDrawingCache();
+//                Bitmap bitmap = ((LoadModelRenderer) mRenderer).setToTopView();
+                /* save image to singleton */
+//                Singleton.setImage3D(bitmap);
 
                 displayBitmap(bitmap);
             }
         });
+
+
 
         return mLayout;
     }
 
     private void displayBitmap(Bitmap bitmap) {
         Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_bitmap_display);
 
         ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
@@ -247,6 +259,31 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
             getCurrentScene().replaceAndSwitchCamera(mArcballCamera, camera);
         }
+
+//        public Bitmap setToTopView() {
+//
+//            Camera camera = new Camera();
+//            camera.setPosition(0, 20, 5);
+//            camera.setLookAt(0, 0, 0);
+//
+//            getCurrentScene().replaceAndSwitchCamera(mArcballCamera, camera);
+//
+//            View v = ((View) mRenderSurface);
+//            v.setDrawingCacheEnabled(true);
+////                Bitmap bitmap = v.getDrawingCache();
+//
+//
+//                /* trial */
+//            v.buildDrawingCache(true);
+////            Bitmap bitmap = Bitmap.createBitmap(v.getDrawingCache());
+//
+//            Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+//            Canvas c = new Canvas(b);
+//            v.draw(c);
+//
+//            return b;
+//        }
+
 
         public void setToNormalView() {
 

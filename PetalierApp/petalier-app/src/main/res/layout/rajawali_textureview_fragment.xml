@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:textureview="http://schemas.android.com/apk/res-auto"
              android:layout_width="fill_parent"
-             android:layout_height="fill_parent">
+             android:layout_height="fill_parent"
+        android:background="@color/color3DBackground">
 
     <include
         layout="@layout/relative_layout_loader_container"

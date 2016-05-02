@@ -1,17 +1,21 @@
 package com.syaona.petalierapp.dialog;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.test.ImageUploadActivity;
 import com.syaona.petalierapp.test.PictureActivity;
 import com.syaona.petalierapp.test.TakePhotoActivity;
@@ -87,6 +91,20 @@ public class PDialog {
 
         dialog.show();
 
+    }
+
+    public static void displayBitmap(Bitmap bitmap, BaseActivity baseActivity) {
+        Dialog dialog = new Dialog(baseActivity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_bitmap_display);
+
+        ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
+        iv.setImageBitmap(bitmap);
+
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+
+        dialog.show();
     }
 
 

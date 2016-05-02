@@ -19,6 +19,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PEngine;
+import com.syaona.petalierapp.fragment.ChooseCardFragment;
 import com.syaona.petalierapp.fragment.ChooseCollectionFragment;
 import com.syaona.petalierapp.fragment.SendNoteFragment;
 
@@ -77,6 +78,8 @@ public class MainActivity extends BaseActivity {
                 newFragment = new ChooseCollectionFragment();
             } else if (extras.getString("goto").equalsIgnoreCase("send_note")) {
                 newFragment = new SendNoteFragment();
+            } else if (extras.getString("goto").equalsIgnoreCase("send_card")) {
+                newFragment = new ChooseCardFragment();
             }
 
             assert newFragment != null;

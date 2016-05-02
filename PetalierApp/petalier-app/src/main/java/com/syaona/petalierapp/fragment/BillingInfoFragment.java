@@ -231,7 +231,7 @@ public class BillingInfoFragment extends Fragment {
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(),"state",state);
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(), "postal_code", postCode);
 
-                                PEngine.switchFragment((BaseActivity) getActivity(), new DeliveryDetailsFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
 //                                Log.i("billing_info", fName+lName+contact+email+city);
                             }
