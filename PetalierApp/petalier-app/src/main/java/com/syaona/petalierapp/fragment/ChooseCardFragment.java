@@ -36,6 +36,8 @@ import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.dialog.PDialog;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
@@ -120,6 +122,9 @@ public class ChooseCardFragment extends Fragment {
         mCardAdapter.notifyDataSetChanged();
         mGridView.setAdapter(mCardAdapter);
 
+
+        /* trial display image */
+        PDialog.displayBitmap(Singleton.getImage3D(), (BaseActivity) getActivity());
 
         return view;
     }

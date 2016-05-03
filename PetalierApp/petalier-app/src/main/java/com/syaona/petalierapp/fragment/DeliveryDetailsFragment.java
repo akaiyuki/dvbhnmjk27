@@ -297,7 +297,7 @@ public class DeliveryDetailsFragment extends Fragment {
                         HttpMultipartMode.BROWSER_COMPATIBLE);
 
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bos);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
                 byte[] data = bos.toByteArray();
                 entity.addPart("deliveryDate", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"deldate")));
                 entity.addPart("specialInstructions", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"instructions")));
@@ -313,7 +313,7 @@ public class DeliveryDetailsFragment extends Fragment {
                 entity.addPart("productId", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id")));
 
                 entity.addPart("image_base_64", new ByteArrayBody(data,
-                        "3Dimage.jpg"));
+                        "3Dimage.png"));
                 entity.addPart("quantity", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"quantity")));
                 entity.addPart("note", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "note")));
 

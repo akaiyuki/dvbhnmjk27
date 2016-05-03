@@ -123,6 +123,8 @@ public class LoginFragment extends Fragment {
 
 
                 Log.i("name user", String.valueOf(loginResult.getAccessToken().getUserId()));
+                String fbAccesstoken = loginResult.getAccessToken().getToken();
+                String fbId = loginResult.getAccessToken().getUserId();
 
                 request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
@@ -161,7 +163,7 @@ public class LoginFragment extends Fragment {
                 });
 
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,link,gender,birthday,email");
+                parameters.putString("fields", "id,first_name,last_name,link,gender,birthday,email,contact");
                 request.setParameters(parameters);
                 request.executeAsync();
 

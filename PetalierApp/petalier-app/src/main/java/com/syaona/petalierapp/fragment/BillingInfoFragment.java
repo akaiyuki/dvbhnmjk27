@@ -101,8 +101,8 @@ public class BillingInfoFragment extends Fragment {
         mButtonCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                requestApiBillingInfo();
-                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                requestApiBillingInfo();
+//                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
             }
         });

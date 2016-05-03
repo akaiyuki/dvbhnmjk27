@@ -71,7 +71,7 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 //
 //
 //                /* trial */
-//                v.buildDrawingCache();
+                v.buildDrawingCache();
 //                Bitmap bitmap = ((LoadModelRenderer) mRenderer).setToTopView();
 
                 /* save image to singleton */
@@ -81,8 +81,9 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 //                    bitmap = null;
 //                }
                 /* sample bitmap image from drawable */
-                Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.card2);
-                Singleton.setImage3D(b);
+//                Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.card2);
+//                v.setDrawingCacheEnabled(false);
+                Singleton.setImage3D(bitmap.createBitmap(v.getDrawingCache()));
 //                v.setDrawingCacheEnabled(false);
 
 
@@ -102,11 +103,13 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
         ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
         iv.setImageBitmap(bitmap);
 
-//        iv.getDrawable();
-//
-//        Bitmap bitmap1 = iv.getDrawable();
-//
-//        Singleton.setImage3D(iv.getDrawable());
+
+//                if (bitmap != null && !bitmap.isRecycled()) {
+//                    bitmap.recycle();
+//                    bitmap = null;
+//                }
+
+//        Singleton.setImage3D(bitmap.createBitmap());
 
 
         dialog.setCancelable(true);
