@@ -133,11 +133,11 @@ public class ProfileFragment extends Fragment {
         mImageProfile.setVisibility(View.GONE);
 
         mProfile = (ImageView) view.findViewById(R.id.profilepic);
-        Picasso.with(AppController.getInstance())
-                .load(R.drawable.card1)
-                .transform(new CircleTransform())
-                .fit()
-                .into(mProfile);
+//        Picasso.with(AppController.getInstance())
+//                .load(R.drawable.card1)
+//                .transform(new CircleTransform())
+//                .fit()
+//                .into(mProfile);
 
 
         ImageView mEditProfile = (ImageView) view.findViewById(R.id.editprofile);
@@ -495,6 +495,14 @@ public class ProfileFragment extends Fragment {
 
                 String email = mResultProfile.get(i).getJSONObject("accountDetails").getString("user_email");
 
+                if (mResultProfile.get(i).getJSONObject("profile_picture").has("profile_picture_value")){
+                    Picasso.with(AppController.getInstance())
+                            .load(mResultProfile.get(i).getJSONObject("profile_picture").getString("profile_picture_value"))
+                            .transform(new CircleTransform())
+                            .fit()
+                            .into(mProfile);
+                }
+
                 mTextName.setText(fName+" "+lName);
                 mTextName.setTypeface(Fonts.gothambold);
                 mTextEmail.setText(email);
@@ -591,7 +599,6 @@ public class ProfileFragment extends Fragment {
 
                                     mResultProfile.add(jsonObject.getJSONObject("Data").getJSONObject("profile"));
 
-                                    Log.i("resultprofile", String.valueOf(mResultProfile.size()));
                             }
 
                             populateUserInfo();

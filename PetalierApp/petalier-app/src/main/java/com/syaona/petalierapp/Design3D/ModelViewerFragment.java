@@ -16,9 +16,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.test.DesignBoxActivity;
+import com.syaona.petalierapp.view.CircleTransform;
 
 import org.rajawali3d.Object3D;
 import org.rajawali3d.cameras.Camera;
@@ -75,7 +78,6 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
         });
 
 
-
         return mLayout;
     }
 
@@ -86,6 +88,13 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
         ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
         iv.setImageBitmap(bitmap);
+
+//        iv.getDrawable();
+//
+//        Bitmap bitmap1 = iv.getDrawable();
+//
+//        Singleton.setImage3D(iv.getDrawable());
+
 
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);

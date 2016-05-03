@@ -80,6 +80,9 @@
         <activity android:name=".test.PictureActivity" />
         <activity android:name=".test.PhotoFromCameraActivity" />
         <activity android:name=".test.DesignBoxActivity"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="1ee2a0cff833e434204ac00384402e2b53f839b1" />
     </application>
 
 </manifest>

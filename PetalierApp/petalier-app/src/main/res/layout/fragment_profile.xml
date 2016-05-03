@@ -30,7 +30,6 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/card1"
         android:layout_marginLeft="15dp"
         android:id="@+id/profilepic"
         android:layout_below="@+id/app_bar"

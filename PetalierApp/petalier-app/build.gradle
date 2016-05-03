@@ -1,4 +1,14 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 23
@@ -25,6 +35,7 @@ repositories {
     maven {
         url "https://jitpack.io"
     }
+    maven { url 'https://maven.fabric.io/public' }
 }
 
 dependencies {
@@ -48,4 +59,7 @@ dependencies {
     compile project(':cam2')
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.1.4'
     compile 'org.rajawali3d:rajawali:1.1.337@aar'
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true;
+    }
 }

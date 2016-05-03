@@ -5,6 +5,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.facebook.FacebookSdk;
+import com.crashlytics.android.Crashlytics;
+import com.syaona.petalierapp.BuildConfig;
+
+import io.fabric.sdk.android.Fabric;
 
 
 /**
@@ -29,11 +33,12 @@ public class AppController extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+//        Fabric.with(this, new Crashlytics());
 
 
-//        if(!BuildConfig.DEBUG) {
-//            Fabric.with(this, new Crashlytics());
-//        }
+        if(!BuildConfig.DEBUG) {
+            Fabric.with(this, new Crashlytics());
+        }
 
         mInstance = this;
 //        initDatabase();

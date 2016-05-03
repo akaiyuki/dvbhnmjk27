@@ -228,7 +228,7 @@ public class DeliveryDetailsFragment extends Fragment {
         lName = mEditLname.getText().toString();
 
 
-        PDialog.displayBitmap(bitmap, (BaseActivity) getActivity());
+//        PDialog.displayBitmap(bitmap, (BaseActivity) getActivity());
 
         PSharedPreferences.setSomeStringValue(AppController.getInstance(), "deldate", delDate);
         PSharedPreferences.setSomeStringValue(AppController.getInstance(),"instructions", instructions);
