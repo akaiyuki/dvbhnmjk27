@@ -2,6 +2,7 @@ package com.syaona.petalierapp.fragment;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -85,6 +86,9 @@ public class DeliveryDetailsFragment extends Fragment {
     private String fName;
     private String lName;
 
+    private EditText mEditFname;
+    private EditText mEditLname;
+
 
     public DeliveryDetailsFragment() {
         // Required empty public constructor
@@ -139,6 +143,36 @@ public class DeliveryDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                delDate = mEditDelDate.getText().toString();
+                instructions = mEditInstructions.getText().toString();
+                contact = mEditContact.getText().toString();
+                email = mEditEmail.getText().toString();
+                street = mEditStreet.getText().toString();
+                unit = mEditUnit.getText().toString();
+                town = mEditTown.getText().toString();
+                landmark = mEditLandmark.getText().toString();
+                fName = mEditFname.getText().toString();
+                lName = mEditLname.getText().toString();
+
+                Log.i("params", delDate + " " + instructions + " " + contact + " " + email + " " + street + " " + unit + " " + town + " " + landmark + " " + fName + " " + lName);
+
+
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "deldate", delDate);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"instructions", instructions);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "contact", contact);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"email", email);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"street",street);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"unit",unit);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"town",town);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"landmark",landmark);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"fname",fName);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"lname",lName);
+
+                Log.i("savedpreferences",PSharedPreferences.getSomeStringValue(AppController.getInstance(),"quantity")+" "+
+                PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id")+" "+
+                PSharedPreferences.getSomeStringValue(AppController.getInstance(),"note")+" "+
+                PSharedPreferences.getSomeStringValue(AppController.getInstance(),"card"));
+
                 new AddItemTask().execute();
 
             }
@@ -155,8 +189,8 @@ public class DeliveryDetailsFragment extends Fragment {
         mEditTown = (EditText) view.findViewById(R.id.edit_town);
         mEditLandmark = (EditText) view.findViewById(R.id.edit_landmark);
 //        mEditPostal = (EditText) view.findViewById(R.id.edit_postal);
-        EditText mEditFname = (EditText) view.findViewById(R.id.edit_fname);
-        EditText mEditLname = (EditText) view.findViewById(R.id.edit_lname);
+        mEditFname = (EditText) view.findViewById(R.id.edit_fname);
+        mEditLname = (EditText) view.findViewById(R.id.edit_lname);
 
 
 
@@ -216,30 +250,22 @@ public class DeliveryDetailsFragment extends Fragment {
 
 
         bitmap = Singleton.getImage3D();
-        delDate = mEditDelDate.getText().toString();
-        instructions = mEditInstructions.getText().toString();
-        contact = mEditContact.getText().toString();
-        email = mEditEmail.getText().toString();
-        street = mEditStreet.getText().toString();
-        unit = mEditUnit.getText().toString();
-        town = mEditTown.getText().toString();
-        landmark = mEditLandmark.getText().toString();
-        fName = mEditFname.getText().toString();
-        lName = mEditLname.getText().toString();
+//        delDate = mEditDelDate.getText().toString();
+//        instructions = mEditInstructions.getText().toString();
+//        contact = mEditContact.getText().toString();
+//        email = mEditEmail.getText().toString();
+//        street = mEditStreet.getText().toString();
+//        unit = mEditUnit.getText().toString();
+//        town = mEditTown.getText().toString();
+//        landmark = mEditLandmark.getText().toString();
+//        fName = mEditFname.getText().toString();
+//        lName = mEditLname.getText().toString();
 
 
 //        PDialog.displayBitmap(bitmap, (BaseActivity) getActivity());
 
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "deldate", delDate);
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"instructions", instructions);
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "contact", contact);
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"email", email);
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"street",street);
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"unit",unit);
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"town",town);
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"landmark",landmark);
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"fname",fName);
-        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"lname",lName);
+
+
 
         return view;
     }
@@ -288,8 +314,8 @@ public class DeliveryDetailsFragment extends Fragment {
 
                 entity.addPart("image_base_64", new ByteArrayBody(data,
                         "3Dimage.jpg"));
-                entity.addPart("quantity", new StringBody("1"));
-                entity.addPart("note", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"note")));
+                entity.addPart("quantity", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"quantity")));
+                entity.addPart("note", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "note")));
 
                 httpPost.setEntity(entity);
                 HttpResponse response = httpClient.execute(httpPost,
@@ -322,7 +348,12 @@ public class DeliveryDetailsFragment extends Fragment {
 
                     if (JResponse.getInt("Status") == StatusResponse.STATUS_SUCCESS){
 
-                        Log.i("successupload", JResponse.getJSONObject("Data").getJSONObject("cart").getString("image_base_64"));
+//                        Log.i("successupload", JResponse.getJSONObject("Data").getJSONObject("cart").getString("image_base_64"));
+
+                        Intent intent = new Intent(getActivity(),MainActivity.class);
+                        intent.putExtra("goto","collection");
+                        startActivity(intent);
+                        getActivity().finish();
 
                     }
 

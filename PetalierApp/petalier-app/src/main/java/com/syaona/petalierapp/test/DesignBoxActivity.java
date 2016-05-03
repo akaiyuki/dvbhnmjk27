@@ -146,6 +146,9 @@ public class DesignBoxActivity extends BaseActivity {
 
         /* trial for quantity */
 //        final int txtQuantity = Integer.parseInt(mTextQuantity.getText().toString());
+
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"quantity","1");
+
         mButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,6 +157,9 @@ public class DesignBoxActivity extends BaseActivity {
                 add = txtQuantity + 1;
                 String quantity = String.valueOf(add);
                 mTextQuantity.setText(quantity);
+
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "quantity", quantity);
+
             }
         });
 
@@ -167,6 +173,7 @@ public class DesignBoxActivity extends BaseActivity {
                     minus = txtQuantity - 1;
                     String quantity = String.valueOf(minus);
                     mTextQuantity.setText(quantity);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(), "quantity", quantity);
                 }
             }
         });

@@ -123,6 +123,7 @@ public class DesignBoxFragment extends Fragment {
 
         /* trial for quantity */
 //        final int txtQuantity = Integer.parseInt(mTextQuantity.getText().toString());
+
         mButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +132,8 @@ public class DesignBoxFragment extends Fragment {
                 add = txtQuantity + 1;
                 String quantity = String.valueOf(add);
                 mTextQuantity.setText(quantity);
+
+
             }
         });
 
@@ -144,6 +147,7 @@ public class DesignBoxFragment extends Fragment {
                     minus = txtQuantity - 1;
                     String quantity = String.valueOf(minus);
                     mTextQuantity.setText(quantity);
+
                 }
             }
         });

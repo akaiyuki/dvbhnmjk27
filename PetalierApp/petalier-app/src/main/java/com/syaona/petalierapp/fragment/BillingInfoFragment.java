@@ -101,7 +101,9 @@ public class BillingInfoFragment extends Fragment {
         mButtonCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestApiBillingInfo();
+//                requestApiBillingInfo();
+                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
             }
         });
 
@@ -230,6 +232,9 @@ public class BillingInfoFragment extends Fragment {
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(),"city",city);
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(),"state",state);
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(), "postal_code", postCode);
+
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"hear",mEditHear.getText().toString());
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"relationship",mEditRelationship.getText().toString());
 
                                 PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 

@@ -4,8 +4,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -70,8 +73,18 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 //                /* trial */
 //                v.buildDrawingCache();
 //                Bitmap bitmap = ((LoadModelRenderer) mRenderer).setToTopView();
+
                 /* save image to singleton */
-//                Singleton.setImage3D(bitmap);
+
+//                if (bitmap != null && !bitmap.isRecycled()) {
+//                    bitmap.recycle();
+//                    bitmap = null;
+//                }
+                /* sample bitmap image from drawable */
+                Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.card2);
+                Singleton.setImage3D(b);
+//                v.setDrawingCacheEnabled(false);
+
 
                 displayBitmap(bitmap);
             }
@@ -286,9 +299,11 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 //            v.buildDrawingCache(true);
 ////            Bitmap bitmap = Bitmap.createBitmap(v.getDrawingCache());
 //
-//            Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
-//            Canvas c = new Canvas(b);
-//            v.draw(c);
+////            Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+////            Canvas c = new Canvas(b);
+////            v.draw(c);
+//
+//            Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.card2);
 //
 //            return b;
 //        }

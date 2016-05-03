@@ -120,7 +120,8 @@
             android:layout_below="@+id/textdetails"
             android:layout_marginLeft="10dp"
             android:textAllCaps="true"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:visibility="gone"/>
 
 
 
@@ -219,6 +220,8 @@
                     android:text="Shipping"
                     android:layout_marginTop="10dp"
                     android:textSize="17sp"/>
+
+
 
                 <View
                     android:layout_marginTop="21dp"

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,6 +48,11 @@ public class SummaryOrderFragment extends Fragment {
     private ListView mListView;
     private OrderListAdapter mAdapter;
     private ArrayList<JSONObject> mResultSet = new ArrayList<>();
+    private String total;
+    private TextView txtTotal;
+    private CheckBox directBank;
+    private CheckBox payPal;
+    private int paymentMethod;
 
 
     public SummaryOrderFragment() {
@@ -57,7 +63,7 @@ public class SummaryOrderFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestApiGetBilling();
+        requestApiGetCart();
 
     }
 
@@ -129,24 +135,53 @@ public class SummaryOrderFragment extends Fragment {
         TextView txtPaypalWhat = (TextView) view.findViewById(R.id.txtwhatpaypal);
         txtPaypalWhat.setTypeface(Fonts.gothambookregular);
 
+        txtTotal = (TextView) view.findViewById(R.id.txt_total);
+
 
         mListView = (ListView) view.findViewById(R.id.listview);
         mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
         mAdapter.notifyDataSetChanged();
         mListView.setAdapter(mAdapter);
 
+        directBank = (CheckBox) view.findViewById(R.id.check_default);
+        payPal = (CheckBox) view.findViewById(R.id.check_default1);
 
+        directBank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (directBank.isChecked()){
+                    paymentMethod = 1;
+                }
+            }
+        });
+
+        payPal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (payPal.isChecked()){
+                    paymentMethod = 2;
+                }
+            }
+        });
+
+        Button btnPlaceOrder = (Button) view.findViewById(R.id.btnplaceorder);
+        btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requestApiCreateOrder();
+            }
+        });
 
         return view;
     }
 
 
-    public void requestApiGetBilling() {
+    public void requestApiGetCart() {
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("id", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "user_id"));
+//        params.put("id", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "user_id"));
 
-        PRequest request = new PRequest(PRequest.apiMethodGetBilling, params,
+        PRequest request = new PRequest(PRequest.apiMethodGetCart, params,
                 new PResponseListener(){
                     @Override
                     public void onResponse(JSONObject jsonObject) {
@@ -156,7 +191,11 @@ public class SummaryOrderFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
+                                mResultSet.add(jsonObject.getJSONObject("cart"));
 
+                                total = jsonObject.getString("cart_total");
+
+                                txtTotal.setText(total);
 
                             } else {
                                 Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
@@ -205,6 +244,7 @@ public class SummaryOrderFragment extends Fragment {
 
                 holder.text1 = (TextView) convertView.findViewById(R.id.product_name);
                 holder.text2 = (TextView) convertView.findViewById(R.id.product_price);
+                holder.text3 = (TextView) convertView.findViewById(R.id.product_quantity);
 
 
                 convertView.setTag(holder);
@@ -217,13 +257,9 @@ public class SummaryOrderFragment extends Fragment {
 
             try {
 
-                holder.text1.setText(row.getString("user_fname"));
-
-
-
-
-
-
+                holder.text1.setText(row.getString("product_name"));
+                holder.text2.setText(row.getString("line_total"));
+                holder.text3.setText(row.getString("quantity"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -241,6 +277,47 @@ public class SummaryOrderFragment extends Fragment {
             ImageView imageView;
         }
     }
+
+
+    public void requestApiCreateOrder() {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("enum", String.valueOf(paymentMethod));
+        params.put("heardAboutUs", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "hear"));
+        params.put("relationshipToReceiver", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"relationship"));
+
+        PRequest request = new PRequest(PRequest.apiMethodPostCreateOrder, params,
+                new PResponseListener(){
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+
+
+                            } else {
+                                Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new PResponseErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+            }
+        });
+
+        request.execute();
+    }
+
 
 
 

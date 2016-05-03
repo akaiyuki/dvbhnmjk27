@@ -21,6 +21,7 @@ public class PRequest {
     public static String apiMethodGetOrderHistory = "history/get";
     public static String apiMethodGetBilling = "billing/getBilling";
     public static String apiMethodGetColors = "colors";
+    public static String apiMethodGetCart = "cart/get";
 
 
     /* Post */
@@ -28,6 +29,7 @@ public class PRequest {
     public static String apiMethodPostBillingInfo = "billing/postUpdate";
     public static String apiMethodPostDepositSlip = "orders/postUploadDepositSlip";
     public static String apiMethodPostAddItem = "cart/postAddItem";
+    public static String apiMethodPostCreateOrder = "orders/postCreate";
 
 
 
