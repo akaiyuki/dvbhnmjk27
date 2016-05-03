@@ -77,11 +77,11 @@ public class SendNoteFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (mEditMessage.getText().length() != 0){
+//                if (mEditMessage.getText().length() != 0){
 
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"note",mEditMessage.getText().toString());
 
-                    Log.i("note",mEditMessage.getText().toString());
+//                    Log.i("note",mEditMessage.getText().toString());
 
                     if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token").isEmpty()){
                         startActivity(new Intent(getActivity(), OrderActivity.class));
@@ -90,7 +90,7 @@ public class SendNoteFragment extends Fragment {
                         startActivity(new Intent(getActivity(), LoginActivity.class));
                     }
 
-                }
+//                }
 
             }
         });

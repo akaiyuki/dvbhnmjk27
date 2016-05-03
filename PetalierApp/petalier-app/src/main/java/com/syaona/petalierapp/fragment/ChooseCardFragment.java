@@ -124,7 +124,7 @@ public class ChooseCardFragment extends Fragment {
 
 
         /* trial display image */
-        PDialog.displayBitmap(Singleton.getImage3D(), (BaseActivity) getActivity());
+//        PDialog.displayBitmap(Singleton.getImage3D(), (BaseActivity) getActivity());
 
         return view;
     }

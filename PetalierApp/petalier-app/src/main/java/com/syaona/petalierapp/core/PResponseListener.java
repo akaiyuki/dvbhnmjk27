@@ -13,11 +13,11 @@ public class PResponseListener implements Response.Listener<JSONObject> {
     @Override
     public void onResponse(JSONObject jsonObject) {
 
-//        try {
-//            PSDebug.logDebug("API_onResponse", jsonObject.toString(2));
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            PDebug.logDebug("API_onResponse", jsonObject.toString(2));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
 

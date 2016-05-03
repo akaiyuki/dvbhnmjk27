@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -38,7 +39,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +57,8 @@ public class SummaryOrderFragment extends Fragment {
     private CheckBox directBank;
     private CheckBox payPal;
     private int paymentMethod;
-
+    private ArrayList<String> keySetCart = new ArrayList<>();
+    private ArrayList<JSONObject> nameKey = new ArrayList<>();
 
     public SummaryOrderFragment() {
         // Required empty public constructor
@@ -139,9 +144,19 @@ public class SummaryOrderFragment extends Fragment {
 
 
         mListView = (ListView) view.findViewById(R.id.listview);
-        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
-        mAdapter.notifyDataSetChanged();
-        mListView.setAdapter(mAdapter);
+//        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
+//        mAdapter.notifyDataSetChanged();
+//        mListView.setAdapter(mAdapter);
+
+
+        mListView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                view.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
 
         directBank = (CheckBox) view.findViewById(R.id.check_default);
         payPal = (CheckBox) view.findViewById(R.id.check_default1);
@@ -191,19 +206,63 @@ public class SummaryOrderFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
-                                mResultSet.add(jsonObject.getJSONObject("cart"));
+                                mResultSet.add(jsonObject.getJSONObject("Data").getJSONObject("cart"));
 
-                                total = jsonObject.getString("cart_total");
-
+                                total = jsonObject.getJSONObject("Data").getString("cart_total");
                                 txtTotal.setText(total);
+
+
+
+                                keySetCart.clear();
+                                ArrayList<HashMap<String, String>> cartList = new ArrayList<>();
+                                for (int i = 0; i < mResultSet.size(); i++) {
+                                    HashMap<String, String> map = new HashMap<String, String>();
+
+                                    try {
+                                        JSONObject c = mResultSet.get(i);
+                                        //Fill map
+                                        Iterator<String> iter = c.keys();
+                                        while(iter.hasNext())   {
+                                            String currentKey = iter.next();
+                                            map.put(currentKey, c.getString(currentKey));
+                                        }
+
+
+                                        cartList.add(map);
+
+                                    }
+                                    catch (JSONException e) {
+                                        e.printStackTrace();
+
+                                    }
+
+                                };
+
+
+                                HashMap<String, String> nhm = new HashMap<>();
+                                for (HashMap xmlFileHm : cartList ) {
+                                    nhm.putAll(xmlFileHm);
+                                }
+
+                                for ( String key : nhm.keySet() ) {
+                                    keySetCart.add(key);
+                                }
+
+
+
+                                Log.i("cartresult", String.valueOf(mResultSet.size()));
+
+                                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
+                                mAdapter.notifyDataSetChanged();
+                                mListView.setAdapter(mAdapter);
+
+                                getValuesCart();
 
                             } else {
                                 Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
                             }
 
-                            mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
-                            mAdapter.notifyDataSetChanged();
-                            mListView.setAdapter(mAdapter);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -239,7 +298,7 @@ public class SummaryOrderFragment extends Fragment {
             if (convertView == null) {
                 //Inflate layout
                 LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
-                convertView = inflater.inflate(mResId, null);
+                convertView = inflater.inflate(R.layout.custom_row_summary, null);
                 holder = new ViewHolder();
 
                 holder.text1 = (TextView) convertView.findViewById(R.id.product_name);
@@ -255,15 +314,31 @@ public class SummaryOrderFragment extends Fragment {
             final JSONObject row = mData.get(position);
 
 
-            try {
-
-                holder.text1.setText(row.getString("product_name"));
-                holder.text2.setText(row.getString("line_total"));
-                holder.text3.setText(row.getString("quantity"));
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//            try {
+//
+////                String key = "";
+////                for (int i = 0; i<keySetCart.size(); i++){
+////                    key = keySetCart.get(i);
+////
+////                    holder.text1.setText(row.getJSONObject(key).getString("product_name"));
+////                    holder.text2.setText(row.getJSONObject(key).getString("line_total"));
+////                    holder.text3.setText(row.getJSONObject(key).getString("quantity"));
+////
+////
+////                }
+//
+//                holder.text1.setText(row.getJSONObject(key).getString("product_name"));
+//                holder.text2.setText(row.getJSONObject(key).getString("line_total"));
+//                holder.text3.setText(row.getJSONObject(key).getString("quantity"));
+//
+//
+//
+//
+//
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
 
 
             return convertView;
@@ -318,6 +393,70 @@ public class SummaryOrderFragment extends Fragment {
         request.execute();
     }
 
+
+    public void getValuesCart(){
+        String key = "";
+
+//        for (int i = 0; i<mResultSet.size(); i++){
+////            key = keySetCart.get(i);
+////
+////            if (mResultSet.contains(key)){
+////                nameKey.add(mResultSet);
+////            }
+//
+//            JSONObject jsonObject1 = mResultSet.get(i);
+//
+//            try {
+//                Log.i("result", jsonObject1.getString("product_name"));
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+
+        for (int x =0; x<keySetCart.size(); x++){
+            key = keySetCart.get(x);
+
+//            if (mResultSet.contains(key)){
+//
+////                try {
+//                    Log.i("resultkeyprodname", String.valueOf(mResultSet.get(x)));
+////                } catch (JSONException e) {
+////                    e.printStackTrace();
+////                }
+//
+//                nameKey.add(mResultSet);
+//
+//            }
+
+            for (int i = 0; i<mResultSet.size(); i++){
+
+                if (mResultSet.contains(key)){
+
+                    JSONObject jsonObject1 = mResultSet.get(i);
+
+                    try {
+                        Log.i("result", jsonObject1.getString("product_name"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+//                    nameKey.add(jsonObject1);
+
+                }
+
+
+
+            }
+
+
+        }
+
+
+
+
+
+    }
 
 
 
