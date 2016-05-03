@@ -316,6 +316,8 @@ public class DeliveryDetailsFragment extends Fragment {
                         "3Dimage.png"));
                 entity.addPart("quantity", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"quantity")));
                 entity.addPart("note", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "note")));
+                entity.addPart("boxColor", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color")));
+
 
                 httpPost.setEntity(entity);
                 HttpResponse response = httpClient.execute(httpPost,

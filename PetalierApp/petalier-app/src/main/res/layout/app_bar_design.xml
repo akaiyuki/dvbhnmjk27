@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:fitsSystemWindows="true"
+    app:popupTheme="@style/MyCustomToolbarTheme">
+
+    <!--<ImageView-->
+    <!--android:layout_width="130dp"-->
+    <!--android:layout_height="30dp"-->
+    <!--android:src="@drawable/ic_petalier_toolbar"/>-->
+    <!-- -->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorTextWhite"
+            android:textSize="16sp"
+            android:id="@+id/txtsub"
+            android:layout_marginLeft="10dp"
+            android:textStyle="italic"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/check"
+            android:layout_alignParentRight="true"
+            android:id="@+id/check"
+            android:visibility="visible"/>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+</android.support.v7.widget.Toolbar>

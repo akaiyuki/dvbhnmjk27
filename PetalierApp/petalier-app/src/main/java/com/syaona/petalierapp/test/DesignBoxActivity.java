@@ -105,7 +105,7 @@ public class DesignBoxActivity extends BaseActivity {
 
 
          /* Initialize toolbar */
-        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar_design);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -125,8 +125,16 @@ public class DesignBoxActivity extends BaseActivity {
         mTxtTitle.setTypeface(Fonts.gothambookregular);
 
 
-        ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
-        mImageProfile.setVisibility(View.GONE);
+        ImageView mCheck = (ImageView) toolbar.findViewById(R.id.check);
+        mCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DesignBoxActivity.this, MainActivity.class);
+                intent.putExtra("goto","send_card");
+                startActivity(intent);
+                finish();
+            }
+        });
 
         mRecyclerViewRegular = (RecyclerView) findViewById(R.id.listview_color_regular);
         mRecyclerViewSpecial = (RecyclerView) findViewById(R.id.listview_color_special);
@@ -184,13 +192,16 @@ public class DesignBoxActivity extends BaseActivity {
         btnWhite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                PEngine.switchFragment((BaseActivity) getActivity(), new SendNoteFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "box_color", "white");
+            }
+        });
 
-                Intent intent = new Intent(DesignBoxActivity.this, MainActivity.class);
-                intent.putExtra("goto","send_card");
-                startActivity(intent);
-                finish();
-
+        Button btnBlack = (Button) findViewById(R.id.btnblack);
+        assert btnBlack != null;
+        btnBlack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"box_color","black");
             }
         });
 
