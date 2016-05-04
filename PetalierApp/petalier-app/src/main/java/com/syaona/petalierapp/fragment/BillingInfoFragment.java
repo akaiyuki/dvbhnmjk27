@@ -84,7 +84,7 @@ public class BillingInfoFragment extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OrderActivity.INSTANCE.onBackPressed();
+                getActivity().onBackPressed();
             }
         });
 
@@ -101,7 +101,11 @@ public class BillingInfoFragment extends Fragment {
         mButtonCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
 //                requestApiBillingInfo();
+
+                /* skip api call for trial in summary order */
                 PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
             }

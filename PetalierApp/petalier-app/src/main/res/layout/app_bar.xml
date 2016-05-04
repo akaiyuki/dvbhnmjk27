@@ -27,14 +27,13 @@
             android:textColor="@color/colorTextWhite"
             android:textSize="16sp"
             android:id="@+id/txtsub"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="30dp"
             android:textStyle="italic"/>
 
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/ic_profile"
-        android:layout_alignParentRight="true"
         android:id="@+id/profile"
         android:visibility="visible"/>
 
@@ -46,9 +45,26 @@
             android:id="@+id/settings"
             android:visibility="gone"/>
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/cart"
+            android:id="@+id/cart"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"/>
 
 
     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
+
+        </RelativeLayout>
 
 
 

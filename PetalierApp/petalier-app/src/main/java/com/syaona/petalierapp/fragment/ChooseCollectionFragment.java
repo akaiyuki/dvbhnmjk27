@@ -97,6 +97,18 @@ public class ChooseCollectionFragment extends Fragment {
         mTxtTitle.setText("Choose your Collection");
         mTxtTitle.setTypeface(Fonts.gothambookregular);
 
+        /* hide image cart for the mean time*/
+        ImageView mImageCart = (ImageView) toolbar.findViewById(R.id.cart);
+        mImageCart.setVisibility(View.GONE);
+        mImageCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PEngine.switchFragment((BaseActivity) getActivity(), new MyCartFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+            }
+        });
+
 
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setOnClickListener(new View.OnClickListener() {

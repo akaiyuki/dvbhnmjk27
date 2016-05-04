@@ -90,7 +90,7 @@ public class SummaryOrderFragment extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OrderActivity.INSTANCE.onBackPressed();
+                getActivity().onBackPressed();
             }
         });
 
@@ -209,7 +209,7 @@ public class SummaryOrderFragment extends Fragment {
                                 mResultSet.add(jsonObject.getJSONObject("Data").getJSONObject("cart"));
 
                                 total = jsonObject.getJSONObject("Data").getString("cart_total");
-                                txtTotal.setText(total);
+                                txtTotal.setText("PHP "+total);
 
 
 

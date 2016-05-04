@@ -41,28 +41,31 @@ repositories {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:design:23.2.1'
+    compile files('libs/httpclient-android-4.3.3.jar')
+    compile files('libs/httpmime-4.2.6.jar')
+    compile files('libs/httpmime-4.1.2.jar')
+    compile project(':cam2')
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+        transitive = true;
+    }
+
+
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.android.support:design:23.3.0'
     compile 'com.mcxiaoke.volley:library:1.0.19'
-    compile 'com.android.support:support-v4:23.2.1'
+    compile 'com.android.support:support-v4:23.3.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.android.support:recyclerview-v7:23.2.1'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.wang.avi:library:1.0.5'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.citux:datetimepicker:0.1.2'
     compile 'com.wdullaer:materialdatetimepicker:2.3.0'
-    compile files('libs/httpclient-android-4.3.3.jar')
-    compile files('libs/httpmime-4.2.6.jar')
-    compile files('libs/httpmime-4.1.2.jar')
-    compile project(':cam2')
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.1.4'
     compile 'org.rajawali3d:rajawali:1.1.337@aar'
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
-        transitive = true;
-    }
-
     compile 'com.felipecsl:gifimageview:2.0.0'
+
+    compile 'biz.kasual:materialnumberpicker:1.2.1'
 
 }
