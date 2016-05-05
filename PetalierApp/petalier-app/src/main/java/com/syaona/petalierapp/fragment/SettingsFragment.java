@@ -131,7 +131,6 @@ public class SettingsFragment extends Fragment {
 
     public void showRateApp(){
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        //intent.setData(Uri.parse("market://details?id=com.partyphile.codeinebot"));
         intent.setData(Uri.parse(PConfiguration.playstoreInstalledURL));
 
         if(!startActivityRate(intent)){

@@ -147,11 +147,7 @@ public class MyCartFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 selectedNumber = String.valueOf(numberPicker.getValue());
 
-
                                 Orders order = mResultSetOrder.get(i);
-
-                                Log.i("ordersposition", order.getKeyId());
-
                                 selectedCartKey = order.getKeyId();
 
                                 updateItemAtPosition(i);

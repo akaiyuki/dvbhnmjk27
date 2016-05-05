@@ -104,7 +104,15 @@ public class ChooseCollectionFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                PEngine.switchFragment((BaseActivity) getActivity(), new MyCartFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token").isEmpty()
+                        ){
+                    PEngine.switchFragment((BaseActivity) getActivity(), new MyCartFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                } else {
+                    Singleton.setLoginFromMain(1);
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+
+                }
+
 
             }
         });
