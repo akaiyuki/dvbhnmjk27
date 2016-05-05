@@ -141,21 +141,21 @@ public class ChooseCollectionFragment extends Fragment {
         });
 
 
-        Button mButtonDesign = (Button) view.findViewById(R.id.btndesign);
-        mButtonDesign.setTypeface(Fonts.gothambookregular);
-        mButtonDesign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-//                if (Singleton.getSelectedCollection() == 1) {
-////                    PEngine.switchFragment((BaseActivity) getActivity(), new DesignBoxFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-
-                    startActivity(new Intent(getActivity(), DesignBoxActivity.class));
-
-//                }
-
-            }
-        });
+//        Button mButtonDesign = (Button) view.findViewById(R.id.btndesign);
+//        mButtonDesign.setTypeface(Fonts.gothambookregular);
+//        mButtonDesign.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+////                if (Singleton.getSelectedCollection() == 1) {
+//////                    PEngine.switchFragment((BaseActivity) getActivity(), new DesignBoxFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//
+//                    startActivity(new Intent(getActivity(), DesignBoxActivity.class));
+//
+////                }
+//
+//            }
+//        });
 
         mGridView = (GridView) view.findViewById(R.id.gridview);
 
@@ -172,6 +172,9 @@ public class ChooseCollectionFragment extends Fragment {
                 Singleton.setSelectedCollection(1);
 
                 mAdapter.notifyDataSetChanged();
+
+                startActivity(new Intent(getActivity(), DesignBoxActivity.class));
+
             }
         });
 
@@ -320,7 +323,6 @@ public class ChooseCollectionFragment extends Fragment {
                 Picasso.with(mContext)
                         .load(row.getString("thumbnail"))
                         .fit()
-                        .transform(new CircleTransform())
                         .into(holder.imageView);
 
 

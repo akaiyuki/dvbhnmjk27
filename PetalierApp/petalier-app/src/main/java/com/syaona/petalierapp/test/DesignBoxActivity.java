@@ -250,6 +250,8 @@ public class DesignBoxActivity extends BaseActivity {
             try {
                 if(data != null) {
                     url = data.getString("color_image_link");
+                    holder.mTextColor.setText(data.getString("color_name"));
+
                 }
             } catch (JSONException e) {
                 //e.printStackTrace();
@@ -293,9 +295,11 @@ public class DesignBoxActivity extends BaseActivity {
         }
         public class ViewHolder extends RecyclerView.ViewHolder {
             ImageView mImageFlower;
+            TextView mTextColor;
             public ViewHolder(View itemView) {
                 super(itemView);
                 mImageFlower = (ImageView) itemView.findViewById(R.id.ic_flower);
+                mTextColor = (TextView) itemView.findViewById(R.id.text_color);
             }
         }
     }

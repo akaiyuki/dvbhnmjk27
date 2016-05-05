@@ -62,6 +62,7 @@ public class MyCartFragment extends Fragment {
     private ListView mListView;
     private String selectedNumber;
     private String selectedCartKey;
+    private String total;
 
 
     public MyCartFragment() {
@@ -72,7 +73,7 @@ public class MyCartFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestApiGetCart();
+//        requestApiGetCart();
 
     }
 
@@ -83,6 +84,7 @@ public class MyCartFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_cart, container, false);
 
+        requestApiGetCart();
 
         /* Initialize toolbar */
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.app_bar);
@@ -122,6 +124,11 @@ public class MyCartFragment extends Fragment {
         mTextTotal = (TextView) view.findViewById(R.id.txt_total);
 
         mListView = (ListView) view.findViewById(R.id.listview);
+
+        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSetOrder);
+        mAdapter.notifyDataSetChanged();
+        mListView.setAdapter(mAdapter);
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, View view, final int i, long l) {
@@ -225,7 +232,7 @@ public class MyCartFragment extends Fragment {
                                 mResultSet.clear();
                                 mResultSet.add(jsonObject.getJSONObject("Data").getJSONObject("cart"));
 
-                                String total = jsonObject.getJSONObject("Data").getString("cart_total");
+                                total = jsonObject.getJSONObject("Data").getString("cart_total");
                                 mTextTotal.setText("PHP " + total);
 
 
