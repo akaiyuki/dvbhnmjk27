@@ -83,6 +83,8 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
                 /* sample bitmap image from drawable */
 //                Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.card2);
 //                v.setDrawingCacheEnabled(false);
+
+                /* save bitmap to singleton */
                 Singleton.setImage3D(bitmap.createBitmap(v.getDrawingCache()));
 //                v.setDrawingCacheEnabled(false);
 

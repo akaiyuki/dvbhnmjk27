@@ -32,6 +32,7 @@ import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.StatusResponse;
+import com.syaona.petalierapp.object.Orders;
 import com.syaona.petalierapp.view.Fonts;
 
 import org.json.JSONArray;
@@ -59,6 +60,9 @@ public class SummaryOrderFragment extends Fragment {
     private int paymentMethod;
     private ArrayList<String> keySetCart = new ArrayList<>();
     private ArrayList<JSONObject> nameKey = new ArrayList<>();
+
+    private ArrayList<Orders> mResultSetOrder = new ArrayList<>();
+
 
     public SummaryOrderFragment() {
         // Required empty public constructor
@@ -209,22 +213,23 @@ public class SummaryOrderFragment extends Fragment {
                                 mResultSet.add(jsonObject.getJSONObject("Data").getJSONObject("cart"));
 
                                 total = jsonObject.getJSONObject("Data").getString("cart_total");
-                                txtTotal.setText("PHP "+total);
+                                txtTotal.setText("PHP " + total);
 
 
 
                                 keySetCart.clear();
                                 ArrayList<HashMap<String, String>> cartList = new ArrayList<>();
+                                cartList.clear();
                                 for (int i = 0; i < mResultSet.size(); i++) {
                                     HashMap<String, String> map = new HashMap<String, String>();
 
                                     try {
                                         JSONObject c = mResultSet.get(i);
-                                        //Fill map
                                         Iterator<String> iter = c.keys();
                                         while(iter.hasNext())   {
                                             String currentKey = iter.next();
                                             map.put(currentKey, c.getString(currentKey));
+
                                         }
 
 
@@ -248,13 +253,9 @@ public class SummaryOrderFragment extends Fragment {
                                     keySetCart.add(key);
                                 }
 
-
-
-                                Log.i("cartresult", String.valueOf(mResultSet.size()));
-
-                                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
-                                mAdapter.notifyDataSetChanged();
-                                mListView.setAdapter(mAdapter);
+//                                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
+//                                mAdapter.notifyDataSetChanged();
+//                                mListView.setAdapter(mAdapter);
 
                                 getValuesCart();
 
@@ -278,13 +279,13 @@ public class SummaryOrderFragment extends Fragment {
         request.execute();
     }
 
-    public class OrderListAdapter extends ArrayAdapter<JSONObject> {
+    public class OrderListAdapter extends ArrayAdapter<Orders> {
 
         Context mContext;
-        ArrayList<JSONObject> mData = new ArrayList<>();
+        ArrayList<Orders> mData = new ArrayList<>();
         int mResId;
 
-        public OrderListAdapter(Context context, int resource, ArrayList<JSONObject> data) {
+        public OrderListAdapter(Context context, int resource, ArrayList<Orders> data) {
             super(context, resource, data);
             this.mContext = context;
             this.mResId = resource;
@@ -311,34 +312,13 @@ public class SummaryOrderFragment extends Fragment {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            final JSONObject row = mData.get(position);
+            final Orders row = mData.get(position);
 
-
-//            try {
-//
-////                String key = "";
-////                for (int i = 0; i<keySetCart.size(); i++){
-////                    key = keySetCart.get(i);
-////
-////                    holder.text1.setText(row.getJSONObject(key).getString("product_name"));
-////                    holder.text2.setText(row.getJSONObject(key).getString("line_total"));
-////                    holder.text3.setText(row.getJSONObject(key).getString("quantity"));
-////
-////
-////                }
-//
-//                holder.text1.setText(row.getJSONObject(key).getString("product_name"));
-//                holder.text2.setText(row.getJSONObject(key).getString("line_total"));
-//                holder.text3.setText(row.getJSONObject(key).getString("quantity"));
-//
-//
-//
-//
-//
-//
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
+            if (row != null) {
+                holder.text1.setText(row.getProduct_name());
+                holder.text2.setText(row.getLine_total());
+                holder.text3.setText(row.getQuantity());
+            }
 
 
             return convertView;
@@ -397,64 +377,52 @@ public class SummaryOrderFragment extends Fragment {
     public void getValuesCart(){
         String key = "";
 
-//        for (int i = 0; i<mResultSet.size(); i++){
-////            key = keySetCart.get(i);
-////
-////            if (mResultSet.contains(key)){
-////                nameKey.add(mResultSet);
-////            }
-//
-//            JSONObject jsonObject1 = mResultSet.get(i);
-//
-//            try {
-//                Log.i("result", jsonObject1.getString("product_name"));
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
-
         for (int x =0; x<keySetCart.size(); x++){
             key = keySetCart.get(x);
 
-//            if (mResultSet.contains(key)){
-//
-////                try {
-//                    Log.i("resultkeyprodname", String.valueOf(mResultSet.get(x)));
-////                } catch (JSONException e) {
-////                    e.printStackTrace();
-////                }
-//
-//                nameKey.add(mResultSet);
-//
-//            }
-
             for (int i = 0; i<mResultSet.size(); i++){
-
-                if (mResultSet.contains(key)){
 
                     JSONObject jsonObject1 = mResultSet.get(i);
 
+                if (jsonObject1.has(key)){
+
                     try {
-                        Log.i("result", jsonObject1.getString("product_name"));
+
+                        Orders order = new Orders();
+                        order.setKeyId(key);
+                        order.setDeliveryDate(jsonObject1.getJSONObject(key).getString("deliveryDate"));
+                        order.setSpecialInstructions(jsonObject1.getJSONObject(key).getString("specialInstructions"));
+                        order.setCardLink(jsonObject1.getJSONObject(key).getString("cardLink"));
+                        order.setFirstName(jsonObject1.getJSONObject(key).getString("firstName"));
+                        order.setLastName(jsonObject1.getJSONObject(key).getString("lastName"));
+                        order.setContactNumber(jsonObject1.getJSONObject(key).getString("contactNumber"));
+                        order.setStreet(jsonObject1.getJSONObject(key).getString("street"));
+                        order.setSubdivision(jsonObject1.getJSONObject(key).getString("subdivision"));
+                        order.setCity(jsonObject1.getJSONObject(key).getString("city"));
+                        order.setLandMark(jsonObject1.getJSONObject(key).getString("landMark"));
+                        order.setCountry(jsonObject1.getJSONObject(key).getString("country"));
+                        order.setProductId(jsonObject1.getJSONObject(key).getString("productId"));
+                        order.setQuantity(jsonObject1.getJSONObject(key).getString("quantity"));
+                        order.setProductNote(jsonObject1.getJSONObject(key).getString("note"));
+                        order.setLine_total(jsonObject1.getJSONObject(key).getString("line_total"));
+                        order.setProduct_name(jsonObject1.getJSONObject(key).getString("product_name"));
+                        order.setImage_base_64(jsonObject1.getJSONObject(key).getString("image_base_64"));
+
+
+                        mResultSetOrder.add(order);
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-//                    nameKey.add(jsonObject1);
-
                 }
-
-
-
             }
-
-
         }
 
-
-
-
+                                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSetOrder);
+                                mAdapter.notifyDataSetChanged();
+                                mListView.setAdapter(mAdapter);
 
     }
 
