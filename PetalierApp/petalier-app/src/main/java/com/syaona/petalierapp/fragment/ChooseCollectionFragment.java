@@ -99,7 +99,7 @@ public class ChooseCollectionFragment extends Fragment {
 
         /* hide image cart for the mean time*/
         ImageView mImageCart = (ImageView) toolbar.findViewById(R.id.cart);
-        mImageCart.setVisibility(View.GONE);
+        mImageCart.setVisibility(View.VISIBLE);
         mImageCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -33,6 +34,7 @@ import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.StatusResponse;
+import com.syaona.petalierapp.object.Orders;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
 
@@ -51,6 +53,11 @@ import biz.kasual.materialnumberpicker.MaterialNumberPicker;
 public class MyCartFragment extends Fragment {
 
     private TextView mTextTotal;
+    private ArrayList<JSONObject> mResultSet = new ArrayList<>();
+    private ArrayList<String> keySetCart = new ArrayList<>();
+    private OrderListAdapter mAdapter;
+    private ArrayList<Orders> mResultSetOrder = new ArrayList<>();
+    private ListView mListView;
 
 
 
@@ -111,6 +118,9 @@ public class MyCartFragment extends Fragment {
 
         mTextTotal = (TextView) view.findViewById(R.id.txt_total);
 
+        mListView = (ListView) view.findViewById(R.id.listview);
+
+
 
         return view;
     }
@@ -159,9 +169,49 @@ public class MyCartFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
+                                mResultSet.add(jsonObject.getJSONObject("Data").getJSONObject("cart"));
 
                                 String total = jsonObject.getJSONObject("Data").getString("cart_total");
-                                mTextTotal.setText("PHP "+total);
+                                mTextTotal.setText("PHP " + total);
+
+
+                                keySetCart.clear();
+                                ArrayList<HashMap<String, String>> cartList = new ArrayList<>();
+                                cartList.clear();
+                                for (int i = 0; i < mResultSet.size(); i++) {
+                                    HashMap<String, String> map = new HashMap<String, String>();
+
+                                    try {
+                                        JSONObject c = mResultSet.get(i);
+                                        Iterator<String> iter = c.keys();
+                                        while(iter.hasNext())   {
+                                            String currentKey = iter.next();
+                                            map.put(currentKey, c.getString(currentKey));
+
+                                        }
+
+
+                                        cartList.add(map);
+
+                                    }
+                                    catch (JSONException e) {
+                                        e.printStackTrace();
+
+                                    }
+
+                                };
+
+
+                                HashMap<String, String> nhm = new HashMap<>();
+                                for (HashMap xmlFileHm : cartList ) {
+                                    nhm.putAll(xmlFileHm);
+                                }
+
+                                for ( String key : nhm.keySet() ) {
+                                    keySetCart.add(key);
+                                }
+
+                                getValuesCart();
 
                             } else {
                                 Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
@@ -183,5 +233,119 @@ public class MyCartFragment extends Fragment {
         request.execute();
     }
 
+
+    public void getValuesCart(){
+        String key = "";
+
+        for (int x =0; x<keySetCart.size(); x++){
+            key = keySetCart.get(x);
+
+            for (int i = 0; i<mResultSet.size(); i++){
+
+                JSONObject jsonObject1 = mResultSet.get(i);
+
+                if (jsonObject1.has(key)){
+
+                    try {
+
+                        Orders order = new Orders();
+                        order.setKeyId(key);
+                        order.setDeliveryDate(jsonObject1.getJSONObject(key).getString("deliveryDate"));
+                        order.setSpecialInstructions(jsonObject1.getJSONObject(key).getString("specialInstructions"));
+                        order.setCardLink(jsonObject1.getJSONObject(key).getString("cardLink"));
+                        order.setFirstName(jsonObject1.getJSONObject(key).getString("firstName"));
+                        order.setLastName(jsonObject1.getJSONObject(key).getString("lastName"));
+                        order.setContactNumber(jsonObject1.getJSONObject(key).getString("contactNumber"));
+                        order.setStreet(jsonObject1.getJSONObject(key).getString("street"));
+                        order.setSubdivision(jsonObject1.getJSONObject(key).getString("subdivision"));
+                        order.setCity(jsonObject1.getJSONObject(key).getString("city"));
+                        order.setLandMark(jsonObject1.getJSONObject(key).getString("landMark"));
+                        order.setCountry(jsonObject1.getJSONObject(key).getString("country"));
+                        order.setProductId(jsonObject1.getJSONObject(key).getString("productId"));
+                        order.setQuantity(jsonObject1.getJSONObject(key).getString("quantity"));
+                        order.setProductNote(jsonObject1.getJSONObject(key).getString("note"));
+                        order.setLine_total(jsonObject1.getJSONObject(key).getString("line_total"));
+                        order.setProduct_name(jsonObject1.getJSONObject(key).getString("product_name"));
+                        order.setImage_base_64(jsonObject1.getJSONObject(key).getString("image_base_64"));
+
+
+                        mResultSetOrder.add(order);
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        }
+
+        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSetOrder);
+        mAdapter.notifyDataSetChanged();
+        mListView.setAdapter(mAdapter);
+
+    }
+
+    public class OrderListAdapter extends ArrayAdapter<Orders> {
+
+        Context mContext;
+        ArrayList<Orders> mData = new ArrayList<>();
+        int mResId;
+
+        public OrderListAdapter(Context context, int resource, ArrayList<Orders> data) {
+            super(context, resource, data);
+            this.mContext = context;
+            this.mResId = resource;
+            this.mData = data;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+
+            if (convertView == null) {
+                //Inflate layout
+                LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+                convertView = inflater.inflate(R.layout.custom_row_cart, null);
+                holder = new ViewHolder();
+
+                holder.text1 = (TextView) convertView.findViewById(R.id.textview_order);
+                holder.text2 = (TextView) convertView.findViewById(R.id.textview_price);
+                holder.text3 = (TextView) convertView.findViewById(R.id.textview_quantity);
+                holder.imageView = (ImageView) convertView.findViewById(R.id.imageview_flower);
+
+
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            final Orders row = mData.get(position);
+
+            if (row != null) {
+                holder.text1.setText(row.getProduct_name());
+                holder.text2.setText(row.getLine_total());
+                holder.text3.setText(row.getQuantity());
+
+                Picasso.with(mContext)
+                        .load(row.getImage_base_64())
+                        .fit()
+                        .transform(new CircleTransform())
+                        .into(holder.imageView);
+
+            }
+
+
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView text1;
+            TextView text2;
+            TextView text3;
+            TextView text4;
+            ImageView imageView;
+        }
+    }
 
 }

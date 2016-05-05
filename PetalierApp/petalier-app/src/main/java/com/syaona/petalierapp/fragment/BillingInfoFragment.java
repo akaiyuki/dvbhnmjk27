@@ -103,10 +103,10 @@ public class BillingInfoFragment extends Fragment {
             public void onClick(View view) {
 
 
-//                requestApiBillingInfo();
+                requestApiBillingInfo();
 
                 /* skip api call for trial in summary order */
-                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
             }
         });

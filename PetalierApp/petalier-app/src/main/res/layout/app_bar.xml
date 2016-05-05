@@ -46,8 +46,8 @@
             android:visibility="gone"/>
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/cart"
             android:id="@+id/cart"
             android:layout_alignParentRight="true"
