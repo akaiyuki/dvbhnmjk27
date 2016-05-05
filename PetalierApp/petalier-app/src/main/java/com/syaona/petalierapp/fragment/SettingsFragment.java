@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.SplashActivity;
@@ -52,7 +53,7 @@ public class SettingsFragment extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.INSTANCE.onBackPressed();
+               getActivity().onBackPressed();
             }
         });
 
@@ -78,6 +79,7 @@ public class SettingsFragment extends Fragment {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LoginManager.getInstance().logOut();
                 PSharedPreferences.clearAllPreferences();
                 startActivity(new Intent(getActivity(), SplashActivity.class));
             }
@@ -98,8 +100,7 @@ public class SettingsFragment extends Fragment {
 
                 Intent send = new Intent(Intent.ACTION_SENDTO);
                 String uriText = "mailto:" + Uri.encode("petalier@yahoo.com") +
-                        "?subject=" + Uri.encode("Inquire") +
-                        "&body=" + Uri.encode("Inquire");
+                        "?subject=" + Uri.encode("Inquire");
                 Uri uri = Uri.parse(uriText);
 
                 send.setData(uri);
@@ -115,7 +116,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                String callForwardString = "+639158660828";
+                String callForwardString = "+639778417738";
                 Intent intentCallForward = new Intent(Intent.ACTION_CALL); // ACTION_CALL
                 Uri uri2 = Uri.fromParts("tel", callForwardString, "#");
                 intentCallForward.setData(uri2);
