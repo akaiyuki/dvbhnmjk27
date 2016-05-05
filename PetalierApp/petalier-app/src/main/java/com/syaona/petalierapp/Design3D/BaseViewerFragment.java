@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.syaona.petalierapp.R;
@@ -36,6 +37,7 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
     protected ISurfaceRenderer mRenderer;
 
     protected Button mButton;
+    protected LinearLayout mLinearLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,8 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
         mLayout = (FrameLayout) inflater.inflate(R.layout.rajawali_textureview_fragment, container, false);
 
         mLayout.findViewById(R.id.relative_layout_loader_container).bringToFront();
+
+        mLinearLayout = (LinearLayout) mLayout.findViewById(R.id.linearLayout3DHolder);
 
         // Find the TextureView
         mRenderSurface = (ISurface) mLayout.findViewById(R.id.rajwali_surface);

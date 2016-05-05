@@ -65,9 +65,11 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             public void onClick(View view) {
 
                 ((LoadModelRenderer) mRenderer).setToTopView();
-                View v = ((View) mRenderSurface);
-                v.setDrawingCacheEnabled(true);
-                Bitmap bitmap = v.getDrawingCache();
+//                View v = ((View) mRenderSurface);
+//                v.setDrawingCacheEnabled(true);
+//                Bitmap bitmap = v.getDrawingCache();
+
+                Bitmap bitmap = getBitmap(mLinearLayout);
 //
 //
 //                /* trial */
@@ -96,6 +98,13 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
 
         return mLayout;
+    }
+
+    private Bitmap getBitmap(View v) {
+        Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        v.draw(c);
+        return b;
     }
 
     private void displayBitmap(Bitmap bitmap) {

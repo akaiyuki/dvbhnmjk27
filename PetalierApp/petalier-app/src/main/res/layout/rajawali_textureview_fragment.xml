@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:textureview="http://schemas.android.com/apk/res-auto"
-             android:layout_width="fill_parent"
-             android:layout_height="fill_parent"
-        android:background="@color/color3DBackground">
+    xmlns:textureview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/color3DBackground">
 
     <include
         layout="@layout/relative_layout_loader_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
-    <org.rajawali3d.view.TextureView
-        android:id="@+id/rajwali_surface"
+    <LinearLayout
+        android:id="@+id/linearLayout3DHolder"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="#ffffff"
-        textureview:frameRate="60.0"
-        textureview:renderMode="RENDER_WHEN_DIRTY"/>
+        android:layout_height="wrap_content">
+
+        <org.rajawali3d.view.TextureView
+            android:id="@+id/rajwali_surface"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="#ffffff"
+            textureview:frameRate="60.0"
+            textureview:renderMode="RENDER_WHEN_DIRTY" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/button_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get Photo"
         android:padding="10dp"
-    />
+        android:text="Get Photo" />
 </FrameLayout>

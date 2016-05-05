@@ -1,7 +1,9 @@
 package com.syaona.petalierapp.fragment;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -9,13 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.SplashActivity;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.core.PConfiguration;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.view.Fonts;
 
@@ -78,9 +83,75 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        ImageButton buttonRate = (ImageButton) view.findViewById(R.id.button_rate);
+        buttonRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showRateApp();
+            }
+        });
+
+        ImageButton buttonInquire = (ImageButton) view.findViewById(R.id.button_inquire);
+        buttonInquire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent send = new Intent(Intent.ACTION_SENDTO);
+                String uriText = "mailto:" + Uri.encode("petalier@yahoo.com") +
+                        "?subject=" + Uri.encode("Inquire") +
+                        "&body=" + Uri.encode("Inquire");
+                Uri uri = Uri.parse(uriText);
+
+                send.setData(uri);
+                startActivity(Intent.createChooser(send, "Send mail..."));
+
+//                getActivity().finish();
+
+            }
+        });
+
+        ImageButton buttonContact = (ImageButton) view.findViewById(R.id.button_contact);
+        buttonContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String callForwardString = "+639158660828";
+                Intent intentCallForward = new Intent(Intent.ACTION_CALL); // ACTION_CALL
+                Uri uri2 = Uri.fromParts("tel", callForwardString, "#");
+                intentCallForward.setData(uri2);
+                startActivity(intentCallForward);
+
+            }
+        });
 
 
         return view;
+    }
+
+    public void showRateApp(){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        //intent.setData(Uri.parse("market://details?id=com.partyphile.codeinebot"));
+        intent.setData(Uri.parse(PConfiguration.playstoreInstalledURL));
+
+        if(!startActivityRate(intent)){
+            intent.setData(Uri.parse(PConfiguration.rateURL));
+
+            if(!startActivityRate(intent)){
+                Toast.makeText(getActivity(), "Could not open Android Playstore. Please try install the app.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private boolean startActivityRate(Intent intentStart){
+        try
+        {
+            startActivity(intentStart);
+            return true;
+        }
+        catch (ActivityNotFoundException e)
+        {
+            return false;
+        }
     }
 
 }

@@ -14,9 +14,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -58,7 +60,8 @@ public class MyCartFragment extends Fragment {
     private OrderListAdapter mAdapter;
     private ArrayList<Orders> mResultSetOrder = new ArrayList<>();
     private ListView mListView;
-
+    private String selectedNumber;
+    private String selectedCartKey;
 
 
     public MyCartFragment() {
@@ -119,17 +122,71 @@ public class MyCartFragment extends Fragment {
         mTextTotal = (TextView) view.findViewById(R.id.txt_total);
 
         mListView = (ListView) view.findViewById(R.id.listview);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> adapterView, View view, final int i, long l) {
+//                dialogNumberPicker();
 
+                final MaterialNumberPicker numberPicker = new MaterialNumberPicker.Builder(getActivity())
+                        .minValue(1)
+                        .maxValue(100)
+                        .defaultValue(1)
+                        .backgroundColor(Color.WHITE)
+                        .separatorColor(Color.TRANSPARENT)
+                        .textColor(Color.BLACK)
+                        .textSize(20)
+                        .enableFocusability(false)
+                        .wrapSelectorWheel(true)
+                        .build();
+
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Choose Quantity")
+                        .setView(numberPicker)
+                        .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                selectedNumber = String.valueOf(numberPicker.getValue());
+
+
+                                Orders order = mResultSetOrder.get(i);
+
+                                Log.i("ordersposition", order.getKeyId());
+
+                                selectedCartKey = order.getKeyId();
+
+                                updateItemAtPosition(i);
+
+
+                                mResultSetOrder.clear();
+                                mResultSet.clear();
+                                mAdapter.notifyDataSetChanged();
+                                mListView.setAdapter(mAdapter);
+                                requestApiPostUpdateCart();
+
+
+                            }
+                        })
+                        .show();
+
+
+            }
+        });
 
 
         return view;
+    }
+
+    private void updateItemAtPosition(int position) {
+        int visiblePosition = mListView.getFirstVisiblePosition();
+        View view = mListView.getChildAt(position - visiblePosition);
+        mListView.getAdapter().getView(position, view, mListView);
     }
 
 
     /* dialog for selecting quantity */
     public void dialogNumberPicker(){
 
-        MaterialNumberPicker numberPicker = new MaterialNumberPicker.Builder(getActivity())
+        final MaterialNumberPicker numberPicker = new MaterialNumberPicker.Builder(getActivity())
                 .minValue(1)
                 .maxValue(100)
                 .defaultValue(1)
@@ -147,7 +204,7 @@ public class MyCartFragment extends Fragment {
                 .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        selectedNumber = String.valueOf(numberPicker.getValue());
                     }
                 })
                 .show();
@@ -169,6 +226,7 @@ public class MyCartFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
+                                mResultSet.clear();
                                 mResultSet.add(jsonObject.getJSONObject("Data").getJSONObject("cart"));
 
                                 String total = jsonObject.getJSONObject("Data").getString("cart_total");
@@ -237,6 +295,8 @@ public class MyCartFragment extends Fragment {
     public void getValuesCart(){
         String key = "";
 
+        mResultSetOrder.clear();
+
         for (int x =0; x<keySetCart.size(); x++){
             key = keySetCart.get(x);
 
@@ -300,8 +360,8 @@ public class MyCartFragment extends Fragment {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            final ViewHolder holder;
 
             if (convertView == null) {
                 //Inflate layout
@@ -313,6 +373,7 @@ public class MyCartFragment extends Fragment {
                 holder.text2 = (TextView) convertView.findViewById(R.id.textview_price);
                 holder.text3 = (TextView) convertView.findViewById(R.id.textview_quantity);
                 holder.imageView = (ImageView) convertView.findViewById(R.id.imageview_flower);
+                holder.quantity = (LinearLayout) convertView.findViewById(R.id.linear_quantity);
 
 
                 convertView.setTag(holder);
@@ -324,14 +385,22 @@ public class MyCartFragment extends Fragment {
 
             if (row != null) {
                 holder.text1.setText(row.getProduct_name());
-                holder.text2.setText(row.getLine_total());
-                holder.text3.setText(row.getQuantity());
+                holder.text2.setText("PHP " + row.getLine_total());
+
+
+//                if (selectedNumber != null){
+//                    holder.text3.setText(selectedNumber);
+//                } else {
+                    holder.text3.setText(row.getQuantity());
+//                }
 
                 Picasso.with(mContext)
                         .load(row.getImage_base_64())
                         .fit()
                         .transform(new CircleTransform())
                         .into(holder.imageView);
+
+
 
             }
 
@@ -345,7 +414,50 @@ public class MyCartFragment extends Fragment {
             TextView text3;
             TextView text4;
             ImageView imageView;
+            LinearLayout quantity;
         }
     }
+
+
+
+    public void requestApiPostUpdateCart() {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("cartKey", selectedCartKey);
+        params.put("quantity", selectedNumber);
+
+        PRequest request = new PRequest(PRequest.apiMethodPostUpdateCart, params,
+                new PResponseListener(){
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                requestApiGetCart();
+
+                            } else {
+                                Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new PResponseErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+            }
+        });
+
+        request.execute();
+    }
+
+
 
 }

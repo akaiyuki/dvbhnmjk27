@@ -316,7 +316,7 @@ public class SummaryOrderFragment extends Fragment {
 
             if (row != null) {
                 holder.text1.setText(row.getProduct_name());
-                holder.text2.setText(row.getLine_total());
+                holder.text2.setText("PHP "+row.getLine_total());
                 holder.text3.setText(row.getQuantity());
             }
 
