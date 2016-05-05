@@ -173,7 +173,14 @@ public class DeliveryDetailsFragment extends Fragment {
                 PSharedPreferences.getSomeStringValue(AppController.getInstance(),"note")+" "+
                 PSharedPreferences.getSomeStringValue(AppController.getInstance(),"card"));
 
-                new AddItemTask().execute();
+                if (mEditDelDate.getText().length() != 0 &&
+                        fName.length() != 0 &&
+                        lName.length() != 0 &&
+                        contact.length() != 0 &&
+                        landmark.length() != 0
+                        ) {
+                    new AddItemTask().execute();
+                }
 
             }
         });
@@ -305,9 +312,10 @@ public class DeliveryDetailsFragment extends Fragment {
                 entity.addPart("firstName", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"fname")));
                 entity.addPart("lastName", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"lname")));
                 entity.addPart("contactNumber", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"contact")));
-                entity.addPart("street", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"street")));
-                entity.addPart("subdivision", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"unit")));
-                entity.addPart("city", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"town")));
+//                entity.addPart("street", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"street")));
+//                entity.addPart("subdivision", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"unit")));
+//                entity.addPart("city", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"town")));
+                entity.addPart("deliveryAddress", new StringBody(street+" "+unit+" "+town));
                 entity.addPart("landMark", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"landmark")));
                 entity.addPart("country", new StringBody("PH"));
                 entity.addPart("productId", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id")));

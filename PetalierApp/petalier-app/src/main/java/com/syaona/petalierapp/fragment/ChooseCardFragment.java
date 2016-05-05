@@ -124,7 +124,7 @@ public class ChooseCardFragment extends Fragment {
 
 
         /* trial display image */
-//        PDialog.displayBitmap(Singleton.getImage3D(), (BaseActivity) getActivity());
+        PDialog.displayBitmap(Singleton.getImage3D(), (BaseActivity) getActivity());
 
         return view;
     }
@@ -275,7 +275,7 @@ public class ChooseCardFragment extends Fragment {
 
     public void requestApiGetCards() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = PConfiguration.testURL+PRequest.apiMethodGetCards;
+        String url = PRequest.getApiRootForResource()+PRequest.apiMethodGetCards;
         StringRequest postRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>()
                 {

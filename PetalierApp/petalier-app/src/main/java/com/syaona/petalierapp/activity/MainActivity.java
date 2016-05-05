@@ -16,6 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.facebook.appevents.AppEventsLogger;
+import com.felipecsl.gifimageview.library.GifImageView;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.BaseActivity;
@@ -24,9 +25,14 @@ import com.syaona.petalierapp.fragment.ChooseCardFragment;
 import com.syaona.petalierapp.fragment.ChooseCollectionFragment;
 import com.syaona.petalierapp.fragment.SendNoteFragment;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class MainActivity extends BaseActivity {
 
     public static MainActivity INSTANCE = null;
+    public GifImageView gifImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +96,24 @@ public class MainActivity extends BaseActivity {
         }
 
 
+        gifImageView = (GifImageView) findViewById(R.id.gifImageView);
 
-
+        try {
+            InputStream is = getAssets().open("loading.gif");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] b = new byte[2048];
+            int len = 0;
+            while ((len = is.read(b, 0, 2048)) != -1) {
+                baos.write(b, 0, len);
+            }
+            baos.flush();
+            byte[] bytes = baos.toByteArray();
+            gifImageView.setBytes(bytes);
+            gifImageView.startAnimation();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
 
 
@@ -126,11 +148,29 @@ public class MainActivity extends BaseActivity {
     }
 
     public void startAnim(){
-        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+//        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+        try {
+            InputStream is = getAssets().open("loading.gif");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] b = new byte[2048];
+            int len = 0;
+            while ((len = is.read(b, 0, 2048)) != -1) {
+                baos.write(b, 0, len);
+            }
+            baos.flush();
+            byte[] bytes = baos.toByteArray();
+            gifImageView.setBytes(bytes);
+            gifImageView.startAnimation();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void stopAnim(){
-        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+
+//        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+        gifImageView.stopAnimation();
     }
 
     @Override

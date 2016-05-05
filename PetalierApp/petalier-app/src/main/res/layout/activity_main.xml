@@ -15,14 +15,23 @@
         android:layout_height="match_parent" />
 
 
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/avloadingIndicatorView"
-        android:layout_width="70dp"
-        android:layout_height="60dp"
-        android:visibility="gone"
-        app:indicator="BallPulse"
-        app:indicator_color="@color/colorPrimary"
+    <!--<com.wang.avi.AVLoadingIndicatorView-->
+        <!--android:id="@+id/avloadingIndicatorView"-->
+        <!--android:layout_width="70dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:visibility="gone"-->
+        <!--app:indicator="BallPulse"-->
+        <!--app:indicator_color="@color/colorPrimary"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--/>-->
+
+    <com.felipecsl.gifimageview.library.GifImageView
+        android:id="@+id/gifImageView"
+        android:scaleType="fitCenter"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerInParent="true"
+        android:visibility="gone"
         />
 
 

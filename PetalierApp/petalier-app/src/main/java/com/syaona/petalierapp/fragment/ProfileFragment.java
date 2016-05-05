@@ -59,7 +59,7 @@ public class ProfileFragment extends Fragment {
 
     private ImageView mProfile;
 
-    protected String[] tabTitleList = {"Past Orders", "Recent Orders", "Confirmed Orders"};
+    protected String[] tabTitleList = {"Past Orders", "Pending Orders", "Confirmed Orders"};
     private ViewPager mViewPager;
     private SamplePagerAdapter mPageAdapter;
     private SlidingTabLayout mSlidingTabLayout;
@@ -75,6 +75,17 @@ public class ProfileFragment extends Fragment {
     private TextView mTextEmail;
 
     private ArrayList<JSONObject> mResultOrders = new ArrayList<>();
+    private ArrayList<JSONObject> mResultPending = new ArrayList<>();
+    private ArrayList<JSONObject> mResultCompleted = new ArrayList<>();
+
+
+    private ListView mListPastOrder;
+    private ListView mListPending;
+    private ListView mListCompleted;
+
+    private OrderListAdapter mAdapterPast;
+    private OrderListAdapter mAdapterPending;
+    private OrderListAdapter mAdapterCompleted;
 
     private String selectedOrder;
 
@@ -88,7 +99,9 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         requestApiGetProfile();
-        requestApiGetAllOrders();
+//        requestApiGetAllOrders();
+//        requestApiGetCompletedOrders();
+//        requestApiGetPendingOrders();
 
     }
 
@@ -221,24 +234,71 @@ public class ProfileFragment extends Fragment {
             mListViewPager = (ListView) view.findViewById(R.id.listview);
 
             if (position == 0) {
-                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultOrders);
-                mAdapter.notifyDataSetChanged();
+                mListPastOrder = (ListView) view.findViewById(R.id.listview);
+                mAdapterPast = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultOrders);
+                mAdapterPast.notifyDataSetChanged();
+                mListPastOrder.setAdapter(mAdapterPast);
+
+                mListPastOrder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        selectedOrder = adapterView.getItemAtPosition(i).toString();
+                        mAdapterPast.notifyDataSetChanged();
+
+                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                    }
+                });
+
+            } else if (position == 1){
+                mListPending = (ListView) view.findViewById(R.id.listview);
+                mAdapterPending = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+                mAdapterPending.notifyDataSetChanged();
+                mListPending.setAdapter(mAdapterPending);
+
+                mListPending.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        selectedOrder = adapterView.getItemAtPosition(i).toString();
+                        mAdapterPending.notifyDataSetChanged();
+
+                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                    }
+                });
+
+            } else if (position == 2){
+                mListCompleted = (ListView) view.findViewById(R.id.listview);
+                mAdapterCompleted = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultCompleted);
+                mAdapterCompleted.notifyDataSetChanged();
+                mListCompleted.setAdapter(mAdapterCompleted);
+
+                mListCompleted.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        selectedOrder = adapterView.getItemAtPosition(i).toString();
+                        mAdapterCompleted.notifyDataSetChanged();
+
+                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                    }
+                });
             }
 
 
-            mListViewPager.setAdapter(mAdapter);
 
-            mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    selectedOrder = adapterView.getItemAtPosition(i).toString();
-                    mAdapter.notifyDataSetChanged();
-
-                    PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-
-                }
-            });
+//            mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                    selectedOrder = adapterView.getItemAtPosition(i).toString();
+//                    mAdapter.notifyDataSetChanged();
+//
+//                    PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//
+//                }
+//            });
 
 
 
@@ -271,9 +331,11 @@ public class ProfileFragment extends Fragment {
 
 
             if (position == 0){
-
+                requestApiGetAllOrders();
             } else if (position == 1){
-
+                requestApiGetPendingOrders();
+            } else if (position == 2){
+                requestApiGetCompletedOrders();
             }
 
 
@@ -285,10 +347,33 @@ public class ProfileFragment extends Fragment {
     };
 
     private void updateLastPage(int page) {
-
+        ListView mList = getListView(page);
+        OrderListAdapter adapter = getListAdapter(page);
+        mList.setAdapter(adapter);
     }
 
+    private ListView getListView(int position){
+        if (position == 0){
+            return mListPastOrder;
+        }
+        else if (position == 1){
+            return mListPending;
+        } else if (position == 2){
+            return mListCompleted;
+        } else{
+            return null;
+        }
+    }
 
+    private OrderListAdapter getListAdapter(int position) {
+        if (position == 0) {
+            return mAdapterPast;
+        } else if (position == 1) {
+            return mAdapterPending;
+        } else {
+            return mAdapterCompleted;
+        }
+    }
 
 
 
@@ -388,103 +473,6 @@ public class ProfileFragment extends Fragment {
 
 
 
-
-//    /* api call */
-//    public void requestApiGetProfile() {
-//
-//        HashMap<String, String> params = new HashMap<>();
-////        params.put("items_per_page", "5");
-////        params.put("page_number", "0");
-//
-//        PRequest request = new PRequest(PRequest.apiMethodGetCards, params,
-//                new PResponseListener(){
-//                    @Override
-//                    public void onResponse(JSONObject jsonObject) {
-//                        super.onResponse(jsonObject);
-//
-//
-//                        try {
-//
-//                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
-//
-//                                mResultProfile.add(jsonObject.getJSONObject("Data").getJSONObject("profile"));
-//
-//                            }
-//
-//                            Log.i("resultprofile", String.valueOf(mResultProfile.size()));
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }, new PResponseErrorListener(){
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//                super.onErrorResponse(volleyError);
-//            }
-//        });
-//
-//        request.execute();
-//    }
-
-
-
-
-
-//    public void requestApiGetProfile() {
-//        RequestQueue queue = Volley.newRequestQueue(getActivity());
-//        String url = PConfiguration.testURL+"v1/profile/getProfile?id=1";
-//        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>()
-//                {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        // response
-//                        Log.d("Response", response);
-//
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(response);
-//
-//                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
-//
-//                                mResultProfile.add(jsonObject.getJSONObject("Data").getJSONObject("profile"));
-//
-//                            }
-//
-//                            populateUserInfo();
-//                            Log.i("resultprofile", String.valueOf(mResultProfile.size()));
-//
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                },
-//                new Response.ErrorListener()
-//                {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        // TODO Auto-generated method stub
-//                        Log.d("ERROR", "error => " + error.toString());
-//
-//                    }
-//                }
-//        ) {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<String, String>();
-////                params.put("User-Agent", "Nintendo Gameboy");
-////                params.put("Accept-Language", "fr");
-//
-//                return params;
-//            }
-//        };
-//        queue.add(postRequest);
-//
-//    }
-
-
     public void populateUserInfo(){
 
         for (int i = 0; i<mResultProfile.size(); i++){
@@ -517,68 +505,6 @@ public class ProfileFragment extends Fragment {
 
 
     }
-
-
-//    public void requestApiGetAllOrders() {
-//        RequestQueue queue = Volley.newRequestQueue(getActivity());
-//        String url = PConfiguration.testURL+"v1/history/get?userId=1";
-//        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>()
-//                {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        // response
-//                        Log.d("Response", response);
-//
-//                        try {
-//                            JSONObject jsonObject = new JSONObject(response);
-//
-//                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
-//
-//                                JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("history");
-//
-//                                for (int i = 0; i<jsonArray.length(); i++){
-//
-//                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-//                                    mResultOrders.add(jsonObject1);
-//
-//                                }
-//
-//                            }
-//
-//                            mViewPager.setAdapter(mPageAdapter);
-//
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                },
-//                new Response.ErrorListener()
-//                {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        // TODO Auto-generated method stub
-//                        Log.d("ERROR", "error => " + error.toString());
-//
-//                    }
-//                }
-//        ) {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<String, String>();
-////                params.put("User-Agent", "Nintendo Gameboy");
-////                params.put("Accept-Language", "fr");
-//
-//                return params;
-//            }
-//        };
-//        queue.add(postRequest);
-//
-//    }
-
-
 
     public void requestApiGetProfile() {
 
@@ -625,7 +551,7 @@ public class ProfileFragment extends Fragment {
     public void requestApiGetAllOrders() {
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("userId", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
+//        params.put("userId", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
 
         PRequest request = new PRequest(PRequest.apiMethodGetOrderHistory, params,
                 new PResponseListener(){
@@ -666,7 +592,102 @@ public class ProfileFragment extends Fragment {
         request.execute();
     }
 
+    public void requestApiGetCompletedOrders() {
 
+        HashMap<String, String> params = new HashMap<>();
+//        params.put("userId", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
+
+        PRequest request = new PRequest(PRequest.apiMethodGetCompletedOrder, params,
+                new PResponseListener(){
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
+
+                                for (int i = 0; i<jsonArray.length(); i++){
+
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    mResultCompleted.add(jsonObject1);
+
+                                }
+
+                            } else {
+                                Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
+                            }
+
+//                            mViewPager.setAdapter(mPageAdapter);
+
+                            mAdapterCompleted = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultCompleted);
+                            mAdapterCompleted.notifyDataSetChanged();
+                            mListViewPager.setAdapter(mAdapterCompleted);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new PResponseErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+            }
+        });
+
+        request.execute();
+    }
+
+    public void requestApiGetPendingOrders() {
+
+        HashMap<String, String> params = new HashMap<>();
+//        params.put("userId", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
+
+        PRequest request = new PRequest(PRequest.apiMethodGetPendingOrder, params,
+                new PResponseListener(){
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
+
+                                for (int i = 0; i<jsonArray.length(); i++){
+
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    mResultPending.add(jsonObject1);
+
+                                }
+
+                            } else {
+                                Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
+                            }
+
+//                            mViewPager.setAdapter(mPageAdapter);
+
+                            mAdapterPending = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+                            mAdapterPending.notifyDataSetChanged();
+                            mListViewPager.setAdapter(mAdapterPending);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new PResponseErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+            }
+        });
+
+        request.execute();
+    }
 
 
 

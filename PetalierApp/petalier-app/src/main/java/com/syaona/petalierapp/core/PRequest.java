@@ -22,6 +22,8 @@ public class PRequest {
     public static String apiMethodGetBilling = "billing/getBilling";
     public static String apiMethodGetColors = "colors";
     public static String apiMethodGetCart = "cart/get";
+    public static String apiMethodGetCompletedOrder = "history/getCompletedOrders";
+    public static String apiMethodGetPendingOrder = "history/getPendingOrders";
 
 
     /* Post */

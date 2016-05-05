@@ -71,7 +71,7 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 //
 //
 //                /* trial */
-                v.buildDrawingCache();
+//                v.buildDrawingCache();
 //                Bitmap bitmap = ((LoadModelRenderer) mRenderer).setToTopView();
 
                 /* save image to singleton */
@@ -85,7 +85,8 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 //                v.setDrawingCacheEnabled(false);
 
                 /* save bitmap to singleton */
-                Singleton.setImage3D(bitmap.createBitmap(v.getDrawingCache()));
+//                Singleton.setImage3D(bitmap.createBitmap(v.getDrawingCache()));
+                Singleton.setImage3D(bitmap);
 //                v.setDrawingCacheEnabled(false);
 
 
