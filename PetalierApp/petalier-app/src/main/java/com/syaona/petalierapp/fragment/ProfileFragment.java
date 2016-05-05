@@ -99,7 +99,7 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         requestApiGetProfile();
-//        requestApiGetAllOrders();
+        requestApiGetAllOrders();
 //        requestApiGetCompletedOrders();
 //        requestApiGetPendingOrders();
 

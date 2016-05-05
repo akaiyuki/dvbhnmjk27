@@ -69,6 +69,7 @@ public class SendNoteFragment extends Fragment {
 //        mEditTo = (EditText) view.findViewById(R.id.edit_to);
         mEditMessage = (EditText) view.findViewById(R.id.edit_message);
 
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"note","");
 
 
         Button btnNext = (Button) view.findViewById(R.id.btnnext);
@@ -80,8 +81,6 @@ public class SendNoteFragment extends Fragment {
 //                if (mEditMessage.getText().length() != 0){
 
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"note",mEditMessage.getText().toString());
-
-//                    Log.i("note",mEditMessage.getText().toString());
 
                     if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token").isEmpty()){
                         startActivity(new Intent(getActivity(), OrderActivity.class));

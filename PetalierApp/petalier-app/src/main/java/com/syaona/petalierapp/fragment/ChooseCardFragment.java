@@ -115,6 +115,12 @@ public class ChooseCardFragment extends Fragment {
 
         Button btnSkip = (Button) view.findViewById(R.id.skip);
         btnSkip.setTypeface(Fonts.gothambookregular);
+        btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PEngine.switchFragment((BaseActivity) getActivity(), new SendNoteFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+            }
+        });
 
         mGridView = (GridView) view.findViewById(R.id.gridview);
 
@@ -124,7 +130,10 @@ public class ChooseCardFragment extends Fragment {
 
 
         /* trial display image */
-        PDialog.displayBitmap(Singleton.getImage3D(), (BaseActivity) getActivity());
+//        PDialog.displayBitmap(Singleton.getImage3D(), (BaseActivity) getActivity());
+
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"card","");
+
 
         return view;
     }

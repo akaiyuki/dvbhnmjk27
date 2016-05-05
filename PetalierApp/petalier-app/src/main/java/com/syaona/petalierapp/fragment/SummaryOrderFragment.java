@@ -351,7 +351,10 @@ public class SummaryOrderFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
-
+                                Intent intent = new Intent(getActivity(),MainActivity.class);
+                                intent.putExtra("goto","collection");
+                                startActivity(intent);
+                                getActivity().finish();
 
                             } else {
                                 Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
