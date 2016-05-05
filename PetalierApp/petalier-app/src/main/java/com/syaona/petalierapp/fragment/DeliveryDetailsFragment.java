@@ -89,6 +89,7 @@ public class DeliveryDetailsFragment extends Fragment {
     private EditText mEditFname;
     private EditText mEditLname;
 
+    private String delAddress;
 
     public DeliveryDetailsFragment() {
         // Required empty public constructor
@@ -137,68 +138,65 @@ public class DeliveryDetailsFragment extends Fragment {
             }
         });
 
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "deldate", "");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "instructions", "");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "contact", "");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "email", "");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "street", "");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "unit", "");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "town", "");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "landmark", "");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "fname", "");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "lname", "");
+
+
         Button btnOrderMore = (Button) view.findViewById(R.id.btnorder);
         btnOrderMore.setTypeface(Fonts.gothambookregular);
         btnOrderMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                delDate = mEditDelDate.getText().toString();
-                instructions = mEditInstructions.getText().toString();
-                contact = mEditContact.getText().toString();
-                email = mEditEmail.getText().toString();
-                street = mEditStreet.getText().toString();
-                unit = mEditUnit.getText().toString();
-                town = mEditTown.getText().toString();
-                landmark = mEditLandmark.getText().toString();
-                fName = mEditFname.getText().toString();
-                lName = mEditLname.getText().toString();
-
-                Log.i("params", delDate + " " + instructions + " " + contact + " " + email + " " + street + " " + unit + " " + town + " " + landmark + " " + fName + " " + lName);
-
-
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "deldate", delDate);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"instructions", instructions);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "contact", contact);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"email", email);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"street",street);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"unit",unit);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"town",town);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"landmark",landmark);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"fname",fName);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"lname",lName);
-
-                Log.i("savedpreferences",PSharedPreferences.getSomeStringValue(AppController.getInstance(),"quantity")+" "+
-                PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id")+" "+
-                PSharedPreferences.getSomeStringValue(AppController.getInstance(),"note")+" "+
-                PSharedPreferences.getSomeStringValue(AppController.getInstance(),"card"));
-
                 if (mEditDelDate.getText().length() != 0 &&
                         fName.length() != 0 &&
                         lName.length() != 0 &&
                         contact.length() != 0 &&
-                        landmark.length() != 0
+                        landmark.length() != 0 &&
+                        street.length() != 0 &&
+                        unit.length() != 0 &&
+                        town.length() != 0
                         ) {
+
+                    delDate = mEditDelDate.getText().toString();
+                    instructions = mEditInstructions.getText().toString();
+                    contact = mEditContact.getText().toString();
+                    email = mEditEmail.getText().toString();
+                    street = mEditStreet.getText().toString();
+                    unit = mEditUnit.getText().toString();
+                    town = mEditTown.getText().toString();
+                    landmark = mEditLandmark.getText().toString();
+                    fName = mEditFname.getText().toString();
+                    lName = mEditLname.getText().toString();
+                    delAddress = street+" "+unit+" "+town;
+
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(), "deldate", delDate);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"instructions", instructions);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(), "contact", contact);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"email", email);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"street",street);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"unit",unit);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"town",town);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"landmark",landmark);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"fname",fName);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"lname",lName);
+
+
                     new AddItemTask().execute();
+                } else {
+                    PDialog.showDialogError((BaseActivity) getActivity(),"Please Complete Delivery Information");
                 }
 
             }
         });
-
-
-
-        mEditDelDate = (EditText) view.findViewById(R.id.edit_deldate);
-        mEditInstructions = (EditText) view.findViewById(R.id.edit_instructions);
-        mEditContact = (EditText) view.findViewById(R.id.edit_contact);
-        mEditEmail = (EditText) view.findViewById(R.id.edit_email);
-        mEditStreet = (EditText) view.findViewById(R.id.edit_street);
-        mEditUnit = (EditText) view.findViewById(R.id.edit_unit);
-        mEditTown = (EditText) view.findViewById(R.id.edit_town);
-        mEditLandmark = (EditText) view.findViewById(R.id.edit_landmark);
-//        mEditPostal = (EditText) view.findViewById(R.id.edit_postal);
-        mEditFname = (EditText) view.findViewById(R.id.edit_fname);
-        mEditLname = (EditText) view.findViewById(R.id.edit_lname);
-
 
 
         TextView txtDeliveryDate = (TextView) view.findViewById(R.id.txtdeldate);
@@ -246,7 +244,7 @@ public class DeliveryDetailsFragment extends Fragment {
 
 //        populateEditTexts();
 
-
+        mEditDelDate = (EditText) view.findViewById(R.id.edit_deldate);
         mEditDelDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -257,22 +255,6 @@ public class DeliveryDetailsFragment extends Fragment {
 
 
         bitmap = Singleton.getImage3D();
-//        delDate = mEditDelDate.getText().toString();
-//        instructions = mEditInstructions.getText().toString();
-//        contact = mEditContact.getText().toString();
-//        email = mEditEmail.getText().toString();
-//        street = mEditStreet.getText().toString();
-//        unit = mEditUnit.getText().toString();
-//        town = mEditTown.getText().toString();
-//        landmark = mEditLandmark.getText().toString();
-//        fName = mEditFname.getText().toString();
-//        lName = mEditLname.getText().toString();
-
-
-//        PDialog.displayBitmap(bitmap, (BaseActivity) getActivity());
-
-
-
 
         return view;
     }
@@ -315,8 +297,8 @@ public class DeliveryDetailsFragment extends Fragment {
 //                entity.addPart("street", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"street")));
 //                entity.addPart("subdivision", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"unit")));
 //                entity.addPart("city", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"town")));
-                entity.addPart("deliveryAddress", new StringBody(street+" "+unit+" "+town));
-                entity.addPart("landMark", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"landmark")));
+                entity.addPart("deliveryAddress", new StringBody(delAddress));
+                entity.addPart("landMark", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "landmark")));
                 entity.addPart("country", new StringBody("PH"));
                 entity.addPart("productId", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id")));
 
@@ -357,8 +339,6 @@ public class DeliveryDetailsFragment extends Fragment {
                     JSONObject JResponse = new JSONObject(sResponse);
 
                     if (JResponse.getInt("Status") == StatusResponse.STATUS_SUCCESS){
-
-//                        Log.i("successupload", JResponse.getJSONObject("Data").getJSONObject("cart").getString("image_base_64"));
 
                         Intent intent = new Intent(getActivity(),MainActivity.class);
                         intent.putExtra("goto","collection");
