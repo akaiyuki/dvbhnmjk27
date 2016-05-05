@@ -8,12 +8,20 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
+import com.felipecsl.gifimageview.library.GifImageView;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.BaseActivity;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class SplashActivity extends BaseActivity {
 
@@ -33,7 +41,35 @@ public class SplashActivity extends BaseActivity {
 
         INSTANCE = this;
 
-        int myTimer = 2000;
+//        WebView webView = (WebView) findViewById(R.id.webview);
+//
+//        WebSettings settings = webView.getSettings();
+//        settings.setUseWideViewPort(true);
+//        settings.setLoadWithOverviewMode(true);
+//
+//        webView.loadUrl("file:///android_asset/splash.gif");
+
+
+        GifImageView gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+        try {
+            InputStream is = getAssets().open("splash.gif");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] b = new byte[2048];
+            int len = 0;
+            while ((len = is.read(b, 0, 2048)) != -1) {
+                baos.write(b, 0, len);
+            }
+            baos.flush();
+            byte[] bytes = baos.toByteArray();
+            gifImageView.setBytes(bytes);
+            gifImageView.startAnimation();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+        int myTimer = 10000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
