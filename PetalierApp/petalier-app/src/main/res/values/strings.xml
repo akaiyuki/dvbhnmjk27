@@ -10,5 +10,6 @@
 
     <!--Facebook App Id-->
     <string name="facebook_app_id">1598994433745061</string>
+    <string name="facebook_app_secret">c6f29344f59fe1bb4d2ba74373479808</string>
 
 </resources>

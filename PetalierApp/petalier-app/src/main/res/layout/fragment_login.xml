@@ -23,7 +23,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/ic_small_box"
-        android:hint="Email"
+        android:hint="Username"
         android:padding="15dp"
         android:singleLine="true"
         android:textColor="@color/colorLightGary"

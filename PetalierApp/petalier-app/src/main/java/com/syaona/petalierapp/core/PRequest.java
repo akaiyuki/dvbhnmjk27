@@ -33,6 +33,7 @@ public class PRequest {
     public static String apiMethodPostAddItem = "cart/postAddItem";
     public static String apiMethodPostCreateOrder = "orders/postCreate";
     public static String apiMethodPostUpdateCart = "cart/postUpdateCartItemQuantity";
+    public static String apiMethodPostLoginFb = "login/postFbLogin";
 
 
 

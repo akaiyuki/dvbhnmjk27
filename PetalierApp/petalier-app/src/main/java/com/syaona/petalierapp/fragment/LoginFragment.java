@@ -10,6 +10,7 @@ import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.syaona.petalierapp.R;
@@ -39,6 +41,7 @@ import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PConfiguration;
+import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
@@ -57,6 +60,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -64,7 +70,7 @@ public class LoginFragment extends Fragment {
 
     private EditText mEditEmail;
     private EditText mEditPassword;
-//    private TextView mTextError;
+    //    private TextView mTextError;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     private GraphRequest request;
@@ -92,7 +98,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (mEditEmail.getText().length() != 0 && mEditPassword.getText().length() != 0){
+                if (mEditEmail.getText().length() != 0 && mEditPassword.getText().length() != 0) {
                     requestApiLogin();
                 }
 
@@ -105,12 +111,11 @@ public class LoginFragment extends Fragment {
 //        mTextError = (TextView) view.findViewById(R.id.txterror);
 
 
-
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) view.findViewById(R.id.button_fb);
 //        loginButton.setReadPermissions("user_friends");
 //        loginButton.setReadPermissions("AccessToken");
-        loginButton.setReadPermissions("email", "user_friends");
+        loginButton.setReadPermissions("email", "user_friends", "public_profile");
         // If using in a fragment
         loginButton.setFragment(this);
         // Other app specific specialization
@@ -123,47 +128,60 @@ public class LoginFragment extends Fragment {
 
 
                 Log.i("name user", String.valueOf(loginResult.getAccessToken().getUserId()));
-                String fbAccesstoken = loginResult.getAccessToken().getToken();
-                String fbId = loginResult.getAccessToken().getUserId();
+                final String fbAccesstoken = loginResult.getAccessToken().getToken();
+                final String fbId = loginResult.getAccessToken().getUserId();
 
-                request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-                        try {
-                            Log.i("fbuser", response.toString() + " " + response.getJSONObject().getString("name"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "fb_access_token", fbAccesstoken);
 
-                        try {
-                            String id = object.getString("id");
-                            try {
-                                URL profile_pic = new URL(
-                                        "http://graph.facebook.com/" + id + "/picture?type=large");
-                                Log.i("profile_pic",
-                                        profile_pic + "");
 
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
+                final String signature = encriptFacebookCredentials(fbAccesstoken);
+
+
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(),"signature",signature);
+
+                Log.i("fblogin", signature);
+
+                // App code
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+
+                                Log.e("response: ", response + "");
+                                try {
+//                                user = new User();
+//                                user.facebookID = object.getString("id").toString();
+//                                user.email = object.getString("email").toString();
+//                                user.name = object.getString("name").toString();
+//                                user.gender = object.getString("gender").toString();
+//                                PrefUtils.setCurrentUser(user,getActivity());
+
+
+                                    Profile profile = Profile.getCurrentProfile();
+                                    String firstName = profile.getFirstName();
+                                    String lastName = profile.getLastName();
+
+                                    String email = object.optString("email");
+
+//                                    Log.i("fbfirstname", firstName + " " + email);
+
+                                    requestApiFbLogin(fbAccesstoken, fbId, firstName, lastName, email, signature);
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    Log.e("requesterror", e.getMessage());
+                                }
+
+
                             }
-                            String name = object.getString("name");
-                            String email = object.getString("email");
-                            String gender = object.getString("gender");
-                            String birthday = object.getString("birthday");
 
-                            String firstname = object.getString("first_name");
-
-                            Log.i("emailuser", name);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                });
+                        });
 
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,first_name,last_name,link,gender,birthday,email,contact");
+                parameters.putString("fields", "id,name,email,gender");
                 request.setParameters(parameters);
                 request.executeAsync();
 
@@ -183,14 +201,28 @@ public class LoginFragment extends Fragment {
         });
 
 
-
-
-
-
         return view;
     }
 
+    public static String encriptFacebookCredentials(String accessToken) {
+        try {
+            String secret = AppController.getInstance().getResources().getString(R.string.facebook_app_secret);
+            String message = accessToken + ".p3t@li3r";
 
+            Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
+            sha256_HMAC.init(secret_key);
+
+            String hash = Base64.encodeToString(sha256_HMAC.doFinal(message.getBytes()), Base64.NO_WRAP);
+//            String hash = Base64.encodeToString(sha256_HMAC.doFinal(message.getBytes()), Base64.DEFAULT);
+            Log.i("signatureBase64",hash);
+            return hash;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return "";
+        }
+    }
 
 
     public void requestApiLogin() {
@@ -202,7 +234,7 @@ public class LoginFragment extends Fragment {
         params.put("password", mEditPassword.getText().toString());
 
         PRequest request = new PRequest(PRequest.apiMethodPostLogin, params,
-                new PResponseListener(){
+                new PResponseListener() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         super.onResponse(jsonObject);
@@ -216,9 +248,9 @@ public class LoginFragment extends Fragment {
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(), "session_token", jsonObject.getJSONObject("Data").getString("session_token"));
                                 PSharedPreferences.setSomeStringValue(AppController.getInstance(), "user_name", jsonObject.getJSONObject("Data").getJSONObject("user").getString("userName"));
 
-                                if (Singleton.getLoginFromMain() == 1){
+                                if (Singleton.getLoginFromMain() == 1) {
                                     Intent i = new Intent(getActivity(), MainActivity.class);
-                                    i.putExtra("goto","collection");
+                                    i.putExtra("goto", "collection");
                                     startActivity(i);
                                     getActivity().finish();
                                 } else {
@@ -276,7 +308,7 @@ public class LoginFragment extends Fragment {
                             LoginActivity.INSTANCE.stopAnim();
                         }
                     }
-                }, new PResponseErrorListener(){
+                }, new PResponseErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
@@ -288,7 +320,111 @@ public class LoginFragment extends Fragment {
     }
 
 
+    public void requestApiFbLogin(String accessToken, String fbId, String fName, String lName, String email, String signature) {
 
+        LoginActivity.INSTANCE.startAnim();
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("fbAccessToken", accessToken);
+        params.put("fbId", fbId);
+        params.put("signature", signature);
+        params.put("firstName", fName);
+        params.put("lastName", lName);
+        params.put("email", email);
+
+        PRequest request = new PRequest(PRequest.apiMethodPostLoginFb, params,
+                new PResponseListener() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+                                PSharedPreferences.saveJsonToSharedPref(jsonObject.getJSONObject("Data"), "");
+
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "user_id", jsonObject.getJSONObject("Data").getJSONObject("user").getString("id"));
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "session_token", jsonObject.getJSONObject("Data").getString("session_token"));
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "user_name", jsonObject.getJSONObject("Data").getJSONObject("user").getString("userName"));
+
+                                if (Singleton.getLoginFromMain() == 1) {
+                                    Intent i = new Intent(getActivity(), MainActivity.class);
+                                    i.putExtra("goto", "collection");
+                                    startActivity(i);
+                                    getActivity().finish();
+                                } else {
+                                    startActivity(new Intent(getActivity(), OrderActivity.class));
+                                    getActivity().finish();
+                                }
+
+                            } else {
+                                Log.i("Error login", jsonObject.getJSONObject("Data").getString("alert"));
+
+                                PDialog.showDialogError((BaseActivity) getActivity(), jsonObject.getJSONObject("Data").getString("alert"));
+
+                            }
+
+                            LoginActivity.INSTANCE.stopAnim();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            LoginActivity.INSTANCE.stopAnim();
+                        }
+                    }
+                }, new PResponseErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+                LoginActivity.INSTANCE.stopAnim();
+            }
+        });
+
+        request.execute();
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+//    private Bundle getFacebookData(JSONObject object) {
+//
+//        try {
+//            Bundle bundle = new Bundle();
+//            String id = object.getString("id");
+//
+//            try {
+//                URL profile_pic = new URL("https://graph.facebook.com/" + id + "/picture?width=200&height=150");
+//                Log.i("profile_pic", profile_pic + "");
+//                bundle.putString("profile_pic", profile_pic.toString());
+//
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//                return null;
+//            }
+//
+//            bundle.putString("idFacebook", id);
+//            if (object.has("first_name"))
+//                bundle.putString("first_name", object.getString("first_name"));
+//            if (object.has("last_name"))
+//                bundle.putString("last_name", object.getString("last_name"));
+//            if (object.has("email"))
+//                bundle.putString("email", object.getString("email"));
+//            if (object.has("gender"))
+//                bundle.putString("gender", object.getString("gender"));
+//            if (object.has("birthday"))
+//                bundle.putString("birthday", object.getString("birthday"));
+//            if (object.has("location"))
+//                bundle.putString("location", object.getJSONObject("location").getString("name"));
+//
+//            return bundle;
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }
