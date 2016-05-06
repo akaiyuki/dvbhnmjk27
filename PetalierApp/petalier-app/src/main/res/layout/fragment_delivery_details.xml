@@ -280,7 +280,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="House/Lot/Unit #/Street Name"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <EditText
                     android:id="@+id/edit_street"
@@ -294,7 +295,8 @@
                     android:singleLine="true"
                     android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:textColor="@color/colorLightGary"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 
@@ -312,7 +314,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Subd./Apt./Condo/Bldg."
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
                 <EditText
                     android:id="@+id/edit_unit"
@@ -326,7 +329,8 @@
                     android:singleLine="true"
                     android:paddingRight="10dp"
                     android:drawablePadding="5dp"
-                    android:textColor="@color/colorLightGary"/>
+                    android:textColor="@color/colorLightGary"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 
@@ -343,7 +347,7 @@
                     android:id="@+id/txttown"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Town or City"
+                    android:text="Address"
                     android:textStyle="bold"/>
 
                 <EditText

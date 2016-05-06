@@ -130,8 +130,23 @@ public class DeliveryDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (Singleton.getSelectedDay() != 1) {
-                    PEngine.switchFragment((BaseActivity) getActivity(), new BillingInfoFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                if (mEditDelDate.getText().length() != 0 &&
+                        fName.length() != 0 &&
+                        lName.length() != 0 &&
+                        contact.length() != 0 &&
+                        landmark.length() != 0 &&
+                        town.length() != 0 &&
+                        Singleton.getSelectedDay() != 1) {
+
+                    bitmap = Singleton.getImage3D();
+
+                    if (bitmap != null) {
+
+                        PEngine.switchFragment((BaseActivity) getActivity(), new BillingInfoFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                    }
+                } else {
+                    PDialog.showDialogError((BaseActivity) getActivity(),"Please Complete Delivery Information");
                 }
 
 
@@ -161,36 +176,34 @@ public class DeliveryDetailsFragment extends Fragment {
                         lName.length() != 0 &&
                         contact.length() != 0 &&
                         landmark.length() != 0 &&
-                        street.length() != 0 &&
-                        unit.length() != 0 &&
-                        town.length() != 0
+                        town.length() != 0 &&
+                        Singleton.getSelectedDay() != 1
                         ) {
 
                     delDate = mEditDelDate.getText().toString();
                     instructions = mEditInstructions.getText().toString();
                     contact = mEditContact.getText().toString();
                     email = mEditEmail.getText().toString();
-                    street = mEditStreet.getText().toString();
-                    unit = mEditUnit.getText().toString();
                     town = mEditTown.getText().toString();
                     landmark = mEditLandmark.getText().toString();
                     fName = mEditFname.getText().toString();
                     lName = mEditLname.getText().toString();
-                    delAddress = street+" "+unit+" "+town;
+
+                    bitmap = Singleton.getImage3D();
 
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(), "deldate", delDate);
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"instructions", instructions);
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(), "contact", contact);
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"email", email);
-                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"street",street);
-                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"unit",unit);
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"town",town);
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"landmark",landmark);
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"fname",fName);
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"lname",lName);
 
+                    if (bitmap != null) {
 
-                    new AddItemTask().execute();
+                        new AddItemTask().execute();
+                    }
                 } else {
                     PDialog.showDialogError((BaseActivity) getActivity(),"Please Complete Delivery Information");
                 }
@@ -254,7 +267,7 @@ public class DeliveryDetailsFragment extends Fragment {
         });
 
 
-        bitmap = Singleton.getImage3D();
+
 
         return view;
     }
@@ -294,10 +307,7 @@ public class DeliveryDetailsFragment extends Fragment {
                 entity.addPart("firstName", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"fname")));
                 entity.addPart("lastName", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"lname")));
                 entity.addPart("contactNumber", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"contact")));
-//                entity.addPart("street", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"street")));
-//                entity.addPart("subdivision", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"unit")));
-//                entity.addPart("city", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"town")));
-                entity.addPart("deliveryAddress", new StringBody(delAddress));
+                entity.addPart("deliveryAddress", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"town")));
                 entity.addPart("landMark", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "landmark")));
                 entity.addPart("country", new StringBody("PH"));
                 entity.addPart("productId", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id")));
