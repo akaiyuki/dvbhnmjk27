@@ -233,16 +233,18 @@ public class DeliveryDetailsFragment extends Fragment {
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"fname",fName);
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"lname",lName);
 
-                    Log.i("deliverydetails",delDate+" "+instructions+" "+contact+" "+
-                    email+" "+town+" "+landmark+" "+fName+" "+lName+" "+
+                    Log.i("deliverydetails",delDate+" "+instructions+" "+contact+" "+town+" "+landmark+" "+fName+" "+lName+" "+
                             PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id")+" "+
                             PSharedPreferences.getSomeStringValue(AppController.getInstance(),"quantity")+" "+
                             PSharedPreferences.getSomeStringValue(AppController.getInstance(), "note")+" "+
-                            PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color"));
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color")+" "+
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "card"));
 
                     if (bitmap != null) {
 
                         new AddItemTask().execute();
+                    } else {
+                        Log.i("nobitmap","nobitmap");
                     }
                 } else {
                     PDialog.showDialogError((BaseActivity) getActivity(),"Please Complete Delivery Information");
@@ -341,15 +343,14 @@ public class DeliveryDetailsFragment extends Fragment {
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
                 byte[] data = bos.toByteArray();
-                entity.addPart("deliveryDate", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"deldate")));
-                entity.addPart("specialInstructions", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"instructions")));
+                entity.addPart("deliveryDate", new StringBody(delDate));
+                entity.addPart("specialInstructions", new StringBody(instructions));
                 entity.addPart("cardLink", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "card")));
-                entity.addPart("firstName", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"fname")));
-                entity.addPart("lastName", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"lname")));
-                entity.addPart("contactNumber", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"contact")));
-                entity.addPart("deliveryAddress", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"town")));
-                entity.addPart("landMark", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "landmark")));
-                entity.addPart("country", new StringBody("PH"));
+                entity.addPart("firstName", new StringBody(fName));
+                entity.addPart("lastName", new StringBody(lName));
+                entity.addPart("contactNumber", new StringBody(contact));
+                entity.addPart("deliveryAddress", new StringBody(town));
+                entity.addPart("landmark", new StringBody(landmark));
                 entity.addPart("productId", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id")));
 
                 entity.addPart("image_base_64", new ByteArrayBody(data,

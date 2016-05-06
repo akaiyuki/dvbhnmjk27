@@ -319,15 +319,15 @@ public class MyCartFragment extends Fragment {
                         order.setFirstName(jsonObject1.getJSONObject(key).getString("firstName"));
                         order.setLastName(jsonObject1.getJSONObject(key).getString("lastName"));
                         order.setContactNumber(jsonObject1.getJSONObject(key).getString("contactNumber"));
-                        order.setStreet(jsonObject1.getJSONObject(key).getString("street"));
-                        order.setSubdivision(jsonObject1.getJSONObject(key).getString("subdivision"));
+                        order.setStreet(jsonObject1.getJSONObject(key).getString("deliveryAddress"));
+//                        order.setSubdivision(jsonObject1.getJSONObject(key).getString("subdivision"));
                         order.setCity(jsonObject1.getJSONObject(key).getString("city"));
                         order.setLandMark(jsonObject1.getJSONObject(key).getString("landMark"));
                         order.setCountry(jsonObject1.getJSONObject(key).getString("country"));
                         order.setProductId(jsonObject1.getJSONObject(key).getString("productId"));
                         order.setQuantity(jsonObject1.getJSONObject(key).getString("quantity"));
                         order.setProductNote(jsonObject1.getJSONObject(key).getString("note"));
-                        order.setLine_total(jsonObject1.getJSONObject(key).getString("line_total"));
+                        order.setLine_total(jsonObject1.getJSONObject(key).getString("line_total_display"));
                         order.setProduct_name(jsonObject1.getJSONObject(key).getString("product_name"));
                         order.setImage_base_64(jsonObject1.getJSONObject(key).getString("image_base_64"));
 

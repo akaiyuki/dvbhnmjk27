@@ -54,6 +54,7 @@ public class BillingInfoFragment extends Fragment {
     private EditText mEditContact;
     private Button mButtonCheckout;
     private EditText mEditCompany;
+    private EditText mEditCountry;
 
 
     public BillingInfoFragment() {
@@ -111,6 +112,7 @@ public class BillingInfoFragment extends Fragment {
         mEditRelationship = (EditText) view.findViewById(R.id.edit_relationship);
         mEditHear = (EditText) view.findViewById(R.id.edit_hear);
         mEditCompany = (EditText) view.findViewById(R.id.edit_company);
+        mEditCountry = (EditText) view.findViewById(R.id.edit_country);
 
 
         mButtonCheckout = (Button) view.findViewById(R.id.btncheckout);
@@ -129,7 +131,8 @@ public class BillingInfoFragment extends Fragment {
                         mEditCity.getText().length() != 0 &&
                         mEditPostal.getText().length() != 0 &&
                         mEditRelationship.getText().length() != 0 &&
-                        mEditHear.getText().length() != 0
+                        mEditHear.getText().length() != 0 &&
+                        mEditCountry.getText().length() != 0
                         )
 
                 {
@@ -217,7 +220,7 @@ public class BillingInfoFragment extends Fragment {
         params.put("lastName", mEditLastName.getText().toString());
         params.put("id", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "user_id"));
         params.put("phone", mEditContact.getText().toString());
-        params.put("country", "Philippines");
+        params.put("country", mEditCountry.getText().toString());
         params.put("street", mEditStreet.getText().toString());
         params.put("address", mEditUnit.getText().toString());
         params.put("city", mEditCity.getText().toString());
