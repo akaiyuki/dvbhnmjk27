@@ -236,6 +236,7 @@
                     android:singleLine="true"
                     android:paddingRight="10dp"
                     android:drawablePadding="5dp"
+                    android:inputType="number"
                     android:textColor="@color/colorLightGary"/>
 
             </LinearLayout>
@@ -268,6 +269,7 @@
                     android:singleLine="true"
                     android:paddingRight="10dp"
                     android:drawablePadding="5dp"
+                    android:inputType="textEmailAddress"
                     android:textColor="@color/colorLightGary"/>
 
             </LinearLayout>

@@ -25,6 +25,7 @@ import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.dialog.PDialog;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.Fonts;
 
@@ -96,21 +97,6 @@ public class BillingInfoFragment extends Fragment {
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);
 
-        mButtonCheckout = (Button) view.findViewById(R.id.btncheckout);
-        mButtonCheckout.setTypeface(Fonts.gothambookregular);
-        mButtonCheckout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                requestApiBillingInfo();
-
-                /* skip api call for trial in summary order */
-//                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-
-            }
-        });
-
         mEditFirstName = (EditText) view.findViewById(R.id.edit_firstname);
         mEditLastName = (EditText) view.findViewById(R.id.edit_lastname);
         mEditContact = (EditText) view.findViewById(R.id.edit_contact);
@@ -125,6 +111,39 @@ public class BillingInfoFragment extends Fragment {
         mEditRelationship = (EditText) view.findViewById(R.id.edit_relationship);
         mEditHear = (EditText) view.findViewById(R.id.edit_hear);
         mEditCompany = (EditText) view.findViewById(R.id.edit_company);
+
+
+        mButtonCheckout = (Button) view.findViewById(R.id.btncheckout);
+        mButtonCheckout.setTypeface(Fonts.gothambookregular);
+        mButtonCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (mEditFirstName.getText().length() != 0 &&
+                        mEditLastName.getText().length() != 0 &&
+                        mEditContact.getText().length() != 0 &&
+                        mEditEmail.getText().length() != 0 &&
+                        mEditStreet.getText().length() != 0 &&
+                        mEditUnit.getText().length() != 0 &&
+                        mEditTown.getText().length() != 0 &&
+                        mEditCity.getText().length() != 0 &&
+                        mEditPostal.getText().length() != 0 &&
+                        mEditRelationship.getText().length() != 0 &&
+                        mEditHear.getText().length() != 0
+                        )
+
+                {
+                    requestApiBillingInfo();
+                } else {
+                    PDialog.showDialogError((BaseActivity) getActivity(), "Please Complete Billing Information");
+                }
+
+                /* skip api call for trial in summary order */
+//                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+            }
+        });
+
 
 
         TextView txtDefault = (TextView) view.findViewById(R.id.txtdefault);
