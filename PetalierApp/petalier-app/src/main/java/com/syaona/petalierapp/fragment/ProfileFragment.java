@@ -245,6 +245,7 @@ public class ProfileFragment extends Fragment {
                         selectedOrder = adapterView.getItemAtPosition(i).toString();
                         mAdapterPast.notifyDataSetChanged();
 
+
                         PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
                     }
@@ -445,7 +446,9 @@ public class ProfileFragment extends Fragment {
 
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_total", jsonObject.getJSONObject("order_meta").getString("order_total"));
 
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_id",jsonObject.getString("id"));
 
+//                    Log.i("selectedorderprod", jsonObject.getString("id"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -563,6 +566,8 @@ public class ProfileFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
+                                mResultOrders.clear();
+
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
 
                                 for (int i = 0; i<jsonArray.length(); i++){
@@ -606,6 +611,8 @@ public class ProfileFragment extends Fragment {
                         try {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                mResultCompleted.clear();
 
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
 
@@ -654,6 +661,8 @@ public class ProfileFragment extends Fragment {
                         try {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                mResultPending.clear();
 
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
 

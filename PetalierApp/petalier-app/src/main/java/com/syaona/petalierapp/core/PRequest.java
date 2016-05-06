@@ -24,6 +24,7 @@ public class PRequest {
     public static String apiMethodGetCart = "cart/get";
     public static String apiMethodGetCompletedOrder = "history/getCompletedOrders";
     public static String apiMethodGetPendingOrder = "history/getPendingOrders";
+    public static String apiMethodGetOrderById = "orders/get";
 
 
     /* Post */
