@@ -235,7 +235,7 @@ public class ChooseCardFragment extends Fragment {
                 Picasso.with(mContext)
                         .load(row.getString("card_image_link"))
                         .fit()
-                        .transform(new CircleTransform())
+//                        .transform(new CircleTransform())
                         .into(holder.imageView, new Callback() {
                             @Override
                             public void onSuccess() {

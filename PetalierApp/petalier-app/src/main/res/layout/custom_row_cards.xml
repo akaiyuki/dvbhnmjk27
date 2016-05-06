@@ -6,53 +6,53 @@
     tools:context="com.syaona.petalierapp.fragment.ChooseCardFragment">
 
 
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/circle"
+        android:visibility="gone" />
 
     <ImageView
-    android:layout_width="120dp"
-    android:layout_height="120dp"
-    android:src="@drawable/circle"
-    android:layout_marginLeft="20dp"
-    android:layout_centerHorizontal="true"/>
-
-    <ImageView
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:src="@drawable/card1"
-    android:layout_marginLeft="30dp"
-    android:layout_marginTop="10dp"
-    android:layout_centerHorizontal="true"
-    android:id="@+id/card1"/>
+        android:id="@+id/card1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/card1" />
 
     <LinearLayout
-    android:layout_marginTop="15dp"
-    android:layout_width="120dp"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/card1"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:layout_marginLeft="20dp"
-    android:layout_centerHorizontal="true"
-    android:id="@+id/linearrow1">
-
-    <View
-        android:layout_below="@+id/card1"
-        android:layout_marginTop="10dp"
-        android:layout_width="20dp"
-        android:layout_height="1dip"
-        android:background="@color/colorLightGary"
-        android:id="@+id/divider"/>
-
-    <TextView
-        android:id="@+id/txtcard1"
-        android:layout_width="wrap_content"
+        android:id="@+id/linearrow1"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Card 1"
+        android:layout_below="@+id/card1"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:textSize="17sp"
-        android:textAllCaps="true"
-        android:textStyle="bold"/>
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="20dp"
+            android:layout_height="1dip"
+            android:layout_below="@+id/card1"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorLightGary" />
+
+        <TextView
+            android:id="@+id/txtcard1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Card 1"
+            android:textAllCaps="true"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    </RelativeLayout>
+</RelativeLayout>
