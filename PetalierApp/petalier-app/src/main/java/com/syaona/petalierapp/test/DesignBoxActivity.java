@@ -211,7 +211,7 @@ public class DesignBoxActivity extends BaseActivity {
 
         TextView mTextFlowerPrice = (TextView) findViewById(R.id.flowerprice);
         assert mTextFlowerPrice != null;
-        mTextFlowerPrice.setText(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_price"));
+        mTextFlowerPrice.setText("Php "+PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_price"));
 
         TextView mTextFlowerExcerpt = (TextView) findViewById(R.id.productexcerpt);
         assert mTextFlowerExcerpt != null;

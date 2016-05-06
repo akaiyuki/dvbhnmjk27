@@ -233,6 +233,13 @@ public class DeliveryDetailsFragment extends Fragment {
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"fname",fName);
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"lname",lName);
 
+                    Log.i("deliverydetails",delDate+" "+instructions+" "+contact+" "+
+                    email+" "+town+" "+landmark+" "+fName+" "+lName+" "+
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id")+" "+
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(),"quantity")+" "+
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "note")+" "+
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color"));
+
                     if (bitmap != null) {
 
                         new AddItemTask().execute();

@@ -23,6 +23,7 @@ import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.fragment.ChooseCardFragment;
 import com.syaona.petalierapp.fragment.ChooseCollectionFragment;
+import com.syaona.petalierapp.fragment.ProfileFragment;
 import com.syaona.petalierapp.fragment.SendNoteFragment;
 
 import java.io.ByteArrayOutputStream;
@@ -87,6 +88,8 @@ public class MainActivity extends BaseActivity {
                 newFragment = new SendNoteFragment();
             } else if (extras.getString("goto").equalsIgnoreCase("send_card")) {
                 newFragment = new ChooseCardFragment();
+            } else if (extras.getString("goto").equalsIgnoreCase("profile")){
+                newFragment = new ProfileFragment();
             }
 
             assert newFragment != null;
