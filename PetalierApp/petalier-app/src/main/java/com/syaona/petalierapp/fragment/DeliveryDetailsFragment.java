@@ -124,21 +124,53 @@ public class DeliveryDetailsFragment extends Fragment {
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);
 
+        mEditFname = (EditText) view.findViewById(R.id.edit_fname);
+        mEditLname = (EditText) view.findViewById(R.id.edit_lname);
+        mEditContact = (EditText) view.findViewById(R.id.edit_contact);
+        mEditLandmark = (EditText) view.findViewById(R.id.edit_landmark);
+        mEditTown = (EditText) view.findViewById(R.id.edit_town);
+        mEditEmail = (EditText) view.findViewById(R.id.edit_email);
+        mEditDelDate = (EditText) view.findViewById(R.id.edit_deldate);
+        mEditInstructions = (EditText) view.findViewById(R.id.edit_instructions);
+
+
         Button btnCheckout = (Button) view.findViewById(R.id.next);
         btnCheckout.setTypeface(Fonts.gothambookregular);
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (mEditDelDate.getText().length() != 0 &&
-                        fName.length() != 0 &&
-                        lName.length() != 0 &&
-                        contact.length() != 0 &&
-                        landmark.length() != 0 &&
-                        town.length() != 0 &&
+
+
+                if (mEditFname.getText().length() != 0 &&
+                        mEditLname.getText().length() != 0 &&
+                        mEditContact.getText().length() != 0 &&
+                        mEditLandmark.getText().length() != 0 &&
+                        mEditTown.getText().length() != 0 &&
                         Singleton.getSelectedDay() != 1) {
 
+                    delDate = mEditDelDate.getText().toString();
+                    instructions = mEditInstructions.getText().toString();
+                    contact = mEditContact.getText().toString();
+                    email = mEditEmail.getText().toString();
+                    town = mEditTown.getText().toString();
+                    landmark = mEditLandmark.getText().toString();
+                    fName = mEditFname.getText().toString();
+                    lName = mEditLname.getText().toString();
+
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(), "deldate", delDate);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"instructions", instructions);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(), "contact", contact);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"email", email);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"town",town);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"landmark",landmark);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"fname",fName);
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"lname",lName);
+
+
                     bitmap = Singleton.getImage3D();
+
+                    Log.i("deldate", mEditDelDate.getText().toString());
 
                     if (bitmap != null) {
 
@@ -171,12 +203,13 @@ public class DeliveryDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (mEditDelDate.getText().length() != 0 &&
-                        fName.length() != 0 &&
-                        lName.length() != 0 &&
-                        contact.length() != 0 &&
-                        landmark.length() != 0 &&
-                        town.length() != 0 &&
+
+
+                if (mEditFname.getText().length() != 0 &&
+                        mEditLname.getText().length() != 0 &&
+                        mEditContact.getText().length() != 0 &&
+                        mEditLandmark.getText().length() != 0 &&
+                        mEditTown.getText().length() != 0 &&
                         Singleton.getSelectedDay() != 1
                         ) {
 
@@ -257,7 +290,7 @@ public class DeliveryDetailsFragment extends Fragment {
 
 //        populateEditTexts();
 
-        mEditDelDate = (EditText) view.findViewById(R.id.edit_deldate);
+
         mEditDelDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
