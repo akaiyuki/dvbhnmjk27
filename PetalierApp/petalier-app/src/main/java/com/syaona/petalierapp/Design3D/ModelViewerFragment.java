@@ -7,8 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -19,12 +17,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.AppController;
+import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.test.DesignBoxActivity;
-import com.syaona.petalierapp.view.CircleTransform;
 
 import org.rajawali3d.Object3D;
 import org.rajawali3d.cameras.Camera;
@@ -174,61 +171,464 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
 
             //Loading of model object
-            LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(),
-                    mTextureManager, R.raw.boxcollection_obj);
-            try {
+//            LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(),
+//                    mTextureManager, R.raw.boxcollection_obj);
+//
 
-                objParser.parse();
-                mObjectGroup = objParser.getParsedObject();
 
-                //Register objects in picker
-                for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
 
-                    Object3D obj = mObjectGroup.getChildAt(i);
-                    obj.setName("obj_" + i);
+            /* trial change flower */
+            if (PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_name").equalsIgnoreCase("beatriz")) {
+                LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.beatriz_obj);
 
-                    if (i > 0) {
+                try {
 
-                        //Create new material for each 3d object
-                        Material material = new Material();
-                        material.setColorInfluence(0);
-                        try {
-                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
-                        } catch (ATexture.TextureException e) {
-                            e.printStackTrace();
-                        }
+                    objParser.parse();
+                    mObjectGroup = objParser.getParsedObject();
 
-                        DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
-                        diffuseMethod.setIntensity(05.f);
+                    //Register objects in picker
+                    for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
 
-                        material.setDiffuseMethod(diffuseMethod);
-                        material.enableLighting(true);
-                        material.setCurrentObject(obj);
+                        Object3D obj = mObjectGroup.getChildAt(i);
+                        obj.setName("obj_" + i);
 
-                        obj.setMaterial(material);
+                        if (i > 0) {
 
-                        if (obj.getNumChildren() > 0) {
-                            obj = obj.getChildAt(0);
+                            //Create new material for each 3d object
+                            Material material = new Material();
+                            material.setColorInfluence(0);
+                            try {
+                                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            } catch (ATexture.TextureException e) {
+                                e.printStackTrace();
+                            }
+
+                            DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                            diffuseMethod.setIntensity(05.f);
+
+                            material.setDiffuseMethod(diffuseMethod);
+                            material.enableLighting(true);
+                            material.setCurrentObject(obj);
+
                             obj.setMaterial(material);
+
+                            if (obj.getNumChildren() > 0) {
+                                obj = obj.getChildAt(0);
+                                obj.setMaterial(material);
+                            }
                         }
+
+                        mPicker.registerObject(obj);
+                        getCurrentScene().addChild(obj);
+
+                        Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren());
                     }
 
-                    mPicker.registerObject(obj);
-                    getCurrentScene().addChild(obj);
+                    //Set Camera to model
+                    mArcballCamera = new CustomCamera(mContext, mLayout);
+                    mArcballCamera.setTarget(mObjectGroup);
+                    mArcballCamera.setPosition(0, 5, 15);
+                    getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+                    mArcballCamera.setLookAt(0, 0, 0);
 
-                    Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren());
+                } catch (ParsingException e) {
+                    e.printStackTrace();
                 }
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_name").equalsIgnoreCase("chloe")){
+                LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.chloe_obj);
 
-                //Set Camera to model
-                mArcballCamera = new CustomCamera(mContext, mLayout);
-                mArcballCamera.setTarget(mObjectGroup);
-                mArcballCamera.setPosition(0, 5, 15);
-                getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
-                mArcballCamera.setLookAt(0, 0, 0);
+                try {
 
-            } catch (ParsingException e) {
-                e.printStackTrace();
+                    objParser.parse();
+                    mObjectGroup = objParser.getParsedObject();
+
+                    //Register objects in picker
+                    for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
+
+                        Object3D obj = mObjectGroup.getChildAt(i);
+                        obj.setName("obj_" + i);
+
+                        if (i > 0) {
+
+                            //Create new material for each 3d object
+                            Material material = new Material();
+                            material.setColorInfluence(0);
+                            try {
+                                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            } catch (ATexture.TextureException e) {
+                                e.printStackTrace();
+                            }
+
+                            DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                            diffuseMethod.setIntensity(05.f);
+
+                            material.setDiffuseMethod(diffuseMethod);
+                            material.enableLighting(true);
+                            material.setCurrentObject(obj);
+
+                            obj.setMaterial(material);
+
+                            if (obj.getNumChildren() > 0) {
+                                obj = obj.getChildAt(0);
+                                obj.setMaterial(material);
+                            }
+                        }
+
+                        mPicker.registerObject(obj);
+                        getCurrentScene().addChild(obj);
+
+                        Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren());
+                    }
+
+                    //Set Camera to model
+                    mArcballCamera = new CustomCamera(mContext, mLayout);
+                    mArcballCamera.setTarget(mObjectGroup);
+                    mArcballCamera.setPosition(0, 5, 15);
+                    getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+                    mArcballCamera.setLookAt(0, 0, 0);
+
+                } catch (ParsingException e) {
+                    e.printStackTrace();
+                }
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_name").equalsIgnoreCase("diana")){
+                LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.diana_obj);
+
+                try {
+
+                    objParser.parse();
+                    mObjectGroup = objParser.getParsedObject();
+
+                    //Register objects in picker
+                    for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
+
+                        Object3D obj = mObjectGroup.getChildAt(i);
+                        obj.setName("obj_" + i);
+
+                        if (i > 0) {
+
+                            //Create new material for each 3d object
+                            Material material = new Material();
+                            material.setColorInfluence(0);
+                            try {
+                                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            } catch (ATexture.TextureException e) {
+                                e.printStackTrace();
+                            }
+
+                            DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                            diffuseMethod.setIntensity(05.f);
+
+                            material.setDiffuseMethod(diffuseMethod);
+                            material.enableLighting(true);
+                            material.setCurrentObject(obj);
+
+                            obj.setMaterial(material);
+
+                            if (obj.getNumChildren() > 0) {
+                                obj = obj.getChildAt(0);
+                                obj.setMaterial(material);
+                            }
+                        }
+
+                        mPicker.registerObject(obj);
+                        getCurrentScene().addChild(obj);
+
+                        Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren());
+                    }
+
+                    //Set Camera to model
+                    mArcballCamera = new CustomCamera(mContext, mLayout);
+                    mArcballCamera.setTarget(mObjectGroup);
+                    mArcballCamera.setPosition(0, 5, 15);
+                    getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+                    mArcballCamera.setLookAt(0, 0, 0);
+
+                } catch (ParsingException e) {
+                    e.printStackTrace();
+                }
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_name").equalsIgnoreCase("felicisima")){
+                LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.felisicima_obj);
+
+                try {
+
+                    objParser.parse();
+                    mObjectGroup = objParser.getParsedObject();
+
+                    //Register objects in picker
+                    for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
+
+                        Object3D obj = mObjectGroup.getChildAt(i);
+                        obj.setName("obj_" + i);
+
+                        if (i > 0) {
+
+                            //Create new material for each 3d object
+                            Material material = new Material();
+                            material.setColorInfluence(0);
+                            try {
+                                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            } catch (ATexture.TextureException e) {
+                                e.printStackTrace();
+                            }
+
+                            DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                            diffuseMethod.setIntensity(05.f);
+
+                            material.setDiffuseMethod(diffuseMethod);
+                            material.enableLighting(true);
+                            material.setCurrentObject(obj);
+
+                            obj.setMaterial(material);
+
+                            if (obj.getNumChildren() > 0) {
+                                obj = obj.getChildAt(0);
+                                obj.setMaterial(material);
+                            }
+                        }
+
+                        mPicker.registerObject(obj);
+                        getCurrentScene().addChild(obj);
+
+                        Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren());
+                    }
+
+                    //Set Camera to model
+                    mArcballCamera = new CustomCamera(mContext, mLayout);
+                    mArcballCamera.setTarget(mObjectGroup);
+                    mArcballCamera.setPosition(0, 5, 15);
+                    getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+                    mArcballCamera.setLookAt(0, 0, 0);
+
+                } catch (ParsingException e) {
+                    e.printStackTrace();
+                }
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")) {
+                LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.frieda_obj);
+
+                try {
+
+                    objParser.parse();
+                    mObjectGroup = objParser.getParsedObject();
+
+                    //Register objects in picker
+                    for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
+
+                        Object3D obj = mObjectGroup.getChildAt(i);
+                        obj.setName("obj_" + i);
+
+                        if (i > 0) {
+
+                            //Create new material for each 3d object
+                            Material material = new Material();
+                            material.setColorInfluence(0);
+                            try {
+                                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            } catch (ATexture.TextureException e) {
+                                e.printStackTrace();
+                            }
+
+                            DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                            diffuseMethod.setIntensity(05.f);
+
+                            material.setDiffuseMethod(diffuseMethod);
+                            material.enableLighting(true);
+                            material.setCurrentObject(obj);
+
+                            obj.setMaterial(material);
+
+                            if (obj.getNumChildren() > 0) {
+                                obj = obj.getChildAt(0);
+                                obj.setMaterial(material);
+                            }
+                        }
+
+                        mPicker.registerObject(obj);
+                        getCurrentScene().addChild(obj);
+
+                        Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren());
+                    }
+
+                    //Set Camera to model
+                    mArcballCamera = new CustomCamera(mContext, mLayout);
+                    mArcballCamera.setTarget(mObjectGroup);
+                    mArcballCamera.setPosition(0, 5, 15);
+                    getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+                    mArcballCamera.setLookAt(0, 0, 0);
+
+                } catch (ParsingException e) {
+                    e.printStackTrace();
+                }
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_name").equalsIgnoreCase("lauren")){
+                LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.lauren_obj);
+
+                try {
+
+                    objParser.parse();
+                    mObjectGroup = objParser.getParsedObject();
+
+                    //Register objects in picker
+                    for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
+
+                        Object3D obj = mObjectGroup.getChildAt(i);
+                        obj.setName("obj_" + i);
+
+                        if (i > 0) {
+
+                            //Create new material for each 3d object
+                            Material material = new Material();
+                            material.setColorInfluence(0);
+                            try {
+                                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            } catch (ATexture.TextureException e) {
+                                e.printStackTrace();
+                            }
+
+                            DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                            diffuseMethod.setIntensity(05.f);
+
+                            material.setDiffuseMethod(diffuseMethod);
+                            material.enableLighting(true);
+                            material.setCurrentObject(obj);
+
+                            obj.setMaterial(material);
+
+                            if (obj.getNumChildren() > 0) {
+                                obj = obj.getChildAt(0);
+                                obj.setMaterial(material);
+                            }
+                        }
+
+                        mPicker.registerObject(obj);
+                        getCurrentScene().addChild(obj);
+
+                        Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren());
+                    }
+
+                    //Set Camera to model
+                    mArcballCamera = new CustomCamera(mContext, mLayout);
+                    mArcballCamera.setTarget(mObjectGroup);
+                    mArcballCamera.setPosition(0, 5, 15);
+                    getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+                    mArcballCamera.setLookAt(0, 0, 0);
+
+                } catch (ParsingException e) {
+                    e.printStackTrace();
+                }
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(),"flower_name").equalsIgnoreCase("lucy")){
+                LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.lucy_obj);
+
+                try {
+
+                    objParser.parse();
+                    mObjectGroup = objParser.getParsedObject();
+
+                    //Register objects in picker
+                    for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
+
+                        Object3D obj = mObjectGroup.getChildAt(i);
+                        obj.setName("obj_" + i);
+
+                        if (i > 0) {
+
+                            //Create new material for each 3d object
+                            Material material = new Material();
+                            material.setColorInfluence(0);
+                            try {
+                                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            } catch (ATexture.TextureException e) {
+                                e.printStackTrace();
+                            }
+
+                            DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                            diffuseMethod.setIntensity(05.f);
+
+                            material.setDiffuseMethod(diffuseMethod);
+                            material.enableLighting(true);
+                            material.setCurrentObject(obj);
+
+                            obj.setMaterial(material);
+
+                            if (obj.getNumChildren() > 0) {
+                                obj = obj.getChildAt(0);
+                                obj.setMaterial(material);
+                            }
+                        }
+
+                        mPicker.registerObject(obj);
+                        getCurrentScene().addChild(obj);
+
+                        Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren());
+                    }
+
+                    //Set Camera to model
+                    mArcballCamera = new CustomCamera(mContext, mLayout);
+                    mArcballCamera.setTarget(mObjectGroup);
+                    mArcballCamera.setPosition(0, 5, 15);
+                    getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+                    mArcballCamera.setLookAt(0, 0, 0);
+
+                } catch (ParsingException e) {
+                    e.printStackTrace();
+                }
             }
+
+
+
+
+
+//            try {
+//
+//                objParser.parse();
+//                mObjectGroup = objParser.getParsedObject();
+//
+//                //Register objects in picker
+//                for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
+//
+//                    Object3D obj = mObjectGroup.getChildAt(i);
+//                    obj.setName("obj_" + i);
+//
+//                    if (i > 0) {
+//
+//                        //Create new material for each 3d object
+//                        Material material = new Material();
+//                        material.setColorInfluence(0);
+//                        try {
+//                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+//                        } catch (ATexture.TextureException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                        DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+//                        diffuseMethod.setIntensity(05.f);
+//
+//                        material.setDiffuseMethod(diffuseMethod);
+//                        material.enableLighting(true);
+//                        material.setCurrentObject(obj);
+//
+//                        obj.setMaterial(material);
+//
+//                        if (obj.getNumChildren() > 0) {
+//                            obj = obj.getChildAt(0);
+//                            obj.setMaterial(material);
+//                        }
+//                    }
+//
+//                    mPicker.registerObject(obj);
+//                    getCurrentScene().addChild(obj);
+//
+//                    Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren());
+//                }
+//
+//                //Set Camera to model
+//                mArcballCamera = new CustomCamera(mContext, mLayout);
+//                mArcballCamera.setTarget(mObjectGroup);
+//                mArcballCamera.setPosition(0, 5, 15);
+//                getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+//                mArcballCamera.setLookAt(0, 0, 0);
+//
+//            } catch (ParsingException e) {
+//                e.printStackTrace();
+//            }
 
 
             //Set top light
@@ -277,9 +677,12 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
 //                    material.addTexture(new Texture("petalTexture", Singleton.getChosenColor()));
 
+                /* add handler for selecting color */
+//                if (Singleton.getChosenColor() != null) {
 
-                Texture mytexture = new Texture("texture", Singleton.getChosenColor());
-                material.addTexture(mytexture);
+                    Texture mytexture = new Texture("texture", Singleton.getChosenColor());
+                    material.addTexture(mytexture);
+//                }
 
 
             } catch (ATexture.TextureException e) {

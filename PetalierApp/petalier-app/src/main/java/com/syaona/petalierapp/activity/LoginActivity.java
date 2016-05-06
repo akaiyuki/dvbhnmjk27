@@ -61,22 +61,22 @@ public class LoginActivity extends BaseActivity {
 
 //        InputStream is = this.getResources().openRawResource(R.drawable.loading);
 
-        try {
-            InputStream is = getAssets().open("loading.gif");
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] b = new byte[2048];
-            int len = 0;
-            while ((len = is.read(b, 0, 2048)) != -1) {
-                baos.write(b, 0, len);
-            }
-            baos.flush();
-            byte[] bytes = baos.toByteArray();
-            gifImageView.setBytes(bytes);
-//            gifImageView.startAnimation();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        try {
+//            InputStream is = getAssets().open("loading.gif");
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            byte[] b = new byte[2048];
+//            int len = 0;
+//            while ((len = is.read(b, 0, 2048)) != -1) {
+//                baos.write(b, 0, len);
+//            }
+//            baos.flush();
+//            byte[] bytes = baos.toByteArray();
+//            gifImageView.setBytes(bytes);
+////            gifImageView.startAnimation();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
 
 
 //        try {
