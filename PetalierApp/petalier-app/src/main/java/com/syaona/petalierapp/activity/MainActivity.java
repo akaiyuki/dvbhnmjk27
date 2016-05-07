@@ -151,29 +151,29 @@ public class MainActivity extends BaseActivity {
     }
 
     public void startAnim(){
-//        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
-        try {
-            InputStream is = getAssets().open("loading.gif");
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] b = new byte[2048];
-            int len = 0;
-            while ((len = is.read(b, 0, 2048)) != -1) {
-                baos.write(b, 0, len);
-            }
-            baos.flush();
-            byte[] bytes = baos.toByteArray();
-            gifImageView.setBytes(bytes);
-            gifImageView.startAnimation();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.VISIBLE);
+//        try {
+//            InputStream is = getAssets().open("loading.gif");
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            byte[] b = new byte[2048];
+//            int len = 0;
+//            while ((len = is.read(b, 0, 2048)) != -1) {
+//                baos.write(b, 0, len);
+//            }
+//            baos.flush();
+//            byte[] bytes = baos.toByteArray();
+//            gifImageView.setBytes(bytes);
+//            gifImageView.startAnimation();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
     }
 
     public void stopAnim(){
 
-//        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
-        gifImageView.stopAnimation();
+        findViewById(R.id.avloadingIndicatorView).setVisibility(View.GONE);
+//        gifImageView.stopAnimation();
     }
 
     @Override

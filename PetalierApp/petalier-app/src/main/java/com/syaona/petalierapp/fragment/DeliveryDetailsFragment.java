@@ -205,6 +205,7 @@ public class DeliveryDetailsFragment extends Fragment {
 //                        int dayOfWeek=GregorianCalendar.get(GregorianCalendar.DAY_OF_MONTH);
 //
 //                        if (Singleton.getChosenDay() == dayOfWeek){
+
 //                            // Initialize a new GradientDrawable
 //                            GradientDrawable gd = new GradientDrawable();
 //
@@ -465,6 +466,29 @@ public class DeliveryDetailsFragment extends Fragment {
 
                         }
 
+                    } else {
+
+
+                            // Initialize a new GradientDrawable
+                            GradientDrawable gd = new GradientDrawable();
+
+                            // Specify the shape of drawable
+                            gd.setShape(GradientDrawable.RECTANGLE);
+
+                            // Set the fill color of drawable
+                            gd.setColor(Color.TRANSPARENT); // make the background transparent
+
+                            // Create a 2 pixels width red colored border for drawable
+                            gd.setStroke(2, Color.RED); // border width and color
+
+                            // Make the border rounded
+                            gd.setCornerRadius(15.0f); // border corner radius
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                mEditDelDate.setBackground(gd);
+                            }
+
+                        PDialog.showDialogError((BaseActivity) getActivity(),JResponse.getJSONObject("Data").getString("alert"));
                     }
 
                     Log.i("uploadimage", JResponse.getJSONObject("Data").getString("alert"));

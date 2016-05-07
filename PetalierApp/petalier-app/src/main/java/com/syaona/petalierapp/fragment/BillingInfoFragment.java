@@ -213,6 +213,8 @@ public class BillingInfoFragment extends Fragment {
 
     public void requestApiBillingInfo() {
 
+        OrderActivity.INSTANCE.startAnim();
+
         HashMap<String, String> params = new HashMap<>();
         params.put("firstName", mEditFirstName.getText().toString());
         params.put("lastName", mEditLastName.getText().toString());
@@ -238,6 +240,7 @@ public class BillingInfoFragment extends Fragment {
                         try {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
 
                                 PSharedPreferences.saveJsonToSharedPref(jsonObject.getJSONObject("Data"), "");
 
@@ -265,15 +268,18 @@ public class BillingInfoFragment extends Fragment {
 //                                Log.i("billing_info", fName+lName+contact+email+city);
                             }
 
+                            OrderActivity.INSTANCE.stopAnim();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            OrderActivity.INSTANCE.stopAnim();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
+                OrderActivity.INSTANCE.stopAnim();
             }
         });
 

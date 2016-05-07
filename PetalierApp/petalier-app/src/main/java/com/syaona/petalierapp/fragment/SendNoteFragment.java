@@ -84,6 +84,7 @@ public class SendNoteFragment extends Fragment {
 
                     if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token").isEmpty()){
                         startActivity(new Intent(getActivity(), OrderActivity.class));
+                        getActivity().finish();
                     } else {
                         Singleton.setLoginFromMain(0);
                         startActivity(new Intent(getActivity(), LoginActivity.class));

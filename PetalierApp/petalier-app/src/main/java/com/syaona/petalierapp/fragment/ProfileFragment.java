@@ -100,8 +100,8 @@ public class ProfileFragment extends Fragment {
 
         requestApiGetProfile();
         requestApiGetAllOrders();
-//        requestApiGetCompletedOrders();
-//        requestApiGetPendingOrders();
+        requestApiGetCompletedOrders();
+        requestApiGetPendingOrders();
 
     }
 
@@ -182,12 +182,20 @@ public class ProfileFragment extends Fragment {
         mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
         mPageAdapter = new SamplePagerAdapter();
         mViewPager.setAdapter(mPageAdapter);
+
+        mViewPager.setCurrentItem(1);
+
+
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setRowCount(3);
         mSlidingTabLayout.setViewPager(mViewPager);
         mSlidingTabLayout.setOnPageChangeListener(pageListener);
+
+
         // END_INCLUDE (setup_slidingtablayout)
     }
+
+
 
 
 
@@ -234,72 +242,79 @@ public class ProfileFragment extends Fragment {
             mListViewPager = (ListView) view.findViewById(R.id.listview);
 
             if (position == 0) {
+
+//                requestApiGetAllOrders();
+
                 mListPastOrder = (ListView) view.findViewById(R.id.listview);
-                mAdapterPast = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultOrders);
-                mAdapterPast.notifyDataSetChanged();
-                mListPastOrder.setAdapter(mAdapterPast);
-
-                mListPastOrder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        selectedOrder = adapterView.getItemAtPosition(i).toString();
-                        mAdapterPast.notifyDataSetChanged();
-
-
-                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-
-                    }
-                });
+                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultOrders);
+                mAdapter.notifyDataSetChanged();
+//                mListPastOrder.setAdapter(mAdapterPast);
+//
+//                mListPastOrder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                        selectedOrder = adapterView.getItemAtPosition(i).toString();
+//                        mAdapterPast.notifyDataSetChanged();
+//
+//
+//                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//
+//                    }
+//                });
 
             } else if (position == 1){
+
+//                requestApiGetPendingOrders();
                 mListPending = (ListView) view.findViewById(R.id.listview);
-                mAdapterPending = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
-                mAdapterPending.notifyDataSetChanged();
-                mListPending.setAdapter(mAdapterPending);
-
-                mListPending.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        selectedOrder = adapterView.getItemAtPosition(i).toString();
-                        mAdapterPending.notifyDataSetChanged();
-
-                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-
-                    }
-                });
+                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+                mAdapter.notifyDataSetChanged();
+//                mListPending.setAdapter(mAdapterPending);
+//
+//                mListPending.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                        selectedOrder = adapterView.getItemAtPosition(i).toString();
+//                        mAdapterPending.notifyDataSetChanged();
+//
+//                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//
+//                    }
+//                });
 
             } else if (position == 2){
+
+//                requestApiGetCompletedOrders();
                 mListCompleted = (ListView) view.findViewById(R.id.listview);
-                mAdapterCompleted = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultCompleted);
-                mAdapterCompleted.notifyDataSetChanged();
-                mListCompleted.setAdapter(mAdapterCompleted);
-
-                mListCompleted.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        selectedOrder = adapterView.getItemAtPosition(i).toString();
-                        mAdapterCompleted.notifyDataSetChanged();
-
-                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-
-                    }
-                });
+                mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultCompleted);
+                mAdapter.notifyDataSetChanged();
+//                mListCompleted.setAdapter(mAdapterCompleted);
+//
+//                mListCompleted.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                        selectedOrder = adapterView.getItemAtPosition(i).toString();
+//                        mAdapterCompleted.notifyDataSetChanged();
+//
+//                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//
+//                    }
+//                });
             }
 
 
 
+            mListViewPager.setAdapter(mAdapter);
+            mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-//            mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                    selectedOrder = adapterView.getItemAtPosition(i).toString();
-//                    mAdapter.notifyDataSetChanged();
-//
-//                    PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-//
-//                }
-//            });
+                    selectedOrder = adapterView.getItemAtPosition(i).toString();
+                    mAdapter.notifyDataSetChanged();
+
+                    PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                }
+            });
 
 
 
@@ -350,7 +365,7 @@ public class ProfileFragment extends Fragment {
     private void updateLastPage(int page) {
         ListView mList = getListView(page);
         OrderListAdapter adapter = getListAdapter(page);
-        mList.setAdapter(adapter);
+//        mList.setAdapter(adapter);
     }
 
     private ListView getListView(int position){
@@ -581,7 +596,12 @@ public class ProfileFragment extends Fragment {
                                 Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
                             }
 
-                            mViewPager.setAdapter(mPageAdapter);
+//                            mViewPager.setAdapter(mPageAdapter);
+//                            mViewPager.setCurrentItem(1);
+
+                            mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultOrders);
+                            mAdapter.notifyDataSetChanged();
+                            mListViewPager.setAdapter(mAdapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -629,9 +649,9 @@ public class ProfileFragment extends Fragment {
 
 //                            mViewPager.setAdapter(mPageAdapter);
 
-                            mAdapterCompleted = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultCompleted);
-                            mAdapterCompleted.notifyDataSetChanged();
-                            mListViewPager.setAdapter(mAdapterCompleted);
+                            mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultCompleted);
+                            mAdapter.notifyDataSetChanged();
+                            mListViewPager.setAdapter(mAdapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -679,10 +699,16 @@ public class ProfileFragment extends Fragment {
 
 //                            mViewPager.setAdapter(mPageAdapter);
 
-                            mAdapterPending = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
-                            mAdapterPending.notifyDataSetChanged();
-                            mListViewPager.setAdapter(mAdapterPending);
+//                            mAdapterPending = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+//                            mAdapterPending.notifyDataSetChanged();
+//                            mListViewPager.setAdapter(mAdapterPending);
 
+                            mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+                            mAdapter.notifyDataSetChanged();
+                            mListViewPager.setAdapter(mAdapter);
+
+//                            mViewPager.setAdapter(mPageAdapter);
+//                            mViewPager.setCurrentItem(1);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
