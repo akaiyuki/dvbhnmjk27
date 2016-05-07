@@ -24,6 +24,15 @@ public class Singleton {
     public static ArrayList<String> maxColor = new ArrayList<>();
     public static String colorId;
     public static int selectedCard;
+    public static int chosenDay;
+
+    public static int getChosenDay() {
+        return chosenDay;
+    }
+
+    public static void setChosenDay(int chosenDay) {
+        Singleton.chosenDay = chosenDay;
+    }
 
     public static int getSelectedCard() {
         return selectedCard;

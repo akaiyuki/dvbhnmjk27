@@ -57,6 +57,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 /**
@@ -88,6 +89,8 @@ public class DeliveryDetailsFragment extends Fragment {
 
     private EditText mEditFname;
     private EditText mEditLname;
+
+    private int orderPlacement;
 
     private String delAddress;
 
@@ -147,7 +150,8 @@ public class DeliveryDetailsFragment extends Fragment {
                         mEditContact.getText().length() != 0 &&
                         mEditLandmark.getText().length() != 0 &&
                         mEditTown.getText().length() != 0 &&
-                        Singleton.getSelectedDay() != 1) {
+                        Singleton.getSelectedDay() != 1 &&
+                        mEditDelDate.getText().length() != 0) {
 
                     delDate = mEditDelDate.getText().toString();
                     instructions = mEditInstructions.getText().toString();
@@ -185,11 +189,50 @@ public class DeliveryDetailsFragment extends Fragment {
 
                     if (bitmap != null) {
 
-                        PEngine.switchFragment((BaseActivity) getActivity(), new BillingInfoFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                        orderPlacement = 1;
+                        new AddItemTask().execute();
 
                     }
                 } else {
-                    PDialog.showDialogError((BaseActivity) getActivity(),"Please Complete Delivery Information");
+
+                    if (Singleton.getSelectedDay() == 1){
+                        PDialog.showDialogError((BaseActivity) getActivity(),"Invalid Delivery Date");
+                    }
+                    else {
+//                        Calendar calendar = Calendar.getInstance();
+//                        GregorianCalendar GregorianCalendar = new GregorianCalendar(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH-1);
+//
+//                        int dayOfWeek=GregorianCalendar.get(GregorianCalendar.DAY_OF_MONTH);
+//
+//                        if (Singleton.getChosenDay() == dayOfWeek){
+//                            // Initialize a new GradientDrawable
+//                            GradientDrawable gd = new GradientDrawable();
+//
+//                            // Specify the shape of drawable
+//                            gd.setShape(GradientDrawable.RECTANGLE);
+//
+//                            // Set the fill color of drawable
+//                            gd.setColor(Color.TRANSPARENT); // make the background transparent
+//
+//                            // Create a 2 pixels width red colored border for drawable
+//                            gd.setStroke(2, Color.RED); // border width and color
+//
+//                            // Make the border rounded
+//                            gd.setCornerRadius(15.0f); // border corner radius
+//
+//                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                                mEditDelDate.setBackground(gd);
+//                            }
+//
+//                            PDialog.showDialogError((BaseActivity) getActivity(),"Invalid Delivery Date");
+//
+//                        } else {
+
+                            PDialog.showDialogError((BaseActivity) getActivity(), "Please Complete Delivery Information");
+
+//                        }
+
+                        }
                 }
 
 
@@ -221,7 +264,8 @@ public class DeliveryDetailsFragment extends Fragment {
                         mEditContact.getText().length() != 0 &&
                         mEditLandmark.getText().length() != 0 &&
                         mEditTown.getText().length() != 0 &&
-                        Singleton.getSelectedDay() != 1
+                        Singleton.getSelectedDay() != 1 &&
+                        mEditDelDate.getText().length() != 0
                         ) {
 
                     delDate = mEditDelDate.getText().toString();
@@ -254,12 +298,18 @@ public class DeliveryDetailsFragment extends Fragment {
 
                     if (bitmap != null) {
 
+                        orderPlacement = 0;
                         new AddItemTask().execute();
                     } else {
                         Log.i("nobitmap","nobitmap");
                     }
                 } else {
-                    PDialog.showDialogError((BaseActivity) getActivity(),"Please Complete Delivery Information");
+
+                    if (Singleton.getSelectedDay() == 1){
+                        PDialog.showDialogError((BaseActivity) getActivity(),"Invalid Delivery Date");
+                    } else {
+                        PDialog.showDialogError((BaseActivity) getActivity(), "Please Complete Delivery Information");
+                    }
                 }
 
             }
@@ -403,10 +453,17 @@ public class DeliveryDetailsFragment extends Fragment {
 
                     if (JResponse.getInt("Status") == StatusResponse.STATUS_SUCCESS){
 
-                        Intent intent = new Intent(getActivity(),MainActivity.class);
-                        intent.putExtra("goto","collection");
-                        startActivity(intent);
-                        getActivity().finish();
+                        if (orderPlacement == 0) {
+
+                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                            intent.putExtra("goto", "collection");
+                            startActivity(intent);
+                            getActivity().finish();
+
+                        } else {
+                            PEngine.switchFragment((BaseActivity) getActivity(), new BillingInfoFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                        }
 
                     }
 

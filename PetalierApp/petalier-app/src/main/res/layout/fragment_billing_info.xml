@@ -54,7 +54,8 @@
             android:layout_below="@+id/app_bar"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -102,7 +103,8 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="5dp"
-            android:background="@color/colorLightGary" />
+            android:background="@color/colorLightGary"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/linear2"
@@ -110,7 +112,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/divider1"
             android:layout_marginLeft="30dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -146,7 +149,8 @@
             android:layout_height="1dip"
             android:layout_below="@+id/linear2"
             android:layout_marginTop="20dp"
-            android:background="@color/colorLightGary" />
+            android:background="@color/colorLightGary"
+            android:visibility="gone"/>
 
 
         <LinearLayout
@@ -584,7 +588,8 @@
                 android:layout_height="1dip"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorLightGary" />
+                android:background="@color/colorLightGary"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/txtotherinfo"
@@ -592,7 +597,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Other Information Required"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -601,7 +607,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <TextView
@@ -633,7 +640,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <TextView
@@ -666,7 +674,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <TextView
@@ -698,7 +707,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <TextView

@@ -53,15 +53,18 @@ public class PDatePicker implements DatePickerDialog.OnDateSetListener{
 //        Calendar minAdultAge = new GregorianCalendar();
 //        minAdultAge.add(Calendar.YEAR, -18);
 
-        GregorianCalendar GregorianCalendar = new GregorianCalendar(year, monthOfYear, dayOfMonth-1);
+        GregorianCalendar GregorianCalendar = new GregorianCalendar(year, monthOfYear, dayOfMonth - 1);
 
-        int dayOfWeek=GregorianCalendar.get(GregorianCalendar.DAY_OF_WEEK);
+        int dayOfWeek = GregorianCalendar.get(GregorianCalendar.DAY_OF_WEEK);
 
-        mEditText.setText(monthOfYear+1 +"/"+dayOfMonth+"/"+year);
+        mEditText.setText(monthOfYear + 1 + "/" + dayOfMonth + "/" + year);
 
         Singleton.setSelectedDay(dayOfWeek);
 
+        int dayMonth = GregorianCalendar.get(GregorianCalendar.DAY_OF_MONTH);
         Log.i("currentday", String.valueOf(dayOfWeek));
+
+        Singleton.setChosenDay(dayMonth);
 
 
         // Initialize a new GradientDrawable
@@ -80,7 +83,7 @@ public class PDatePicker implements DatePickerDialog.OnDateSetListener{
         gd.setCornerRadius(15.0f); // border corner radius
 
 
-        if (dayOfWeek == 3){
+        if (dayOfWeek == 3) {
             // Finally, apply the GradientDrawable as TextView background
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 mEditText.setBackground(gd);
@@ -88,9 +91,7 @@ public class PDatePicker implements DatePickerDialog.OnDateSetListener{
 
             Singleton.setSelectedDay(1);
 
-        }
-
-        else if (dayOfWeek == 4){
+        } else if (dayOfWeek == 4) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 mEditText.setBackground(gd);
             }
@@ -98,8 +99,27 @@ public class PDatePicker implements DatePickerDialog.OnDateSetListener{
             Singleton.setSelectedDay(1);
 
         } else {
-            mEditText.setBackgroundResource(R.drawable.ic_small_box);
+
+//            Calendar calendar = Calendar.getInstance();
+//            int day = GregorianCalendar.get(GregorianCalendar.DAY_OF_WEEK);
+//
+//
+//            Log.e("currentcalendar", String.valueOf(day));
+//
+//            if (dayOfWeek != day){
+                mEditText.setBackgroundResource(R.drawable.ic_small_box);
             Singleton.setSelectedDay(0);
+//            } else {
+//                // Finally, apply the GradientDrawable as TextView background
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                    mEditText.setBackground(gd);
+//                }
+//                Singleton.setSelectedDay(1);
+//        }
+
+
+
+
         }
 
 

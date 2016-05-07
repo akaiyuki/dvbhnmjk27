@@ -67,5 +67,6 @@ dependencies {
     compile 'com.felipecsl:gifimageview:2.0.0'
 
     compile 'biz.kasual:materialnumberpicker:1.2.1'
+    compile 'com.github.paolorotolo:expandableheightlistview:1.0.0'
 
 }

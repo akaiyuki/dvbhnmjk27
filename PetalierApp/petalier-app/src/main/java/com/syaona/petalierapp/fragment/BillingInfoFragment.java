@@ -130,8 +130,6 @@ public class BillingInfoFragment extends Fragment {
                         mEditTown.getText().length() != 0 &&
                         mEditCity.getText().length() != 0 &&
                         mEditPostal.getText().length() != 0 &&
-                        mEditRelationship.getText().length() != 0 &&
-                        mEditHear.getText().length() != 0 &&
                         mEditCountry.getText().length() != 0
                         )
 

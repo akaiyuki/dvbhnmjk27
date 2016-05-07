@@ -1,9 +1,11 @@
 package com.syaona.petalierapp.test;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +18,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -42,6 +46,7 @@ import com.syaona.petalierapp.core.PConfiguration;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.dialog.PDialog;
 import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.fragment.SendNoteFragment;
@@ -141,12 +146,13 @@ public class DesignBoxActivity extends BaseActivity {
 //                finish();
 
 
-                if (Singleton.getImage3D() != null &&
-                        !PSharedPreferences.getSomeStringValue(AppController.getInstance(), "box_color").isEmpty()) {
+                if (Singleton.getImage3D() != null ) {
                     Intent intent = new Intent(DesignBoxActivity.this, MainActivity.class);
                     intent.putExtra("goto", "send_card");
                     startActivity(intent);
                     finish();
+                } else {
+                    showDialogError("Preview the Arrangement before proceeding with your order");
                 }
 
 
@@ -431,6 +437,38 @@ public class DesignBoxActivity extends BaseActivity {
             return null;
         }
     }
+
+
+
+    public void showDialogError(String message){
+
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_error);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+        TextView mTextTitle = (TextView) dialog.findViewById(R.id.txterror);
+        mTextTitle.setText(message);
+        mTextTitle.setTypeface(Fonts.gothambookregular);
+
+
+        LinearLayout mButtonDone = (LinearLayout) dialog.findViewById(R.id.button_ok);
+        mButtonDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                dialog.dismiss();
+
+            }
+        });
+
+        dialog.show();
+
+
+    }
+
 
 
 

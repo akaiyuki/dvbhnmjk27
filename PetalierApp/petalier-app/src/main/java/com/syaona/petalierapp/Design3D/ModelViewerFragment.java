@@ -171,9 +171,27 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 //            getCurrentScene().addChild(debugViz);
 
 
+
+
             //Loading of model object
-            LoaderOBJ objParser = new LoaderOBJ(mContext.getResources(),
-                    mTextureManager, R.raw.lucy_obj);
+            LoaderOBJ objParser = null;
+
+            if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("diana")) {
+                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.diana_obj);
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")) {
+                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.lauren_obj);
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")) {
+                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.frieda_obj);
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")) {
+                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.beatriz_obj);
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")) {
+                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.felisicima_obj);
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")) {
+                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.lucy_obj);
+            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")) {
+                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.chloe_obj);
+            }
+
             try {
 
                 objParser.parse();

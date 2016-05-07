@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
@@ -50,7 +51,7 @@ import java.util.Map;
  */
 public class SummaryOrderFragment extends Fragment {
 
-    private ListView mListView;
+    private ExpandableHeightListView mListView;
     private OrderListAdapter mAdapter;
     private ArrayList<JSONObject> mResultSet = new ArrayList<>();
     private String total;
@@ -62,6 +63,8 @@ public class SummaryOrderFragment extends Fragment {
     private ArrayList<JSONObject> nameKey = new ArrayList<>();
 
     private ArrayList<Orders> mResultSetOrder = new ArrayList<>();
+
+    private TextView mTextSubtotal;
 
 
     public SummaryOrderFragment() {
@@ -147,19 +150,21 @@ public class SummaryOrderFragment extends Fragment {
         txtTotal = (TextView) view.findViewById(R.id.txt_total);
 
 
-        mListView = (ListView) view.findViewById(R.id.listview);
+        mListView = (ExpandableHeightListView) view.findViewById(R.id.listview);
 //        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
 //        mAdapter.notifyDataSetChanged();
 //        mListView.setAdapter(mAdapter);
 
+        mListView.setExpanded(true);
 
-        mListView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                view.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
+
+//        mListView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                view.getParent().requestDisallowInterceptTouchEvent(true);
+//                return false;
+//            }
+//        });
 
 
         directBank = (CheckBox) view.findViewById(R.id.check_default);
@@ -191,6 +196,8 @@ public class SummaryOrderFragment extends Fragment {
             }
         });
 
+        mTextSubtotal = (TextView) view.findViewById(R.id.txt_subtotal);
+
         return view;
     }
 
@@ -214,6 +221,8 @@ public class SummaryOrderFragment extends Fragment {
 
                                 total = jsonObject.getJSONObject("Data").getString("cart_total");
                                 txtTotal.setText("PHP " + total);
+
+                                mTextSubtotal.setText("PHP "+ total);
 
 
 

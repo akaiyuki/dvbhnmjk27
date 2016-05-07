@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
@@ -51,7 +52,7 @@ import java.util.HashMap;
  */
 public class OrderSummaryFragment extends Fragment {
 
-    private ListView mListView;
+    private ExpandableHeightListView mListView;
     private OrderListAdapter mAdapter;
     private ArrayList<JSONObject> mResultSet = new ArrayList<>();
     private String total;
@@ -60,6 +61,8 @@ public class OrderSummaryFragment extends Fragment {
     private TextView txtOrder;
     private TextView txtDate;
     private TextView txtTotal;
+
+    private TextView mTextSubTotal;
 
 
     public OrderSummaryFragment() {
@@ -140,20 +143,24 @@ public class OrderSummaryFragment extends Fragment {
             }
         });
 
-        mListView = (ListView) view.findViewById(R.id.listview);
+        mListView = (ExpandableHeightListView) view.findViewById(R.id.listview);
         mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
         mAdapter.notifyDataSetChanged();
         mListView.setAdapter(mAdapter);
 
+        mListView.setExpanded(true);
 
-        mListView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                view.getParent().requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
 
+//        mListView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                view.getParent().requestDisallowInterceptTouchEvent(true);
+//                return false;
+//            }
+//        });
+
+
+        mTextSubTotal = (TextView) view.findViewById(R.id.txt_subtotal);
 
         return view;
     }
@@ -252,6 +259,8 @@ public class OrderSummaryFragment extends Fragment {
                                 txtDate.setText(jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order").getString("post_date"));
 
                                 txtTotal.setText("PHP " + jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("order_total_display"));
+
+                                mTextSubTotal.setText("PHP " + jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("order_total_display"));
 
                                 mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
                                 mAdapter.notifyDataSetChanged();
