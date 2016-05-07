@@ -422,12 +422,12 @@ public class ProfileFragment extends Fragment {
             JSONObject row = mData.get(position);
 
             try {
-                holder.text1.setText(row.getString("order_title"));
+                holder.text1.setText("Order #"+row.getString("id"));
                 holder.text1.setTypeface(Fonts.gothambold);
                 holder.text2.setText(row.getString("date_created"));
                 holder.text2.setTypeface(Fonts.gothambookregular);
-                holder.text3.setText(row.getString("order_status"));
-                holder.text3.setTypeface(Fonts.gothambookregular);
+                holder.text3.setText("");
+//                holder.text3.setTypeface(Fonts.gothambookregular);
 
             } catch (JSONException e) {
                 e.printStackTrace();

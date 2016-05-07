@@ -127,6 +127,7 @@ public class ChooseCardFragment extends Fragment {
 //                PEngine.switchFragment((BaseActivity) getActivity(), new SendNoteFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
             startActivity(new Intent(getActivity(), OrderActivity.class));
+                getActivity().finish();
 
             }
         });

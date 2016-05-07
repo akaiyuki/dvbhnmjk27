@@ -114,9 +114,11 @@ public class MyCartFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                PEngine.switchFragment((BaseActivity) getActivity(), new BillingInfoFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
-//                dialogNumberPicker();
+
+                if (mResultSetOrder.size() != 0){
+                    PEngine.switchFragment((BaseActivity) getActivity(), new BillingInfoFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                }
 
             }
         });

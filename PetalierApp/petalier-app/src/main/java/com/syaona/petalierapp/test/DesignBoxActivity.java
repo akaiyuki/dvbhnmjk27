@@ -182,6 +182,7 @@ public class DesignBoxActivity extends BaseActivity {
 //        final int txtQuantity = Integer.parseInt(mTextQuantity.getText().toString());
 
         PSharedPreferences.setSomeStringValue(AppController.getInstance(),"quantity","1");
+        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"box_color","black");
 
         mButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override

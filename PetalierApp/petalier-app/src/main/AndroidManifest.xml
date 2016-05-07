@@ -16,7 +16,7 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -80,10 +80,13 @@
         <activity android:name=".test.TakePhotoActivity" />
         <activity android:name=".test.PictureActivity" />
         <activity android:name=".test.PhotoFromCameraActivity" />
-        <activity android:name=".test.DesignBoxActivity"></activity>
+        <activity android:name=".test.DesignBoxActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="1ee2a0cff833e434204ac00384402e2b53f839b1" />
+
+        <activity android:name=".activity.PaypalActivity"></activity>
     </application>
 
 </manifest>

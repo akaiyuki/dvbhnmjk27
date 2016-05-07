@@ -87,6 +87,7 @@ public class SendNoteFragment extends Fragment {
                     } else {
                         Singleton.setLoginFromMain(0);
                         startActivity(new Intent(getActivity(), LoginActivity.class));
+                        getActivity().finish();
                     }
 
 //                }

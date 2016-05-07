@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,26 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
+import com.syaona.petalierapp.activity.OrderActivity;
+import com.syaona.petalierapp.activity.PaypalActivity;
+import com.syaona.petalierapp.activity.ProfileActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PDebug;
+import com.syaona.petalierapp.core.PRequest;
+import com.syaona.petalierapp.core.PResponseErrorListener;
+import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.enums.Singleton;
+import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.Fonts;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -91,6 +105,8 @@ public class PaypalFragment extends Fragment {
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
 
+            PaypalActivity.INSTANCE.startAnim();
+
         }
 
         @Override
@@ -99,7 +115,12 @@ public class PaypalFragment extends Fragment {
 
             PDebug.logDebug("Paypal", "url: " + url);
 
+            PaypalActivity.INSTANCE.stopAnim();
+
             if (url.contains("success")) {
+
+
+
                 webView.stopLoading();
 
                 Handler mainHandler = new Handler(AppController.getInstance().getMainLooper());
@@ -111,7 +132,7 @@ public class PaypalFragment extends Fragment {
 //                        startActivity(intent);
 //                        getActivity().finish();
 
-                        SummaryOrderFragment.INSTANCE.requestApiClearCart();
+                        requestApiClearCart();
 
                     }
                 };
@@ -120,5 +141,46 @@ public class PaypalFragment extends Fragment {
             }
         }
     }
+
+
+    public void requestApiClearCart() {
+
+        HashMap<String, String> params = new HashMap<>();
+//        params.put("id", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "user_id"));
+
+        PRequest request = new PRequest(PRequest.apiMethodPostClearCart, params,
+                new PResponseListener(){
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                startActivity(new Intent(getActivity(), ProfileActivity.class));
+                                getActivity().finish();
+
+                            } else {
+                                Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new PResponseErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+            }
+        });
+
+        request.execute();
+    }
+
+
 
 }

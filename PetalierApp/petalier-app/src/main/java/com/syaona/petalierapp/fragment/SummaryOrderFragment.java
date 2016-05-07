@@ -26,6 +26,8 @@ import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
+import com.syaona.petalierapp.activity.PaypalActivity;
+import com.syaona.petalierapp.activity.ProfileActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PEngine;
@@ -402,7 +404,9 @@ public class SummaryOrderFragment extends Fragment {
 
                                     }
 
-                                    PEngine.switchFragment((BaseActivity) getActivity(), new PaypalFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//                                    PEngine.switchFragment((BaseActivity) getActivity(), new PaypalFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                                    startActivity(new Intent(getActivity(), PaypalActivity.class));
 
 
                                 } else {
@@ -503,9 +507,12 @@ public class SummaryOrderFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
-                                Intent intent = new Intent(getActivity(),MainActivity.class);
-                                intent.putExtra("goto","profile");
-                                startActivity(intent);
+//                                Intent intent = new Intent(getActivity(),MainActivity.class);
+//                                intent.putExtra("goto","profile");
+//                                startActivity(intent);
+//                                getActivity().finish();
+
+                                startActivity(new Intent(getActivity(), ProfileActivity.class));
                                 getActivity().finish();
 
                             } else {
