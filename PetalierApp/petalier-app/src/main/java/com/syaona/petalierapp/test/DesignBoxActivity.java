@@ -78,6 +78,8 @@ public class DesignBoxActivity extends BaseActivity {
     private ImageButton mButtonAdd;
     private ImageButton mButtonMinus;
 
+    public static ArrayList<String> color = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +118,11 @@ public class DesignBoxActivity extends BaseActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.INSTANCE.onBackPressed();
+
+                Intent intent = new Intent(DesignBoxActivity.this, MainActivity.class);
+                intent.putExtra("goto", "collection");
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -129,12 +135,26 @@ public class DesignBoxActivity extends BaseActivity {
         mCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DesignBoxActivity.this, MainActivity.class);
-                intent.putExtra("goto","send_card");
-                startActivity(intent);
-                finish();
+//                Intent intent = new Intent(DesignBoxActivity.this, MainActivity.class);
+//                intent.putExtra("goto", "send_card");
+//                startActivity(intent);
+//                finish();
+
+
+                if (Singleton.getImage3D() != null &&
+                        !PSharedPreferences.getSomeStringValue(AppController.getInstance(), "box_color").isEmpty()) {
+                    Intent intent = new Intent(DesignBoxActivity.this, MainActivity.class);
+                    intent.putExtra("goto", "send_card");
+                    startActivity(intent);
+                    finish();
+                }
+
+
             }
         });
+
+
+
 
         mRecyclerViewRegular = (RecyclerView) findViewById(R.id.listview_color_regular);
         mRecyclerViewSpecial = (RecyclerView) findViewById(R.id.listview_color_special);
@@ -223,6 +243,11 @@ public class DesignBoxActivity extends BaseActivity {
         requestApiGetColors();
 
 
+        if (color.size() != 0){
+            color.clear();
+            Singleton.getMaxColor().clear();
+        }
+
 
     }
 
@@ -277,6 +302,23 @@ public class DesignBoxActivity extends BaseActivity {
 
 
                         Singleton.setChosenColor(bitmap);
+
+                        Singleton.setColorId(data.getString("id"));
+
+
+                        int maxColor = Integer.parseInt(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "max_color"));
+
+                        if (color.size() < maxColor) {
+                            if (!color.contains(data.getString("id"))) {
+                                color.add(data.getString("id"));
+                            }
+                        }
+
+
+                        Singleton.setMaxColor(color);
+
+
+                        Log.i("maxcolorselected", String.valueOf(Singleton.getMaxColor()));
 
 
                     } catch (JSONException e) {

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -59,6 +60,9 @@ public class ChooseCardFragment extends Fragment {
     private String mTextTitleMain;
     private CardListAdapter mCardAdapter;
     private GridView mGridView;
+
+    public String selectedCard;
+
 
     public ChooseCardFragment() {
         // Required empty public constructor
@@ -127,6 +131,19 @@ public class ChooseCardFragment extends Fragment {
         mCardAdapter = new CardListAdapter(getActivity(), R.layout.custom_row_cards,  mResultCards);
         mCardAdapter.notifyDataSetChanged();
         mGridView.setAdapter(mCardAdapter);
+
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectedCard = adapterView.getItemAtPosition(i).toString();
+
+                Singleton.setSelectedCard(1);
+
+                mCardAdapter.notifyDataSetChanged();
+
+
+            }
+        });
 
 
         /* trial display image */
@@ -220,6 +237,10 @@ public class ChooseCardFragment extends Fragment {
                 holder.text1 = (TextView) convertView.findViewById(R.id.txtcard1);
                 holder.imageView = (ImageView) convertView.findViewById(R.id.card1);
 
+                holder.lineActiveImage = (ImageView) convertView.findViewById(R.id.lineactive);
+                holder.lineInactiveImage = (ImageView) convertView.findViewById(R.id.lineinactive);
+
+
 
                 convertView.setTag(holder);
             } else {
@@ -253,19 +274,52 @@ public class ChooseCardFragment extends Fragment {
 
 
 
-            holder.imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+//            holder.imageView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    try {
+//                        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"card",row.getString("card_image_link"));
+//                        Log.i("cardlink",row.getString("card_image_link"));
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//
+//
+//                }
+//            });
 
-                    try {
-                        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"card",row.getString("card_image_link"));
-                        Log.i("cardlink",row.getString("card_image_link"));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+
+
+            if (selectedCard != null){
+
+
+                try {
+                    JSONObject jsonObject = new JSONObject(selectedCard);
+
+                    if (jsonObject.getString("card_name").equalsIgnoreCase(holder.text1.getText().toString())){
+                        holder.lineActiveImage.setVisibility(View.VISIBLE);
+                        holder.lineInactiveImage.setVisibility(View.GONE);
+
+                        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "card", row.getString("card_image_link"));
+                        Log.i("cardlink", row.getString("card_image_link"));
+
+                    } else {
+                        holder.lineActiveImage.setVisibility(View.GONE);
+                        holder.lineInactiveImage.setVisibility(View.VISIBLE);
+
                     }
 
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            });
+
+
+
+            }
+
+
 
 
             return convertView;
@@ -277,6 +331,8 @@ public class ChooseCardFragment extends Fragment {
             TextView text3;
             TextView text4;
             ImageView imageView;
+            ImageView lineActiveImage;
+            ImageView lineInactiveImage;
         }
     }
 

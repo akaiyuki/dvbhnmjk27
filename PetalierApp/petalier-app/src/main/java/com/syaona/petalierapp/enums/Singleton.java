@@ -6,6 +6,8 @@ import android.net.Uri;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 
+import java.util.ArrayList;
+
 /**
  * Created by smartwavedev on 4/18/16.
  */
@@ -19,6 +21,33 @@ public class Singleton {
     public static int selectedFlower;
     public static Bitmap chosenColor;
     public static Bitmap image3D;
+    public static ArrayList<String> maxColor = new ArrayList<>();
+    public static String colorId;
+    public static int selectedCard;
+
+    public static int getSelectedCard() {
+        return selectedCard;
+    }
+
+    public static void setSelectedCard(int selectedCard) {
+        Singleton.selectedCard = selectedCard;
+    }
+
+    public static String getColorId() {
+        return colorId;
+    }
+
+    public static void setColorId(String colorId) {
+        Singleton.colorId = colorId;
+    }
+
+    public static ArrayList<String> getMaxColor() {
+        return maxColor;
+    }
+
+    public static void setMaxColor(ArrayList<String> maxColor) {
+        Singleton.maxColor = maxColor;
+    }
 
     public static Bitmap getImage3D() {
         return image3D;

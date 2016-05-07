@@ -1,24 +1,3 @@
-newmtl lambert66SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd white.jpg
-Ni 1.00
-newmtl pCube15SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd squarebox_black.jpg
-Ni 1.00
-newmtl pCube16SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd squarebox_white.jpg
-Ni 1.00
 newmtl pPipe4SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -26,10 +5,15 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd roundbox_black.jpg
 Ni 1.00
-newmtl pPipe6SG
+newmtl polySurface107SG
 illum 4
-Kd 0.00 0.00 0.00
+Kd 0.75 0.75 0.75
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd roundbox_white.jpg
+Ni 1.00
+newmtl polySurface107SG1
+illum 4
+Kd 0.00 0.12 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
 Ni 1.00

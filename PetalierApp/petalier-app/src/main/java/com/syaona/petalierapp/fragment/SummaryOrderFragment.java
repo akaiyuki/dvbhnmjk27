@@ -351,10 +351,9 @@ public class SummaryOrderFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
-                                Intent intent = new Intent(getActivity(),MainActivity.class);
-                                intent.putExtra("goto","profile");
-                                startActivity(intent);
-                                getActivity().finish();
+
+                                requestApiClearCart();
+
 
                             } else {
                                 Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
@@ -427,6 +426,51 @@ public class SummaryOrderFragment extends Fragment {
                                 mAdapter.notifyDataSetChanged();
                                 mListView.setAdapter(mAdapter);
 
+    }
+
+
+
+
+
+
+    public void requestApiClearCart() {
+
+        HashMap<String, String> params = new HashMap<>();
+//        params.put("id", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "user_id"));
+
+        PRequest request = new PRequest(PRequest.apiMethodPostClearCart, params,
+                new PResponseListener(){
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                Intent intent = new Intent(getActivity(),MainActivity.class);
+                                intent.putExtra("goto","profile");
+                                startActivity(intent);
+                                getActivity().finish();
+
+                            } else {
+                                Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new PResponseErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+            }
+        });
+
+        request.execute();
     }
 
 

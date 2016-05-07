@@ -168,6 +168,17 @@ public class DeliveryDetailsFragment extends Fragment {
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"lname",lName);
 
 
+                    Log.i("deliverydetails", delDate + " " + instructions + " " + contact + " " + town + " " + landmark + " " + fName + " " + lName + " " +
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "id") + " " +
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "quantity") + " " +
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "note") + " " +
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "box_color") + " " +
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "card") + " " +
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "id"));
+
+
+
+
                     bitmap = Singleton.getImage3D();
 
                     Log.i("deldate", mEditDelDate.getText().toString());
@@ -238,7 +249,8 @@ public class DeliveryDetailsFragment extends Fragment {
                             PSharedPreferences.getSomeStringValue(AppController.getInstance(),"quantity")+" "+
                             PSharedPreferences.getSomeStringValue(AppController.getInstance(), "note")+" "+
                             PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color")+" "+
-                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "card"));
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(), "card")+" "+
+                            PSharedPreferences.getSomeStringValue(AppController.getInstance(),"id"));
 
                     if (bitmap != null) {
 
