@@ -28,10 +28,12 @@ import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.object.Orders;
 import com.syaona.petalierapp.view.Fonts;
@@ -58,13 +60,17 @@ public class SummaryOrderFragment extends Fragment {
     private TextView txtTotal;
     private CheckBox directBank;
     private CheckBox payPal;
-    private int paymentMethod;
+    public int paymentMethod;
     private ArrayList<String> keySetCart = new ArrayList<>();
     private ArrayList<JSONObject> nameKey = new ArrayList<>();
+
+    private ArrayList<JSONObject> paypalUrl = new ArrayList<>();
 
     private ArrayList<Orders> mResultSetOrder = new ArrayList<>();
 
     private TextView mTextSubtotal;
+
+    public static SummaryOrderFragment INSTANCE = null;
 
 
     public SummaryOrderFragment() {
@@ -85,6 +91,8 @@ public class SummaryOrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_summary_order, container, false);
+
+        INSTANCE = this;
 
         /* Initialize toolbar */
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.app_bar);
@@ -174,6 +182,11 @@ public class SummaryOrderFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (directBank.isChecked()){
+
+                    if (payPal.isChecked()){
+                        payPal.setChecked(false);
+                    }
+
                     paymentMethod = 1;
                 }
             }
@@ -183,7 +196,15 @@ public class SummaryOrderFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (payPal.isChecked()){
+
+                    if (directBank.isChecked()){
+                        directBank.setChecked(false);
+                    }
+
                     paymentMethod = 2;
+
+
+
                 }
             }
         });
@@ -192,7 +213,11 @@ public class SummaryOrderFragment extends Fragment {
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestApiCreateOrder();
+
+                if (directBank.isChecked() || payPal.isChecked()){
+                    requestApiCreateOrder();
+                }
+
             }
         });
 
@@ -347,8 +372,8 @@ public class SummaryOrderFragment extends Fragment {
 
         HashMap<String, String> params = new HashMap<>();
         params.put("enum", String.valueOf(paymentMethod));
-        params.put("heardAboutUs", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "hear"));
-        params.put("relationshipToReceiver", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"relationship"));
+        params.put("heardAboutUs", "sample");
+        params.put("relationshipToReceiver", "sample");
 
         PRequest request = new PRequest(PRequest.apiMethodPostCreateOrder, params,
                 new PResponseListener(){
@@ -361,7 +386,28 @@ public class SummaryOrderFragment extends Fragment {
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
 
-                                requestApiClearCart();
+                                if (paymentMethod == 2){
+                                    JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONObject("order").getJSONArray("paypal_links");
+                                    for (int i = 0; i<jsonArray.length(); i++){
+                                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+
+                                        paypalUrl.add(jsonObject1);
+
+
+                                        if (jsonObject1.getString("method").equalsIgnoreCase("redirect")){
+                                            String url = jsonObject1.getString("href");
+                                            Singleton.setPaypalUrl(url);
+                                        }
+
+
+                                    }
+
+                                    PEngine.switchFragment((BaseActivity) getActivity(), new PaypalFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+
+                                } else {
+                                    requestApiClearCart();
+                                }
 
 
                             } else {

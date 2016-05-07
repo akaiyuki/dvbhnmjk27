@@ -69,7 +69,7 @@ public class SplashActivity extends BaseActivity {
         }
 
 
-        int myTimer = 10000;
+        int myTimer = 6000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

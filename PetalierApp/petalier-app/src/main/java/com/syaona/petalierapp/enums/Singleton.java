@@ -25,6 +25,15 @@ public class Singleton {
     public static String colorId;
     public static int selectedCard;
     public static int chosenDay;
+    public static String paypalUrl;
+
+    public static String getPaypalUrl() {
+        return paypalUrl;
+    }
+
+    public static void setPaypalUrl(String paypalUrl) {
+        Singleton.paypalUrl = paypalUrl;
+    }
 
     public static int getChosenDay() {
         return chosenDay;

@@ -124,7 +124,7 @@ public class ProfileFragment extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.INSTANCE.onBackPressed();
+                getActivity().onBackPressed();
             }
         });
 

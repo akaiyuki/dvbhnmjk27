@@ -50,6 +50,8 @@ dependencies {
     }
 
 
+
+
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.mcxiaoke.volley:library:1.0.19'
@@ -65,8 +67,6 @@ dependencies {
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.1.4'
     compile 'org.rajawali3d:rajawali:1.1.337@aar'
     compile 'com.felipecsl:gifimageview:2.0.0'
-
     compile 'biz.kasual:materialnumberpicker:1.2.1'
     compile 'com.github.paolorotolo:expandableheightlistview:1.0.0'
-
 }

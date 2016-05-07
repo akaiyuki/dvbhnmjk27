@@ -258,7 +258,7 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
                 HttpPost httpPost = new HttpPost(
                         PRequest.getApiRootForResource() + PRequest.apiMethodPostDepositSlip);
 
-                httpPost.addHeader("petalier_session_token",PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token"));
+                httpPost.addHeader("petalier_session_token", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token"));
 
                 MultipartEntity entity = new MultipartEntity(
                         HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -266,7 +266,7 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 50, bos);
                 byte[] data = bos.toByteArray();
-                entity.addPart("orderId", new StringBody("995"));
+                entity.addPart("orderId", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"order_id")));
                 entity.addPart("deposit-slip", new ByteArrayBody(data,
                         "depositslip.jpg"));
 
