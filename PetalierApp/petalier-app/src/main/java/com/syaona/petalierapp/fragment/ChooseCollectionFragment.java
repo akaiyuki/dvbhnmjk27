@@ -169,7 +169,8 @@ public class ChooseCollectionFragment extends Fragment {
 
                 selectedFlower = adapterView.getItemAtPosition(i).toString();
 
-                Singleton.setSelectedCollection(1);
+                //Commented cause it is not used
+                //Singleton.setSelectedCollection(1);
 
                 mAdapter.notifyDataSetChanged();
 

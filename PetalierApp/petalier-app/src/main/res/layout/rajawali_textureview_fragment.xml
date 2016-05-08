@@ -5,15 +5,15 @@
     android:layout_height="fill_parent"
     android:background="@color/color3DBackground">
 
-    <include
-        layout="@layout/relative_layout_loader_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3DHolder"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/relative_layout_loader_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
 
         <org.rajawali3d.view.TextureView
             android:id="@+id/rajwali_surface"
@@ -22,12 +22,22 @@
             android:background="#ffffff"
             textureview:frameRate="60.0"
             textureview:renderMode="RENDER_WHEN_DIRTY" />
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/button_photo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Preview Arrangement" />
+        <Button
+            android:id="@+id/button_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Preview Arrangement" />
+
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Note : The screenshot of the flower arrangement to be uploaded should be from top viewpoint."-->
+        <!--android:textColor="@color/colorTextWhite"-->
+        <!--android:layout_marginTop="300dp"-->
+        <!--android:textSize="12sp"/>-->
+    </RelativeLayout>
+
 </FrameLayout>

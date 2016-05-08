@@ -26,6 +26,15 @@ public class Singleton {
     public static int selectedCard;
     public static int chosenDay;
     public static String paypalUrl;
+    public static String uploadedImage;
+
+    public static String getUploadedImage() {
+        return uploadedImage;
+    }
+
+    public static void setUploadedImage(String uploadedImage) {
+        Singleton.uploadedImage = uploadedImage;
+    }
 
     public static String getPaypalUrl() {
         return paypalUrl;

@@ -385,6 +385,8 @@ public class DeliveryDetailsFragment extends Fragment {
         protected void onPreExecute() {
             super.onPreExecute();
 
+            OrderActivity.INSTANCE.startAnim();
+
         }
 
 
@@ -446,6 +448,7 @@ public class DeliveryDetailsFragment extends Fragment {
         @Override
         protected void onPostExecute(String sResponse) {
 
+            OrderActivity.INSTANCE.stopAnim();
 
             try {
 

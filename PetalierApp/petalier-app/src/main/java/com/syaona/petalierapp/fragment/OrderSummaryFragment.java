@@ -35,6 +35,7 @@ import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.dialog.PDialog;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.object.Orders;
 import com.syaona.petalierapp.test.ImageUploadActivity;
@@ -95,7 +96,15 @@ public class OrderSummaryFragment extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.INSTANCE.onBackPressed();
+//                getActivity().onBackPressed();
+
+                if (Singleton.getUploadedImage().equalsIgnoreCase("")){
+                    getActivity().onBackPressed();
+                } else {
+                    PEngine.switchFragment((BaseActivity) getActivity(), new ChooseCollectionFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                }
+
+
             }
         });
 
@@ -105,6 +114,22 @@ public class OrderSummaryFragment extends Fragment {
 
         ImageView mImageProfile = (ImageView) toolbar.findViewById(R.id.profile);
         mImageProfile.setVisibility(View.GONE);
+
+        ImageView mImageReceipt = (ImageView) toolbar.findViewById(R.id.receipt);
+
+        if (!Singleton.getUploadedImage().equalsIgnoreCase("")){
+            mImageReceipt.setVisibility(View.VISIBLE);
+            mImageReceipt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PDialog.displayOnlineImage((BaseActivity) getActivity());
+                }
+            });
+        } else {
+            mImageReceipt.setVisibility(View.GONE);
+        }
+
+
 
         txtOrder = (TextView) view.findViewById(R.id.txtorder);
         txtOrder.setTypeface(Fonts.gothambold);
@@ -255,7 +280,7 @@ public class OrderSummaryFragment extends Fragment {
                                     mResultSet.add(jsonObject1);
                                 }
 
-                                txtOrder.setText(jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order").getString("post_title"));
+                                txtOrder.setText("Order #"+jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order").getString("ID"));
                                 txtDate.setText(jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order").getString("post_date"));
 
                                 txtTotal.setText("PHP " + jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("order_total_display"));

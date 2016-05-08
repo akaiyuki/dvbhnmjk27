@@ -152,7 +152,7 @@ public class DesignBoxActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    showDialogError("Preview the Arrangement before proceeding with your order");
+                    showDialogError("Upload photo of flower arrangement before proceeding with your order.");
                 }
 
 

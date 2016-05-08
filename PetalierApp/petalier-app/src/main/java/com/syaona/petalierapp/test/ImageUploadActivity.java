@@ -41,6 +41,7 @@ import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.dialog.PDialog;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.fragment.DeliveryDetailsFragment;
 import com.syaona.petalierapp.view.Fonts;
@@ -305,11 +306,12 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
 
                     if (JResponse.getInt("Status") == StatusResponse.STATUS_SUCCESS){
 
-                        showSuccessDialog("Photo has been uploaded");
+                        Singleton.setUploadedImage(JResponse.getJSONObject("Data").getJSONObject("Deposit Slip").getString("meta_value"));
+
+                        showSuccessDialog("Receipt has been uploaded");
 
                     }
 
-                    Log.i("uploadimage", JResponse.getJSONObject("Data").getJSONObject("Deposit Slip").getString("meta_value"));
 
                 }
             } catch (Exception e) {
@@ -340,7 +342,7 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
             public void onClick(View v) {
 
                 Intent i = new Intent(ImageUploadActivity.this, MainActivity.class);
-                i.putExtra("goto","collection");
+                i.putExtra("goto","order");
                 startActivity(i);
                 finish();
                 dialog.dismiss();

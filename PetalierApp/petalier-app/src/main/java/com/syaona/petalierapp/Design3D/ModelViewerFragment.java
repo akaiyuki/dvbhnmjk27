@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,36 +63,12 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             public void onClick(View view) {
 
                 ((LoadModelRenderer) mRenderer).setToTopView();
-                View v = ((View) mRenderSurface);
-                v.setDrawingCacheEnabled(true);
-                Bitmap bitmap = v.getDrawingCache();
 
-//                Bitmap bitmap = getBitmap(mLinearLayout);
-//
-//
-//                /* trial */
-//                v.buildDrawingCache();
-//                Bitmap bitmap = ((LoadModelRenderer) mRenderer).setToTopView();
+                ((LoadModelRenderer) mRenderer).takeScreenshot();
 
-                /* save image to singleton */
+                //Singleton.setImage3D(getImageFromStorage());
 
-//                if (bitmap != null && !bitmap.isRecycled()) {
-//                    bitmap.recycle();
-//                    bitmap = null;
-//                }
-                /* sample bitmap image from drawable */
-                Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.card2);
-//                v.setDrawingCacheEnabled(false);
-
-                /* save bitmap to singleton */
-//                Singleton.setImage3D(bitmap.createBitmap(v.getDrawingCache()));
-//                Singleton.setImage3D(bitmap);
-
-                Singleton.setImage3D(b);
-//                v.setDrawingCacheEnabled(false);
-
-
-                displayBitmap(bitmap);
+                displayBitmap(getImageFromStorage());
             }
         });
 
@@ -100,10 +76,13 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
         return mLayout;
     }
 
-    private Bitmap getBitmap(View v) {
-        Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(b);
-        v.draw(c);
+    private Bitmap getImageFromStorage() {
+        String bitmapStoragePath = Environment.getExternalStorageDirectory() + "/screenshot.png";
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        final Bitmap b = BitmapFactory.decodeFile(bitmapStoragePath, options);
+
         return b;
     }
 
@@ -114,15 +93,6 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
         ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
         iv.setImageBitmap(bitmap);
-
-
-//                if (bitmap != null && !bitmap.isRecycled()) {
-//                    bitmap.recycle();
-//                    bitmap = null;
-//                }
-
-//        Singleton.setImage3D(bitmap.createBitmap());
-
 
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
@@ -371,40 +341,12 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             getCurrentScene().replaceAndSwitchCamera(mArcballCamera, camera);
         }
 
-//        public Bitmap setToTopView() {
-//
-//            Camera camera = new Camera();
-//            camera.setPosition(0, 20, 5);
-//            camera.setLookAt(0, 0, 0);
-//
-//            getCurrentScene().replaceAndSwitchCamera(mArcballCamera, camera);
-//
-//            View v = ((View) mRenderSurface);
-//            v.setDrawingCacheEnabled(true);
-////                Bitmap bitmap = v.getDrawingCache();
-//
-//
-//                /* trial */
-//            v.buildDrawingCache(true);
-////            Bitmap bitmap = Bitmap.createBitmap(v.getDrawingCache());
-//
-////            Bitmap b = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.ARGB_8888);
-////            Canvas c = new Canvas(b);
-////            v.draw(c);
-//
-//            Bitmap b = BitmapFactory.decodeResource(getResources(),R.drawable.card2);
-//
-//            return b;
-//        }
-
-
         public void setToNormalView() {
 
             mArcballCamera.setPosition(0, 5, 15);
             mArcballCamera.setLookAt(0, 0, 0);
 
             getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
-
         }
 
 

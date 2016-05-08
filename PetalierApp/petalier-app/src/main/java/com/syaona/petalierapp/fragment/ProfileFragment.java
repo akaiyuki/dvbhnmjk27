@@ -38,6 +38,7 @@ import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
@@ -310,6 +311,8 @@ public class ProfileFragment extends Fragment {
 
                     selectedOrder = adapterView.getItemAtPosition(i).toString();
                     mAdapter.notifyDataSetChanged();
+
+                    Singleton.setUploadedImage("");
 
                     PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 

@@ -107,7 +107,7 @@ public class PhotoFromCameraActivity extends BaseActivity implements View.OnClic
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bos);
                 byte[] data = bos.toByteArray();
-                entity.addPart("orderId", new StringBody("995"));
+                entity.addPart("orderId", new StringBody(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"order_id")));
                 entity.addPart("deposit-slip", new ByteArrayBody(data,
                         "depositslip.jpg"));
 
@@ -146,11 +146,13 @@ public class PhotoFromCameraActivity extends BaseActivity implements View.OnClic
 
                     if (JResponse.getInt("Status") == StatusResponse.STATUS_SUCCESS){
 
-                        showSuccessDialog("Photo has been uploaded");
+                        Singleton.setUploadedImage(JResponse.getJSONObject("Data").getJSONObject("Deposit Slip").getString("meta_value"));
+
+                        showSuccessDialog("Receipt has been uploaded");
 
                     }
 
-                    Log.i("uploadimage", JResponse.getJSONObject("Data").getJSONObject("Deposit Slip").getString("meta_value"));
+//                    Log.i("uploadimage", JResponse.getJSONObject("Data").getJSONObject("Deposit Slip").getString("meta_value"));
 
                 }
             } catch (Exception e) {
@@ -181,7 +183,7 @@ public class PhotoFromCameraActivity extends BaseActivity implements View.OnClic
             public void onClick(View v) {
 
                 Intent i = new Intent(PhotoFromCameraActivity.this, MainActivity.class);
-                i.putExtra("goto","collection");
+                i.putExtra("goto","order");
                 startActivity(i);
                 finish();
                 dialog.dismiss();
