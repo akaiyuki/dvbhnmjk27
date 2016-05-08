@@ -14,15 +14,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.hudomju.swipe.SwipeToDismissTouchListener;
+import com.hudomju.swipe.adapter.ListViewAdapter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
@@ -46,8 +51,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import biz.kasual.materialnumberpicker.MaterialNumberPicker;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +71,7 @@ public class MyCartFragment extends Fragment {
     private String selectedNumber;
     private String selectedCartKey;
     private String total;
-
+    private static final int TIME_TO_AUTOMATICALLY_DISMISS_ITEM = 3000;
 
     public MyCartFragment() {
         // Required empty public constructor
@@ -127,59 +135,153 @@ public class MyCartFragment extends Fragment {
 
         mListView = (ListView) view.findViewById(R.id.listview);
 
-        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSetOrder);
-        mAdapter.notifyDataSetChanged();
-        mListView.setAdapter(mAdapter);
+//        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSetOrder);
+//        mAdapter.notifyDataSetChanged();
+//        mListView.setAdapter(mAdapter);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(final AdapterView<?> adapterView, View view, final int i, long l) {
-//                dialogNumberPicker();
+//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(final AdapterView<?> adapterView, View view, final int i, long l) {
+////                dialogNumberPicker();
+//
+//                final MaterialNumberPicker numberPicker = new MaterialNumberPicker.Builder(getActivity())
+//                        .minValue(1)
+//                        .maxValue(100)
+//                        .defaultValue(1)
+//                        .backgroundColor(Color.WHITE)
+//                        .separatorColor(Color.TRANSPARENT)
+//                        .textColor(Color.BLACK)
+//                        .textSize(20)
+//                        .enableFocusability(false)
+//                        .wrapSelectorWheel(true)
+//                        .build();
+//
+//                new AlertDialog.Builder(getActivity())
+//                        .setTitle("Choose Quantity")
+//                        .setView(numberPicker)
+//                        .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                selectedNumber = String.valueOf(numberPicker.getValue());
+//
+//                                Orders order = mResultSetOrder.get(i);
+//                                selectedCartKey = order.getKeyId();
+//
+//                                updateItemAtPosition(i);
+//
+//
+//                                mResultSetOrder.clear();
+//                                mResultSet.clear();
+//                                mAdapter.notifyDataSetChanged();
+//                                mListView.setAdapter(mAdapter);
+//                                requestApiPostUpdateCart();
+//
+//
+//                            }
+//                        })
+//                        .show();
+//
+//
+//            }
+//        });
 
-                final MaterialNumberPicker numberPicker = new MaterialNumberPicker.Builder(getActivity())
-                        .minValue(1)
-                        .maxValue(100)
-                        .defaultValue(1)
-                        .backgroundColor(Color.WHITE)
-                        .separatorColor(Color.TRANSPARENT)
-                        .textColor(Color.BLACK)
-                        .textSize(20)
-                        .enableFocusability(false)
-                        .wrapSelectorWheel(true)
-                        .build();
-
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("Choose Quantity")
-                        .setView(numberPicker)
-                        .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                selectedNumber = String.valueOf(numberPicker.getValue());
-
-                                Orders order = mResultSetOrder.get(i);
-                                selectedCartKey = order.getKeyId();
-
-                                updateItemAtPosition(i);
 
 
-                                mResultSetOrder.clear();
-                                mResultSet.clear();
-                                mAdapter.notifyDataSetChanged();
-                                mListView.setAdapter(mAdapter);
-                                requestApiPostUpdateCart();
 
+        init(mListView);
 
-                            }
-                        })
-                        .show();
-
-
-            }
-        });
 
 
         return view;
     }
+
+
+
+    private void init(final ListView listView) {
+//        final MyBaseAdapter mAdapter = new MyBaseAdapter(mResultSetOrder);
+        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSetOrder);
+        listView.setAdapter(mAdapter);
+//        mAdapter.notifyDataSetChanged();
+
+        final SwipeToDismissTouchListener<ListViewAdapter> touchListener =
+                new SwipeToDismissTouchListener<>(
+                        new ListViewAdapter(listView),
+                        new SwipeToDismissTouchListener.DismissCallbacks<ListViewAdapter>() {
+                            @Override
+                            public boolean canDismiss(int position) {
+                                return true;
+                            }
+
+//                            @Override
+                            public void onPendingDismiss(ListViewAdapter recyclerView, int position) {
+
+                            }
+
+                            @Override
+                            public void onDismiss(ListViewAdapter view, int position) {
+
+//                                Orders order = mResultSetOrder.get(position);
+//                                selectedCartKey = order.getKeyId();
+                                mAdapter.remove(position);
+
+                                Log.i("adapterposition", String.valueOf(position));
+
+                            }
+                        });
+
+//        touchListener.setDismissDelay(TIME_TO_AUTOMATICALLY_DISMISS_ITEM);
+        listView.setOnTouchListener(touchListener);
+        // Setting this scroll listener is required to ensure that during ListView scrolling,
+        // we don't look for swipes.
+        listView.setOnScrollListener((AbsListView.OnScrollListener) touchListener.makeScrollListener());
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                if (touchListener.existPendingDismisses()) {
+                    touchListener.undoPendingDismiss();
+                } else {
+//                    Toast.makeText(getActivity(), "Position " + position, LENGTH_SHORT).show();
+                    final MaterialNumberPicker numberPicker = new MaterialNumberPicker.Builder(getActivity())
+                            .minValue(1)
+                            .maxValue(100)
+                            .defaultValue(1)
+                            .backgroundColor(Color.WHITE)
+                            .separatorColor(Color.TRANSPARENT)
+                            .textColor(Color.BLACK)
+                            .textSize(20)
+                            .enableFocusability(false)
+                            .wrapSelectorWheel(true)
+                            .build();
+
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Choose Quantity")
+                            .setView(numberPicker)
+                            .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    selectedNumber = String.valueOf(numberPicker.getValue());
+
+                                    Orders order = mResultSetOrder.get(position);
+                                    selectedCartKey = order.getKeyId();
+
+                                    updateItemAtPosition(position);
+
+
+                                    mResultSetOrder.clear();
+                                    mResultSet.clear();
+                                    mAdapter.notifyDataSetChanged();
+                                    mListView.setAdapter(mAdapter);
+                                    requestApiPostUpdateCart();
+
+
+                                }
+                            })
+                            .show();
+                }
+            }
+        });
+    }
+
 
     private void updateItemAtPosition(int position) {
         int visiblePosition = mListView.getFirstVisiblePosition();
@@ -345,9 +447,11 @@ public class MyCartFragment extends Fragment {
             }
         }
 
-        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSetOrder);
-        mAdapter.notifyDataSetChanged();
-        mListView.setAdapter(mAdapter);
+//        mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSetOrder);
+//        mAdapter.notifyDataSetChanged();
+//        mListView.setAdapter(mAdapter);
+
+        init(mListView);
 
     }
 
@@ -363,6 +467,28 @@ public class MyCartFragment extends Fragment {
             this.mResId = resource;
             this.mData = data;
         }
+
+        @Override
+        public int getCount() {
+            return mData.size();
+        }
+
+        @Override
+        public Orders getItem(int position) {
+            return mData.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public void remove(int position) {
+            mData.remove(position);
+            notifyDataSetChanged();
+
+        }
+
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
@@ -406,6 +532,16 @@ public class MyCartFragment extends Fragment {
                         .into(holder.imageView);
 
 
+                holder.text4 = (TextView) convertView.findViewById(R.id.txt_delete);
+                holder.text4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.e("deleteitem", "clicke");
+                        selectedCartKey = row.getKeyId();
+                        requestApiPostRemoveCart();
+                    }
+                });
+
 
             }
 
@@ -421,6 +557,57 @@ public class MyCartFragment extends Fragment {
             ImageView imageView;
             LinearLayout quantity;
         }
+
+
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//
+//            ViewHolder viewHolder = convertView == null
+//                    ? new ViewHolder(convertView = ((Activity) mContext).getLayoutInflater());
+//                    .inflate(R.layout.custom_row_summary, null))
+//                    : (ViewHolder) convertView.getTag();
+//
+//
+//            final Orders row = mData.get(position);
+//
+//            if (row != null) {
+//                viewHolder.text1.setText(row.getProduct_name());
+//                viewHolder.text2.setText("PHP " + row.getLine_total());
+//
+//
+//                viewHolder.text3.setText(row.getQuantity());
+//                Picasso.with(mContext)
+//                        .load(row.getImage_base_64())
+//                        .fit()
+//                        .transform(new CircleTransform())
+//                        .into(viewHolder.imageView);
+//
+//
+//
+//            }
+//
+//            return convertView;
+//        }
+
+
+//        class ViewHolder {
+//            TextView text1;
+//            TextView text2;
+//            TextView text3;
+//            TextView text4;
+//            ImageView imageView;
+//            LinearLayout quantity;
+//            ViewHolder(View view) {
+//                text1 = (TextView) view.findViewById(R.id.textview_order);
+//               text2 = (TextView) view.findViewById(R.id.textview_price);
+//                text3 = (TextView) view.findViewById(R.id.textview_quantity);
+//                imageView = (ImageView) view.findViewById(R.id.imageview_flower);
+//                quantity = (LinearLayout) view.findViewById(R.id.linear_quantity);
+//                view.setTag(this);
+//            }
+//        }
+
+
     }
 
 
@@ -432,6 +619,44 @@ public class MyCartFragment extends Fragment {
         params.put("quantity", selectedNumber);
 
         PRequest request = new PRequest(PRequest.apiMethodPostUpdateCart, params,
+                new PResponseListener(){
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                requestApiGetCart();
+
+                            } else {
+                                Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new PResponseErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+            }
+        });
+
+        request.execute();
+    }
+
+
+    public void requestApiPostRemoveCart() {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("cartKey", selectedCartKey);
+
+        PRequest request = new PRequest(PRequest.apiMethodRemoveCartItem, params,
                 new PResponseListener(){
                     @Override
                     public void onResponse(JSONObject jsonObject) {

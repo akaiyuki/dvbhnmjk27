@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PetalierApp.iml" filepath="$PROJECT_DIR$/PetalierApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/cam2/cam2.iml" filepath="$PROJECT_DIR$/cam2/cam2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/petalier-app/petalier-app.iml" filepath="$PROJECT_DIR$/petalier-app/petalier-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/swipe/swipe.iml" filepath="$PROJECT_DIR$/swipe/swipe.iml" />
     </modules>
   </component>
 </project>

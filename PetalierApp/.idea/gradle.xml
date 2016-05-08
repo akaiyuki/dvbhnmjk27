@@ -10,7 +10,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/cam2" />
+            <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/petalier-app" />
+            <option value="$PROJECT_DIR$/swipe" />
           </set>
         </option>
       </GradleProjectSettings>

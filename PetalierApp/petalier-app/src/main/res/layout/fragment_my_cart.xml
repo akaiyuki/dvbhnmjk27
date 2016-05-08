@@ -9,13 +9,21 @@
         android:id="@+id/app_bar"
         layout="@layout/app_bar" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer_total"
+        android:layout_below="@+id/app_bar"
+        >
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listview"
-        android:layout_above="@+id/footer_total"
-        android:layout_below="@+id/app_bar">
+        >
     </ListView>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/footer_total"

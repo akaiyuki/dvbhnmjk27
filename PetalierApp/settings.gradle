@@ -1,1 +1,1 @@
-include ':petalier-app', ':cam2'
+include ':petalier-app', ':cam2', ':swipe', ':library'
