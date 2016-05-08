@@ -6,8 +6,10 @@ package com.syaona.petalierapp.core;
 public class PConfiguration {
 
 
-    public static String liveURL = "http://52.24.133.167/api.petalier/v1/";
-    public static String testURL = "http://52.24.133.167/api.petalier/v1/";
+    public static String liveURL = "http://52.77.121.170/api/v1/";
+//    public static String testURL = "http://52.24.133.167/api.petalier/v1/";
+
+    public static String testURL = "http://52.77.121.170/api/v1/";
 
 
 //    public static String rateURL = "http://play.google.com/store/apps/details?id=com.partyphile.codeinebot";
@@ -18,6 +20,6 @@ public class PConfiguration {
 
 
 
-    public static Boolean DEBUG = true;
+    public static Boolean DEBUG = false;
 
 }

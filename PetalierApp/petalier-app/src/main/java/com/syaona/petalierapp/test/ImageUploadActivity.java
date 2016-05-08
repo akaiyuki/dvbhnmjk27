@@ -306,7 +306,7 @@ public class ImageUploadActivity extends AppCompatActivity implements View.OnCli
 
                     if (JResponse.getInt("Status") == StatusResponse.STATUS_SUCCESS){
 
-                        Singleton.setUploadedImage(JResponse.getJSONObject("Data").getJSONObject("Deposit Slip").getString("meta_value"));
+//                        Singleton.setUploadedImage(JResponse.getJSONObject("Data").getJSONObject("Deposit Slip").getString("meta_value"));
 
                         showSuccessDialog("Receipt has been uploaded");
 

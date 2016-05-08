@@ -100,8 +100,8 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         requestApiGetProfile();
-        requestApiGetAllOrders();
-        requestApiGetCompletedOrders();
+//        requestApiGetAllOrders();
+//        requestApiGetCompletedOrders();
         requestApiGetPendingOrders();
 
     }
@@ -263,6 +263,38 @@ public class ProfileFragment extends Fragment {
 //                    }
 //                });
 
+                mListViewPager.setAdapter(mAdapter);
+                mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                        selectedOrder = adapterView.getItemAtPosition(i).toString();
+                        mAdapter.notifyDataSetChanged();
+
+                        Singleton.setUploadedImage("");
+
+                        if (selectedOrder != null) {
+                            JSONObject jsonObject = null;
+                            try {
+                                jsonObject = new JSONObject(selectedOrder);
+//                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_name", jsonObject.getString("order_name"));
+
+//                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "date_created", jsonObject.getString("date_created"));
+
+//                            PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_total", jsonObject.getJSONObject("order_meta").getString("order_total"));
+
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_id", jsonObject.getString("ID"));
+
+                                PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+                });
+
             } else if (position == 1){
 
 //                requestApiGetPendingOrders();
@@ -282,42 +314,98 @@ public class ProfileFragment extends Fragment {
 //                    }
 //                });
 
+                mListViewPager.setAdapter(mAdapter);
+                mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                        selectedOrder = adapterView.getItemAtPosition(i).toString();
+                        mAdapter.notifyDataSetChanged();
+
+                        Singleton.setUploadedImage("");
+
+                        if (selectedOrder != null) {
+                            JSONObject jsonObject = null;
+                            try {
+                                jsonObject = new JSONObject(selectedOrder);
+//                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_name", jsonObject.getString("order_name"));
+
+//                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "date_created", jsonObject.getString("date_created"));
+
+//                            PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_total", jsonObject.getJSONObject("order_meta").getString("order_total"));
+
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_id", jsonObject.getString("id"));
+
+                                PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                                Log.i("selectedorderprod", jsonObject.getString("id"));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    }
+                });
+
             } else if (position == 2){
 
-//                requestApiGetCompletedOrders();
                 mListCompleted = (ListView) view.findViewById(R.id.listview);
                 mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultCompleted);
                 mAdapter.notifyDataSetChanged();
-//                mListCompleted.setAdapter(mAdapterCompleted);
-//
-//                mListCompleted.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                        selectedOrder = adapterView.getItemAtPosition(i).toString();
-//                        mAdapterCompleted.notifyDataSetChanged();
-//
-//                        PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-//
-//                    }
-//                });
+
+                mListViewPager.setAdapter(mAdapter);
+                mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                        selectedOrder = adapterView.getItemAtPosition(i).toString();
+                        mAdapter.notifyDataSetChanged();
+
+                        Singleton.setUploadedImage("");
+
+                        if (selectedOrder != null) {
+
+                            JSONObject jsonObject = null;
+                            try {
+                                jsonObject = new JSONObject(selectedOrder);
+//                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_name", jsonObject.getString("order_name"));
+
+//                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "date_created", jsonObject.getString("date_created"));
+
+//                            PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_total", jsonObject.getJSONObject("order_meta").getString("order_total"));
+
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_id", jsonObject.getString("ID"));
+
+                                PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
             }
 
 
 
-            mListViewPager.setAdapter(mAdapter);
-            mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                    selectedOrder = adapterView.getItemAtPosition(i).toString();
-                    mAdapter.notifyDataSetChanged();
-
-                    Singleton.setUploadedImage("");
-
-                    PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-
-                }
-            });
+//            mListViewPager.setAdapter(mAdapter);
+//            mListViewPager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                    selectedOrder = adapterView.getItemAtPosition(i).toString();
+//                    mAdapter.notifyDataSetChanged();
+//
+//                    Singleton.setUploadedImage("");
+//
+////                    PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_id",selectedOrder);
+//
+//                    PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//
+//                }
+//            });
 
 
 
@@ -452,33 +540,36 @@ public class ProfileFragment extends Fragment {
             }
 
 
-            if (selectedOrder != null){
-
-                try {
-
-                    JSONObject jsonObject = new JSONObject(selectedOrder);
-
-                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_name",jsonObject.getString("order_name"));
-
-                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"date_created",jsonObject.getString("date_created"));
-
-                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_total", jsonObject.getJSONObject("order_meta").getString("order_total"));
-
-                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_id",jsonObject.getString("id"));
-
+//            if (selectedOrder != null){
+//
+//                try {
+//
+//                    JSONObject jsonObject = new JSONObject(selectedOrder);
+//
+//                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_name",jsonObject.getString("order_name"));
+//
+//                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"date_created",jsonObject.getString("date_created"));
+//
+////                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"order_total", jsonObject.getJSONObject("order_meta").getString("order_total"));
+//
+//                    PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_id", jsonObject.getString("id"));
+//
 //                    Log.i("selectedorderprod", jsonObject.getString("id"));
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-
-
-
-
-
-            }
+//
+////                    PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//
+//
+//
+//
+//
+//            }
 
 
             return convertView;
@@ -585,6 +676,8 @@ public class ProfileFragment extends Fragment {
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
                                 mResultOrders.clear();
+                                mResultPending.clear();
+                                mResultCompleted.clear();
 
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
 
@@ -635,6 +728,8 @@ public class ProfileFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
+                                mResultOrders.clear();
+                                mResultPending.clear();
                                 mResultCompleted.clear();
 
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
@@ -685,7 +780,9 @@ public class ProfileFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
+                                mResultOrders.clear();
                                 mResultPending.clear();
+                                mResultCompleted.clear();
 
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
 

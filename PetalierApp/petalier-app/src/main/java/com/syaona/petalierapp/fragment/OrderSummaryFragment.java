@@ -117,7 +117,7 @@ public class OrderSummaryFragment extends Fragment {
 
         ImageView mImageReceipt = (ImageView) toolbar.findViewById(R.id.receipt);
 
-        if (!Singleton.getUploadedImage().equalsIgnoreCase("")){
+//        if (!Singleton.getUploadedImage().equalsIgnoreCase("")){
             mImageReceipt.setVisibility(View.VISIBLE);
             mImageReceipt.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -125,9 +125,9 @@ public class OrderSummaryFragment extends Fragment {
                     PDialog.displayOnlineImage((BaseActivity) getActivity());
                 }
             });
-        } else {
-            mImageReceipt.setVisibility(View.GONE);
-        }
+//        } else {
+//            mImageReceipt.setVisibility(View.GONE);
+//        }
 
 
 
@@ -286,6 +286,12 @@ public class OrderSummaryFragment extends Fragment {
                                 txtTotal.setText("PHP " + jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("order_total_display"));
 
                                 mTextSubTotal.setText("PHP " + jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("order_total_display"));
+
+                                Singleton.setUploadedImage(jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("deposit_slip"));
+
+//                                PDialog.displayOnlineImage((BaseActivity) getActivity());
+
+                                Log.e("deposit-slip", jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("deposit_slip"));
 
                                 mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
                                 mAdapter.notifyDataSetChanged();
