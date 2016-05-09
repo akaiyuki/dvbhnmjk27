@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
+import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
@@ -122,7 +123,8 @@ public class OrderSummaryFragment extends Fragment {
             mImageReceipt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    PDialog.displayOnlineImage((BaseActivity) getActivity());
+//                    PDialog.displayOnlineImage((BaseActivity) getActivity());
+                    showImage();
                 }
             });
 //        } else {
@@ -291,6 +293,8 @@ public class OrderSummaryFragment extends Fragment {
 
 //                                PDialog.displayOnlineImage((BaseActivity) getActivity());
 
+//                                showImage();
+
                                 Log.e("deposit-slip", jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("deposit_slip"));
 
                                 mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
@@ -316,6 +320,25 @@ public class OrderSummaryFragment extends Fragment {
         request.execute();
     }
 
+
+    public void showImage(){
+        Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_receipt);
+
+        ImageView iv = (ImageView) dialog.findViewById(R.id.image);
+
+        Picasso.with(AppController.getInstance())
+                .load(Singleton.getUploadedImage())
+                .fit()
+                .into(iv);
+
+
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+
+        dialog.show();
+    }
 
 
 

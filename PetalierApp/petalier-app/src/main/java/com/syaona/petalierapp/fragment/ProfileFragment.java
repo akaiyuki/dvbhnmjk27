@@ -104,6 +104,7 @@ public class ProfileFragment extends Fragment {
 //        requestApiGetCompletedOrders();
         requestApiGetPendingOrders();
 
+
     }
 
 
@@ -433,15 +434,22 @@ public class ProfileFragment extends Fragment {
 
         @Override
         public void onPageSelected(int position) {
-            mLastPage = position;
-            updateLastPage(mLastPage);
+//            mLastPage = position;
+//            updateLastPage(mLastPage);
 
 
             if (position == 0){
+                mResultPending.clear();
+                mResultCompleted.clear();
                 requestApiGetAllOrders();
             } else if (position == 1){
-                requestApiGetPendingOrders();
+//                mResultOrders.clear();
+//                mResultCompleted.clear();
+//                requestApiGetPendingOrders();
+                requestApiGetPending();
             } else if (position == 2){
+                mResultPending.clear();
+                mResultOrders.clear();
                 requestApiGetCompletedOrders();
             }
 
@@ -620,7 +628,7 @@ public class ProfileFragment extends Fragment {
 
     public void requestApiGetProfile() {
 
-        MainActivity.INSTANCE.startAnim();
+//        MainActivity.INSTANCE.startAnim();
 
         HashMap<String, String> params = new HashMap<>();
         params.put("id", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
@@ -641,18 +649,20 @@ public class ProfileFragment extends Fragment {
 
                             populateUserInfo();
 
-                            MainActivity.INSTANCE.stopAnim();
+//                            requestApiGetPendingOrders();
+
+//                            MainActivity.INSTANCE.stopAnim();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            MainActivity.INSTANCE.stopAnim();
+//                            MainActivity.INSTANCE.stopAnim();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
-                MainActivity.INSTANCE.stopAnim();
+//                MainActivity.INSTANCE.stopAnim();
             }
         });
 
@@ -767,6 +777,8 @@ public class ProfileFragment extends Fragment {
 
     public void requestApiGetPendingOrders() {
 
+        MainActivity.INSTANCE.startAnim();
+
         HashMap<String, String> params = new HashMap<>();
 //        params.put("userId", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
 
@@ -793,36 +805,118 @@ public class ProfileFragment extends Fragment {
 
                                 }
 
+                                MainActivity.INSTANCE.stopAnim();
+
                             } else {
                                 Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
+                                MainActivity.INSTANCE.stopAnim();
                             }
 
-//                            mViewPager.setAdapter(mPageAdapter);
+                            mViewPager.setAdapter(mPageAdapter);
 
-//                            mAdapterPending = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
-//                            mAdapterPending.notifyDataSetChanged();
+                            mAdapterPending = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+                            mAdapterPending.notifyDataSetChanged();
 //                            mListViewPager.setAdapter(mAdapterPending);
 
-                            mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
-                            mAdapter.notifyDataSetChanged();
-                            mListViewPager.setAdapter(mAdapter);
+//                            mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+//                            mAdapter.notifyDataSetChanged();
+//                            mListViewPager.setAdapter(mAdapter);
 
 //                            mViewPager.setAdapter(mPageAdapter);
-//                            mViewPager.setCurrentItem(1);
+                            mViewPager.setCurrentItem(1);
+
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            MainActivity.INSTANCE.stopAnim();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
+                MainActivity.INSTANCE.stopAnim();
             }
         });
 
         request.execute();
     }
+
+
+
+
+    public void requestApiGetPending() {
+
+//        MainActivity.INSTANCE.startAnim();
+
+        HashMap<String, String> params = new HashMap<>();
+//        params.put("userId", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
+
+        PRequest request = new PRequest(PRequest.apiMethodGetPendingOrder, params,
+                new PResponseListener(){
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        super.onResponse(jsonObject);
+
+                        try {
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
+
+                                mResultOrders.clear();
+                                mResultPending.clear();
+                                mResultCompleted.clear();
+
+                                JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
+
+                                for (int i = 0; i<jsonArray.length(); i++){
+
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    mResultPending.add(jsonObject1);
+
+                                }
+
+//                                MainActivity.INSTANCE.stopAnim();
+
+                            } else {
+                                Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
+//                                MainActivity.INSTANCE.stopAnim();
+                            }
+
+//                            mViewPager.setAdapter(mPageAdapter);
+
+                            mAdapterPending = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+                            mAdapterPending.notifyDataSetChanged();
+                            mListViewPager.setAdapter(mAdapterPending);
+
+//                            mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+//                            mAdapter.notifyDataSetChanged();
+//                            mListViewPager.setAdapter(mAdapter);
+
+//                            mViewPager.setAdapter(mPageAdapter);
+//                            mViewPager.setCurrentItem(1);
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+//                            MainActivity.INSTANCE.stopAnim();
+                        }
+                    }
+                }, new PResponseErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                super.onErrorResponse(volleyError);
+//                MainActivity.INSTANCE.stopAnim();
+            }
+        });
+
+        request.execute();
+    }
+
+
+
+
 
 
 

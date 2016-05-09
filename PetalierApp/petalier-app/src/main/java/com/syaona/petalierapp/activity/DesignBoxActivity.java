@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,6 +40,7 @@ import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PConfiguration;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.dialog.PDialog;
 import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.test.CustomScrollView;
@@ -124,6 +126,17 @@ public class DesignBoxActivity extends BaseActivity {
             }
         });
 
+        Button mButtonPreview = (Button) findViewById(R.id.btnpreview);
+        assert mButtonPreview != null;
+        mButtonPreview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                displayPreview();
+
+                ModelViewerFragment.INSTANCE.displayImage();
+            }
+        });
+
 
 
          /* Initialize toolbar */
@@ -167,7 +180,7 @@ public class DesignBoxActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    showDialogError("Upload photo of flower arrangement before proceeding with your order.");
+                    showDialogError("Preview the arrangement before proceeding with your order.");
                 }
 
 
@@ -286,6 +299,32 @@ public class DesignBoxActivity extends BaseActivity {
 
 
     }
+
+
+    public void displayPreview(){
+        Dialog dialog = new Dialog(DesignBoxActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_bitmap_display);
+
+        ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
+        iv.setImageBitmap(getImageFromStorage());
+
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+
+        dialog.show();
+    }
+
+    private Bitmap getImageFromStorage() {
+        String bitmapStoragePath = Environment.getExternalStorageDirectory() + "/screenshot.png";
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        final Bitmap b = BitmapFactory.decodeFile(bitmapStoragePath, options);
+
+        return b;
+    }
+
 
 
 

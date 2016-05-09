@@ -43,6 +43,7 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
     public static String TAG = "ModelViewerFragment";
     private ArrayList<String> selectedColor = new ArrayList<>();
+    public static ModelViewerFragment INSTANCE = null;
 
     @Override
     public BaseViewerRenderer createRenderer() {
@@ -60,6 +61,8 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
         super.onCreateView(inflater, container, savedInstanceState);
         ((View) mRenderSurface).setOnTouchListener(this);
 
+        INSTANCE = this;
+
         //Get Photo on button click
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +75,7 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 //                //Singleton.setImage3D(getImageFromStorage());
 //
 //                displayBitmap(getImageFromStorage());
+
             }
         });
 
@@ -96,7 +100,7 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
         return b;
     }
 
-    private void displayBitmap(Bitmap bitmap) {
+    public void displayBitmap(Bitmap bitmap) {
         Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_bitmap_display);
@@ -511,4 +515,11 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
 
     }
+
+
+    public void displayImage(){
+        ((LoadModelRenderer) mRenderer).setToTopView();
+    }
+
+
 }

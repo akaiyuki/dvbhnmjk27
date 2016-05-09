@@ -129,7 +129,7 @@
                     android:id="@+id/btnrefresh"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Refresh"
+                    android:text="Reset"
                     android:textColor="@color/colorTextWhite"
                     android:background="@drawable/button_background"/>
 
@@ -151,7 +151,7 @@
                     android:text="Preview"
                     android:textColor="@color/colorTextWhite"
                     android:background="@drawable/button_background"
-                    android:visibility="gone"/>
+                    android:visibility="visible"/>
 
             </LinearLayout>
 

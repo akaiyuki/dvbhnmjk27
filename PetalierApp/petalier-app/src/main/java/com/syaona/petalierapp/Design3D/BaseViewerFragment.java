@@ -188,7 +188,11 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
                 lastScreenshot = bitmap;
 
                 try {
+
                     saveScreenshot(lastScreenshot);
+
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -203,6 +207,9 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
         }
 
         public void saveScreenshot(Bitmap bitmap) throws IOException {
+
+            Singleton.setImage3D(bitmap);
+
             File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
             FileOutputStream fos;
             try {
