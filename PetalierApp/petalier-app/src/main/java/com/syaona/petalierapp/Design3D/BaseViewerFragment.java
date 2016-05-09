@@ -182,6 +182,7 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
                 sb.rewind();
                 bitmap.copyPixelsFromBuffer(sb);
                 lastScreenshot = bitmap;
+
                 try {
                     saveScreenshot(lastScreenshot);
                 } catch (IOException e) {

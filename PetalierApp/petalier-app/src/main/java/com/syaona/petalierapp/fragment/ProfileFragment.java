@@ -283,7 +283,7 @@ public class ProfileFragment extends Fragment {
 
 //                            PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_total", jsonObject.getJSONObject("order_meta").getString("order_total"));
 
-                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_id", jsonObject.getString("ID"));
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_id", jsonObject.getString("id"));
 
                                 PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
@@ -376,7 +376,7 @@ public class ProfileFragment extends Fragment {
 
 //                            PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_total", jsonObject.getJSONObject("order_meta").getString("order_total"));
 
-                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_id", jsonObject.getString("ID"));
+                                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "order_id", jsonObject.getString("id"));
 
                                 PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 

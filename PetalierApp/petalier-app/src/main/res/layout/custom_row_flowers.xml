@@ -8,6 +8,15 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/checkmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_checkmark"
+            android:background="@color/colorAccent"
+            android:visibility="gone" />
+
+        <ImageView
             android:id="@+id/ic_flower"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -22,7 +31,9 @@
             android:layout_below="@+id/ic_flower"
             android:layout_centerHorizontal="true"
             android:text=""
-            android:textSize="9sp"/>
+            android:textSize="9sp" />
+
+
 
     </RelativeLayout>
 

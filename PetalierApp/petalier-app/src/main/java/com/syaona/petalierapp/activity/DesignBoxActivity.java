@@ -307,6 +307,8 @@ public class DesignBoxActivity extends BaseActivity {
                         assert data != null;
                         Log.i("hexcodeflower", data.getString("content"));
 
+                        holder.mTextColor.setTypeface(Fonts.gothambold);
+
 
                         Bitmap bitmap = getBitmapFromURL(data.getString("texture_image_link"));
 
@@ -350,10 +352,12 @@ public class DesignBoxActivity extends BaseActivity {
         public class ViewHolder extends RecyclerView.ViewHolder {
             ImageView mImageFlower;
             TextView mTextColor;
+            ImageView checkMark;
             public ViewHolder(View itemView) {
                 super(itemView);
                 mImageFlower = (ImageView) itemView.findViewById(R.id.ic_flower);
                 mTextColor = (TextView) itemView.findViewById(R.id.text_color);
+                checkMark = (ImageView) itemView.findViewById(R.id.checkmark);
             }
         }
     }

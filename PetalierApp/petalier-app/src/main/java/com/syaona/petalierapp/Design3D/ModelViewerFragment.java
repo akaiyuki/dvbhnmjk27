@@ -35,6 +35,7 @@ import org.rajawali3d.materials.textures.Texture;
 import org.rajawali3d.util.ObjectColorPicker;
 import org.rajawali3d.util.OnObjectPickedListener;
 
+import java.io.File;
 
 
 public class ModelViewerFragment extends BaseViewerFragment implements View.OnTouchListener {
@@ -64,11 +65,11 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
                 ((LoadModelRenderer) mRenderer).setToTopView();
 
-                ((LoadModelRenderer) mRenderer).takeScreenshot();
-
-                //Singleton.setImage3D(getImageFromStorage());
-
-                displayBitmap(getImageFromStorage());
+//                ((LoadModelRenderer) mRenderer).takeScreenshot();
+//
+//                //Singleton.setImage3D(getImageFromStorage());
+//
+//                displayBitmap(getImageFromStorage());
             }
         });
 
@@ -343,6 +344,18 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             camera.setLookAt(0, 0, 0);
 
             getCurrentScene().replaceAndSwitchCamera(mArcballCamera, camera);
+
+
+            /* trial edit code */
+//            File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
+//            if(imagePath.exists()) {
+//                imagePath.delete();
+                ((LoadModelRenderer) mRenderer).takeScreenshot();
+                displayBitmap(getImageFromStorage());
+//            }
+
+
+
         }
 
         public void setToNormalView() {
