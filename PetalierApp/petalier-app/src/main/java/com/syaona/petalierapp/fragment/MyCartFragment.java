@@ -4,6 +4,7 @@ package com.syaona.petalierapp.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -125,7 +126,13 @@ public class MyCartFragment extends Fragment {
 
 
                 if (mResultSetOrder.size() != 0){
-                    PEngine.switchFragment((BaseActivity) getActivity(), new BillingInfoFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+//                    PEngine.switchFragment((BaseActivity) getActivity(), new BillingInfoFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+
+                    Intent intent = new Intent(getActivity(), OrderActivity.class);
+                    intent.putExtra("goto","billing");
+                    startActivity(intent);
+//                    getActivity().finish();
+
                 }
 
             }

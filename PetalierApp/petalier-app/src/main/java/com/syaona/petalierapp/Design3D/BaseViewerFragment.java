@@ -49,6 +49,8 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
 
     protected Button mButton;
 
+    protected Button mReset;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +74,8 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
         mProgressBarLoader.setVisibility(View.GONE);
 
         mButton = (Button) mLayout.findViewById(R.id.button_photo);
+
+//        mReset = (Button) mLayout.findViewById(R.id.button_reset);
 
 
         // Create the renderer

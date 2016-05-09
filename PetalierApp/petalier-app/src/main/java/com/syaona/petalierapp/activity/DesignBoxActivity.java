@@ -76,6 +76,8 @@ public class DesignBoxActivity extends BaseActivity {
 
     public static ArrayList<String> color = new ArrayList<>();
 
+    public static String pickedColor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +99,28 @@ public class DesignBoxActivity extends BaseActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 scrollView.setEnableScrolling(true);
                 return false;
+            }
+        });
+
+
+        Button mButtonRefresh = (Button) findViewById(R.id.btnrefresh);
+        assert mButtonRefresh != null;
+        mButtonRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
+                        .commit();
+
+                requestApiGetColors();
+
+                if (color.size() != 0){
+                    color.clear();
+                    Singleton.getMaxColor().clear();
+                }
+
+
             }
         });
 
@@ -289,6 +313,14 @@ public class DesignBoxActivity extends BaseActivity {
                     url = data.getString("color_image_link");
                     holder.mTextColor.setText(data.getString("color_name"));
 
+
+//                    if (holder.mTextColor.getText().toString().equalsIgnoreCase(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"pick_color"))){
+//                        holder.mTextColor.setPressed(true);
+//                    } else {
+//                        holder.mTextColor.setPressed(false);
+//                    }
+
+
                 }
             } catch (JSONException e) {
                 //e.printStackTrace();
@@ -307,7 +339,14 @@ public class DesignBoxActivity extends BaseActivity {
                         assert data != null;
                         Log.i("hexcodeflower", data.getString("content"));
 
-                        holder.mTextColor.setTypeface(Fonts.gothambold);
+//                        holder.mTextColor.setTypeface(Fonts.gothambold);
+//                        if (holder.mTextColor.getText().equals(data.getString("color_name"))) {
+//                            holder.mTextColor.setPressed(true);
+//                        } else {
+//                            holder.mTextColor.setPressed(false);
+//                        }
+
+                       PSharedPreferences.setSomeStringValue(AppController.getInstance(),"pick_color",holder.mTextColor.getText().toString());
 
 
                         Bitmap bitmap = getBitmapFromURL(data.getString("texture_image_link"));
@@ -325,6 +364,7 @@ public class DesignBoxActivity extends BaseActivity {
                         if (color.size() < maxColor) {
                             if (!color.contains(data.getString("id"))) {
                                 color.add(data.getString("id"));
+                                holder.mTextColor.setTypeface(Fonts.gothambold);
                             }
                         }
 
@@ -379,6 +419,9 @@ public class DesignBoxActivity extends BaseActivity {
                             JSONObject jsonObject = new JSONObject(response);
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS){
+
+                                mResultSpecial.clear();
+                                mResultRegular.clear();
 
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONObject("colors").getJSONArray("special");
                                 JSONArray jsonArray1 = jsonObject.getJSONObject("Data").getJSONObject("colors").getJSONArray("regular");

@@ -23,7 +23,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/app_bar_design"
-            android:background="@color/color3DBackground"
             android:id="@+id/relative">
 
             <!--<ImageView-->
@@ -38,6 +37,7 @@
                 android:id="@+id/content_frame"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"/>
+
 
         </RelativeLayout>
 
@@ -101,9 +101,75 @@
 
 
 
-        <View
+
+
+
+
+
+        <!--trial for layout refresh-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/productexcerpt"
+            android:id="@+id/linearseven">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginRight="10dp">
+
+                <Button
+                    android:id="@+id/btnrefresh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Refresh"
+                    android:textColor="@color/colorTextWhite"
+                    android:background="@drawable/button_background"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <Button
+                    android:id="@+id/btnpreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Preview"
+                    android:textColor="@color/colorTextWhite"
+                    android:background="@drawable/button_background"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+        <View
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/linearseven"
             android:layout_width="fill_parent"
             android:layout_height="1dip"
             android:background="@color/colorFieldIcon"

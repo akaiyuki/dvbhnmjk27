@@ -83,7 +83,11 @@ public class SendNoteFragment extends Fragment {
                     PSharedPreferences.setSomeStringValue(AppController.getInstance(),"note",mEditMessage.getText().toString());
 
                     if (!PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token").isEmpty()){
-                        startActivity(new Intent(getActivity(), OrderActivity.class));
+//                        startActivity(new Intent(getActivity(), OrderActivity.class));
+//                        getActivity().finish();
+                        Intent intent = new Intent(getActivity(), OrderActivity.class);
+                        intent.putExtra("goto","delivery");
+                        startActivity(intent);
                         getActivity().finish();
                     } else {
                         Singleton.setLoginFromMain(0);

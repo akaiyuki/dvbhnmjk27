@@ -6,6 +6,8 @@ import android.net.Uri;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 
+import org.rajawali3d.Object3D;
+
 import java.util.ArrayList;
 
 /**
@@ -27,6 +29,24 @@ public class Singleton {
     public static int chosenDay;
     public static String paypalUrl;
     public static String uploadedImage;
+    public static ArrayList<String> selectedColorFlower = new ArrayList<>();
+    public static Object3D object3D;
+
+    public static Object3D getObject3D() {
+        return object3D;
+    }
+
+    public static void setObject3D(Object3D object3D) {
+        Singleton.object3D = object3D;
+    }
+
+    public static ArrayList<String> getSelectedColorFlower() {
+        return selectedColorFlower;
+    }
+
+    public static void setSelectedColorFlower(ArrayList<String> selectedColorFlower) {
+        Singleton.selectedColorFlower = selectedColorFlower;
+    }
 
     public static String getUploadedImage() {
         return uploadedImage;

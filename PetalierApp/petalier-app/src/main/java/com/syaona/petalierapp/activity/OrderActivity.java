@@ -1,10 +1,12 @@
 package com.syaona.petalierapp.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,7 +19,12 @@ import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.fragment.BillingInfoFragment;
+import com.syaona.petalierapp.fragment.ChooseCardFragment;
+import com.syaona.petalierapp.fragment.ChooseCollectionFragment;
 import com.syaona.petalierapp.fragment.DeliveryDetailsFragment;
+import com.syaona.petalierapp.fragment.OrderSummaryFragment;
+import com.syaona.petalierapp.fragment.ProfileFragment;
+import com.syaona.petalierapp.fragment.SendNoteFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -58,7 +65,7 @@ public class OrderActivity extends BaseActivity {
         }
 
 
-        PEngine.switchFragment(INSTANCE, new DeliveryDetailsFragment(), getFrameLayout());
+//        PEngine.switchFragment(INSTANCE, new DeliveryDetailsFragment(), getFrameLayout());
 
         gifImageView = (GifImageView) findViewById(R.id.gifImageView);
 
@@ -78,6 +85,26 @@ public class OrderActivity extends BaseActivity {
 //            // TODO Auto-generated catch block
 //            e.printStackTrace();
 //        }
+
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+
+            Bundle bundle = new Bundle();
+
+            Fragment newFragment = null;
+            if (extras.getString("goto").equalsIgnoreCase("delivery")) {
+                newFragment = new DeliveryDetailsFragment();
+            } else if (extras.getString("goto").equalsIgnoreCase("billing")) {
+                newFragment = new BillingInfoFragment();
+            }
+
+            assert newFragment != null;
+            newFragment.setArguments(bundle);
+            PEngine.switchFragment(INSTANCE, newFragment, getFrameLayout());
+
+        }
 
 
     }

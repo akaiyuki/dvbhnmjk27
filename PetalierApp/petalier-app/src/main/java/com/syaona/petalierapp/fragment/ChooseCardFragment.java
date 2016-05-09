@@ -126,7 +126,12 @@ public class ChooseCardFragment extends Fragment {
             public void onClick(View view) {
 //                PEngine.switchFragment((BaseActivity) getActivity(), new SendNoteFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
-            startActivity(new Intent(getActivity(), OrderActivity.class));
+//            startActivity(new Intent(getActivity(), OrderActivity.class));
+//                getActivity().finish();
+
+                Intent intent = new Intent(getActivity(), OrderActivity.class);
+                intent.putExtra("goto","delivery");
+                startActivity(intent);
                 getActivity().finish();
 
             }

@@ -254,7 +254,11 @@ public class LoginFragment extends Fragment {
                                     startActivity(i);
                                     getActivity().finish();
                                 } else {
-                                    startActivity(new Intent(getActivity(), OrderActivity.class));
+//                                    startActivity(new Intent(getActivity(), OrderActivity.class));
+//                                    getActivity().finish();
+                                    Intent intent = new Intent(getActivity(), OrderActivity.class);
+                                    intent.putExtra("goto","delivery");
+                                    startActivity(intent);
                                     getActivity().finish();
                                 }
 
@@ -353,7 +357,11 @@ public class LoginFragment extends Fragment {
                                     startActivity(i);
                                     getActivity().finish();
                                 } else {
-                                    startActivity(new Intent(getActivity(), OrderActivity.class));
+//                                    startActivity(new Intent(getActivity(), OrderActivity.class));
+//                                    getActivity().finish();
+                                    Intent intent = new Intent(getActivity(), OrderActivity.class);
+                                    intent.putExtra("goto","delivery");
+                                    startActivity(intent);
                                     getActivity().finish();
                                 }
 

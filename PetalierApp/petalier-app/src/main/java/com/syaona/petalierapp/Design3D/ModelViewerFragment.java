@@ -36,11 +36,13 @@ import org.rajawali3d.util.ObjectColorPicker;
 import org.rajawali3d.util.OnObjectPickedListener;
 
 import java.io.File;
+import java.util.ArrayList;
 
 
 public class ModelViewerFragment extends BaseViewerFragment implements View.OnTouchListener {
 
     public static String TAG = "ModelViewerFragment";
+    private ArrayList<String> selectedColor = new ArrayList<>();
 
     @Override
     public BaseViewerRenderer createRenderer() {
@@ -72,6 +74,13 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 //                displayBitmap(getImageFromStorage());
             }
         });
+
+//        mReset.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((LoadModelRenderer) mRenderer).resetFlower();
+//            }
+//        });
 
 
         return mLayout;
@@ -174,12 +183,14 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
                 Object3D box = new Object3D();
 
+
                 //Register objects in picker
                 for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
 
                     Object3D obj = mObjectGroup.getChildAt(i);
                     //obj.setName("obj_" + i);
 
+                    Singleton.setObject3D(obj);
 
 
                     if(obj.getName().equalsIgnoreCase("default")) {
@@ -298,6 +309,15 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
             Log.d("objectselected", object.getName());
 
+            if (!selectedColor.contains(object.getName())){
+
+
+                if (!object.getName().equalsIgnoreCase("box")){
+                    selectedColor.add(object.getName());
+                }
+
+            }
+
 
             if (object.getName().equalsIgnoreCase("box")) {
 
@@ -364,6 +384,129 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             mArcballCamera.setLookAt(0, 0, 0);
 
             getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+        }
+
+
+        public void resetFlower(){
+
+            mPicker = new ObjectColorPicker(this);
+            mPicker.setOnObjectPickedListener(this);
+
+            Object3D box = new Object3D();
+
+            Object3D obj = Singleton.getObject3D();
+
+//            Log.i("object3d", object.getName());
+//
+//            Material material = object.getMaterial();
+//            material.getTextureList().clear();
+//            try {
+//                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+//            } catch (ATexture.TextureException e) {
+//                e.printStackTrace();
+//            }
+//            object.setMaterial(material);
+
+//            initScene();
+
+            if(obj.getName().equalsIgnoreCase("default")) {
+                Log.d("Test", "default come in!");
+            }
+
+            else if (obj.getName().equalsIgnoreCase("box")) {
+
+                Log.d("Test", "box come in!");
+
+                box = obj;
+
+                Material material = new Material();
+                material.setColorInfluence(0);
+
+                DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                diffuseMethod.setIntensity(05.f);
+
+                material.setDiffuseMethod(diffuseMethod);
+                material.enableLighting(true);
+                material.setCurrentObject(box);
+                try {
+                    material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                } catch (ATexture.TextureException e) {
+                    e.printStackTrace();
+                }
+
+                box.setMaterial(material);
+                mPicker.registerObject(box);
+                getCurrentScene().addChild(box);
+
+            } else {
+
+                //Create new material for each 3d object
+                Material material = new Material();
+                material.setColorInfluence(0);
+
+                DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                diffuseMethod.setIntensity(05.f);
+
+                material.setDiffuseMethod(diffuseMethod);
+                material.enableLighting(true);
+                material.setCurrentObject(obj);
+
+                try {
+                    material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                } catch (ATexture.TextureException e) {
+                    e.printStackTrace();
+                }
+
+                if (obj.getNumChildren() > 0) {
+                    obj = obj.getChildAt(0);
+                    obj.setMaterial(material);
+                }
+
+                obj.setMaterial(material);
+
+                mPicker.registerObject(obj);
+                getCurrentScene().addChild(obj);
+            }
+
+            //Set Camera to model
+            mArcballCamera = new CustomCamera(mContext, mLayout);
+            mArcballCamera.setTarget(mObjectGroup);
+            mArcballCamera.setPosition(0, 5, 15);
+            getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+            mArcballCamera.setLookAt(0, 0, 0);
+
+
+
+            //Set top light
+            DirectionalLight topDirectionalLight = new DirectionalLight();
+            topDirectionalLight.setLookAt(0, 0, 0);
+            topDirectionalLight.setPower(0.8f);
+            topDirectionalLight.setPosition(0, 40, 5);
+            topDirectionalLight.enableLookAt();
+            getCurrentScene().addLight(topDirectionalLight);
+
+            //Set front direction light
+            DirectionalLight frontDirectionalLight = new DirectionalLight();
+            frontDirectionalLight.setLookAt(0, 0, 0);
+            frontDirectionalLight.setPower(0.6f);
+            frontDirectionalLight.setPosition(10, 10, 40);
+            frontDirectionalLight.enableLookAt();
+            getCurrentScene().addLight(frontDirectionalLight);
+
+            //Set back direction light
+            DirectionalLight backDirectionalLight = new DirectionalLight();
+            backDirectionalLight.setLookAt(0, 0, 0);
+            backDirectionalLight.setPower(0.6f);
+            backDirectionalLight.setPosition(10, 10, -40);
+            backDirectionalLight.enableLookAt();
+            getCurrentScene().addLight(backDirectionalLight);
+
+            //Set background color
+            getCurrentScene().setBackgroundColor(Color.LTGRAY);
+
+
+
+
         }
 
 

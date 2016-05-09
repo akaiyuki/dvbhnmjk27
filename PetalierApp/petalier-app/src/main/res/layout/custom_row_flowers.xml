@@ -31,7 +31,8 @@
             android:layout_below="@+id/ic_flower"
             android:layout_centerHorizontal="true"
             android:text=""
-            android:textSize="9sp" />
+            android:textSize="9sp"
+            android:textColor="@drawable/text_background"/>
 
 
 
