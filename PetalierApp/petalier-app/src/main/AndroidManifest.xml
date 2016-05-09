@@ -80,7 +80,7 @@
         <activity android:name=".test.TakePhotoActivity" />
         <activity android:name=".test.PictureActivity" />
         <activity android:name=".test.PhotoFromCameraActivity" />
-        <activity android:name=".test.DesignBoxActivity" />
+        <activity android:name=".activity.DesignBoxActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

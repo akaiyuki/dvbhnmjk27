@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorBackground"
     android:id="@+id/scrollView"
-    tools:context="com.syaona.petalierapp.test.DesignBoxActivity">
+    tools:context=".activity.DesignBoxActivity">
 
 
 
@@ -244,7 +244,7 @@
                     android:layout_height="match_parent"
                     android:text="Black"
                     android:textColor="@color/colorTextWhite"
-                    android:background="@drawable/button_background_black"/>
+                    android:background="@drawable/button_box"/>
 
             </LinearLayout>
 
@@ -262,7 +262,7 @@
                     android:layout_height="match_parent"
                     android:text="White"
                     android:textColor="@color/colorTextWhite"
-                    android:background="@drawable/button_background"/>
+                    android:background="@drawable/button_box"/>
 
             </LinearLayout>
 

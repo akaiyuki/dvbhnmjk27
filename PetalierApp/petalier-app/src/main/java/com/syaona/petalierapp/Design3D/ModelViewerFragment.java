@@ -21,7 +21,7 @@ import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.Singleton;
-import com.syaona.petalierapp.test.DesignBoxActivity;
+import com.syaona.petalierapp.activity.DesignBoxActivity;
 
 import org.rajawali3d.Object3D;
 import org.rajawali3d.cameras.Camera;
@@ -93,6 +93,10 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
         ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
         iv.setImageBitmap(bitmap);
+
+
+        Singleton.setImage3D(bitmap);
+
 
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);

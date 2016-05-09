@@ -21,7 +21,7 @@
 //import com.syaona.petalierapp.core.AppController;
 //import com.syaona.petalierapp.core.PSharedPreferences;
 //import com.syaona.petalierapp.enums.Singleton;
-//import com.syaona.petalierapp.test.DesignBoxActivity;
+//import com.syaona.petalierapp.activity.DesignBoxActivity;
 //
 //import org.rajawali3d.Object3D;
 //import org.rajawali3d.cameras.Camera;
