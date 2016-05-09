@@ -118,7 +118,7 @@ public class OrderSummaryFragment extends Fragment {
 
         ImageView mImageReceipt = (ImageView) toolbar.findViewById(R.id.receipt);
 
-//        if (!Singleton.getUploadedImage().equalsIgnoreCase("")){
+        if (!Singleton.getUploadedImage().equalsIgnoreCase("")){
             mImageReceipt.setVisibility(View.VISIBLE);
             mImageReceipt.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -127,9 +127,9 @@ public class OrderSummaryFragment extends Fragment {
                     showImage();
                 }
             });
-//        } else {
-//            mImageReceipt.setVisibility(View.GONE);
-//        }
+        } else {
+            mImageReceipt.setVisibility(View.GONE);
+        }
 
 
 
@@ -295,7 +295,7 @@ public class OrderSummaryFragment extends Fragment {
 
 //                                showImage();
 
-                                Log.e("deposit-slip", jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("deposit_slip"));
+//                                Log.e("deposit-slip", jsonObject.getJSONObject("Data").getJSONObject("order").getJSONObject("order_meta").getString("deposit_slip"));
 
                                 mAdapter = new OrderListAdapter(getActivity(), R.layout.custom_row_summary, mResultSet);
                                 mAdapter.notifyDataSetChanged();

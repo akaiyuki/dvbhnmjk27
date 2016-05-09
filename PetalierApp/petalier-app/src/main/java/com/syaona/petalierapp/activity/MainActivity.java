@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -194,6 +195,27 @@ public class MainActivity extends BaseActivity {
         // Logs 'app deactivate' App Event.
         AppEventsLogger.deactivateApp(this);
     }
+
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//// TODO Auto-generated method stub
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            //back button key down
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            onBackPressed();
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
 
 }
