@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.syaona.petalierapp.Design3D.BaseViewerFragment;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
@@ -96,13 +97,13 @@ public class PDialog {
 
     }
 
-    public static void displayBitmap(Bitmap bitmap, BaseActivity baseActivity) {
+    public static void displayBitmap(BaseActivity baseActivity) {
         Dialog dialog = new Dialog(baseActivity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_bitmap_display);
 
         ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
-        iv.setImageBitmap(bitmap);
+        iv.setImageBitmap(Singleton.getImage3D());
 
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);

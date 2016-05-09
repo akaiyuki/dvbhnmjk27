@@ -1,6 +1,7 @@
 package com.syaona.petalierapp.Design3D;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -14,12 +15,17 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.core.AppController;
+import com.syaona.petalierapp.core.BaseActivity;
+import com.syaona.petalierapp.dialog.PDialog;
 import com.syaona.petalierapp.enums.Singleton;
 
 import org.rajawali3d.renderer.ISurfaceRenderer;
@@ -51,9 +57,13 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
 
     protected Button mReset;
 
+    public static BaseViewerFragment INSTANCE = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        INSTANCE = this;
 
     }
 
@@ -189,7 +199,10 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
 
                 try {
 
+
                     saveScreenshot(lastScreenshot);
+//                    ModelViewerFragment.INSTANCE.setImage(lastScreenshot);
+//                    Singleton.setImage3D(lastScreenshot);
 
 
 
@@ -210,6 +223,15 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
 
             Singleton.setImage3D(bitmap);
 
+//            displayBitmap(Singleton.GetImage3d);
+//            ModelViewerFragment.INSTANCE.saveBitmap(bitmap);
+
+//            PDialog.displayBitmap(bitmap,BaseViewerFragment.this);
+
+
+            //displayDialogBitmap(bitmap);
+
+
             File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
             FileOutputStream fos;
             try {
@@ -225,5 +247,22 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
         }
 
     }
+
+
+    public static void displayDialogBitmap(Bitmap bitmap){
+        Dialog dialog = new Dialog(AppController.getInstance());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_bitmap_display);
+
+        ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
+        iv.setImageBitmap(bitmap);
+
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+
+        dialog.show();
+    }
+
+
 
 }

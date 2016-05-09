@@ -109,7 +109,7 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
         iv.setImageBitmap(bitmap);
 
 
-        Singleton.setImage3D(bitmap);
+//        Singleton.setImage3D(bitmap);
 
 
         dialog.setCancelable(true);
@@ -119,9 +119,12 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             @Override
             public void onCancel(DialogInterface dialogInterface) {
                 ((LoadModelRenderer) mRenderer).setToNormalView();
+//                Singleton.setImage3D(null);
             }
         });
         dialog.show();
+
+
     }
 
     @Override
@@ -322,6 +325,8 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
             }
 
+            Singleton.setImage3D(null);
+
 
             if (object.getName().equalsIgnoreCase("box")) {
 
@@ -368,14 +373,20 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             camera.setLookAt(0, 0, 0);
 
             getCurrentScene().replaceAndSwitchCamera(mArcballCamera, camera);
-
+//
 
             /* trial edit code */
 //            File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
 //            if(imagePath.exists()) {
 //                imagePath.delete();
+
                 ((LoadModelRenderer) mRenderer).takeScreenshot();
-                displayBitmap(getImageFromStorage());
+//            ((LoadModelRenderer) mRenderer).takeScreenshot();
+//            displayBitmap(Singleton.getImage3D());
+
+
+//            saveBitmap();
+
 //            }
 
 
@@ -388,6 +399,9 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             mArcballCamera.setLookAt(0, 0, 0);
 
             getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
+
+//            Singleton.setImage3D(null);
+            Log.e("normalview","normal view");
         }
 
 
@@ -520,6 +534,26 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
     public void displayImage(){
         ((LoadModelRenderer) mRenderer).setToTopView();
     }
+
+    public void setImage(Bitmap bitmap){
+        displayBitmap(bitmap);
+    }
+
+    public void returntoNormal(){
+
+
+//        if (Singleton.getImage3D() != null){
+//            displayBitmap(Singleton.getImage3D());
+//        } else {
+//            displayImage();
+//        }
+
+        ((LoadModelRenderer) mRenderer).setToNormalView();
+
+
+    }
+
+
 
 
 }

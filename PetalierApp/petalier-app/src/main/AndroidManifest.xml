@@ -87,6 +87,7 @@
             android:value="1ee2a0cff833e434204ac00384402e2b53f839b1" />
 
         <activity android:name=".activity.PaypalActivity"></activity>
+        <activity android:name=".test.ImagePreviewActivity"></activity>
     </application>
 
 </manifest>

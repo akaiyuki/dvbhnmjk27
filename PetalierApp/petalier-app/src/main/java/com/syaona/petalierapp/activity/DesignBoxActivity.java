@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -133,7 +134,19 @@ public class DesignBoxActivity extends BaseActivity {
             public void onClick(View view) {
 //                displayPreview();
 
+//                if (Singleton.getImage3D() != null){
+//                    Singleton.setImage3D(null);
+//                }
                 ModelViewerFragment.INSTANCE.displayImage();
+
+                int myTimer = 1000;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                       ModelViewerFragment.INSTANCE.returntoNormal();
+                    }
+                }, myTimer);
+
             }
         });
 
@@ -179,6 +192,7 @@ public class DesignBoxActivity extends BaseActivity {
                     intent.putExtra("goto", "send_card");
                     startActivity(intent);
                     finish();
+//                    PDialog.displayBitmap(DesignBoxActivity.INSTANCE);
                 } else {
                     showDialogError("Preview the arrangement before proceeding with your order.");
                 }
