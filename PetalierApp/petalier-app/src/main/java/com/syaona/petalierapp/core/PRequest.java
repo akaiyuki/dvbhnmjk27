@@ -37,6 +37,7 @@ public class PRequest {
     public static String apiMethodPostLoginFb = "login/postFbLogin";
     public static String apiMethodPostClearCart = "cart/postClearCart";
     public static String apiMethodRemoveCartItem = "cart/postRemoveItem";
+    public static String apiMethodUpdateProfile = "profile/postUpdate";
 
 
 

@@ -82,12 +82,12 @@
 
 
         <ImageView
-            android:id="@+id/editprofile"
+            android:id="@+id/imgedit"
             android:layout_marginTop="10dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_edit"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
 
         <LinearLayout

@@ -3,6 +3,7 @@ package com.syaona.petalierapp.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -155,12 +156,13 @@ public class ProfileFragment extends Fragment {
 //                .into(mProfile);
 
 
-        ImageView mEditProfile = (ImageView) view.findViewById(R.id.editprofile);
-        mEditProfile.setOnClickListener(new View.OnClickListener() {
+        ImageView mEditIcon = (ImageView) view.findViewById(R.id.imgedit);
+        mEditIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                PEngine.switchFragment((BaseActivity) getActivity(), new OrderSummaryFragment(), ((BaseActivity) getActivity()).getFrameLayout());
+                PEngine.switchFragment((BaseActivity) getActivity(), new EditProfileFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
+//                startActivity(new Intent(getActivity(), EditProfileActivity.class));
             }
         });
 
@@ -434,8 +436,8 @@ public class ProfileFragment extends Fragment {
 
         @Override
         public void onPageSelected(int position) {
-//            mLastPage = position;
-//            updateLastPage(mLastPage);
+            mLastPage = position;
+            updateLastPage(mLastPage);
 
 
             if (position == 0){
@@ -464,7 +466,7 @@ public class ProfileFragment extends Fragment {
     private void updateLastPage(int page) {
         ListView mList = getListView(page);
         OrderListAdapter adapter = getListAdapter(page);
-//        mList.setAdapter(adapter);
+        mList.setAdapter(adapter);
     }
 
     private ListView getListView(int position){
@@ -609,6 +611,9 @@ public class ProfileFragment extends Fragment {
                             .transform(new CircleTransform())
                             .fit()
                             .into(mProfile);
+
+                    PSharedPreferences.setSomeStringValue(AppController.getInstance(),"profile_pic",mResultProfile.get(i).getJSONObject("profile_picture").getString("profile_picture_value"));
+
                 }
 
                 mTextName.setText(fName+" "+lName);

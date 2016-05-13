@@ -2,61 +2,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:background="@drawable/rounded_shape"
     android:gravity="center_horizontal"
-    android:background="@drawable/rounded_shape">
+    android:orientation="vertical">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Success!"
-        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Success!"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimary"/>
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/txterror"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txterror"
-        android:text=""
         android:padding="20dp"
-        android:textColor="@color/colorButtonBackground"/>
-
+        android:text=""
+        android:textColor="@color/colorButtonBackground" />
 
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorVeryLightGray"
-        android:id="@+id/divider"/>
+        android:background="@color/colorVeryLightGray" />
 
     <LinearLayout
+        android:id="@+id/button_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/divider"
-        android:gravity="center_horizontal"
-        android:id="@+id/button_ok">
+        android:gravity="center_horizontal">
 
         <TextView
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
-            android:id="@+id/button"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:text="OK"
             android:textAllCaps="true"
-            android:layout_marginBottom="5dp"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
 
     </LinearLayout>
-
-
-
-
 
 
 </LinearLayout>
