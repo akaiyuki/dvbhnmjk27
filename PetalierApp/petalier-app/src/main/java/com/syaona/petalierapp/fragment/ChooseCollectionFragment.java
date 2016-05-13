@@ -172,6 +172,10 @@ public class ChooseCollectionFragment extends Fragment {
         });
 
 
+        /* erase existing singleton image from 3d*/
+        Singleton.setImage3D(null);
+
+
         return view;
     }
 

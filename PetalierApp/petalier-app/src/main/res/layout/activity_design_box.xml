@@ -60,12 +60,13 @@
                     android:id="@+id/flowername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="lauren"
+                    android:text=""
                     android:textColor="@color/colorButtonInactive"
                     android:textAllCaps="true"
                     android:textStyle="bold"
                     android:textSize="20sp"
                     android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
                     />
 
             </LinearLayout>
@@ -80,8 +81,9 @@
                     android:id="@+id/flowerprice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="P3,000.00"
-                    android:textSize="20sp"/>
+                    android:text=""
+                    android:textSize="20sp"
+                    android:layout_marginLeft="60dp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -96,7 +98,7 @@
             android:id="@+id/productexcerpt"
             android:layout_below="@+id/linearone"
             android:text=""
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"/>
 
 

@@ -12,32 +12,32 @@
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_action_facing.png"
     },
     {
-        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_close.png",
-        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_close.png"
-    },
-    {
         "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/fab_add.png",
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/drawable-xhdpi-v4/fab_add.png"
     },
     {
-        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_remove_red_eye.png",
-        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_remove_red_eye.png"
+        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_close.png",
+        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_close.png"
     },
     {
         "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_check_white.png",
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_check_white.png"
     },
     {
+        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_remove_red_eye.png",
+        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_remove_red_eye.png"
+    },
+    {
         "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_videocam.png",
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_videocam.png"
     },
     {
-        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_close_white.png",
-        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_close_white.png"
-    },
-    {
         "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_flash_on.png",
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_flash_on.png"
+    },
+    {
+        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_close_white.png",
+        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_close_white.png"
     },
     {
         "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_flash_off.png",
@@ -52,11 +52,11 @@
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_stop.png"
     },
     {
-        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_action_camera.png",
-        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_action_camera.png"
-    },
-    {
         "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_action_settings.png",
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_action_settings.png"
+    },
+    {
+        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-xhdpi-v4/cwac_cam2_ic_action_camera.png",
+        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-xhdpi/cwac_cam2_ic_action_camera.png"
     }
 ]

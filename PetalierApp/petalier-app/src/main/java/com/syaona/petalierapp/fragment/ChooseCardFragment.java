@@ -314,7 +314,7 @@ public class ChooseCardFragment extends Fragment {
                         holder.lineInactiveImage.setVisibility(View.GONE);
 
                         PSharedPreferences.setSomeStringValue(AppController.getInstance(), "card", row.getString("card_image_link"));
-                        Log.i("cardlink", row.getString("card_image_link"));
+//                        Log.i("cardlink", row.getString("card_image_link"));
 
                     } else {
                         holder.lineActiveImage.setVisibility(View.GONE);
