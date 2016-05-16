@@ -130,7 +130,8 @@
             android:clickable="true"
             android:layout_weight="2"
             android:hapticFeedbackEnabled="true"
-            android:textColor="@color/colorAccent"/>
+            android:textColor="@color/colorAccent"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="0dp"

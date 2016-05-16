@@ -22,6 +22,7 @@ import android.animation.ValueAnimator;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;

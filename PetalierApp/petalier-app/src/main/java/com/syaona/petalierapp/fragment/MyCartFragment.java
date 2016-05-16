@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -27,7 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.hudomju.swipe.SwipeToDismissTouchListener;
 import com.hudomju.swipe.adapter.ListViewAdapter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -42,6 +42,7 @@ import com.syaona.petalierapp.core.PResponseErrorListener;
 import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.StatusResponse;
+import com.syaona.petalierapp.gesture.SwipeToDismissTouchListener;
 import com.syaona.petalierapp.object.Orders;
 import com.syaona.petalierapp.view.CircleTransform;
 import com.syaona.petalierapp.view.Fonts;
@@ -72,7 +73,9 @@ public class MyCartFragment extends Fragment {
     private String selectedNumber;
     private String selectedCartKey;
     private String total;
-    private static final int TIME_TO_AUTOMATICALLY_DISMISS_ITEM = 3000;
+    private static final int timeDeleteItem = 3000;
+
+    private int currentPositionSelected;
 
     public MyCartFragment() {
         // Required empty public constructor
@@ -227,17 +230,25 @@ public class MyCartFragment extends Fragment {
                             @Override
                             public void onDismiss(ListViewAdapter view, int position) {
 
-//                                Orders order = mResultSetOrder.get(position);
-//                                selectedCartKey = order.getKeyId();
-                                mAdapter.remove(position);
+//                                mAdapter.remove(position);
 
-                                Log.i("adapterposition", String.valueOf(position));
+                                Orders order = mResultSetOrder.get(position);
+                                selectedCartKey = order.getKeyId();
+
+                                currentPositionSelected = position;
+
+                                Log.e("itemdelete", selectedCartKey + " " + position);
+
+
+                                requestApiPostRemoveCart();
 
                             }
                         });
 
-//        touchListener.setDismissDelay(TIME_TO_AUTOMATICALLY_DISMISS_ITEM);
+        touchListener.setDismissDelay(timeDeleteItem);
         listView.setOnTouchListener(touchListener);
+
+
         // Setting this scroll listener is required to ensure that during ListView scrolling,
         // we don't look for swipes.
         listView.setOnScrollListener((AbsListView.OnScrollListener) touchListener.makeScrollListener());
@@ -245,9 +256,11 @@ public class MyCartFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 if (touchListener.existPendingDismisses()) {
+
                     touchListener.undoPendingDismiss();
+
                 } else {
-//                    Toast.makeText(getActivity(), "Position " + position, LENGTH_SHORT).show();
+
                     final MaterialNumberPicker numberPicker = new MaterialNumberPicker.Builder(getActivity())
                             .minValue(1)
                             .maxValue(100)
@@ -539,15 +552,14 @@ public class MyCartFragment extends Fragment {
                         .into(holder.imageView);
 
 
-                holder.text4 = (TextView) convertView.findViewById(R.id.txt_delete);
-                holder.text4.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Log.e("deleteitem", "clicke");
-                        selectedCartKey = row.getKeyId();
-                        requestApiPostRemoveCart();
-                    }
-                });
+//                holder.text4 = (TextView) convertView.findViewById(R.id.txt_delete);
+//                holder.text4.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        selectedCartKey = row.getKeyId();
+//                        requestApiPostRemoveCart();
+//                    }
+//                });
 
 
             }
@@ -672,7 +684,7 @@ public class MyCartFragment extends Fragment {
                         try {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
-
+                                mAdapter.remove(currentPositionSelected);
                                 requestApiGetCart();
 
                             } else {
