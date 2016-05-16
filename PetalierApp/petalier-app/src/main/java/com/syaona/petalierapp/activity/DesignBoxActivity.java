@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Environment;
 import android.os.Handler;
@@ -366,11 +367,13 @@ public class DesignBoxActivity extends BaseActivity {
                     holder.mTextColor.setText(data.getString("color_name"));
 
 
-//                    if (holder.mTextColor.getText().toString().equalsIgnoreCase(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"pick_color"))){
-//                        holder.mTextColor.setPressed(true);
-//                    } else {
-//                        holder.mTextColor.setPressed(false);
-//                    }
+                    if (!color.contains(data.getString("id"))) {
+                        holder.mTextColor.setTypeface(Fonts.gothambookregular);
+                        holder.mTextColor.setTextColor(Color.parseColor("#2D2C2C"));
+                    } else {
+                        holder.mTextColor.setTypeface(Fonts.gothambold);
+                        holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
+                    }
 
 
                 }
@@ -383,20 +386,14 @@ public class DesignBoxActivity extends BaseActivity {
                     .into(holder.mImageFlower);
 
 
+
             holder.mImageFlower.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                     try {
                         assert data != null;
-                        Log.i("hexcodeflower", data.getString("content"));
-
-//                        holder.mTextColor.setTypeface(Fonts.gothambold);
-//                        if (holder.mTextColor.getText().equals(data.getString("color_name"))) {
-//                            holder.mTextColor.setPressed(true);
-//                        } else {
-//                            holder.mTextColor.setPressed(false);
-//                        }
+                        Log.i("coloridflower", data.getString("id"));
 
                        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"pick_color",holder.mTextColor.getText().toString());
 
@@ -417,7 +414,16 @@ public class DesignBoxActivity extends BaseActivity {
                             if (!color.contains(data.getString("id"))) {
                                 color.add(data.getString("id"));
                                 holder.mTextColor.setTypeface(Fonts.gothambold);
+                                holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
                             }
+                        }
+
+                        if (color.contains(data.getString("id"))) {
+                            holder.mTextColor.setTypeface(Fonts.gothambold);
+                            holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
+                        } else {
+                            holder.mTextColor.setTypeface(Fonts.gothambookregular);
+                            holder.mTextColor.setTextColor(Color.parseColor("#2D2C2C"));
                         }
 
 
