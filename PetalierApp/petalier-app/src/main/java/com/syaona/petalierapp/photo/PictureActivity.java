@@ -12,7 +12,7 @@
  limitations under the License.
  */
 
-package com.syaona.petalierapp.test;
+package com.syaona.petalierapp.photo;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -1,28 +1,22 @@
 package com.syaona.petalierapp.dialog;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
-import com.syaona.petalierapp.Design3D.BaseViewerFragment;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.enums.Singleton;
-import com.syaona.petalierapp.test.ImageUploadActivity;
-import com.syaona.petalierapp.test.PictureActivity;
-import com.syaona.petalierapp.test.TakePhotoActivity;
+import com.syaona.petalierapp.photo.ImageUploadActivity;
+import com.syaona.petalierapp.photo.PictureActivity;
 import com.syaona.petalierapp.view.Fonts;
 
 /**

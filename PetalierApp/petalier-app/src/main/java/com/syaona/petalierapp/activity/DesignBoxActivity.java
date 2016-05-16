@@ -41,10 +41,9 @@ import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PConfiguration;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PSharedPreferences;
-import com.syaona.petalierapp.dialog.PDialog;
 import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
-import com.syaona.petalierapp.test.CustomScrollView;
+import com.syaona.petalierapp.photo.CustomScrollView;
 import com.syaona.petalierapp.view.Fonts;
 
 import org.json.JSONArray;

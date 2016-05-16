@@ -12,7 +12,7 @@
  limitations under the License.
  */
 
-package com.syaona.petalierapp.test;
+package com.syaona.petalierapp.photo;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -24,17 +24,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
 import android.preference.PreferenceFragment;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.commonsware.cwac.cam2.AbstractCameraActivity;
 import com.commonsware.cwac.cam2.CameraActivity;
@@ -43,9 +35,6 @@ import com.commonsware.cwac.cam2.FlashMode;
 import com.commonsware.cwac.cam2.FocusMode;
 import com.commonsware.cwac.cam2.ZoomStyle;
 import com.syaona.petalierapp.R;
-import com.syaona.petalierapp.activity.OrderActivity;
-import com.syaona.petalierapp.core.BaseActivity;
-import com.syaona.petalierapp.view.Fonts;
 
 import java.io.File;
 

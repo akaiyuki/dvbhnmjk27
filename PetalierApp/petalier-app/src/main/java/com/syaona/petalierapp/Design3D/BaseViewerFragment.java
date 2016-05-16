@@ -27,6 +27,7 @@ import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.dialog.PDialog;
 import com.syaona.petalierapp.enums.Singleton;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.rajawali3d.renderer.ISurfaceRenderer;
 import org.rajawali3d.renderer.Renderer;
@@ -59,6 +60,7 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
 
     public static BaseViewerFragment INSTANCE = null;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,11 +83,12 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
 
         // Create the loader
         mProgressBarLoader = (ProgressBar) mLayout.findViewById(R.id.progress_bar_loader);
-        mProgressBarLoader.setVisibility(View.GONE);
+        mProgressBarLoader.setVisibility(View.VISIBLE);
 
         mButton = (Button) mLayout.findViewById(R.id.button_photo);
 
 //        mReset = (Button) mLayout.findViewById(R.id.button_reset);
+
 
 
         // Create the renderer
@@ -123,6 +126,7 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
                 mProgressBarLoader.setVisibility(View.GONE);
             }
         });
+
     }
 
     @CallSuper
@@ -133,6 +137,8 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
                 mProgressBarLoader.setVisibility(View.VISIBLE);
             }
         });
+
+
     }
 
     protected static abstract class BaseViewerRenderer extends Renderer {
@@ -148,9 +154,18 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
 
         @Override
         public void onRenderSurfaceCreated(EGLConfig config, GL10 gl, int width, int height) {
+//            if (baseViewerFragment != null) baseViewerFragment.showLoader();
+//            super.onRenderSurfaceCreated(config, gl, width, height);
+//            if (baseViewerFragment != null) baseViewerFragment.hideLoader();
+
+
+            /* trial */
             if (baseViewerFragment != null) baseViewerFragment.showLoader();
             super.onRenderSurfaceCreated(config, gl, width, height);
-            if (baseViewerFragment != null) baseViewerFragment.hideLoader();
+
+
+
+
         }
 
         @Override

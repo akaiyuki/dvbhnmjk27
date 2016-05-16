@@ -1,6 +1,5 @@
-package com.syaona.petalierapp.test;
+package com.syaona.petalierapp.photo;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,8 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -34,17 +31,9 @@ import com.android.volley.toolbox.Volley;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.core.AppController;
-import com.syaona.petalierapp.core.BaseActivity;
-import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PRequest;
-import com.syaona.petalierapp.core.PResponseErrorListener;
-import com.syaona.petalierapp.core.PResponseListener;
 import com.syaona.petalierapp.core.PSharedPreferences;
-import com.syaona.petalierapp.dialog.PDialog;
-import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
-import com.syaona.petalierapp.fragment.DeliveryDetailsFragment;
-import com.syaona.petalierapp.view.Fonts;
 
 
 import org.apache.http.HttpResponse;
@@ -57,17 +46,12 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.syaona.petalierapp.test;
+package com.syaona.petalierapp.photo;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
-import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.enums.Singleton;
 
 /**

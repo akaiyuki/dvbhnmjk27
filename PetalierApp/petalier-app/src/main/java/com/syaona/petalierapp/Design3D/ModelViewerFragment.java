@@ -185,6 +185,8 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
             try {
 
+
+
                 objParser.parse();
                 mObjectGroup = objParser.getParsedObject();
 
@@ -302,6 +304,9 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
             //Set background color
             getCurrentScene().setBackgroundColor(Color.LTGRAY);
+
+
+            BaseViewerFragment.INSTANCE.hideLoader();
 
         }
 

@@ -1,4 +1,4 @@
-package com.syaona.petalierapp.test;
+package com.syaona.petalierapp.photo;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;

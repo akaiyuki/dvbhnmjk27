@@ -1,4 +1,4 @@
-package com.syaona.petalierapp.test;
+package com.syaona.petalierapp.photo;
 
 import android.content.Context;
 import android.util.AttributeSet;

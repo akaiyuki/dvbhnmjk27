@@ -32,6 +32,7 @@ public class Singleton {
     public static ArrayList<String> selectedColorFlower = new ArrayList<>();
     public static Object3D object3D;
 
+
     public static Object3D getObject3D() {
         return object3D;
     }
