@@ -89,7 +89,7 @@ public class SettingsFragment extends Fragment {
         buttonRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                showRateApp();
+                showRateApp();
             }
         });
 
