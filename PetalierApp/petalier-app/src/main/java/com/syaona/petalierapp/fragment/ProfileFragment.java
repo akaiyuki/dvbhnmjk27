@@ -436,22 +436,25 @@ public class ProfileFragment extends Fragment {
 
         @Override
         public void onPageSelected(int position) {
-            mLastPage = position;
-            updateLastPage(mLastPage);
+//            mLastPage = position;
+//            updateLastPage(mLastPage);
 
 
             if (position == 0){
-                mResultPending.clear();
-                mResultCompleted.clear();
+//                mResultPending.clear();
+//                mResultCompleted.clear();
                 requestApiGetAllOrders();
             } else if (position == 1){
 //                mResultOrders.clear();
 //                mResultCompleted.clear();
 //                requestApiGetPendingOrders();
                 requestApiGetPending();
+                mAdapterPending = new OrderListAdapter(getActivity(), R.layout.custom_row_pager, mResultPending);
+                mAdapterPending.notifyDataSetChanged();
+                mListViewPager.setAdapter(mAdapterPending);
             } else if (position == 2){
-                mResultPending.clear();
-                mResultOrders.clear();
+//                mResultPending.clear();
+//                mResultOrders.clear();
                 requestApiGetCompletedOrders();
             }
 
@@ -691,7 +694,7 @@ public class ProfileFragment extends Fragment {
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
                                 mResultOrders.clear();
-                                mResultPending.clear();
+//                                mResultPending.clear();
                                 mResultCompleted.clear();
 
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");
@@ -744,7 +747,7 @@ public class ProfileFragment extends Fragment {
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS) {
 
                                 mResultOrders.clear();
-                                mResultPending.clear();
+//                                mResultPending.clear();
                                 mResultCompleted.clear();
 
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("orders");

@@ -68,5 +68,7 @@ dependencies {
     compile 'com.github.paolorotolo:expandableheightlistview:1.0.0'
     compile 'com.hudomju:swipe-to-dismiss-undo:1.0'
 
+    compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
+
 
 }

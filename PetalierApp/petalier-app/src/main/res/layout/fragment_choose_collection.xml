@@ -42,19 +42,26 @@
     <!--android:id="@+id/divider1"-->
     <!--android:layout_centerHorizontal="true"/>-->
 
+    <com.baoyz.widget.PullRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/app_bar"
+        android:layout_above="@+id/relative">
 
     <GridView
         android:id="@+id/gridview"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_above="@+id/relative"
-        android:layout_below="@+id/app_bar"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:horizontalSpacing="10dp"
         android:numColumns="3"
         android:verticalSpacing="10dp" />
+
+    </com.baoyz.widget.PullRefreshLayout>
 
 
     <RelativeLayout

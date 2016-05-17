@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.baoyz.widget.PullRefreshLayout;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.LoginActivity;
@@ -57,6 +58,8 @@ public class ChooseCollectionFragment extends Fragment {
     private CollectionListAdapter mAdapter;
 
     public String selectedFlower;
+
+    private PullRefreshLayout mPullRefresh;
 
 
     public ChooseCollectionFragment() {
@@ -176,6 +179,17 @@ public class ChooseCollectionFragment extends Fragment {
         Singleton.setImage3D(null);
 
 
+        /* added pull to refresh */
+        mPullRefresh = (PullRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        mPullRefresh.setRefreshStyle(PullRefreshLayout.STYLE_RING);
+        mPullRefresh.setOnRefreshListener(new PullRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestRefreshGetCollections();
+            }
+        });
+
+
         return view;
     }
 
@@ -224,98 +238,6 @@ public class ChooseCollectionFragment extends Fragment {
                 holder.text1.setTypeface(Fonts.gothambold);
                 holder.text2.setText("Php "+row.getString("regular_price"));
                 holder.text2.setTypeface(Fonts.gothambookregular);
-
-//                if (holder.text1.getText().toString().equalsIgnoreCase("beatriz")){
-//                    Picasso.with(mContext)
-//                            .load(R.drawable.beatriz)
-//                            .fit()
-//                            .transform(new CircleTransform())
-//                            .into(holder.imageView, new Callback() {
-//                                @Override
-//                                public void onSuccess() {
-//
-//                                }
-//
-//                                @Override
-//                                public void onError() {
-//                                }
-//                            });
-//                } if (holder.text1.getText().toString().equalsIgnoreCase("lucy")){
-//                    Picasso.with(mContext)
-//                            .load(R.drawable.lucy)
-//                            .fit()
-//                            .transform(new CircleTransform())
-//                            .into(holder.imageView, new Callback() {
-//                                @Override
-//                                public void onSuccess() {
-//
-//                                }
-//
-//                                @Override
-//                                public void onError() {
-//                                }
-//                            });
-//                } if (holder.text1.getText().toString().equalsIgnoreCase("lauren")){
-//                    Picasso.with(mContext)
-//                            .load(R.drawable.lauren)
-//                            .fit()
-//                            .transform(new CircleTransform())
-//                            .into(holder.imageView, new Callback() {
-//                                @Override
-//                                public void onSuccess() {
-//
-//                                }
-//
-//                                @Override
-//                                public void onError() {
-//                                }
-//                            });
-//                } if (holder.text1.getText().toString().equalsIgnoreCase("chloe")){
-//                    Picasso.with(mContext)
-//                            .load(R.drawable.chloe)
-//                            .fit()
-//                            .transform(new CircleTransform())
-//                            .into(holder.imageView, new Callback() {
-//                                @Override
-//                                public void onSuccess() {
-//
-//                                }
-//
-//                                @Override
-//                                public void onError() {
-//                                }
-//                            });
-//                } if (holder.text1.getText().toString().equalsIgnoreCase("diana")){
-//                    Picasso.with(mContext)
-//                            .load(R.drawable.diana)
-//                            .fit()
-//                            .transform(new CircleTransform())
-//                            .into(holder.imageView, new Callback() {
-//                                @Override
-//                                public void onSuccess() {
-//
-//                                }
-//
-//                                @Override
-//                                public void onError() {
-//                                }
-//                            });
-//                } if (holder.text1.getText().toString().equalsIgnoreCase("felicisima")){
-//                    Picasso.with(mContext)
-//                            .load(R.drawable.felicima)
-//                            .fit()
-//                            .transform(new CircleTransform())
-//                            .into(holder.imageView, new Callback() {
-//                                @Override
-//                                public void onSuccess() {
-//
-//                                }
-//
-//                                @Override
-//                                public void onError() {
-//                                }
-//                            });
-//                }
 
                 Picasso.with(mContext)
                         .load(row.getString("thumbnail"))
@@ -397,7 +319,7 @@ public class ChooseCollectionFragment extends Fragment {
         MainActivity.INSTANCE.startAnim();
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = PConfiguration.testURL+PRequest.apiMethodGetAllProducts;
+        String url = PRequest.getApiRootForResource()+PRequest.apiMethodGetAllProducts;
         StringRequest postRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>()
                 {
@@ -455,8 +377,6 @@ public class ChooseCollectionFragment extends Fragment {
 //                params.put("Accept-Language", "fr");
 
 //                params.put("Session-Token", PSharedPreferences.getSomeStringValue(AppController.getInstance(), "session_token"));
-//
-
                 return params;
             }
         };
@@ -464,6 +384,70 @@ public class ChooseCollectionFragment extends Fragment {
 
     }
 
+
+
+    /* api call for refresh */
+    public void requestRefreshGetCollections() {
+
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String url = PRequest.getApiRootForResource()+PRequest.apiMethodGetAllProducts;
+        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS){
+
+                                mResultCollection.clear();
+
+                                JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("products");
+
+                                for (int i = 0; i<jsonArray.length(); i++){
+                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                                    mResultCollection.add(jsonObject1);
+
+                                }
+
+                                mAdapter = new CollectionListAdapter(getActivity(), R.layout.custom_row_collection, mResultCollection);
+                                mAdapter.notifyDataSetChanged();
+                                mGridView.setAdapter(mAdapter);
+
+
+                            }
+
+                            mPullRefresh.setRefreshing(false);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            mPullRefresh.setRefreshing(false);
+                        }
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        Log.d("ERROR", "error => " + error.toString());
+                        mPullRefresh.setRefreshing(false);
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                return params;
+            }
+        };
+        queue.add(postRequest);
+
+    }
 
 
 
