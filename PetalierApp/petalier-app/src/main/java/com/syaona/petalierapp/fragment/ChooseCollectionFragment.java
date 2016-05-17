@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.baoyz.widget.PullRefreshLayout;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.LoginActivity;
@@ -60,6 +61,7 @@ public class ChooseCollectionFragment extends Fragment {
     public String selectedFlower;
 
     private PullRefreshLayout mPullRefresh;
+    private ImageView mImageLoading;
 
 
     public ChooseCollectionFragment() {
@@ -70,7 +72,7 @@ public class ChooseCollectionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestApiGetCollections();
+//        requestApiGetCollections();
 
     }
 
@@ -190,7 +192,30 @@ public class ChooseCollectionFragment extends Fragment {
         });
 
 
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+
+        Glide.with(AppController.getInstance())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
+
+        requestApiGetCollections();
+
+
         return view;
+    }
+
+    public void startAnimation(){
+//        mImageLoading = (ImageView) getActivity().findViewById(R.id.loading);
+//        mImageLoading.setVisibility(View.VISIBLE);
+    }
+
+
+
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
     }
 
 
@@ -316,7 +341,7 @@ public class ChooseCollectionFragment extends Fragment {
 
     public void requestApiGetCollections() {
 
-        MainActivity.INSTANCE.startAnim();
+        startAnimation();
 
         RequestQueue queue = Volley.newRequestQueue(getActivity());
         String url = PRequest.getApiRootForResource()+PRequest.apiMethodGetAllProducts;
@@ -348,12 +373,12 @@ public class ChooseCollectionFragment extends Fragment {
 
                             }
 
-                            MainActivity.INSTANCE.stopAnim();
+                            stopAnimation();
 
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            MainActivity.INSTANCE.stopAnim();
+                            stopAnimation();
                         }
 
                     }
@@ -365,8 +390,7 @@ public class ChooseCollectionFragment extends Fragment {
                         // TODO Auto-generated method stub
                         Log.d("ERROR", "error => " + error.toString());
 
-                        MainActivity.INSTANCE.stopAnim();
-
+                        stopAnimation();
                     }
                 }
         ) {
