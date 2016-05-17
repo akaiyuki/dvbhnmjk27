@@ -125,10 +125,6 @@ public class BillingInfoFragment extends Fragment {
                         mEditLastName.getText().length() != 0 &&
                         mEditContact.getText().length() != 0 &&
                         mEditEmail.getText().length() != 0 &&
-                        mEditStreet.getText().length() != 0 &&
-                        mEditUnit.getText().length() != 0 &&
-                        mEditTown.getText().length() != 0 &&
-                        mEditCity.getText().length() != 0 &&
                         mEditPostal.getText().length() != 0 &&
                         mEditCountry.getText().length() != 0
                         )
