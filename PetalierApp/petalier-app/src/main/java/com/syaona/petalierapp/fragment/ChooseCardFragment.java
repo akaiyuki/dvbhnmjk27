@@ -29,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.AppController;
@@ -115,7 +116,6 @@ public class ChooseCardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 PEngine.switchFragment((BaseActivity) getActivity(), new SendNoteFragment(), ((BaseActivity) getActivity()).getFrameLayout());
-
             }
         });
 
@@ -124,15 +124,19 @@ public class ChooseCardFragment extends Fragment {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                PEngine.switchFragment((BaseActivity) getActivity(), new SendNoteFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
-//            startActivity(new Intent(getActivity(), OrderActivity.class));
-//                getActivity().finish();
 
-                Intent intent = new Intent(getActivity(), OrderActivity.class);
-                intent.putExtra("goto","delivery");
-                startActivity(intent);
-                getActivity().finish();
+                if (PSharedPreferences.getSomeStringValue(AppController.getInstance(),"session_token").isEmpty()){
+                    Singleton.setLoginFromMain(0);
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                } else {
+                    Intent intent = new Intent(getActivity(), OrderActivity.class);
+                    intent.putExtra("goto","delivery");
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+
+
 
             }
         });

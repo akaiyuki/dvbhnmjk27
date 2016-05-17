@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
 import com.syaona.petalierapp.core.AppController;
@@ -193,6 +194,7 @@ public class DeliveryDetailsFragment extends Fragment {
                         new AddItemTask().execute();
 
                     }
+
                 } else {
 
                     if (Singleton.getSelectedDay() == 1){
@@ -268,9 +270,9 @@ public class DeliveryDetailsFragment extends Fragment {
 
                         orderPlacement = 0;
                         new AddItemTask().execute();
-                    } else {
-                        Log.i("nobitmap","nobitmap");
+
                     }
+
                 } else {
 
                     if (Singleton.getSelectedDay() == 1){
