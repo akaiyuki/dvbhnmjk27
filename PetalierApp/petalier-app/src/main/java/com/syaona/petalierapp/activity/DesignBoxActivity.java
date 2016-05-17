@@ -14,6 +14,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -346,6 +347,10 @@ public class DesignBoxActivity extends BaseActivity {
 
         private ArrayList<JSONObject> mData = new ArrayList<>();
 
+//        private SparseBooleanArray selectedItems;
+
+        private int selected = 0;
+
         public RegularFlowerAdapter(ArrayList<JSONObject> data) {
             mData = data;
         }
@@ -356,8 +361,9 @@ public class DesignBoxActivity extends BaseActivity {
             return new ViewHolder(v);
         }
 
+
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
 
             final JSONObject data = mData.get(position);
             String url = "";
@@ -367,13 +373,24 @@ public class DesignBoxActivity extends BaseActivity {
                     holder.mTextColor.setText(data.getString("color_name"));
 
 
-                    if (!color.contains(data.getString("id"))) {
-                        holder.mTextColor.setTypeface(Fonts.gothambookregular);
-                        holder.mTextColor.setTextColor(Color.parseColor("#2D2C2C"));
+//                    if (!color.contains(data.getString("id"))) {
+//                        holder.mTextColor.setTypeface(Fonts.gothambookregular);
+//                        holder.mTextColor.setTextColor(Color.parseColor("#2D2C2C"));
+//                    } else {
+//                        holder.mTextColor.setTypeface(Fonts.gothambold);
+//                        holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
+//                    }
+
+//                    holder.mTextColor.setSelected(false);
+
+                    if (selected == Integer.parseInt(data.getString("id"))){
+                        holder.mTextColor.setSelected(true);
                     } else {
-                        holder.mTextColor.setTypeface(Fonts.gothambold);
-                        holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
+                        holder.mTextColor.setSelected(false);
                     }
+
+
+
 
 
                 }
@@ -384,7 +401,6 @@ public class DesignBoxActivity extends BaseActivity {
             Picasso.with(DesignBoxActivity.INSTANCE)
                     .load(url)
                     .into(holder.mImageFlower);
-
 
 
             holder.mImageFlower.setOnClickListener(new View.OnClickListener() {
@@ -413,24 +429,43 @@ public class DesignBoxActivity extends BaseActivity {
                         if (color.size() < maxColor) {
                             if (!color.contains(data.getString("id"))) {
                                 color.add(data.getString("id"));
-                                holder.mTextColor.setTypeface(Fonts.gothambold);
-                                holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
+//                                holder.mTextColor.setTypeface(Fonts.gothambold);
+//                                holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
                             }
                         }
 
-                        if (color.contains(data.getString("id"))) {
-                            holder.mTextColor.setTypeface(Fonts.gothambold);
-                            holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
-                        } else {
-                            holder.mTextColor.setTypeface(Fonts.gothambookregular);
-                            holder.mTextColor.setTextColor(Color.parseColor("#2D2C2C"));
-                        }
+//                        if (color.contains(data.getString("id"))) {
+//                            holder.mTextColor.setTypeface(Fonts.gothambold);
+//                            holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
+//                        } else {
+//                            holder.mTextColor.setTypeface(Fonts.gothambookregular);
+//                            holder.mTextColor.setTextColor(Color.parseColor("#2D2C2C"));
+//                        }
+
+
+//                            if (holder.getAdapterPosition() == position){
+//                                holder.mTextColor.setSelected(true);
+//                                notifyDataSetChanged();
+//
+//                                Log.e("highlightcolor","true");
+//                            }
+
+
+//                        if (holder.mTextColor.getText() == data.getString("color_name")){
+//                            holder.mTextColor.setSelected(true);
+//                            notifyDataSetChanged();
+//
+//                            Log.e("highlightcolor","true");
+//                        }
+
+                        selected = Integer.parseInt(data.getString("id"));
+                        notifyDataSetChanged();
 
 
                         Singleton.setMaxColor(color);
 
 
-                        Log.i("maxcolorselected", String.valueOf(Singleton.getMaxColor()));
+//                        Log.i("maxcolorselected", String.valueOf(Singleton.getMaxColor()));
 
 
                     } catch (JSONException e) {

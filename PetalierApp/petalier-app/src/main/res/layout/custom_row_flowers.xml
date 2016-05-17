@@ -32,7 +32,7 @@
             android:layout_centerHorizontal="true"
             android:text=""
             android:textSize="9sp"
-            android:textColor="@drawable/text_background"/>
+            android:textColor="@drawable/textview_background"/>
 
 
 
