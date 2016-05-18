@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
@@ -48,6 +49,7 @@ public class EditProfileFragment extends Fragment {
     private EditText mFirstName;
     private EditText mLastName;
     private EditText mBirthday;
+    private ImageView mImageLoading;
 
 
     public EditProfileFragment() {
@@ -107,14 +109,28 @@ public class EditProfileFragment extends Fragment {
         });
 
 
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading.setVisibility(View.GONE);
+        Glide.with(AppController.getInstance())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
+
+
+
         Button mButtonUpdate = (Button) view.findViewById(R.id.btnupdate);
         mButtonUpdate.setTypeface(Fonts.gothambookregular);
         mButtonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mImageLoading.setVisibility(View.VISIBLE);
                 requestApiUpdateProfile();
             }
         });
+
+
 
 
         return view;
@@ -122,9 +138,14 @@ public class EditProfileFragment extends Fragment {
 
 
 
-    public void requestApiUpdateProfile() {
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
+    }
 
-        MainActivity.INSTANCE.startAnim();
+
+
+
+    public void requestApiUpdateProfile() {
 
 
         HashMap<String, String> params = new HashMap<>();
@@ -151,18 +172,18 @@ public class EditProfileFragment extends Fragment {
                                 PDialog.showDialogError((BaseActivity) getActivity(),"Please complete profile information");
                             }
 
-                            MainActivity.INSTANCE.stopAnim();
+                            stopAnimation();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            MainActivity.INSTANCE.stopAnim();
+                            stopAnimation();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
-                MainActivity.INSTANCE.stopAnim();
+                stopAnimation();
             }
         });
 
