@@ -5,6 +5,13 @@
     android:background="@color/colorBackground"
     tools:context="com.syaona.petalierapp.fragment.LoginFragment">
 
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
     <ImageView
         android:id="@+id/petalogo"
         android:layout_width="match_parent"
@@ -12,6 +19,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
         android:src="@drawable/petalierlogo" />
+
+
+
 
 
     <EditText
@@ -58,6 +68,9 @@
         android:textColor="@color/colorLightGary"
         android:textColorHint="@color/colorLightGary" />
 
+
+
+
     <Button
         android:id="@+id/btnloginemail"
         android:layout_width="match_parent"
@@ -71,6 +84,10 @@
         android:text="Log In with Email"
         android:textAllCaps="false"
         android:textColor="@color/colorTextWhite" />
+
+
+
+
 
 
     <LinearLayout
@@ -134,6 +151,11 @@
 
     </LinearLayout>
 
+
+
+
+
+
     <RelativeLayout
         android:id="@+id/loginfb"
         android:layout_width="wrap_content"
@@ -188,6 +210,11 @@
     </RelativeLayout>
 
 
+
+
+
+
+
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
@@ -226,5 +253,20 @@
 
     </RelativeLayout>
 
+
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_centerInParent="true"
+        android:id="@+id/loading"
+        android:visibility="visible"/>
 
 </RelativeLayout>

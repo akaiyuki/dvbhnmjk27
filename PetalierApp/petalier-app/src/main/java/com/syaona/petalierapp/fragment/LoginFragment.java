@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -26,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -74,6 +76,7 @@ public class LoginFragment extends Fragment {
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     private GraphRequest request;
+    private ImageView mImageLoading;
 
 
     public LoginFragment() {
@@ -92,6 +95,17 @@ public class LoginFragment extends Fragment {
         mEditPassword = (EditText) view.findViewById(R.id.edit_password);
 
 
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading.setVisibility(View.GONE);
+
+        Glide.with(AppController.getInstance())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
+
+
         Button btnLoginEmail = (Button) view.findViewById(R.id.btnloginemail);
         btnLoginEmail.setTypeface(Fonts.gothambookregular);
         btnLoginEmail.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +113,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View view) {
 
                 if (mEditEmail.getText().length() != 0 && mEditPassword.getText().length() != 0) {
+                    mImageLoading.setVisibility(View.VISIBLE);
                     requestApiLogin();
                 }
 
@@ -167,7 +182,7 @@ public class LoginFragment extends Fragment {
                                     String email = object.optString("email");
 
 //                                    Log.i("fbfirstname", firstName + " " + email);
-
+                                    mImageLoading.setVisibility(View.VISIBLE);
                                     requestApiFbLogin(fbAccesstoken, fbId, firstName, lastName, email, signature);
 
                                 } catch (Exception e) {
@@ -204,6 +219,11 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
+    }
+
+
     public static String encriptFacebookCredentials(String accessToken) {
         try {
             String secret = AppController.getInstance().getResources().getString(R.string.facebook_app_secret);
@@ -226,8 +246,6 @@ public class LoginFragment extends Fragment {
 
 
     public void requestApiLogin() {
-
-        LoginActivity.INSTANCE.startAnim();
 
         HashMap<String, String> params = new HashMap<>();
         params.put("username", mEditEmail.getText().toString());
@@ -305,18 +323,19 @@ public class LoginFragment extends Fragment {
 
                             }
 
-                            LoginActivity.INSTANCE.stopAnim();
+                            stopAnimation();
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            LoginActivity.INSTANCE.stopAnim();
+                            stopAnimation();
                         }
                     }
                 }, new PResponseErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
-                LoginActivity.INSTANCE.stopAnim();
+                stopAnimation();
             }
         });
 
@@ -326,7 +345,6 @@ public class LoginFragment extends Fragment {
 
     public void requestApiFbLogin(String accessToken, String fbId, String fName, String lName, String email, String signature) {
 
-        LoginActivity.INSTANCE.startAnim();
 
         HashMap<String, String> params = new HashMap<>();
         params.put("fbAccessToken", accessToken);
@@ -372,18 +390,18 @@ public class LoginFragment extends Fragment {
 
                             }
 
-                            LoginActivity.INSTANCE.stopAnim();
+                            stopAnimation();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            LoginActivity.INSTANCE.stopAnim();
+                            stopAnimation();
                         }
                     }
                 }, new PResponseErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
-                LoginActivity.INSTANCE.stopAnim();
+                stopAnimation();
             }
         });
 
