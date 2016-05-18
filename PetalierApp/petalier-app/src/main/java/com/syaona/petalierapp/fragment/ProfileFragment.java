@@ -26,6 +26,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
@@ -90,6 +91,7 @@ public class ProfileFragment extends Fragment {
     private OrderListAdapter mAdapterCompleted;
 
     private String selectedOrder;
+    private ImageView mImageLoading;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -174,9 +176,23 @@ public class ProfileFragment extends Fragment {
             populateUserInfo();
         }
 
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+
+        Glide.with(AppController.getInstance())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
+
 
         return view;
     }
+
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
+    }
+
 
 
     @Override
@@ -790,7 +806,6 @@ public class ProfileFragment extends Fragment {
 
     public void requestApiGetPendingOrders() {
 
-        MainActivity.INSTANCE.startAnim();
 
         HashMap<String, String> params = new HashMap<>();
 //        params.put("userId", PSharedPreferences.getSomeStringValue(AppController.getInstance(),"user_id"));
@@ -818,7 +833,6 @@ public class ProfileFragment extends Fragment {
 
                                 }
 
-                                MainActivity.INSTANCE.stopAnim();
 
                             } else {
                                 Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
@@ -838,18 +852,18 @@ public class ProfileFragment extends Fragment {
 //                            mViewPager.setAdapter(mPageAdapter);
                             mViewPager.setCurrentItem(1);
 
-
+                            stopAnimation();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            MainActivity.INSTANCE.stopAnim();
+                            stopAnimation();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
-                MainActivity.INSTANCE.stopAnim();
+                stopAnimation();
             }
         });
 
