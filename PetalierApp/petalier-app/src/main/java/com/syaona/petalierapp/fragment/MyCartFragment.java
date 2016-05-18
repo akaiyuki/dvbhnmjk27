@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.hudomju.swipe.adapter.ListViewAdapter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -76,6 +77,7 @@ public class MyCartFragment extends Fragment {
     private static final int timeDeleteItem = 3000;
 
     private int currentPositionSelected;
+    private ImageView mImageLoading;
 
     public MyCartFragment() {
         // Required empty public constructor
@@ -96,6 +98,14 @@ public class MyCartFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_cart, container, false);
 
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+
+        Glide.with(AppController.getInstance())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
         requestApiGetCart();
 
         /* Initialize toolbar */
@@ -198,12 +208,19 @@ public class MyCartFragment extends Fragment {
 
 
 
+
         init(mListView);
 
 
 
         return view;
     }
+
+
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
+    }
+
 
 
 
@@ -402,16 +419,19 @@ public class MyCartFragment extends Fragment {
                                 Log.i("error", jsonObject.getJSONObject("Data").getString("alert"));
                             }
 
+                            stopAnimation();
 
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            stopAnimation();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
+                stopAnimation();
             }
         });
 
