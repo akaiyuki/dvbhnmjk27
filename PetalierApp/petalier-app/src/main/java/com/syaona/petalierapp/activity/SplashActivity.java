@@ -14,9 +14,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.felipecsl.gifimageview.library.GifImageView;
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 
 import java.io.ByteArrayOutputStream;
@@ -41,16 +44,8 @@ public class SplashActivity extends BaseActivity {
 
         INSTANCE = this;
 
-//        WebView webView = (WebView) findViewById(R.id.webview);
-//
-//        WebSettings settings = webView.getSettings();
-//        settings.setUseWideViewPort(true);
-//        settings.setLoadWithOverviewMode(true);
-//
-//        webView.loadUrl("file:///android_asset/splash.gif");
 
-
-        GifImageView gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+        final GifImageView gifImageView = (GifImageView) findViewById(R.id.gifImageView);
         try {
             InputStream is = getAssets().open("splash.gif");
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -77,7 +72,9 @@ public class SplashActivity extends BaseActivity {
                 i.putExtra("goto","collection");
                 startActivity(i);
                 finish(); // close this activity
-//                    }
+
+                assert gifImageView != null;
+                gifImageView.stopAnimation();
 
             }
         }, myTimer);

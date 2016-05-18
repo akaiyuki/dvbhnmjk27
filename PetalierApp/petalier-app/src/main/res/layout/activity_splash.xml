@@ -16,18 +16,13 @@
     <!--android:layout_marginRight="30dp"-->
     <!--/>-->
 
-    <WebView
-        android:id="@+id/webview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
-
     <com.felipecsl.gifimageview.library.GifImageView
         android:id="@+id/gifImageView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:scaleType="fitCenter"
         android:visibility="visible" />
+
 
 
     <RelativeLayout
