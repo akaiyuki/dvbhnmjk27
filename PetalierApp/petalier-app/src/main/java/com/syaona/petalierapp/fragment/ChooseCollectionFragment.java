@@ -358,6 +358,8 @@ public class ChooseCollectionFragment extends Fragment {
 
                             if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS){
 
+                                mResultCollection.clear();
+
                                 JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONArray("products");
 
                                 for (int i = 0; i<jsonArray.length(); i++){
