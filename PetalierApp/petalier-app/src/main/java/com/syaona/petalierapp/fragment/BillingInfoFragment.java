@@ -117,6 +117,16 @@ public class BillingInfoFragment extends Fragment {
         mEditCountry = (EditText) view.findViewById(R.id.edit_country);
 
 
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading.setVisibility(View.GONE);
+        Glide.with(getActivity())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
+
+
         mButtonCheckout = (Button) view.findViewById(R.id.btncheckout);
         mButtonCheckout.setTypeface(Fonts.gothambookregular);
         mButtonCheckout.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +142,7 @@ public class BillingInfoFragment extends Fragment {
                         )
 
                 {
+                    mImageLoading.setVisibility(View.VISIBLE);
                     requestApiBillingInfo();
                 } else {
                     PDialog.showDialogError((BaseActivity) getActivity(), "Please Complete Billing Information");
@@ -203,13 +214,7 @@ public class BillingInfoFragment extends Fragment {
         txtCompany.setTypeface(Fonts.gothambookregular);
 
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
-        Glide.with(getActivity())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+
 
 
         return view;
