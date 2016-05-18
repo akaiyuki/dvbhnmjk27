@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
@@ -45,6 +46,7 @@ import java.util.HashMap;
 public class PaypalFragment extends Fragment {
 
     private WebView webView;
+    private ImageView mImageLoading;
 
     public PaypalFragment() {
         // Required empty public constructor
@@ -82,10 +84,24 @@ public class PaypalFragment extends Fragment {
 
         webView = (WebView) view.findViewById(R.id.paypal_webview);
 
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+
+        Glide.with(AppController.getInstance())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
+
         loadPaypalUrl();
 
         return view;
     }
+
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
+    }
+
 
     private void loadPaypalUrl() {
         webView.setWebViewClient(new PaypalWebViewClient());
@@ -105,8 +121,6 @@ public class PaypalFragment extends Fragment {
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
 
-            PaypalActivity.INSTANCE.startAnim();
-
         }
 
         @Override
@@ -115,7 +129,7 @@ public class PaypalFragment extends Fragment {
 
             PDebug.logDebug("Paypal", "url: " + url);
 
-            PaypalActivity.INSTANCE.stopAnim();
+            stopAnimation();
 
             if (url.contains("success")) {
 
