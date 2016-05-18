@@ -102,10 +102,10 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestApiGetProfile();
-//        requestApiGetAllOrders();
-//        requestApiGetCompletedOrders();
-        requestApiGetPendingOrders();
+//        requestApiGetProfile();
+////        requestApiGetAllOrders();
+////        requestApiGetCompletedOrders();
+//        requestApiGetPendingOrders();
 
 
     }
@@ -177,13 +177,17 @@ public class ProfileFragment extends Fragment {
         }
 
         mImageLoading = (ImageView) view.findViewById(R.id.loading);
-
+        mImageLoading.setVisibility(View.GONE);
         Glide.with(AppController.getInstance())
                 .load(R.drawable.loading)
                 .asGif()
                 .placeholder(R.drawable.loading)
                 .crossFade()
                 .into(mImageLoading);
+
+        requestApiGetProfile();
+        requestApiGetPendingOrders();
+
 
 
         return view;
@@ -559,8 +563,8 @@ public class ProfileFragment extends Fragment {
             try {
 
                 if (row != null){
-
-                    holder.text1.setText("Order #"+row.getString("id"));
+                    String orderNumber = "Order #"+row.getString("id");
+                    holder.text1.setText(orderNumber);
                     holder.text1.setTypeface(Fonts.gothambold);
                     holder.text2.setText(row.getString("date_created"));
                     holder.text2.setTypeface(Fonts.gothambookregular);
@@ -805,6 +809,8 @@ public class ProfileFragment extends Fragment {
     }
 
     public void requestApiGetPendingOrders() {
+
+        mImageLoading.setVisibility(View.VISIBLE);
 
 
         HashMap<String, String> params = new HashMap<>();

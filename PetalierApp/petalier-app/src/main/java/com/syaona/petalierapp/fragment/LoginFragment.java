@@ -28,12 +28,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.syaona.petalierapp.R;
@@ -138,9 +141,8 @@ public class LoginFragment extends Fragment {
         // Callback registration
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
+            public void onSuccess(final LoginResult loginResult) {
                 // App code
-
 
                 Log.i("name user", String.valueOf(loginResult.getAccessToken().getUserId()));
                 final String fbAccesstoken = loginResult.getAccessToken().getToken();
@@ -167,13 +169,6 @@ public class LoginFragment extends Fragment {
 
                                 Log.e("response: ", response + "");
                                 try {
-//                                user = new User();
-//                                user.facebookID = object.getString("id").toString();
-//                                user.email = object.getString("email").toString();
-//                                user.name = object.getString("name").toString();
-//                                user.gender = object.getString("gender").toString();
-//                                PrefUtils.setCurrentUser(user,getActivity());
-
 
                                     Profile profile = Profile.getCurrentProfile();
                                     String firstName = profile.getFirstName();
@@ -181,15 +176,54 @@ public class LoginFragment extends Fragment {
 
                                     String email = object.optString("email");
 
-//                                    Log.i("fbfirstname", firstName + " " + email);
-                                    mImageLoading.setVisibility(View.VISIBLE);
-                                    requestApiFbLogin(fbAccesstoken, fbId, firstName, lastName, email, signature);
+
+
+
+
+                                    AccessToken accessToken = loginResult.getAccessToken();
+
+                                    AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+                                        @Override
+                                        protected void onCurrentAccessTokenChanged(AccessToken accessToken, AccessToken accessToken1) {
+
+                                        }
+                                    };
+                                    accessTokenTracker.startTracking();
+
+                                    ProfileTracker profileTracker = new ProfileTracker() {
+                                        @Override
+                                        protected void onCurrentProfileChanged(Profile profile, Profile profile1) {
+
+                                        }
+                                    };
+                                    profileTracker.startTracking();
+
+                                    if (profile != null) {
+                                        //get data here
+                                        Log.e("firstnamefb", profile.getFirstName()+" "+email);
+
+                                        mImageLoading.setVisibility(View.VISIBLE);
+                                        requestApiFbLogin(fbAccesstoken, fbId, profile.getFirstName(), profile.getLastName(), email, signature);
+
+
+
+                                    }
+
+
+
+
+
+
+
+
+
+//                                    mImageLoading.setVisibility(View.VISIBLE);
+//                                    requestApiFbLogin(fbAccesstoken, fbId, firstName, lastName, email, signature);
 
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                     Log.e("requesterror", e.getMessage());
                                 }
-
 
                             }
 
@@ -199,6 +233,8 @@ public class LoginFragment extends Fragment {
                 parameters.putString("fields", "id,name,email,gender");
                 request.setParameters(parameters);
                 request.executeAsync();
+
+
 
             }
 
