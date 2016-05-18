@@ -34,6 +34,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.Design3D.ModelViewerFragment;
 import com.syaona.petalierapp.R;
@@ -81,6 +82,8 @@ public class DesignBoxActivity extends BaseActivity {
     public static ArrayList<String> color = new ArrayList<>();
 
     public static String pickedColor;
+
+    private ImageView mImageLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -303,6 +306,14 @@ public class DesignBoxActivity extends BaseActivity {
 
 
 
+        mImageLoading = (ImageView) findViewById(R.id.loading);
+
+        Glide.with(AppController.getInstance())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
 
         requestApiGetColors();
 
@@ -314,6 +325,11 @@ public class DesignBoxActivity extends BaseActivity {
 
 
     }
+
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
+    }
+
 
 
     public void displayPreview(){
@@ -539,9 +555,12 @@ public class DesignBoxActivity extends BaseActivity {
 
                             }
 
+                            stopAnimation();
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            stopAnimation();
                         }
 
                     }
@@ -552,7 +571,7 @@ public class DesignBoxActivity extends BaseActivity {
                     public void onErrorResponse(VolleyError error) {
                         // TODO Auto-generated method stub
                         Log.d("ERROR", "error => " + error.toString());
-
+                        stopAnimation();
                     }
                 }
         ) {
