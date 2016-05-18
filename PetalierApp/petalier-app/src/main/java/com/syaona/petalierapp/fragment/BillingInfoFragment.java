@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
@@ -55,6 +56,7 @@ public class BillingInfoFragment extends Fragment {
     private Button mButtonCheckout;
     private EditText mEditCompany;
     private EditText mEditCountry;
+    private ImageView mImageLoading;
 
 
     public BillingInfoFragment() {
@@ -135,7 +137,7 @@ public class BillingInfoFragment extends Fragment {
                     PDialog.showDialogError((BaseActivity) getActivity(), "Please Complete Billing Information");
                 }
 
-                /* skip api call for trial in summary order */
+                /* skip api call for trial in summary order for meantime -- testing */
 //                PEngine.switchFragment((BaseActivity) getActivity(), new SummaryOrderFragment(), ((BaseActivity) getActivity()).getFrameLayout());
 
             }
@@ -201,15 +203,26 @@ public class BillingInfoFragment extends Fragment {
         txtCompany.setTypeface(Fonts.gothambookregular);
 
 
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        Glide.with(getActivity())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
+
 
         return view;
     }
 
 
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
+    }
+
 
     public void requestApiBillingInfo() {
 
-        OrderActivity.INSTANCE.startAnim();
 
         HashMap<String, String> params = new HashMap<>();
         params.put("firstName", mEditFirstName.getText().toString());
@@ -224,7 +237,6 @@ public class BillingInfoFragment extends Fragment {
         params.put("postcode", mEditPostal.getText().toString());
         params.put("company", mEditCompany.getText().toString());
         params.put("email", mEditEmail.getText().toString());
-
 
 
         PRequest request = new PRequest(PRequest.apiMethodPostBillingInfo, params,
@@ -264,18 +276,18 @@ public class BillingInfoFragment extends Fragment {
 //                                Log.i("billing_info", fName+lName+contact+email+city);
                             }
 
-                            OrderActivity.INSTANCE.stopAnim();
+                            stopAnimation();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            OrderActivity.INSTANCE.stopAnim();
+                            stopAnimation();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
-                OrderActivity.INSTANCE.stopAnim();
+                stopAnimation();
             }
         });
 
