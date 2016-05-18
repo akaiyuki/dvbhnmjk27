@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.activity.MainActivity;
@@ -94,6 +95,7 @@ public class DeliveryDetailsFragment extends Fragment {
     private int orderPlacement;
 
     private String delAddress;
+    private ImageView mImageLoading;
 
     public DeliveryDetailsFragment() {
         // Required empty public constructor
@@ -136,6 +138,17 @@ public class DeliveryDetailsFragment extends Fragment {
         mEditEmail = (EditText) view.findViewById(R.id.edit_email);
         mEditDelDate = (EditText) view.findViewById(R.id.edit_deldate);
         mEditInstructions = (EditText) view.findViewById(R.id.edit_instructions);
+
+
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading.setVisibility(View.GONE);
+
+        Glide.with(AppController.getInstance())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
 
 
         Button btnCheckout = (Button) view.findViewById(R.id.next);
@@ -192,6 +205,7 @@ public class DeliveryDetailsFragment extends Fragment {
 
                         orderPlacement = 1;
                         new AddItemTask().execute();
+                        mImageLoading.setVisibility(View.VISIBLE);
 
                     }
 
@@ -270,6 +284,7 @@ public class DeliveryDetailsFragment extends Fragment {
 
                         orderPlacement = 0;
                         new AddItemTask().execute();
+                        mImageLoading.setVisibility(View.VISIBLE);
 
                     }
 
@@ -286,6 +301,26 @@ public class DeliveryDetailsFragment extends Fragment {
         });
 
 
+        editFontsLabels(view);
+
+        mEditDelDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PDatePicker datePicker = new PDatePicker((BaseActivity) getActivity(), (EditText)view);
+
+            }
+        });
+
+
+
+
+
+
+        return view;
+    }
+
+
+    public void editFontsLabels(View view){
         TextView txtDeliveryDate = (TextView) view.findViewById(R.id.txtdeldate);
         txtDeliveryDate.setTypeface(Fonts.gothambold);
 
@@ -327,24 +362,13 @@ public class DeliveryDetailsFragment extends Fragment {
 
         TextView txtLastName = (TextView) view.findViewById(R.id.txtlname);
         txtLastName.setTypeface(Fonts.gothambold);
-
-
-//        populateEditTexts();
-
-
-        mEditDelDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PDatePicker datePicker = new PDatePicker((BaseActivity) getActivity(), (EditText)view);
-
-            }
-        });
-
-
-
-
-        return view;
     }
+
+
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
+    }
+
 
 
     class AddItemTask extends AsyncTask<Void, Void, String> {
@@ -353,8 +377,6 @@ public class DeliveryDetailsFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-            OrderActivity.INSTANCE.startAnim();
 
         }
 
@@ -417,7 +439,8 @@ public class DeliveryDetailsFragment extends Fragment {
         @Override
         protected void onPostExecute(String sResponse) {
 
-            OrderActivity.INSTANCE.stopAnim();
+            /* stop loading animation */
+            stopAnimation();
 
             try {
 
@@ -439,30 +462,21 @@ public class DeliveryDetailsFragment extends Fragment {
                         }
 
                     } else {
-
-
                             // Initialize a new GradientDrawable
                             GradientDrawable gd = new GradientDrawable();
-
                             // Specify the shape of drawable
                             gd.setShape(GradientDrawable.RECTANGLE);
-
                             // Set the fill color of drawable
                             gd.setColor(Color.TRANSPARENT); // make the background transparent
-
                             // Create a 2 pixels width red colored border for drawable
                             gd.setStroke(2, Color.RED); // border width and color
-
                             // Make the border rounded
                             gd.setCornerRadius(15.0f); // border corner radius
-
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                                 mEditDelDate.setBackground(gd);
                             }
-
                         PDialog.showDialogError((BaseActivity) getActivity(),JResponse.getJSONObject("Data").getString("alert"));
                     }
-
                     Log.i("uploadimage", JResponse.getJSONObject("Data").getString("alert"));
                 }
             } catch (Exception e) {
