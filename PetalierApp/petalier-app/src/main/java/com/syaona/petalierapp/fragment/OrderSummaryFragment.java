@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.bumptech.glide.Glide;
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
@@ -57,6 +58,7 @@ public class OrderSummaryFragment extends Fragment {
     private TextView txtTotal;
 
     private TextView mTextSubTotal;
+    private ImageView mImageLoading;
 
 
     public OrderSummaryFragment() {
@@ -67,7 +69,7 @@ public class OrderSummaryFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestApiGetOrdersById();
+//        requestApiGetOrdersById();
 
     }
 
@@ -181,8 +183,24 @@ public class OrderSummaryFragment extends Fragment {
 
         mTextSubTotal = (TextView) view.findViewById(R.id.txt_subtotal);
 
+        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+
+        Glide.with(AppController.getInstance())
+                .load(R.drawable.loading)
+                .asGif()
+                .placeholder(R.drawable.loading)
+                .crossFade()
+                .into(mImageLoading);
+
+        requestApiGetOrdersById();
+
         return view;
     }
+
+    public void stopAnimation(){
+        mImageLoading.setVisibility(View.GONE);
+    }
+
 
 
     public class OrderListAdapter extends ArrayAdapter<JSONObject> {
@@ -298,14 +316,19 @@ public class OrderSummaryFragment extends Fragment {
                             }
 
 
+                            stopAnimation();
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            stopAnimation();
                         }
                     }
                 }, new PResponseErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 super.onErrorResponse(volleyError);
+                stopAnimation();
             }
         });
 
