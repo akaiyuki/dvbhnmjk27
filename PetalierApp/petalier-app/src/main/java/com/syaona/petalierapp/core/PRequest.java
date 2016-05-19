@@ -1,6 +1,7 @@
 package com.syaona.petalierapp.core;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 
 import org.json.JSONObject;
@@ -76,14 +77,14 @@ public class PRequest {
 
 
         CustomRequest req = createJsonRequest();
-//        if (mResource.equalsIgnoreCase(kApiMethodGetVenues)) {
-//            req.setRetryPolicy(new DefaultRetryPolicy(10000,
-//                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//        }
+        if (mResource.equalsIgnoreCase(apiMethodPostLoginFb)) {
+            req.setRetryPolicy(new DefaultRetryPolicy(10000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        }
 //
-//        if(mResource.equalsIgnoreCase(kApiMethodBuyPartyPoints)){
-//            req.setRetryPolicy(new DefaultRetryPolicy(15000,
+//        if(mResource.equalsIgnoreCase(apiMethodGetAllProducts)){
+//            req.setRetryPolicy(new DefaultRetryPolicy(10000,
 //                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
 //                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 //        }

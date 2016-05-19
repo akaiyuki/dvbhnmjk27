@@ -171,10 +171,11 @@ public class LoginFragment extends Fragment {
                                 try {
 
                                     Profile profile = Profile.getCurrentProfile();
-                                    String firstName = profile.getFirstName();
-                                    String lastName = profile.getLastName();
+//                                    String firstName = profile.getFirstName();
+//                                    String lastName = profile.getLastName();
 
                                     String email = object.optString("email");
+
 
 
 
@@ -202,10 +203,8 @@ public class LoginFragment extends Fragment {
                                         //get data here
                                         Log.e("firstnamefb", profile.getFirstName()+" "+email);
 
-                                        mImageLoading.setVisibility(View.VISIBLE);
+
                                         requestApiFbLogin(fbAccesstoken, fbId, profile.getFirstName(), profile.getLastName(), email, signature);
-
-
 
                                     }
 
@@ -222,7 +221,7 @@ public class LoginFragment extends Fragment {
 
                                 } catch (Exception e) {
                                     e.printStackTrace();
-                                    Log.e("requesterror", e.getMessage());
+//                                    Log.e("requesterror", e.getMessage());
                                 }
 
                             }
@@ -381,6 +380,7 @@ public class LoginFragment extends Fragment {
 
     public void requestApiFbLogin(String accessToken, String fbId, String fName, String lName, String email, String signature) {
 
+        mImageLoading.setVisibility(View.VISIBLE);
 
         HashMap<String, String> params = new HashMap<>();
         params.put("fbAccessToken", accessToken);
