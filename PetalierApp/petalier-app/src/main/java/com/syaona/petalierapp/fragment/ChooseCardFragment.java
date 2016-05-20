@@ -29,6 +29,7 @@ import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.R;
+import com.syaona.petalierapp.activity.DesignBoxActivity;
 import com.syaona.petalierapp.activity.LoginActivity;
 import com.syaona.petalierapp.activity.MainActivity;
 import com.syaona.petalierapp.activity.OrderActivity;
@@ -99,7 +100,10 @@ public class ChooseCardFragment extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.INSTANCE.onBackPressed();
+//                MainActivity.INSTANCE.onBackPressed();
+
+                startActivity(new Intent(getActivity(), DesignBoxActivity.class));
+
             }
         });
 

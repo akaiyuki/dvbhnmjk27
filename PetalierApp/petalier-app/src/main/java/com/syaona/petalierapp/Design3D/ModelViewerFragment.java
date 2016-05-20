@@ -202,11 +202,13 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
                     Singleton.setObject3D(obj);
 
 
-                    if(obj.getName().equalsIgnoreCase("default")) {
-                        Log.d("Test", "default come in!");
-                    }
-
-                    else if (obj.getName().equalsIgnoreCase("box")) {
+//                    if(obj.getName().equalsIgnoreCase("default")) {
+//                        Log.d("Test", "default come in!");
+//
+//                    }
+//
+//                    else
+                    if (obj.getName().equalsIgnoreCase("box")) {
 
                         Log.d("Test", "box come in!");
 
@@ -222,7 +224,8 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
                         material.enableLighting(true);
                         material.setCurrentObject(box);
                         try {
-                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+//                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
                         } catch (ATexture.TextureException e) {
                             e.printStackTrace();
                         }
@@ -231,34 +234,54 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
                         mPicker.registerObject(box);
                         getCurrentScene().addChild(box);
 
-                    } else {
+                    }
+                    else {
 
-                        //Create new material for each 3d object
-                        Material material = new Material();
-                        material.setColorInfluence(0);
+                            //Create new material for each 3d object
+                            Material material = new Material();
+                            material.setColorInfluence(0);
 
-                        DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
-                        diffuseMethod.setIntensity(05.f);
+                            DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                            diffuseMethod.setIntensity(05.f);
 
-                        material.setDiffuseMethod(diffuseMethod);
-                        material.enableLighting(true);
-                        material.setCurrentObject(obj);
+                            material.setDiffuseMethod(diffuseMethod);
+                            material.enableLighting(true);
+                            material.setCurrentObject(obj);
 
-                        try {
-                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
-                        } catch (ATexture.TextureException e) {
-                            e.printStackTrace();
-                        }
+                            try {
+                                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            } catch (ATexture.TextureException e) {
+                                e.printStackTrace();
+                            }
 
-                        if (obj.getNumChildren() > 0) {
-                            obj = obj.getChildAt(0);
-                            obj.setMaterial(material);
-                        }
+                            if (obj.getNumChildren() > 0) {
+                                obj = obj.getChildAt(0);
+                                obj.setMaterial(material);
+                            }
+
+//                            obj.setMaterial(material);
+//
+//                            mPicker.registerObject(obj);
+//                            getCurrentScene().addChild(obj);
+
+
+                            if (obj.getName().equalsIgnoreCase("box")){
+                                Log.d("has_box", "true");
+
+                                material.getTextureList().clear();
+                                try {
+//                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+                                } catch (ATexture.TextureException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
 
                         obj.setMaterial(material);
-
                         mPicker.registerObject(obj);
                         getCurrentScene().addChild(obj);
+
                     }
 
 
@@ -319,21 +342,23 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
 //            if (object.getName().equalsIgnoreCase("obj_0")) return;
 
-            Log.d("objectselected", object.getName());
+//            Log.d("objectselected", object.getName());
 
-            if (!selectedColor.contains(object.getName())){
-
-
-                if (!object.getName().equalsIgnoreCase("box")){
-                    selectedColor.add(object.getName());
-                }
-
-            }
+//            if (!selectedColor.contains(object.getName())){
+//
+//
+//                if (!object.getName().equalsIgnoreCase("box")){
+//                    selectedColor.add(object.getName());
+//                }
+//
+//            }
 
             Singleton.setImage3D(null);
 
 
             if (object.getName().equalsIgnoreCase("box")) {
+
+                Log.d("selected_object", object.getName());
 
                 String boxColorSelected = PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color");
 
@@ -343,12 +368,14 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
                 if (boxColorSelected.equalsIgnoreCase("white")) {
                     try {
                         material.addTexture(new Texture("boxTexture", R.drawable.squarebox_white));
+                        Log.d("boxcolor", "white");
                     } catch (ATexture.TextureException e) {
                         e.printStackTrace();
                     }
                 } else if (boxColorSelected.equalsIgnoreCase("black")) {
                     try {
                         material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+                        Log.d("boxcolor", "black");
                     } catch (ATexture.TextureException e) {
                         e.printStackTrace();
                     }
