@@ -71,6 +71,8 @@ public class SummaryOrderFragment extends Fragment {
     private ArrayList<Orders> mResultSetOrder = new ArrayList<>();
 
     private TextView mTextSubtotal;
+    private TextView mTextBank;
+    private TextView mTextAccount;
 
     public static SummaryOrderFragment INSTANCE = null;
 
@@ -224,6 +226,10 @@ public class SummaryOrderFragment extends Fragment {
         });
 
         mTextSubtotal = (TextView) view.findViewById(R.id.txt_subtotal);
+
+        mTextBank = (TextView) view.findViewById(R.id.bank);
+        mTextAccount = (TextView) view.findViewById(R.id.account);
+
 
         return view;
     }

@@ -37,6 +37,7 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.syaona.petalierapp.R;
@@ -75,7 +76,6 @@ public class LoginFragment extends Fragment {
 
     private EditText mEditEmail;
     private EditText mEditPassword;
-    //    private TextView mTextError;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     private GraphRequest request;
@@ -177,10 +177,6 @@ public class LoginFragment extends Fragment {
                                     String email = object.optString("email");
 
 
-
-
-
-
                                     AccessToken accessToken = loginResult.getAccessToken();
 
                                     AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
@@ -203,11 +199,14 @@ public class LoginFragment extends Fragment {
                                         //get data here
                                         Log.e("firstnamefb", profile.getFirstName()+" "+email);
 
+                                        /* log out facebook if access token is not null */
+                                        if(accessToken != null){
+                                            LoginManager.getInstance().logOut();
+                                        }
 
                                         requestApiFbLogin(fbAccesstoken, fbId, profile.getFirstName(), profile.getLastName(), email, signature);
 
                                     }
-
 
 
 

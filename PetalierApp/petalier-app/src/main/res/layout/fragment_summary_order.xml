@@ -386,7 +386,26 @@
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Make your payment directly into our bank account. PLease use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account"
+                    android:text="Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/bank"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bank: BDO"
+                    android:textSize="12sp"
+                    android:layout_marginTop="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/account"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Account #: 0993-2343-3434"
                     android:textSize="12sp"
                     />
 
