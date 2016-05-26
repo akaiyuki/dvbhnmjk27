@@ -37,6 +37,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.Design3D.BeatrizViewerFragment;
+import com.syaona.petalierapp.Design3D.LucyViewerFragment;
 import com.syaona.petalierapp.Design3D.ModelViewerFragment;
 import com.syaona.petalierapp.R;
 
@@ -97,7 +98,12 @@ public class DesignBoxActivity extends BaseActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, new BeatrizViewerFragment(), BeatrizViewerFragment.TAG)
                     .commit();
-        } else {
+        } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, new LucyViewerFragment(), LucyViewerFragment.TAG)
+                    .commit();
+        }
+        else {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
                     .commit();
@@ -123,9 +129,24 @@ public class DesignBoxActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
-                        .commit();
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
+//                        .commit();
+
+                if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")){
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_frame, new BeatrizViewerFragment(), BeatrizViewerFragment.TAG)
+                            .commit();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")){
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_frame, new LucyViewerFragment(), LucyViewerFragment.TAG)
+                            .commit();
+                }
+                else {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
+                            .commit();
+                }
 
                 requestApiGetColors();
 
