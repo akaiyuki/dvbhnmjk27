@@ -36,6 +36,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
+import com.syaona.petalierapp.Design3D.BeatrizViewerFragment;
 import com.syaona.petalierapp.Design3D.ModelViewerFragment;
 import com.syaona.petalierapp.R;
 
@@ -92,9 +93,15 @@ public class DesignBoxActivity extends BaseActivity {
 
         INSTANCE = this;
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
-                .commit();
+        if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, new BeatrizViewerFragment(), BeatrizViewerFragment.TAG)
+                    .commit();
+        } else {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
+                    .commit();
+        }
 
 
         scrollView = (CustomScrollView) findViewById(R.id.scrollView);
@@ -136,11 +143,7 @@ public class DesignBoxActivity extends BaseActivity {
         mButtonPreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                displayPreview();
 
-//                if (Singleton.getImage3D() != null){
-//                    Singleton.setImage3D(null);
-//                }
                 ModelViewerFragment.INSTANCE.displayImage();
 
                 int myTimer = 1000;
@@ -153,8 +156,6 @@ public class DesignBoxActivity extends BaseActivity {
 
             }
         });
-
-
 
          /* Initialize toolbar */
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar_design);

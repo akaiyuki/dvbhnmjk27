@@ -35,15 +35,18 @@ import org.rajawali3d.materials.textures.Texture;
 import org.rajawali3d.util.ObjectColorPicker;
 import org.rajawali3d.util.OnObjectPickedListener;
 
-import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Created by smartwavedev on 5/26/16.
+ */
+public class BeatrizViewerFragment extends BaseViewerFragment implements View.OnTouchListener {
 
-public class ModelViewerFragment extends BaseViewerFragment implements View.OnTouchListener {
-
-    public static String TAG = "ModelViewerFragment";
+    public static String TAG = "BeatrizViewerFragment";
     private ArrayList<String> selectedColor = new ArrayList<>();
-    public static ModelViewerFragment INSTANCE = null;
+    public static BeatrizViewerFragment INSTANCE = null;
+
+    private Object3D obj;
 
     @Override
     public BaseViewerRenderer createRenderer() {
@@ -69,23 +72,8 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             public void onClick(View view) {
 
                 ((LoadModelRenderer) mRenderer).setToTopView();
-
-//                ((LoadModelRenderer) mRenderer).takeScreenshot();
-//
-//                //Singleton.setImage3D(getImageFromStorage());
-//
-//                displayBitmap(getImageFromStorage());
-
             }
         });
-
-//        mReset.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ((LoadModelRenderer) mRenderer).resetFlower();
-//            }
-//        });
-
 
         return mLayout;
     }
@@ -108,10 +96,6 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
         ImageView iv = (ImageView) dialog.findViewById(R.id.imageView_bitmap);
         iv.setImageBitmap(bitmap);
 
-
-//        Singleton.setImage3D(bitmap);
-
-
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
 
@@ -119,12 +103,9 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             @Override
             public void onCancel(DialogInterface dialogInterface) {
                 ((LoadModelRenderer) mRenderer).setToNormalView();
-//                Singleton.setImage3D(null);
             }
         });
         dialog.show();
-
-
     }
 
     @Override
@@ -163,27 +144,9 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
 
             //Loading of model object
-            LoaderOBJ objParser = null;
-
-            if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("diana")) {
-                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.diana_obj);
-            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")) {
-                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.lauren_obj);
-            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")) {
-                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.frieda_obj);
-            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")) {
-                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.beatriz_obj);
-            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")) {
-                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.felisicima_obj);
-            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")) {
-                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.lucy_obj);
-            } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")) {
-                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.chloe_obj);
-            }
+            LoaderOBJ  objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.beatriz_obj);;
 
             try {
-
-
 
                 objParser.parse();
                 mObjectGroup = objParser.getParsedObject();
@@ -194,18 +157,9 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
                 //Register objects in picker
                 for (int i = 0; i < mObjectGroup.getNumChildren(); i++) {
 
-                    Object3D obj = mObjectGroup.getChildAt(i);
-                    //obj.setName("obj_" + i);
-
+                    obj = mObjectGroup.getChildAt(i);
                     Singleton.setObject3D(obj);
 
-
-//                    if(obj.getName().equalsIgnoreCase("default")) {
-//                        Log.d("Test", "default come in!");
-//
-//                    }
-//
-//                    else
                     if (obj.getName().equalsIgnoreCase("box")) {
 
                         Log.d("Test", "box come in!");
@@ -222,7 +176,6 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
                         material.enableLighting(true);
                         material.setCurrentObject(box);
                         try {
-//                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
                             material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
                         } catch (ATexture.TextureException e) {
                             e.printStackTrace();
@@ -235,57 +188,106 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
                     }
                     else {
 
-                            //Create new material for each 3d object
-                            Material material = new Material();
-                            material.setColorInfluence(0);
+                        //Create new material for each 3d object
+                        Material material = new Material();
+                        material.setColorInfluence(0);
 
-                            DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
-                            diffuseMethod.setIntensity(05.f);
+                        DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                        diffuseMethod.setIntensity(05.f);
 
-                            material.setDiffuseMethod(diffuseMethod);
-                            material.enableLighting(true);
-                            material.setCurrentObject(obj);
+                        material.setDiffuseMethod(diffuseMethod);
+                        material.enableLighting(true);
+                        material.setCurrentObject(obj);
 
+                        try {
+                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                        } catch (ATexture.TextureException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (obj.getNumChildren() > 0) {
+                            obj = obj.getChildAt(0);
+                            obj.setMaterial(material);
+                        }
+
+                        if (obj.getName().equalsIgnoreCase("box")){
+
+                            material.getTextureList().clear();
                             try {
-                                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                                material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
                             } catch (ATexture.TextureException e) {
                                 e.printStackTrace();
                             }
 
-                            if (obj.getNumChildren() > 0) {
-                                obj = obj.getChildAt(0);
-                                obj.setMaterial(material);
-                            }
-
-//                            obj.setMaterial(material);
-//
-//                            mPicker.registerObject(obj);
-//                            getCurrentScene().addChild(obj);
-
-
-                            if (obj.getName().equalsIgnoreCase("box")){
-//                                Log.d("has_box", "true");
-
-                                material.getTextureList().clear();
-                                try {
-//                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
-                                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
-                                } catch (ATexture.TextureException e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
+                        }
 
                         obj.setMaterial(material);
                         mPicker.registerObject(obj);
                         getCurrentScene().addChild(obj);
 
                     }
-
-
-
-//                    Log.d("Test", "obj_" + i + " registered" + " numChild: " + obj.getNumChildren() +  " name: " + obj.getName());
                 }
+
+
+
+                for(int x=0; x<9; x++) {
+                    // -- Clone from the main object and then set a position and rotation.
+                    Object3D c = obj.clone();
+                    c.setName("flower_"+x);
+
+                    if (x == 1){
+                        c.setPosition(2.5, 0.0, 1.0);
+                        c.setRotation(0.0, 20.0, 5.0);
+                    } else if (x == 2){
+                        c.setPosition(4.3, 0.0, 1.0);
+                        c.setRotation(0.0, 20.0, 5.0);
+                    } else if (x == 3){
+                        c.setPosition(0.5,0.0,-1.0);
+                        c.setRotation(0.0, 20.0, 5.0);
+                    } else if (x == 4){
+                        c.setPosition(2.5,0.0,-1.0);
+                        c.setRotation(0.0,20.0,5.0);
+                    } else if (x == 5){
+                        c.setPosition(4.3,0.0,-1.0);
+                        c.setRotation(0.0,20.0,5.0);
+                    } else if (x == 6){
+                        c.setPosition(0.5,0.0,-3.0);
+                        c.setRotation(0.0,20.0,5.0);
+                    } else if (x == 7){
+                        c.setPosition(2.5,0.0,-3.0);
+                        c.setRotation(0.0,20.0,5.0);
+                    } else if (x == 8){
+                        c.setPosition(4.3,0.0,-3.0);
+                        c.setRotation(0.0,20.0,5.0);
+                    }
+
+
+                    Material material = new Material();
+                    material.setColorInfluence(0);
+
+                    DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                    diffuseMethod.setIntensity(05.f);
+
+                    material.setDiffuseMethod(diffuseMethod);
+                    material.enableLighting(true);
+                    material.setCurrentObject(c);
+                    try {
+                        material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                    } catch (ATexture.TextureException e) {
+                        e.printStackTrace();
+                    }
+
+                    c.setMaterial(material);
+
+                    mPicker.registerObject(c);
+                    getCurrentScene().addChild(c);
+
+//                    Log.d("flower_clone", c.getName());
+
+                }
+
+
+
 
                 //Set Camera to model
                 mArcballCamera = new CustomCamera(mContext, mLayout);
@@ -338,25 +340,9 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
         @Override
         public void onObjectPicked(Object3D object) {
 
-//            if (object.getName().equalsIgnoreCase("obj_0")) return;
-
-//            Log.d("objectselected", object.getName());
-
-//            if (!selectedColor.contains(object.getName())){
-//
-//
-//                if (!object.getName().equalsIgnoreCase("box")){
-//                    selectedColor.add(object.getName());
-//                }
-//
-//            }
-
             Singleton.setImage3D(null);
 
-
             if (object.getName().equalsIgnoreCase("box")) {
-
-//                Log.d("selected_object", object.getName());
 
                 String boxColorSelected = PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color");
 
@@ -403,23 +389,8 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             camera.setLookAt(0, 0, 0);
 
             getCurrentScene().replaceAndSwitchCamera(mArcballCamera, camera);
-//
 
-            /* trial edit code */
-//            File imagePath = new File(Environment.getExternalStorageDirectory() + "/screenshot.png");
-//            if(imagePath.exists()) {
-//                imagePath.delete();
-
-                ((LoadModelRenderer) mRenderer).takeScreenshot();
-//            ((LoadModelRenderer) mRenderer).takeScreenshot();
-//            displayBitmap(Singleton.getImage3D());
-
-
-//            saveBitmap();
-
-//            }
-
-
+            ((LoadModelRenderer) mRenderer).takeScreenshot();
 
         }
 
@@ -444,26 +415,11 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
             Object3D obj = Singleton.getObject3D();
 
-//            Log.i("object3d", object.getName());
-//
-//            Material material = object.getMaterial();
-//            material.getTextureList().clear();
-//            try {
-//                material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
-//            } catch (ATexture.TextureException e) {
-//                e.printStackTrace();
-//            }
-//            object.setMaterial(material);
-
-//            initScene();
-
             if(obj.getName().equalsIgnoreCase("default")) {
 //                Log.d("Test", "default come in!");
             }
 
             else if (obj.getName().equalsIgnoreCase("box")) {
-
-//                Log.d("Test", "box come in!");
 
                 box = obj;
 
@@ -571,15 +527,7 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
 
     public void returntoNormal(){
 
-
-//        if (Singleton.getImage3D() != null){
-//            displayBitmap(Singleton.getImage3D());
-//        } else {
-//            displayImage();
-//        }
-
         ((LoadModelRenderer) mRenderer).setToNormalView();
-
 
     }
 

@@ -255,9 +255,9 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
                 fos.flush();
                 fos.close();
             } catch (FileNotFoundException e) {
-                Log.e("3DCapture", e.getMessage(), e);
+//                Log.e("3DCapture", e.getMessage(), e);
             } catch (IOException e) {
-                Log.e("3DCapture", e.getMessage(), e);
+//                Log.e("3DCapture", e.getMessage(), e);
             }
         }
 
