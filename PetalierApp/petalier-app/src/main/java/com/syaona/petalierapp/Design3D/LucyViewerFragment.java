@@ -223,6 +223,90 @@ public class LucyViewerFragment extends BaseViewerFragment implements View.OnTou
 
                         }
 
+
+
+                        if (!obj.getName().equalsIgnoreCase("box")){
+                            for(int x=0; x<16; x++) {
+                                // -- Clone from the main object and then set a position and rotation.
+                                Object3D c = obj.clone();
+                                c.setName("flower_"+x);
+
+                                if (x == 1){ /* set first row */
+                                    c.setPosition(2.0, -0.1, 1.0);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 2){
+                                    c.setPosition(3.5, -0.1, 1.0);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 3){
+                                    c.setPosition(5.0, -0.1, 1.0);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 4){   /* set 2nd row */
+                                    c.setPosition(0.6, -0.1, -0.5);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 5){
+                                    c.setPosition(2.0, -0.1, -0.5);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 6){
+                                    c.setPosition(3.5, -0.1, -0.5);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 7){
+                                    c.setPosition(5.0, -0.1, -0.5);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 8){ /* set 3rd row */
+                                    c.setPosition(0.6, -0.1, -2.0);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 9){
+                                    c.setPosition(2.0, -0.1, -2.0);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 10){
+                                    c.setPosition(3.5, -0.1, -2.0);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 11){
+                                    c.setPosition(5.0, -0.1, -2.0);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 12){ /* set 4th row */
+                                    c.setPosition(0.6, -0.1, -3.5);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 13){
+                                    c.setPosition(2.0, -0.1, -3.5);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 14){
+                                    c.setPosition(3.5, -0.1, -3.5);
+                                    c.setRotation(0.0,20.0,5.0);
+                                } else if (x == 15){
+                                    c.setPosition(5.0, -0.1, -3.5);
+                                    c.setRotation(0.0,20.0,5.0);
+                                }
+
+                                material = new Material();
+                                material.setColorInfluence(0);
+
+                                diffuseMethod = new DiffuseMethod.Lambert();
+                                diffuseMethod.setIntensity(05.f);
+
+                                material.setDiffuseMethod(diffuseMethod);
+                                material.enableLighting(true);
+                                material.setCurrentObject(c);
+                                try {
+                                    material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                                } catch (ATexture.TextureException e) {
+                                    e.printStackTrace();
+                                }
+
+                                c.setMaterial(material);
+
+                                mPicker.registerObject(c);
+                                getCurrentScene().addChild(c);
+
+//                    Log.d("flower_clone", c.getName());
+
+                            }
+                        }
+
+
+
+
+
                         obj.setMaterial(material);
                         mPicker.registerObject(obj);
                         getCurrentScene().addChild(obj);
@@ -232,81 +316,7 @@ public class LucyViewerFragment extends BaseViewerFragment implements View.OnTou
 
 
 
-                for(int x=0; x<16; x++) {
-                    // -- Clone from the main object and then set a position and rotation.
-                    Object3D c = obj.clone();
-                    c.setName("flower_"+x);
 
-                    if (x == 1){ /* set first row */
-                        c.setPosition(2.0, -0.1, 1.0);
-                        c.setRotation(0.0, 20.0, 5.0);
-                    } else if (x == 2){
-                        c.setPosition(3.5, -0.1, 1.0);
-                        c.setRotation(0.0, 20.0, 5.0);
-                    } else if (x == 3){
-                        c.setPosition(5.0, -0.1, 1.0);
-                        c.setRotation(0.0, 20.0, 5.0);
-                    } else if (x == 4){   /* set 2nd row */
-                        c.setPosition(0.6, -0.1, -0.5);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 5){
-                        c.setPosition(2.0, -0.1, -0.5);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 6){
-                        c.setPosition(3.5, -0.1, -0.5);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 7){
-                        c.setPosition(5.0, -0.1, -0.5);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 8){ /* set 3rd row */
-                        c.setPosition(0.6, -0.1, -2.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 9){
-                        c.setPosition(2.0, -0.1, -2.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 10){
-                        c.setPosition(3.5, -0.1, -2.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 11){
-                        c.setPosition(5.0, -0.1, -2.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 12){ /* set 4th row */
-                        c.setPosition(0.6, -0.1, -3.5);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 13){
-                        c.setPosition(2.0, -0.1, -3.5);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 14){
-                        c.setPosition(3.5, -0.1, -3.5);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 15){
-                        c.setPosition(5.0, -0.1, -3.5);
-                        c.setRotation(0.0,20.0,5.0);
-                    }
-
-                    Material material = new Material();
-                    material.setColorInfluence(0);
-
-                    DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
-                    diffuseMethod.setIntensity(05.f);
-
-                    material.setDiffuseMethod(diffuseMethod);
-                    material.enableLighting(true);
-                    material.setCurrentObject(c);
-                    try {
-                        material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
-                    } catch (ATexture.TextureException e) {
-                        e.printStackTrace();
-                    }
-
-                    c.setMaterial(material);
-
-                    mPicker.registerObject(c);
-                    getCurrentScene().addChild(c);
-
-//                    Log.d("flower_clone", c.getName());
-
-                }
 
 
 

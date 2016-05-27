@@ -151,6 +151,14 @@ public class DesignBoxActivity extends BaseActivity {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.content_frame, new LucyViewerFragment(), LucyViewerFragment.TAG)
                             .commit();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_frame, new FriedaViewerFragment(), FriedaViewerFragment.TAG)
+                            .commit();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_frame, new ChloeViewerFragment(), ChloeViewerFragment.TAG)
+                            .commit();
                 }
                 else {
                     getSupportFragmentManager().beginTransaction()
@@ -175,13 +183,34 @@ public class DesignBoxActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                ModelViewerFragment.INSTANCE.displayImage();
+
+                if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")){
+                    BeatrizViewerFragment.INSTANCE.displayImage();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")){
+                    LucyViewerFragment.INSTANCE.displayImage();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
+                    FriedaViewerFragment.INSTANCE.displayImage();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
+                    ModelViewerFragment.INSTANCE.displayImage();
+                }
+
+
+
 
                 int myTimer = 1000;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                       ModelViewerFragment.INSTANCE.returntoNormal();
+
+                        if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")){
+                            BeatrizViewerFragment.INSTANCE.returntoNormal();
+                        } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")){
+                            LucyViewerFragment.INSTANCE.returntoNormal();
+                        } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
+                            FriedaViewerFragment.INSTANCE.returntoNormal();
+                        } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
+                            ModelViewerFragment.INSTANCE.returntoNormal();
+                        }
                     }
                 }, myTimer);
 
