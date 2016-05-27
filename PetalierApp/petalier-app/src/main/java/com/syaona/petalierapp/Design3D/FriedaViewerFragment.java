@@ -38,13 +38,13 @@ import org.rajawali3d.util.OnObjectPickedListener;
 import java.util.ArrayList;
 
 /**
- * Created by smartwavedev on 5/26/16.
+ * Created by smartwavedev on 5/27/16.
  */
-public class LucyViewerFragment extends BaseViewerFragment implements View.OnTouchListener {
+public class FriedaViewerFragment extends BaseViewerFragment implements View.OnTouchListener {
 
-    public static String TAG = "LucyViewerFragment";
+    public static String TAG = "FriedaViewerFragment";
     private ArrayList<String> selectedColor = new ArrayList<>();
-    public static LucyViewerFragment INSTANCE = null;
+    public static FriedaViewerFragment INSTANCE = null;
 
     private Object3D obj;
 
@@ -144,7 +144,7 @@ public class LucyViewerFragment extends BaseViewerFragment implements View.OnTou
 
 
             //Loading of model object
-            LoaderOBJ  objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.lucy_obj);
+            LoaderOBJ  objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.frieda_obj);;
 
             try {
 
@@ -230,57 +230,69 @@ public class LucyViewerFragment extends BaseViewerFragment implements View.OnTou
 
 
 
-                for(int x=0; x<16; x++) {
+                for(int x=0; x<19; x++) {
                     // -- Clone from the main object and then set a position and rotation.
                     Object3D c = obj.clone();
                     c.setName("flower_"+x);
 
-                    if (x == 1){ /* set first row */
-                        c.setPosition(2.0, -0.1, 1.0);
+
+                    if (x == 1){
+                        c.setPosition(2.5, -0.3, -1.3);
                         c.setRotation(0.0, 20.0, 5.0);
                     } else if (x == 2){
-                        c.setPosition(3.5, -0.1, 1.0);
+                        c.setPosition(3.0, -0.3, -3.0);
                         c.setRotation(0.0, 20.0, 5.0);
                     } else if (x == 3){
-                        c.setPosition(5.0, -0.1, 1.0);
+                        c.setPosition(2.5, -0.3, -4.6);
                         c.setRotation(0.0, 20.0, 5.0);
-                    } else if (x == 4){   /* set 2nd row */
-                        c.setPosition(0.6, -0.1, -0.5);
-                        c.setRotation(0.0,20.0,5.0);
+                    } else if (x == 4){
+                        c.setPosition(1.5, -0.3, -5.8);
+                        c.setRotation(0.0, 20.0, 5.0);
                     } else if (x == 5){
-                        c.setPosition(2.0, -0.1, -0.5);
-                        c.setRotation(0.0,20.0,5.0);
+                        c.setPosition(-0.3, -0.3, -6.3);
+                        c.setRotation(0.0, 20.0, 5.0);
                     } else if (x == 6){
-                        c.setPosition(3.5, -0.1, -0.5);
-                        c.setRotation(0.0,20.0,5.0);
+                        c.setPosition(-2.0, -0.3, -5.8);
+                        c.setRotation(0.0, 20.0, 5.0);
                     } else if (x == 7){
-                        c.setPosition(5.0, -0.1, -0.5);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 8){ /* set 3rd row */
-                        c.setPosition(0.6, -0.1, -2.0);
-                        c.setRotation(0.0,20.0,5.0);
+                        c.setPosition(-3.3, -0.3, -4.5);
+                        c.setRotation(0.0, 20.0, 5.0);
+                    } else if (x == 8){
+                        c.setPosition(-3.5, -0.3, -2.6);
+                        c.setRotation(0.0, 20.0, 5.0);
                     } else if (x == 9){
-                        c.setPosition(2.0, -0.1, -2.0);
-                        c.setRotation(0.0,20.0,5.0);
+                        c.setPosition(-2.5, -0.3, -1.0);
+                        c.setRotation(0.0, 20.0, 5.0);
                     } else if (x == 10){
-                        c.setPosition(3.5, -0.1, -2.0);
-                        c.setRotation(0.0,20.0,5.0);
+                        c.setPosition(-0.9, -0.3, 0.0);
+                        c.setRotation(0.0, 20.0, 5.0);
                     } else if (x == 11){
-                        c.setPosition(5.0, -0.1, -2.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 12){ /* set 4th row */
-                        c.setPosition(0.6, -0.1, -3.5);
-                        c.setRotation(0.0,20.0,5.0);
+                        c.setPosition(0.3, -0.3, -1.3);
+                        c.setRotation(0.0, 20.0, 5.0);
+                    } else if (x == 12){
+                        c.setPosition(-1.7, -0.3, -3.3);
+                        c.setRotation(0.0, 25.0, 5.0);
                     } else if (x == 13){
-                        c.setPosition(2.0, -0.1, -3.5);
-                        c.setRotation(0.0,20.0,5.0);
+                        c.setPosition(1.5, -0.3, -2.7);
+                        c.setRotation(0.0, 25.0, 5.0);
                     } else if (x == 14){
-                        c.setPosition(3.5, -0.1, -3.5);
-                        c.setRotation(0.0,20.0,5.0);
+                        c.setPosition(1.0, -0.3, -4.3);
+                        c.setRotation(0.0, 25.0, 5.0);
                     } else if (x == 15){
-                        c.setPosition(5.0, -0.1, -3.5);
-                        c.setRotation(0.0,20.0,5.0);
+                        c.setPosition(-0.5, -0.3, -4.5);
+                        c.setRotation(0.0, 25.0, 5.0);
+                    } else if (x == 16){
+                        c.setPosition(-0.5, -0.3, -4.5);
+                        c.setRotation(0.0, 25.0, 5.0);
+                    } else if (x == 17){
+                        c.setPosition(-1.0, -0.3, -1.7);
+                        c.setRotation(0.0, 25.0, 5.0);
+                    } else if (x == 18){
+                        c.setPosition(0.0, -0.3, -2.9);
+                        c.setRotation(0.0, 25.0, 5.0);
                     }
+
+
 
                     Material material = new Material();
                     material.setColorInfluence(0);
@@ -359,8 +371,6 @@ public class LucyViewerFragment extends BaseViewerFragment implements View.OnTou
 
         @Override
         public void onObjectPicked(Object3D object) {
-
-            Log.d("selected_object", object.getName());
 
             Singleton.setImage3D(null);
 

@@ -37,6 +37,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.Design3D.BeatrizViewerFragment;
+import com.syaona.petalierapp.Design3D.FriedaViewerFragment;
 import com.syaona.petalierapp.Design3D.LucyViewerFragment;
 import com.syaona.petalierapp.Design3D.ModelViewerFragment;
 import com.syaona.petalierapp.R;
@@ -101,6 +102,10 @@ public class DesignBoxActivity extends BaseActivity {
         } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")){
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, new LucyViewerFragment(), LucyViewerFragment.TAG)
+                    .commit();
+        } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, new FriedaViewerFragment(), FriedaViewerFragment.TAG)
                     .commit();
         }
         else {
