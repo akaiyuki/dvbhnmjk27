@@ -212,6 +212,8 @@ public class LucyViewerFragment extends BaseViewerFragment implements View.OnTou
 
                         if (obj.getName().equalsIgnoreCase("box")){
 
+                            Log.d("input_box", "box");
+
                             material.getTextureList().clear();
                             try {
                                 material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));

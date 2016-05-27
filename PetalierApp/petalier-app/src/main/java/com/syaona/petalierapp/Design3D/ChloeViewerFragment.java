@@ -38,13 +38,13 @@ import org.rajawali3d.util.OnObjectPickedListener;
 import java.util.ArrayList;
 
 /**
- * Created by smartwavedev on 5/26/16.
+ * Created by smartwavedev on 5/27/16.
  */
-public class BeatrizViewerFragment extends BaseViewerFragment implements View.OnTouchListener {
+public class ChloeViewerFragment extends BaseViewerFragment implements View.OnTouchListener {
 
-    public static String TAG = "BeatrizViewerFragment";
+    public static String TAG = "ChloeViewerFragment";
     private ArrayList<String> selectedColor = new ArrayList<>();
-    public static BeatrizViewerFragment INSTANCE = null;
+    public static ChloeViewerFragment INSTANCE = null;
 
     private Object3D obj;
 
@@ -144,7 +144,7 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
 
 
             //Loading of model object
-            LoaderOBJ  objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.beatriz_obj);;
+            LoaderOBJ  objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.chloe_obj);;
 
             try {
 
@@ -223,72 +223,169 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
 
                         }
 
+
+
+
+                        if (!obj.getName().equalsIgnoreCase("box")){
+
+                            for(int x=0; x<36; x++) {
+                                // -- Clone from the main object and then set a position and rotation.
+                                Object3D c = obj.clone();
+                                c.setName("flower_"+x);
+//                    c.setPosition(-25f + (float)(Math.random() * 50f), -25f + (float)(Math.random() * 50f), -25f + (float)(Math.random() * 50f));
+//                    c.setRotation((float)Math.random() * 360, (float)Math.random() * 360, (float)Math.random() * 360);
+
+                                if (x == 1){ /* 1st row */
+                                    c.setPosition(1.6, -0.1, 1.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 2){
+                                    c.setPosition(2.5, -0.1, 1.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 3){
+                                    c.setPosition(3.5, -0.1, 1.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 4){
+                                    c.setPosition(4.5, -0.1, 1.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 5){
+                                    c.setPosition(5.5, -0.1, 1.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 6){
+                                    c.setPosition(0.4, -0.1, 0.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 7){
+                                    c.setPosition(0.4, -0.1, -0.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 8){
+                                    c.setPosition(0.4, -0.1, -1.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 9){
+                                    c.setPosition(0.4, -0.1, -2.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 10){
+                                    c.setPosition(0.4, -0.1, -3.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 11){
+                                    c.setPosition(1.4, -0.1, 0.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 12){
+                                    c.setPosition(2.4, -0.1, 0.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 13){
+                                    c.setPosition(3.4, -0.1, 0.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 14){
+                                    c.setPosition(4.4, -0.1, 0.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 15){
+                                    c.setPosition(5.4, -0.1, 0.2);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 16){
+                                    c.setPosition(1.4, -0.1, -0.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 17){
+                                    c.setPosition(2.4, -0.1, -0.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 18){
+                                    c.setPosition(3.4, -0.1, -0.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 19){
+                                    c.setPosition(4.4, -0.1, -0.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 20){
+                                    c.setPosition(5.4, -0.1, -0.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 21){
+                                    c.setPosition(1.4, -0.1, -1.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 22){
+                                    c.setPosition(2.4, -0.1, -1.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 23){
+                                    c.setPosition(3.4, -0.1, -1.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 24){
+                                    c.setPosition(4.4, -0.1, -1.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 25){
+                                    c.setPosition(5.4, -0.1, -1.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 26){
+                                    c.setPosition(1.4, -0.1, -2.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 27){
+                                    c.setPosition(2.4, -0.1, -2.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 28){
+                                    c.setPosition(3.4, -0.1, -2.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 29){
+                                    c.setPosition(4.4, -0.1, -2.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 30){
+                                    c.setPosition(5.4, -0.1, -2.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 31){
+                                    c.setPosition(1.4, -0.1, -3.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 32){
+                                    c.setPosition(2.4, -0.1, -3.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 33){
+                                    c.setPosition(3.4, -0.1, -3.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 34){
+                                    c.setPosition(4.4, -0.1, -3.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                } else if (x == 35){
+                                    c.setPosition(5.4, -0.1, -3.9);
+                                    c.setRotation(0.0, 20.0, 5.0);
+                                }
+
+
+
+                                material = new Material();
+                                material.setColorInfluence(0);
+
+                                diffuseMethod = new DiffuseMethod.Lambert();
+                                diffuseMethod.setIntensity(05.f);
+
+                                material.setDiffuseMethod(diffuseMethod);
+                                material.enableLighting(true);
+                                material.setCurrentObject(c);
+                                try {
+                                    material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+//                            material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+                                } catch (ATexture.TextureException e) {
+                                    e.printStackTrace();
+                                }
+
+                                c.setMaterial(material);
+
+                                mPicker.registerObject(c);
+                                getCurrentScene().addChild(c);
+
+//                    obj.addChild(c);
+
+                                Log.d("flower_clone", c.getName());
+
+                            }
+                        }
+
+
+
+
+
+
+
+
                         obj.setMaterial(material);
                         mPicker.registerObject(obj);
                         getCurrentScene().addChild(obj);
 
                     }
-                }
-
-
-
-                for(int x=0; x<9; x++) {
-                    // -- Clone from the main object and then set a position and rotation.
-                    Object3D c = obj.clone();
-                    c.setName("flower_"+x);
-
-                    if (x == 1){
-                        c.setPosition(2.5, 0.0, 1.0);
-                        c.setRotation(0.0, 20.0, 5.0);
-                    } else if (x == 2){
-                        c.setPosition(4.3, 0.0, 1.0);
-                        c.setRotation(0.0, 20.0, 5.0);
-                    } else if (x == 3){
-                        c.setPosition(0.5,0.0,-1.0);
-                        c.setRotation(0.0, 20.0, 5.0);
-                    } else if (x == 4){
-                        c.setPosition(2.5,0.0,-1.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 5){
-                        c.setPosition(4.3,0.0,-1.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 6){
-                        c.setPosition(0.5,0.0,-3.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 7){
-                        c.setPosition(2.5,0.0,-3.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    } else if (x == 8){
-                        c.setPosition(4.3,0.0,-3.0);
-                        c.setRotation(0.0,20.0,5.0);
-                    }
-
-
-                    Material material = new Material();
-                    material.setColorInfluence(0);
-
-                    DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
-                    diffuseMethod.setIntensity(05.f);
-
-                    material.setDiffuseMethod(diffuseMethod);
-                    material.enableLighting(true);
-                    material.setCurrentObject(c);
-                    try {
-                        material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
-                    } catch (ATexture.TextureException e) {
-                        e.printStackTrace();
-                    }
-
-                    c.setMaterial(material);
-
-                    mPicker.registerObject(c);
-                    getCurrentScene().addChild(c);
-
-//                    Log.d("flower_clone", c.getName());
 
                 }
-
-
 
 
                 //Set Camera to model

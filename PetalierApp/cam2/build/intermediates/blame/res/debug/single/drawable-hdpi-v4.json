@@ -40,12 +40,12 @@
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-hdpi/cwac_cam2_ic_flash_auto.png"
     },
     {
-        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-hdpi-v4/cwac_cam2_ic_refresh_white.png",
-        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-hdpi/cwac_cam2_ic_refresh_white.png"
-    },
-    {
         "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-hdpi-v4/cwac_cam2_ic_flash_off.png",
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-hdpi/cwac_cam2_ic_flash_off.png"
+    },
+    {
+        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-hdpi-v4/cwac_cam2_ic_refresh_white.png",
+        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/src/main/res/drawable-hdpi/cwac_cam2_ic_refresh_white.png"
     },
     {
         "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/debug/drawable-hdpi-v4/cwac_cam2_ic_action_camera.png",
