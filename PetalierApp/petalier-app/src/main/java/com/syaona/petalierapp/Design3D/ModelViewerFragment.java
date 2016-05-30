@@ -174,7 +174,7 @@ public class ModelViewerFragment extends BaseViewerFragment implements View.OnTo
             } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")) {
                 objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.beatriz_obj);
             } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")) {
-                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.felisicima_obj);
+                objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.felicisima_obj);
             } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")) {
                 objParser = new LoaderOBJ(mContext.getResources(), mTextureManager, R.raw.lucy_obj);
             } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")) {

@@ -176,7 +176,7 @@ public class FriedaViewerFragment extends BaseViewerFragment implements View.OnT
                         material.enableLighting(true);
                         material.setCurrentObject(box);
                         try {
-                            material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+                            material.addTexture(new Texture("boxTexture", R.drawable.roundbox_black));
                         } catch (ATexture.TextureException e) {
                             e.printStackTrace();
                         }
@@ -214,7 +214,7 @@ public class FriedaViewerFragment extends BaseViewerFragment implements View.OnT
 
                             material.getTextureList().clear();
                             try {
-                                material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+                                material.addTexture(new Texture("boxTexture", R.drawable.roundbox_black));
                             } catch (ATexture.TextureException e) {
                                 e.printStackTrace();
                             }
@@ -383,14 +383,14 @@ public class FriedaViewerFragment extends BaseViewerFragment implements View.OnT
 
                 if (boxColorSelected.equalsIgnoreCase("white")) {
                     try {
-                        material.addTexture(new Texture("boxTexture", R.drawable.squarebox_white));
+                        material.addTexture(new Texture("boxTexture", R.drawable.roundbox_white));
 //                        Log.d("boxcolor", "white");
                     } catch (ATexture.TextureException e) {
                         e.printStackTrace();
                     }
                 } else if (boxColorSelected.equalsIgnoreCase("black")) {
                     try {
-                        material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+                        material.addTexture(new Texture("boxTexture", R.drawable.roundbox_black));
 //                        Log.d("boxcolor", "black");
                     } catch (ATexture.TextureException e) {
                         e.printStackTrace();
