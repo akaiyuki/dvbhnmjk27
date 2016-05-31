@@ -40,6 +40,7 @@ import com.syaona.petalierapp.Design3D.BeatrizViewerFragment;
 import com.syaona.petalierapp.Design3D.ChloeViewerFragment;
 import com.syaona.petalierapp.Design3D.FelicisimaViewerFragment;
 import com.syaona.petalierapp.Design3D.FriedaViewerFragment;
+import com.syaona.petalierapp.Design3D.LaurenViewerFragment;
 import com.syaona.petalierapp.Design3D.LucyViewerFragment;
 import com.syaona.petalierapp.Design3D.ModelViewerFragment;
 import com.syaona.petalierapp.R;
@@ -117,6 +118,10 @@ public class DesignBoxActivity extends BaseActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.content_frame, new FelicisimaViewerFragment(), FelicisimaViewerFragment.TAG)
                     .commit();
+        } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, new LaurenViewerFragment(), LaurenViewerFragment.TAG)
+                    .commit();
         }
         else {
             getSupportFragmentManager().beginTransaction()
@@ -163,6 +168,10 @@ public class DesignBoxActivity extends BaseActivity {
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.content_frame, new ChloeViewerFragment(), ChloeViewerFragment.TAG)
+                            .commit();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")){
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_frame, new FelicisimaViewerFragment(), FelicisimaViewerFragment.TAG)
                             .commit();
                 }
                 else {
