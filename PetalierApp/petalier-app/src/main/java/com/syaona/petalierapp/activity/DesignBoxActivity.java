@@ -38,6 +38,7 @@ import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.syaona.petalierapp.Design3D.BeatrizViewerFragment;
 import com.syaona.petalierapp.Design3D.ChloeViewerFragment;
+import com.syaona.petalierapp.Design3D.DianaViewerFragment;
 import com.syaona.petalierapp.Design3D.FelicisimaViewerFragment;
 import com.syaona.petalierapp.Design3D.FriedaViewerFragment;
 import com.syaona.petalierapp.Design3D.LaurenViewerFragment;
@@ -125,7 +126,7 @@ public class DesignBoxActivity extends BaseActivity {
         }
         else {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
+                    .replace(R.id.content_frame, new DianaViewerFragment(), DianaViewerFragment.TAG)
                     .commit();
         }
 
@@ -180,7 +181,7 @@ public class DesignBoxActivity extends BaseActivity {
                 }
                 else {
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
+                            .replace(R.id.content_frame, new DianaViewerFragment(), DianaViewerFragment.TAG)
                             .commit();
                 }
 
@@ -214,6 +215,8 @@ public class DesignBoxActivity extends BaseActivity {
                     FelicisimaViewerFragment.INSTANCE.displayImage();
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
                     LaurenViewerFragment.INSTANCE.displayImage();
+                } else {
+                    DianaViewerFragment.INSTANCE.displayImage();
                 }
 
 
@@ -236,6 +239,8 @@ public class DesignBoxActivity extends BaseActivity {
                             FelicisimaViewerFragment.INSTANCE.returntoNormal();
                         } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
                             LaurenViewerFragment.INSTANCE.returntoNormal();
+                        } else {
+                            DianaViewerFragment.INSTANCE.returntoNormal();
                         }
                     }
                 }, myTimer);
