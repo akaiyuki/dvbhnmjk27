@@ -200,7 +200,7 @@ public class ChloeViewerFragment extends BaseViewerFragment implements View.OnTo
                         material.setCurrentObject(obj);
 
                         try {
-                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            material.addTexture(new Texture("petalTexture", FlowerTexture.White.getResource()));
                         } catch (ATexture.TextureException e) {
                             e.printStackTrace();
                         }
@@ -354,7 +354,7 @@ public class ChloeViewerFragment extends BaseViewerFragment implements View.OnTo
                                 material.enableLighting(true);
                                 material.setCurrentObject(c);
                                 try {
-                                    material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                                    material.addTexture(new Texture("petalTexture", FlowerTexture.White.getResource()));
 //                            material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
                                 } catch (ATexture.TextureException e) {
                                     e.printStackTrace();

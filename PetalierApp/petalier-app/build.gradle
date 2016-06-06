@@ -44,7 +44,7 @@ dependencies {
     compile files('libs/httpclient-android-4.3.3.jar')
     compile files('libs/httpmime-4.1.2.jar')
     compile project(':cam2')
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.5.6@aar') {
         transitive = true;
     }
 

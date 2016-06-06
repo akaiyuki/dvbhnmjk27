@@ -200,7 +200,7 @@ public class LucyViewerFragment extends BaseViewerFragment implements View.OnTou
                         material.setCurrentObject(obj);
 
                         try {
-                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            material.addTexture(new Texture("petalTexture", FlowerTexture.White.getResource()));
                         } catch (ATexture.TextureException e) {
                             e.printStackTrace();
                         }
@@ -289,7 +289,7 @@ public class LucyViewerFragment extends BaseViewerFragment implements View.OnTou
                                 material.enableLighting(true);
                                 material.setCurrentObject(c);
                                 try {
-                                    material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                                    material.addTexture(new Texture("petalTexture", FlowerTexture.White.getResource()));
                                 } catch (ATexture.TextureException e) {
                                     e.printStackTrace();
                                 }

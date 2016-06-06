@@ -200,7 +200,7 @@ public class DianaViewerFragment extends BaseViewerFragment implements View.OnTo
                         material.setCurrentObject(obj);
 
                         try {
-                            material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                            material.addTexture(new Texture("petalTexture", FlowerTexture.White.getResource()));
                         } catch (ATexture.TextureException e) {
                             e.printStackTrace();
                         }
@@ -392,7 +392,7 @@ public class DianaViewerFragment extends BaseViewerFragment implements View.OnTo
                                 material.enableLighting(true);
                                 material.setCurrentObject(c);
                                 try {
-                                    material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
+                                    material.addTexture(new Texture("petalTexture", FlowerTexture.White.getResource()));
                                 } catch (ATexture.TextureException e) {
                                     e.printStackTrace();
                                 }
