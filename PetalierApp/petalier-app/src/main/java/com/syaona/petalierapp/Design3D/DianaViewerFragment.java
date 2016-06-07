@@ -361,26 +361,26 @@ public class DianaViewerFragment extends BaseViewerFragment implements View.OnTo
                                     c.setPosition(1.1, 2.1, 1.1);
                                     c.setRotation(0.0, 120.0, 0.0);
                                 } else if (x == 44){
-                                    c.setPosition(1.3, 1.1, -1.5);
+                                    c.setPosition(1.3, 0.8, -1.4);
                                     c.setRotation(180.0, 180.0, 130.0);
                                 } else if (x == 45){
-                                    c.setPosition(-0.9, 1.0, -1.3);
-                                    c.setRotation(180.0, 180.0, 130.0);
+                                    c.setPosition(-0.9, 1.0, 1.3);
+                                    c.setRotation(180.0, 180.0, 100.0);
                                 } else if (x == 46){
-                                    c.setPosition(-0.6, 1.1, 0.2);
-                                    c.setRotation(180.0, 180.0, 130.0);
+                                    c.setPosition(-0.6, 1.7, -1.8);
+                                    c.setRotation(180.0, 180.0, 160.0);
                                 } else if (x == 47){
-                                    c.setPosition(0.8, 1.5, -1.0);
+                                    c.setPosition(0.8, 1.2, -1.0);
                                     c.setRotation(180.0, 180.0, 150.0);
                                 } else if (x == 48){
-                                    c.setPosition(2.0, 1.6, -1.7);
+                                    c.setPosition(2.0, 1.2, -1.7);
                                     c.setRotation(180.0, 180.0, 150.0);
                                 } else if (x == 49){
                                     c.setPosition(1.0, 1.3, 1.5);
                                     c.setRotation(300.0, 300.0, 70.0);
                                 } else if (x == 50){
-                                    c.setPosition(0.2, 1.1, -1.8);
-                                    c.setRotation(180.0, 180.0, 130.0);
+                                    c.setPosition(0.2, 0.8, -0.3);
+                                    c.setRotation(180.0, 180.0, 110.0);
                                 }
 
 
