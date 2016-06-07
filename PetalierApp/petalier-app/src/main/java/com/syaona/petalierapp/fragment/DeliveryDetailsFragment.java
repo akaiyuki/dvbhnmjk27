@@ -313,6 +313,19 @@ public class DeliveryDetailsFragment extends Fragment {
 
 
 
+        TextView mText1 = (TextView) view.findViewById(R.id.txt1);
+        mText1.setTypeface(Fonts.gothambookregular);
+
+        TextView mText2 = (TextView) view.findViewById(R.id.txt2);
+        mText2.setTypeface(Fonts.gothambookregular);
+
+        TextView mText3 = (TextView) view.findViewById(R.id.txt3);
+        mText3.setTypeface(Fonts.gothambookregular);
+
+        TextView mText4 = (TextView) view.findViewById(R.id.txtdisclaimer);
+        mText4.setTypeface(Fonts.gothambookregular);
+
+
 
 
 

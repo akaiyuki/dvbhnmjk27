@@ -431,6 +431,11 @@
                     android:drawablePadding="5dp"
                     android:textColor="@color/colorLightGary"/>
 
+
+
+
+
+
             </LinearLayout>
 
             <!--<LinearLayout-->
@@ -470,9 +475,50 @@
         </LinearLayout>
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:id="@+id/relativedis">
+
+
+            <TextView
+                android:id="@+id/txt1"
+                android:textSize="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Please review the details above before sending the form."/>
+
+            <TextView
+                android:id="@+id/txt2"
+                android:textSize="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/txt1"
+                android:text="After sending, you may no longer edit your boxed blooms."/>
+
+            <TextView
+                android:id="@+id/txt3"
+                android:textSize="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/txt2"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:text="For changes in the delivery address and/or note, please feel free to contact us before the delivery schedule."/>
+
+
+        </RelativeLayout>
+
+
         <View
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/linear"
+            android:layout_below="@+id/relativedis"
             android:layout_width="fill_parent"
             android:layout_height="1dip"
             android:background="@color/colorLightGary"
