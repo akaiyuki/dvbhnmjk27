@@ -232,7 +232,7 @@ public class DianaViewerFragment extends BaseViewerFragment implements View.OnTo
                                 c.setName("flower_"+x);
 
                                 if (x == 1){
-                                    c.setPosition(-0.3, 1.8, -1.8);
+                                    c.setPosition(0.0, 1.8, -1.8);
                                     c.setRotation(0.0, -45.0, 5.0);
                                 } else if (x == 2){
                                     c.setPosition(0.3, -0.3, 0.0);
@@ -271,7 +271,7 @@ public class DianaViewerFragment extends BaseViewerFragment implements View.OnTo
                                     c.setPosition(-1.6, 0.0, 1.2);
                                     c.setRotation(0.0, -210.0, 0.0);
                                 } else if (x == 14){
-                                    c.setPosition(-1.0, 1.3, 1.9);
+                                    c.setPosition(-1.0, 1.2, 1.9);
                                     c.setRotation(0.0, -220.0, 0.0);
                                 } else if (x == 15){
                                     c.setPosition(-0.8, 0.0, 1.4);
@@ -298,16 +298,16 @@ public class DianaViewerFragment extends BaseViewerFragment implements View.OnTo
                                     c.setPosition(0.2, 1.1, -1.2);
                                     c.setRotation(0.0, -40.0, 0.0);
                                 } else if (x == 23){
-                                    c.setPosition(-1.0, 1.1, -0.4);
+                                    c.setPosition(-0.5, 1.2, -0.6);
                                     c.setRotation(0.0, -90.0, 0.0);
                                 } else if (x == 24){
-                                    c.setPosition(-1.3, 1.0, -1.1);
+                                    c.setPosition(-1.2, 1.2, -1.3);
                                     c.setRotation(0.0, -100.0, 0.0);
                                 } else if (x == 25){
-                                    c.setPosition(-1.8, 1.0, -0.9);
+                                    c.setPosition(-1.6, 1.1, -1.0);
                                     c.setRotation(0.0, -120.0, 0.0);
                                 } else if (x == 26){
-                                    c.setPosition(-1.7, 1.1, 0.2);
+                                    c.setPosition(-1.7, 1.1, 0.0);
                                     c.setRotation(0.0, -150.0, 0.0);
                                 } else if (x == 27){
                                     c.setPosition(1.3, 1.1, -0.2);
@@ -316,10 +316,10 @@ public class DianaViewerFragment extends BaseViewerFragment implements View.OnTo
                                     c.setPosition(0.6, 1.1, -0.4);
                                     c.setRotation(0.0, -320.0, 0.0);
                                 } else if (x == 29){
-                                    c.setPosition(0.6, 1.1, -0.2);
+                                    c.setPosition(0.4, 1.1, -0.2);
                                     c.setRotation(0.0, -300.0, 0.0);
                                 } else if (x == 30){
-                                    c.setPosition(0.5, 1.1, -0.2);
+                                    c.setPosition(0.3, 1.2, -0.2);
                                     c.setRotation(0.0, -280.0, 0.0);
                                 } else if (x == 31){
                                     c.setPosition(1.2, 2.3, 0.9);
@@ -331,7 +331,7 @@ public class DianaViewerFragment extends BaseViewerFragment implements View.OnTo
                                     c.setPosition(-0.9, 2.1, 1.7);
                                     c.setRotation(0.0, -190.0, 0.0);
                                 } else if (x == 34){
-                                    c.setPosition(0.1, 1.2, 0.7);
+                                    c.setPosition(0.1, 1.1, 0.7);
                                     c.setRotation(0.0, -200.0, 0.0);
                                 } else if (x == 35){ //3rd row
                                     c.setPosition(0.9, 2.3, -1.4);
@@ -340,40 +340,40 @@ public class DianaViewerFragment extends BaseViewerFragment implements View.OnTo
                                     c.setPosition(0.3, 2.3, -1.8);
                                     c.setRotation(0.0, -20.0, 0.0);
                                 } else if (x == 37){
-                                    c.setPosition(0.3, 1.1, -2.0);
+                                    c.setPosition(0.5, 1.1, -1.8);
                                     c.setRotation(0.0, -50.0, 0.0);
                                 } else if (x == 38){
-                                    c.setPosition(-1.2, 2.2, -2.2);
+                                    c.setPosition(-1.0, 2.2, -2.2);
                                     c.setRotation(0.0, -70.0, 0.0);
                                 } else if (x == 39){
-                                    c.setPosition(1.8, 2.2, -0.2);
+                                    c.setPosition(1.7, 2.2, -0.3);
                                     c.setRotation(0.0, 45.0, 0.0);
                                 } else if (x == 40){
                                     c.setPosition(1.6, 2.3, 1.5);
                                     c.setRotation(0.0, 90.0, 0.0);
                                 } else if (x == 41){
-                                    c.setPosition(-0.8, 2.2, 1.5);
+                                    c.setPosition(-0.8, 2.2, 1.3);
                                     c.setRotation(0.0, 190.0, 0.0);
                                 } else if (x == 42){
-                                    c.setPosition(-2.0, 2.2, -0.2);
+                                    c.setPosition(-1.8, 2.2, -0.2);
                                     c.setRotation(0.0, 240.0, 0.0);
                                 } else if (x == 43){
                                     c.setPosition(1.1, 2.1, 1.1);
                                     c.setRotation(0.0, 120.0, 0.0);
                                 } else if (x == 44){
-                                    c.setPosition(1.3, 0.8, -1.4);
+                                    c.setPosition(1.5, 0.9, -1.4);
                                     c.setRotation(180.0, 180.0, 130.0);
                                 } else if (x == 45){
-                                    c.setPosition(-0.9, 1.0, 1.3);
+                                    c.setPosition(-0.9, 1.1, 1.3);
                                     c.setRotation(180.0, 180.0, 100.0);
                                 } else if (x == 46){
                                     c.setPosition(-0.6, 1.7, -1.8);
                                     c.setRotation(180.0, 180.0, 160.0);
                                 } else if (x == 47){
-                                    c.setPosition(0.8, 1.2, -1.0);
+                                    c.setPosition(0.8, 1.4, -1.0);
                                     c.setRotation(180.0, 180.0, 150.0);
                                 } else if (x == 48){
-                                    c.setPosition(2.0, 1.2, -1.7);
+                                    c.setPosition(2.0, 1.3, -1.7);
                                     c.setRotation(180.0, 180.0, 150.0);
                                 } else if (x == 49){
                                     c.setPosition(1.0, 1.3, 1.5);

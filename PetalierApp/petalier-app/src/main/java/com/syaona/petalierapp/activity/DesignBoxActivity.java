@@ -222,7 +222,7 @@ public class DesignBoxActivity extends BaseActivity {
 
 
 
-                int myTimer = 1000;
+                int myTimer = 3000;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
