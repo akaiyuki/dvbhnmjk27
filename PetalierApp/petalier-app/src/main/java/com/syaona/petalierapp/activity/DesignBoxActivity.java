@@ -2,6 +2,7 @@ package com.syaona.petalierapp.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -59,6 +60,7 @@ import com.syaona.petalierapp.view.Fonts;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.rajawali3d.util.ObjectColorPicker;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -91,6 +93,11 @@ public class DesignBoxActivity extends BaseActivity {
     public static String pickedColor;
 
     private ImageView mImageLoading;
+
+    public Button btnWhite;
+
+    public Button btnBlack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -352,11 +359,11 @@ public class DesignBoxActivity extends BaseActivity {
         });
 
 
-        final Button btnWhite = (Button) findViewById(R.id.btnwhite);
+        btnWhite = (Button) findViewById(R.id.btnwhite);
         assert btnWhite != null;
 
 
-        final Button btnBlack = (Button) findViewById(R.id.btnblack);
+        btnBlack = (Button) findViewById(R.id.btnblack);
         assert btnBlack != null;
 
         /* trial */
@@ -367,8 +374,31 @@ public class DesignBoxActivity extends BaseActivity {
                 btnBlack.setPressed(false);
                 PSharedPreferences.setSomeStringValue(AppController.getInstance(), "box_color", "white");
                 return true;
+
+
+                // try
+
+
             }
         });
+
+
+//        btnWhite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                btnWhite.setPressed(true);
+//                btnBlack.setPressed(false);
+//                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "box_color", "white");
+//
+//                Log.d("white_clicked_button", "white");
+//                BeatrizViewerFragment.INSTANCE.changeBoxColor();
+//
+//
+//            }
+//        });
+
+
 
         btnBlack.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -725,7 +755,6 @@ public class DesignBoxActivity extends BaseActivity {
 
 
     }
-
 
 
 

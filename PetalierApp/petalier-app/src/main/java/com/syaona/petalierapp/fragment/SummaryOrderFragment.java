@@ -2,8 +2,10 @@ package com.syaona.petalierapp.fragment;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -12,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -227,8 +231,8 @@ public class SummaryOrderFragment extends Fragment {
 
         mTextSubtotal = (TextView) view.findViewById(R.id.txt_subtotal);
 
-        mTextBank = (TextView) view.findViewById(R.id.bank);
-        mTextAccount = (TextView) view.findViewById(R.id.account);
+//        mTextBank = (TextView) view.findViewById(R.id.bank);
+//        mTextAccount = (TextView) view.findViewById(R.id.account);
 
 
         return view;
@@ -416,7 +420,8 @@ public class SummaryOrderFragment extends Fragment {
 
 
                                 } else {
-                                    requestApiClearCart();
+//                                    requestApiClearCart();
+                                    showBankDetails();
                                 }
 
 
@@ -539,6 +544,35 @@ public class SummaryOrderFragment extends Fragment {
         });
 
         request.execute();
+    }
+
+
+
+    public void showBankDetails(){
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_bank_details);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+        TextView mTextAccount = (TextView) dialog.findViewById(R.id.txtaccount);
+        mTextAccount.setText("004890162510");
+
+
+        LinearLayout mButtonDone = (LinearLayout) dialog.findViewById(R.id.button_ok);
+        mButtonDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                requestApiClearCart();
+
+                dialog.dismiss();
+
+            }
+        });
+
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(false);
     }
 
 

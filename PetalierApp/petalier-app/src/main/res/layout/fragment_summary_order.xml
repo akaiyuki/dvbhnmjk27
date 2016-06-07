@@ -390,24 +390,24 @@
                     android:textSize="12sp"
                     />
 
-                <TextView
-                    android:id="@+id/bank"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bank: BDO"
-                    android:textSize="12sp"
-                    android:layout_marginTop="20dp"
-                    />
+                <!--<TextView-->
+                    <!--android:id="@+id/bank"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Bank: BDO"-->
+                    <!--android:textSize="12sp"-->
+                    <!--android:layout_marginTop="20dp"-->
+                    <!--/>-->
 
-                <TextView
-                    android:id="@+id/account"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Account #: 0993-2343-3434"
-                    android:textSize="12sp"
-                    />
+                <!--<TextView-->
+                    <!--android:id="@+id/account"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Account #: 0993-2343-3434"-->
+                    <!--android:textSize="12sp"-->
+                    <!--/>-->
 
 
 

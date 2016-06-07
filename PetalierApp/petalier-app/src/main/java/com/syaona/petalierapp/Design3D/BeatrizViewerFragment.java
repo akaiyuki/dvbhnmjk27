@@ -125,7 +125,7 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
         private CustomCamera mArcballCamera;
 
         //Object picker class
-        private ObjectColorPicker mPicker;
+        public ObjectColorPicker mPicker;
 
 
         public LoadModelRenderer(Context context, @Nullable BaseViewerFragment fragment) {
@@ -189,7 +189,7 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
                     else {
 
                         //Create new material for each 3d object
-                        Material material = new Material();
+                        final Material material = new Material();
                         material.setColorInfluence(0);
 
                         DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
@@ -214,12 +214,48 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
 
                             Log.d("input_box", "box");
 
-                            material.getTextureList().clear();
-                            try {
-                                material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
-                            } catch (ATexture.TextureException e) {
-                                e.printStackTrace();
+//                            material.getTextureList().clear();
+//                            try {
+//                                material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+//                            } catch (ATexture.TextureException e) {
+//                                e.printStackTrace();
+//                            }
+
+
+                            String boxColorSelected = PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color");
+
+                            if (boxColorSelected.equalsIgnoreCase("white")){
+                                material.getTextureList().clear();
+                                try {
+                                    material.addTexture(new Texture("boxTexture", R.drawable.white));
+                                } catch (ATexture.TextureException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                material.getTextureList().clear();
+                                try {
+                                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+                                } catch (ATexture.TextureException e) {
+                                    e.printStackTrace();
+                                }
                             }
+
+
+//                            DesignBoxActivity.INSTANCE.btnWhite.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//
+//
+//                                    material.getTextureList().clear();
+//                                    try {
+//                                        material.addTexture(new Texture("boxTexture", R.drawable.white));
+//                                    } catch (ATexture.TextureException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                }
+//                            });
+
+
 
                         }
 
@@ -340,9 +376,10 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
         }
 
         @Override
-        public void onObjectPicked(Object3D object) {
+        public void onObjectPicked(final Object3D object) {
 
             Singleton.setImage3D(null);
+
 
             if (object.getName().equalsIgnoreCase("box")) {
 
@@ -408,114 +445,6 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
         }
 
 
-        public void resetFlower(){
-
-            mPicker = new ObjectColorPicker(this);
-            mPicker.setOnObjectPickedListener(this);
-
-            Object3D box = new Object3D();
-
-            Object3D obj = Singleton.getObject3D();
-
-            if(obj.getName().equalsIgnoreCase("default")) {
-//                Log.d("Test", "default come in!");
-            }
-
-            else if (obj.getName().equalsIgnoreCase("box")) {
-
-                box = obj;
-
-                Material material = new Material();
-                material.setColorInfluence(0);
-
-                DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
-                diffuseMethod.setIntensity(05.f);
-
-                material.setDiffuseMethod(diffuseMethod);
-                material.enableLighting(true);
-                material.setCurrentObject(box);
-                try {
-                    material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
-                } catch (ATexture.TextureException e) {
-                    e.printStackTrace();
-                }
-
-                box.setMaterial(material);
-                mPicker.registerObject(box);
-                getCurrentScene().addChild(box);
-
-            } else {
-
-                //Create new material for each 3d object
-                Material material = new Material();
-                material.setColorInfluence(0);
-
-                DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
-                diffuseMethod.setIntensity(05.f);
-
-                material.setDiffuseMethod(diffuseMethod);
-                material.enableLighting(true);
-                material.setCurrentObject(obj);
-
-                try {
-                    material.addTexture(new Texture("petalTexture", FlowerTexture.Red.getResource()));
-                } catch (ATexture.TextureException e) {
-                    e.printStackTrace();
-                }
-
-                if (obj.getNumChildren() > 0) {
-                    obj = obj.getChildAt(0);
-                    obj.setMaterial(material);
-                }
-
-                obj.setMaterial(material);
-
-                mPicker.registerObject(obj);
-                getCurrentScene().addChild(obj);
-            }
-
-            //Set Camera to model
-            mArcballCamera = new CustomCamera(mContext, mLayout);
-            mArcballCamera.setTarget(mObjectGroup);
-            mArcballCamera.setPosition(0, 5, 15);
-            getCurrentScene().replaceAndSwitchCamera(getCurrentCamera(), mArcballCamera);
-            mArcballCamera.setLookAt(0, 0, 0);
-
-
-
-            //Set top light
-            DirectionalLight topDirectionalLight = new DirectionalLight();
-            topDirectionalLight.setLookAt(0, 0, 0);
-            topDirectionalLight.setPower(0.8f);
-            topDirectionalLight.setPosition(0, 40, 5);
-            topDirectionalLight.enableLookAt();
-            getCurrentScene().addLight(topDirectionalLight);
-
-            //Set front direction light
-            DirectionalLight frontDirectionalLight = new DirectionalLight();
-            frontDirectionalLight.setLookAt(0, 0, 0);
-            frontDirectionalLight.setPower(0.6f);
-            frontDirectionalLight.setPosition(10, 10, 40);
-            frontDirectionalLight.enableLookAt();
-            getCurrentScene().addLight(frontDirectionalLight);
-
-            //Set back direction light
-            DirectionalLight backDirectionalLight = new DirectionalLight();
-            backDirectionalLight.setLookAt(0, 0, 0);
-            backDirectionalLight.setPower(0.6f);
-            backDirectionalLight.setPosition(10, 10, -40);
-            backDirectionalLight.enableLookAt();
-            getCurrentScene().addLight(backDirectionalLight);
-
-            //Set background color
-            getCurrentScene().setBackgroundColor(Color.LTGRAY);
-
-
-
-
-        }
-
-
     }
 
 
@@ -530,6 +459,43 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
     public void returntoNormal(){
 
         ((LoadModelRenderer) mRenderer).setToNormalView();
+
+    }
+
+
+    public void changeBoxColor(){
+
+                Log.d("white_clicked", obj.getName());
+
+//        ((LoadModelRenderer) mRenderer).getObjectAt();
+
+
+//        if (obj.getName().equalsIgnoreCase("c1")) {
+//
+//            String boxColorSelected = PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color");
+//
+//            Material material = obj.getMaterial();
+//            material.getTextureList().clear();
+//
+//            if (boxColorSelected.equalsIgnoreCase("white")) {
+//                try {
+//                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_white));
+////                        Log.d("boxcolor", "white");
+//                } catch (ATexture.TextureException e) {
+//                    e.printStackTrace();
+//                }
+//            } else if (boxColorSelected.equalsIgnoreCase("black")) {
+//                try {
+//                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+////                        Log.d("boxcolor", "black");
+//                } catch (ATexture.TextureException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            obj.setMaterial(material);
+//        }
+
 
     }
 
