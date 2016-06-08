@@ -408,7 +408,7 @@ public class DesignBoxActivity extends BaseActivity {
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
                     LaurenViewerFragment.INSTANCE.changeBoxColorToWhite();
                 } else {
-                    DianaViewerFragment.INSTANCE.returntoNormal();
+                    DianaViewerFragment.INSTANCE.changeBoxColorToWhite();
                 }
 
 
@@ -457,7 +457,7 @@ public class DesignBoxActivity extends BaseActivity {
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
                     LaurenViewerFragment.INSTANCE.changeBoxColorToBlack();
                 } else {
-                    DianaViewerFragment.INSTANCE.returntoNormal();
+                    DianaViewerFragment.INSTANCE.changeBoxColorToBlack();
                 }
 
 
