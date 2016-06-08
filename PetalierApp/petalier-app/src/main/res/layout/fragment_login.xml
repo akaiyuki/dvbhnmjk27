@@ -214,45 +214,13 @@
 
 
 
-
-
-    <RelativeLayout
-        android:id="@+id/relative"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal">
-
-        <Button
-            android:id="@+id/btndesign"
+        <include
+            layout="@layout/footer_appventure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_background"
-            android:text="Design your Box Now!"
-            android:textAllCaps="false"
-            android:textColor="@color/colorTextWhite"
-            android:textStyle="normal"
-            android:visibility="gone" />
+            android:layout_alignParentBottom="true" />
 
 
-
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/poweredby"
-            android:layout_centerInParent="true"/>
-
-
-    </RelativeLayout>
 
 
 
