@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.StrictMode;
@@ -367,46 +368,105 @@ public class DesignBoxActivity extends BaseActivity {
         assert btnBlack != null;
 
         /* trial */
-        btnWhite.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                btnWhite.setPressed(true);
-                btnBlack.setPressed(false);
-                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "box_color", "white");
-                return true;
-
-
-                // try
-
-
-            }
-        });
-
-
-//        btnWhite.setOnClickListener(new View.OnClickListener() {
+//        btnWhite.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
-//            public void onClick(View view) {
-//
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
 //                btnWhite.setPressed(true);
 //                btnBlack.setPressed(false);
 //                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "box_color", "white");
+//                return true;
 //
-//                Log.d("white_clicked_button", "white");
-//                BeatrizViewerFragment.INSTANCE.changeBoxColor();
+//
+//                // try
 //
 //
 //            }
 //        });
 
 
-
-        btnBlack.setOnTouchListener(new View.OnTouchListener() {
+        btnWhite.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public void onClick(View view) {
+
+                btnWhite.setPressed(true);
+                btnBlack.setPressed(false);
+                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "box_color", "white");
+
+
+
+
+                if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")){
+                    BeatrizViewerFragment.INSTANCE.changeBoxColorToWhite();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")){
+                    LucyViewerFragment.INSTANCE.changeBoxColorToWhite();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
+                    FriedaViewerFragment.INSTANCE.returntoNormal();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
+                    ChloeViewerFragment.INSTANCE.returntoNormal();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")){
+                    FelicisimaViewerFragment.INSTANCE.returntoNormal();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
+                    LaurenViewerFragment.INSTANCE.returntoNormal();
+                } else {
+                    DianaViewerFragment.INSTANCE.returntoNormal();
+                }
+
+
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+                    btnWhite.setBackground(getResources().getDrawable(R.drawable.button_background_black));
+                    btnBlack.setBackground(getResources().getDrawable(R.drawable.button_box));
+                }
+
+
+            }
+        });
+
+
+
+//        btnBlack.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                btnBlack.setPressed(true);
+//                btnWhite.setPressed(false);
+//                PSharedPreferences.setSomeStringValue(AppController.getInstance(), "box_color", "black");
+//                return true;
+//            }
+//        });
+
+        btnBlack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 btnBlack.setPressed(true);
                 btnWhite.setPressed(false);
                 PSharedPreferences.setSomeStringValue(AppController.getInstance(), "box_color", "black");
-                return true;
+
+
+
+                if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")){
+                    BeatrizViewerFragment.INSTANCE.changeBoxColorToBlack();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")){
+                    LucyViewerFragment.INSTANCE.changeBoxColorToBlack();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
+                    FriedaViewerFragment.INSTANCE.returntoNormal();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
+                    ChloeViewerFragment.INSTANCE.returntoNormal();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")){
+                    FelicisimaViewerFragment.INSTANCE.returntoNormal();
+                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
+                    LaurenViewerFragment.INSTANCE.returntoNormal();
+                } else {
+                    DianaViewerFragment.INSTANCE.returntoNormal();
+                }
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+                    btnBlack.setBackground(getResources().getDrawable(R.drawable.button_background_black));
+                    btnWhite.setBackground(getResources().getDrawable(R.drawable.button_box));
+                }
+
+
             }
         });
 

@@ -48,6 +48,7 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
 
     private Object3D obj;
 
+
     @Override
     public BaseViewerRenderer createRenderer() {
         return new LoadModelRenderer(getActivity(), this);
@@ -162,7 +163,6 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
 
                     if (obj.getName().equalsIgnoreCase("box")) {
 
-                        Log.d("Test", "box come in!");
 
                         box = obj;
 
@@ -212,7 +212,9 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
 
                         if (obj.getName().equalsIgnoreCase("box")){
 
-                            Log.d("input_box", "box");
+                            Singleton.setFlowerBox(mObjectGroup);
+
+                            Log.d("input_box", String.valueOf(mObjectGroup.getChildAt(i)));
 
 //                            material.getTextureList().clear();
 //                            try {
@@ -227,7 +229,7 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
                             if (boxColorSelected.equalsIgnoreCase("white")){
                                 material.getTextureList().clear();
                                 try {
-                                    material.addTexture(new Texture("boxTexture", R.drawable.white));
+                                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_white));
                                 } catch (ATexture.TextureException e) {
                                     e.printStackTrace();
                                 }
@@ -463,40 +465,81 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
     }
 
 
-    public void changeBoxColor(){
+    public void changeBoxColorToWhite(){
 
-                Log.d("white_clicked", obj.getName());
+        Object3D object3D = Singleton.getFlowerBox();
 
-//        ((LoadModelRenderer) mRenderer).getObjectAt();
-
-
-//        if (obj.getName().equalsIgnoreCase("c1")) {
-//
-//            String boxColorSelected = PSharedPreferences.getSomeStringValue(AppController.getInstance(),"box_color");
-//
-//            Material material = obj.getMaterial();
-//            material.getTextureList().clear();
-//
-//            if (boxColorSelected.equalsIgnoreCase("white")) {
-//                try {
-//                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_white));
-////                        Log.d("boxcolor", "white");
-//                } catch (ATexture.TextureException e) {
-//                    e.printStackTrace();
-//                }
-//            } else if (boxColorSelected.equalsIgnoreCase("black")) {
-//                try {
-//                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
-////                        Log.d("boxcolor", "black");
-//                } catch (ATexture.TextureException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            obj.setMaterial(material);
-//        }
+        for (int i = 0; i <object3D.getNumChildren(); i++){
+            Object3D object3D1 = object3D.getChildAt(i);
 
 
+            Log.i("objects_button", object3D1.getName());
+
+            if (object3D1.getName().equalsIgnoreCase("group84")){
+                final Material material = new Material();
+                material.setColorInfluence(0);
+
+                DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                diffuseMethod.setIntensity(05.f);
+
+                material.setDiffuseMethod(diffuseMethod);
+                material.enableLighting(true);
+                material.setCurrentObject(object3D1);
+
+                try {
+                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_white));
+                } catch (ATexture.TextureException e) {
+                    e.printStackTrace();
+                }
+
+                if (object3D1.getNumChildren() > 0) {
+                    object3D1 = object3D1.getChildAt(0);
+                    object3D1.setMaterial(material);
+                }
+
+                object3D1.setMaterial(material);
+            }
+
+        }
+
+    }
+
+
+    public void changeBoxColorToBlack(){
+        Object3D object3D = Singleton.getFlowerBox();
+
+        for (int i = 0; i <object3D.getNumChildren(); i++){
+            Object3D object3D1 = object3D.getChildAt(i);
+
+
+            Log.i("objects_button", object3D1.getName());
+
+            if (object3D1.getName().equalsIgnoreCase("group84")){
+                final Material material = new Material();
+                material.setColorInfluence(0);
+
+                DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                diffuseMethod.setIntensity(05.f);
+
+                material.setDiffuseMethod(diffuseMethod);
+                material.enableLighting(true);
+                material.setCurrentObject(object3D1);
+
+                try {
+                    material.addTexture(new Texture("boxTexture", R.drawable.squarebox_black));
+                } catch (ATexture.TextureException e) {
+                    e.printStackTrace();
+                }
+
+                if (object3D1.getNumChildren() > 0) {
+                    object3D1 = object3D1.getChildAt(0);
+                    object3D1.setMaterial(material);
+                }
+
+                object3D1.setMaterial(material);
+            }
+
+        }
     }
 
 
