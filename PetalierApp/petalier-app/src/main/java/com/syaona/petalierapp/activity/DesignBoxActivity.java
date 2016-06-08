@@ -402,7 +402,7 @@ public class DesignBoxActivity extends BaseActivity {
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
                     FriedaViewerFragment.INSTANCE.changeBoxColorToWhite();
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
-                    ChloeViewerFragment.INSTANCE.returntoNormal();
+                    ChloeViewerFragment.INSTANCE.changeBoxColorToWhite();
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")){
                     FelicisimaViewerFragment.INSTANCE.returntoNormal();
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
@@ -451,7 +451,7 @@ public class DesignBoxActivity extends BaseActivity {
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
                     FriedaViewerFragment.INSTANCE.changeBoxColorToBlack();
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
-                    ChloeViewerFragment.INSTANCE.returntoNormal();
+                    ChloeViewerFragment.INSTANCE.changeBoxColorToBlack();
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")){
                     FelicisimaViewerFragment.INSTANCE.returntoNormal();
                 } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
