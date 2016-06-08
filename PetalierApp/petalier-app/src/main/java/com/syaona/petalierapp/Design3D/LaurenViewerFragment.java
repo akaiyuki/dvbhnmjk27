@@ -162,6 +162,9 @@ public class LaurenViewerFragment extends BaseViewerFragment implements View.OnT
 
                     if (obj.getName().equalsIgnoreCase("box")) {
 
+                        Singleton.setFlowerBox(mObjectGroup);
+
+
                         Log.d("Test", "box come in!");
 
                         box = obj;
@@ -211,6 +214,8 @@ public class LaurenViewerFragment extends BaseViewerFragment implements View.OnT
                         }
 
                         if (obj.getName().equalsIgnoreCase("box")){
+
+                            Singleton.setFlowerBox(mObjectGroup);
 
                             material.getTextureList().clear();
                             try {
@@ -609,6 +614,84 @@ public class LaurenViewerFragment extends BaseViewerFragment implements View.OnT
 
         ((LoadModelRenderer) mRenderer).setToNormalView();
 
+    }
+
+
+    public void changeBoxColorToWhite(){
+
+        Object3D object3D = Singleton.getFlowerBox();
+
+        for (int i = 0; i <object3D.getNumChildren(); i++){
+            Object3D object3D1 = object3D.getChildAt(i);
+
+
+            Log.i("objects_button", object3D1.getName());
+
+            if (object3D1.getName().equalsIgnoreCase("box")){
+                final Material material = new Material();
+                material.setColorInfluence(0);
+
+                DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                diffuseMethod.setIntensity(05.f);
+
+                material.setDiffuseMethod(diffuseMethod);
+                material.enableLighting(true);
+                material.setCurrentObject(object3D1);
+
+                try {
+                    material.addTexture(new Texture("boxTexture", R.drawable.roundbox_white));
+                } catch (ATexture.TextureException e) {
+                    e.printStackTrace();
+                }
+
+                if (object3D1.getNumChildren() > 0) {
+                    object3D1 = object3D1.getChildAt(0);
+                    object3D1.setMaterial(material);
+                }
+
+                object3D1.setMaterial(material);
+            }
+
+        }
+
+    }
+
+
+    public void changeBoxColorToBlack(){
+        Object3D object3D = Singleton.getFlowerBox();
+
+        for (int i = 0; i <object3D.getNumChildren(); i++){
+            Object3D object3D1 = object3D.getChildAt(i);
+
+
+            Log.i("objects_button", object3D1.getName());
+
+            if (object3D1.getName().equalsIgnoreCase("box")){
+                final Material material = new Material();
+                material.setColorInfluence(0);
+
+                DiffuseMethod.Lambert diffuseMethod = new DiffuseMethod.Lambert();
+                diffuseMethod.setIntensity(05.f);
+
+                material.setDiffuseMethod(diffuseMethod);
+                material.enableLighting(true);
+                material.setCurrentObject(object3D1);
+
+                try {
+                    material.addTexture(new Texture("boxTexture", R.drawable.roundbox_black));
+                } catch (ATexture.TextureException e) {
+                    e.printStackTrace();
+                }
+
+                if (object3D1.getNumChildren() > 0) {
+                    object3D1 = object3D1.getChildAt(0);
+                    object3D1.setMaterial(material);
+                }
+
+                object3D1.setMaterial(material);
+            }
+
+        }
     }
 
 
