@@ -22,7 +22,8 @@
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/red" />
+            android:src="@drawable/red"
+            android:layout_marginTop="3dp"/>
 
         <TextView
             android:id="@+id/text_color"

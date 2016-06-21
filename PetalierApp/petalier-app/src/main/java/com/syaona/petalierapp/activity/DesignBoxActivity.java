@@ -519,6 +519,15 @@ public class DesignBoxActivity extends BaseActivity {
         mGridView.setExpanded(true);
 
 
+        Button mButtonColor = (Button) findViewById(R.id.btncolorcalendar);
+        mButtonColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("clickedcolor", "color button click");
+            }
+        });
+
+
 
 
 
