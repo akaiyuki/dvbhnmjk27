@@ -178,26 +178,110 @@
             android:id="@+id/divider"/>
 
 
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Choose "-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:textSize="17sp"-->
+            <!--android:id="@+id/textcolorchoose"-->
+            <!--android:layout_below="@+id/divider"/>-->
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Color"-->
+            <!--android:textColor="@color/colorButtonInactive"-->
+            <!--android:textSize="17sp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_marginBottom="20dp"-->
+            <!--android:id="@+id/textchoosecolor"-->
+            <!--android:layout_below="@+id/divider"-->
+            <!--android:layout_toRightOf="@+id/textcolorchoose"/>-->
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider"
+            android:gravity="center_horizontal"
+            android:id="@+id/relative4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose "
+                android:layout_marginTop="20dp"
+                android:textSize="17sp"
+                android:id="@+id/textcolorchoose"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Color"
+                android:textColor="@color/colorButtonInactive"
+                android:textSize="17sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:id="@+id/textchoosecolor"
+                android:layout_toRightOf="@+id/textcolorchoose"/>
+
+        </RelativeLayout>
+
+
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose Color"
+            android:text="Please refer to our color calendar for the"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textSize="17sp"
-            android:id="@+id/textcolorchoose"
-            android:layout_below="@+id/divider"/>
+            android:textSize="13sp"
+            android:layout_below="@+id/relative4"
+            android:id="@+id/textdisclaimer"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="availability of the roses"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:textSize="13sp"
+            android:layout_below="@+id/textdisclaimer"
+            android:id="@+id/textdisclaimer2"/>
+
+
+
+
+        <Button
+            android:id="@+id/btncolorcalendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="View Color Calendar"
+            android:textColor="@color/colorTextWhite"
+            android:background="@drawable/button_background"
+            android:layout_below="@+id/textdisclaimer2"
+            android:padding="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"/>
+
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(Regular)"
-            android:layout_below="@+id/textcolorchoose"
+            android:layout_below="@+id/relative4"
             android:layout_centerHorizontal="true"
             android:textColor="@color/colorButtonInactive"
             android:textSize="17sp"
             android:layout_marginBottom="20dp"
-            android:id="@+id/regular"/>
+            android:id="@+id/regular"
+            android:visibility="gone"/>
 
 
         <android.support.v7.widget.RecyclerView
@@ -209,12 +293,13 @@
             android:paddingTop="5dp"
             android:layout_below="@+id/regular"
             android:layout_marginLeft="10dp"
+            android:visibility="gone"
             />
 
 
         <View
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/listview_color_regular"
+            android:layout_below="@+id/btncolorcalendar"
             android:layout_width="fill_parent"
             android:layout_height="1dip"
             android:background="@color/colorLightGary"
@@ -228,7 +313,8 @@
             android:layout_marginTop="20dp"
             android:textSize="17sp"
             android:id="@+id/textcolorchoose2"
-            android:layout_below="@+id/divider2"/>
+            android:layout_below="@+id/divider2"
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -239,7 +325,8 @@
             android:textColor="@color/colorButtonInactive"
             android:textSize="17sp"
             android:layout_marginBottom="20dp"
-            android:id="@+id/special"/>
+            android:id="@+id/special"
+            android:visibility="gone"/>
 
 
         <android.support.v7.widget.RecyclerView
@@ -251,12 +338,29 @@
             android:paddingTop="5dp"
             android:layout_below="@+id/special"
             android:layout_marginLeft="10dp"
+            android:visibility="gone"
             />
+
+
+        <com.syaona.petalierapp.view.ExpandableHeightGridView
+            android:id="@+id/gridview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:horizontalSpacing="2dp"
+            android:isScrollContainer="false"
+            android:numColumns="5"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="20dp"
+            android:layout_below="@+id/divider2"
+            android:layout_marginTop="10dp"
+            />
+
 
 
         <View
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/listview_color_special"
+            android:layout_below="@+id/gridview"
             android:layout_width="fill_parent"
             android:layout_height="1dip"
             android:background="@color/colorLightGary"

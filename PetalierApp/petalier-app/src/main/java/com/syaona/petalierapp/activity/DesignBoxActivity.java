@@ -1,6 +1,8 @@
 package com.syaona.petalierapp.activity;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -22,7 +24,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -56,6 +60,7 @@ import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.photo.CustomScrollView;
+import com.syaona.petalierapp.view.ExpandableHeightGridView;
 import com.syaona.petalierapp.view.Fonts;
 
 import org.json.JSONArray;
@@ -98,6 +103,9 @@ public class DesignBoxActivity extends BaseActivity {
     public Button btnWhite;
 
     public Button btnBlack;
+
+    private ExpandableHeightGridView mGridView;
+    private ColorListAdapter colorListAdapter;
 
 
     @Override
@@ -506,6 +514,14 @@ public class DesignBoxActivity extends BaseActivity {
         }
 
 
+
+        mGridView = (ExpandableHeightGridView) findViewById(R.id.gridview);
+        mGridView.setExpanded(true);
+
+
+
+
+
     }
 
     public void stopAnimation(){
@@ -720,6 +736,7 @@ public class DesignBoxActivity extends BaseActivity {
                                 for (int i = 0; i < jsonArray.length(); i++){
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                                     mResultSpecial.add(jsonObject1);
+                                    mResultRegular.add(jsonObject1);
                                 }
 
                                 for (int x = 0; x < jsonArray1.length(); x++){
@@ -727,13 +744,18 @@ public class DesignBoxActivity extends BaseActivity {
                                     mResultRegular.add(jsonObject1);
                                 }
 
-                                mAdapter = new RegularFlowerAdapter(mResultRegular);
-                                mAdapter.notifyDataSetChanged();
-                                mRecyclerViewRegular.setAdapter(mAdapter);
+//                                mAdapter = new RegularFlowerAdapter(mResultRegular);
+//                                mAdapter.notifyDataSetChanged();
+//                                mRecyclerViewRegular.setAdapter(mAdapter);
+//
+//                                mAdapterSpecial = new RegularFlowerAdapter(mResultSpecial);
+//                                mAdapterSpecial.notifyDataSetChanged();
+//                                mRecyclerViewSpecial.setAdapter(mAdapterSpecial);
 
-                                mAdapterSpecial = new RegularFlowerAdapter(mResultSpecial);
-                                mAdapterSpecial.notifyDataSetChanged();
-                                mRecyclerViewSpecial.setAdapter(mAdapterSpecial);
+                                colorListAdapter = new ColorListAdapter(DesignBoxActivity.this, R.layout.custom_row_flowers, mResultRegular);
+                                colorListAdapter.notifyDataSetChanged();
+                                mGridView.setAdapter(colorListAdapter);
+
 
                             }
 
@@ -765,6 +787,122 @@ public class DesignBoxActivity extends BaseActivity {
         };
         queue.add(postRequest);
     }
+
+
+    // trial
+    public class ColorListAdapter extends ArrayAdapter<JSONObject> {
+
+        Context mContext;
+        ArrayList<JSONObject> mData = new ArrayList<>();
+        int mResId;
+        private int selected = 0;
+
+        public ColorListAdapter(Context context, int resource, ArrayList<JSONObject> data) {
+            super(context, resource, data);
+            this.mContext = context;
+            this.mResId = resource;
+            this.mData = data;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final ViewHolder holder;
+
+            if (convertView == null) {
+                //Inflate layout
+                LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+                convertView = inflater.inflate(mResId, null);
+                holder = new ViewHolder();
+
+                holder.text1 = (TextView) convertView.findViewById(R.id.text_color);
+                holder.imageView = (ImageView) convertView.findViewById(R.id.ic_flower);
+
+
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            final JSONObject data = mData.get(position);
+
+            try {
+                holder.text1.setText(data.getString("color_name"));
+                holder.text1.setTypeface(Fonts.gothambookregular);
+
+                if (selected == Integer.parseInt(data.getString("id"))){
+                    holder.text1.setSelected(true);
+                } else {
+                    holder.text1.setSelected(false);
+                }
+
+                Picasso.with(mContext)
+                        .load(data.getString("color_image_link"))
+                        .fit()
+                        .into(holder.imageView);
+
+                holder.imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        try {
+                            assert data != null;
+                            Log.i("coloridflower", data.getString("id"));
+
+                            PSharedPreferences.setSomeStringValue(AppController.getInstance(),"pick_color",holder.text1.getText().toString());
+
+
+                            Bitmap bitmap = getBitmapFromURL(data.getString("texture_image_link"));
+
+                            Bitmap resizeBitmap = Bitmap.createScaledBitmap(bitmap, 32, 32, false);
+
+
+                            Singleton.setChosenColor(bitmap);
+
+                            Singleton.setColorId(data.getString("id"));
+
+
+                            int maxColor = Integer.parseInt(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "max_color"));
+
+                            if (color.size() < maxColor) {
+                                if (!color.contains(data.getString("id"))) {
+                                    color.add(data.getString("id"));
+                                }
+                            }
+
+                            selected = Integer.parseInt(data.getString("id"));
+                            notifyDataSetChanged();
+
+
+                            Singleton.setMaxColor(color);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView text1;
+            ImageView imageView;
+        }
+    }
+
+
+
+
+
+
+
 
 
     public static Bitmap getBitmapFromURL(String src) {

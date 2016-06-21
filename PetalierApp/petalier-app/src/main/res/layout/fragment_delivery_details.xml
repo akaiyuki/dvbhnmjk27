@@ -92,11 +92,39 @@
 
                 <TextView
                     android:id="@+id/txtdisclaimer"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="We don't deliver on Wednesdays and Thursdays"
+                    android:text="Please be advised that we have a cut-off at 2:00PM"
                     android:textSize="10sp"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:id="@+id/txtdisclaimer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="(Philippine Standard Time) for next-day deliveries"
+                    android:textSize="10sp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:id="@+id/txtdisclaimer3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Our delivery hours are from 10:00AM - 3:00PM, depending on"
+                    android:textSize="10sp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:id="@+id/txtdisclaimer4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="the delivery route of the day. Thank you!"
+                    android:textSize="10sp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"/>
 
 
             </LinearLayout>
