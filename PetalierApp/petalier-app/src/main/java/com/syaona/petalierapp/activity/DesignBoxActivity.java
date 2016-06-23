@@ -208,7 +208,6 @@ public class DesignBoxActivity extends BaseActivity {
                     Singleton.getMaxColor().clear();
                 }
 
-
             }
         });
 
@@ -647,9 +646,9 @@ public class DesignBoxActivity extends BaseActivity {
                         Singleton.setColorId(data.getString("id"));
 
 
-                        int maxColor = Integer.parseInt(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "max_color"));
+//                        int maxColor = Integer.parseInt(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "max_color"));
 
-                        if (color.size() < maxColor) {
+                        if (color.size() >= 1) {
                             if (!color.contains(data.getString("id"))) {
                                 color.add(data.getString("id"));
 //                                holder.mTextColor.setTypeface(Fonts.gothambold);
@@ -870,9 +869,9 @@ public class DesignBoxActivity extends BaseActivity {
                             Singleton.setColorId(data.getString("id"));
 
 
-                            int maxColor = Integer.parseInt(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "max_color"));
+//                            int maxColor = Integer.parseInt(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "max_color"));
 
-                            if (color.size() < maxColor) {
+                            if (color.size() >= 0) {
                                 if (!color.contains(data.getString("id"))) {
                                     color.add(data.getString("id"));
                                 }

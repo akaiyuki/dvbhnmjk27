@@ -290,7 +290,7 @@ public class ChooseCollectionFragment extends Fragment {
 
                         PSharedPreferences.setSomeStringValue(AppController.getInstance(),"id",row.getString("id"));
 
-                        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "max_color", jsonObject.getString("max_color"));
+//                        PSharedPreferences.setSomeStringValue(AppController.getInstance(), "max_color", jsonObject.getString("max_color"));
 
                         Log.i("product_id", row.getString("id"));
 
