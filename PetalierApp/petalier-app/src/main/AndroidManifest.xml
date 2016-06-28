@@ -88,6 +88,7 @@
 
         <activity android:name=".activity.PaypalActivity" />
         <activity android:name=".photo.ImagePreviewActivity" />
+        <activity android:name=".activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

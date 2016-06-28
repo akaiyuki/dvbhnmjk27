@@ -26,6 +26,7 @@ public class PRequest {
     public static String apiMethodGetCompletedOrder = "history/getCompletedOrders";
     public static String apiMethodGetPendingOrder = "history/getPendingOrders";
     public static String apiMethodGetOrderById = "orders/get";
+    public static String apiMethodGetColorCalendar = "colors/getColorCalendarLink";
 
 
     /* Post */

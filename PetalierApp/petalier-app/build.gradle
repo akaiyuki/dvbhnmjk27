@@ -49,6 +49,9 @@ dependencies {
     }
 
 
+
+
+
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.mcxiaoke.volley:library:1.0.19'
@@ -67,9 +70,6 @@ dependencies {
     compile 'biz.kasual:materialnumberpicker:1.2.1'
     compile 'com.github.paolorotolo:expandableheightlistview:1.0.0'
     compile 'com.hudomju:swipe-to-dismiss-undo:1.0'
-
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-
-
 }

@@ -55,6 +55,7 @@ import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
 import com.syaona.petalierapp.core.PConfiguration;
+import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PSharedPreferences;
 import com.syaona.petalierapp.enums.Singleton;
@@ -519,10 +520,13 @@ public class DesignBoxActivity extends BaseActivity {
 
 
         Button mButtonColor = (Button) findViewById(R.id.btncolorcalendar);
+        assert mButtonColor != null;
         mButtonColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("clickedcolor", "color button click");
+                startActivity(new Intent(DesignBoxActivity.this, WebViewActivity.class));
+                finish();
+                //trial
             }
         });
 
