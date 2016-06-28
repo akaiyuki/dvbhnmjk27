@@ -127,8 +127,8 @@ public class WebViewActivity extends BaseActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-//        startActivity(new Intent(WebViewActivity.this, DesignBoxActivity.class));
-//        finish();
+        startActivity(new Intent(WebViewActivity.this, DesignBoxActivity.class));
+        finish();
     }
 
 

@@ -525,7 +525,7 @@ public class DesignBoxActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(DesignBoxActivity.this, WebViewActivity.class));
-//                finish();
+                finish();
             }
         });
 
