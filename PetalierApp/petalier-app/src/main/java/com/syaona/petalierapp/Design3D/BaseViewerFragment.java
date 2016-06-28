@@ -160,7 +160,7 @@ public abstract class BaseViewerFragment extends Fragment implements IDisplay {
 
 
             /* trial */
-            if (baseViewerFragment != null) baseViewerFragment.showLoader();
+            if (baseViewerFragment == null) baseViewerFragment.showLoader();
             super.onRenderSurfaceCreated(config, gl, width, height);
 
 
