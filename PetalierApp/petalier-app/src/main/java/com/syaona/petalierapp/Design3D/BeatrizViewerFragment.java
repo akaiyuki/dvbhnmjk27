@@ -76,6 +76,8 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
             }
         });
 
+//        BaseViewerFragment.INSTANCE.hideLoader();
+
         return mLayout;
     }
 
@@ -382,6 +384,7 @@ public class BeatrizViewerFragment extends BaseViewerFragment implements View.On
 
             Singleton.setImage3D(null);
 
+//            BaseViewerFragment.INSTANCE.hideLoader();
 
             if (object.getName().equalsIgnoreCase("box")) {
 

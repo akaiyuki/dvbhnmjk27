@@ -42,6 +42,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
+import com.syaona.petalierapp.Design3D.BaseViewerFragment;
 import com.syaona.petalierapp.Design3D.BeatrizViewerFragment;
 import com.syaona.petalierapp.Design3D.ChloeViewerFragment;
 import com.syaona.petalierapp.Design3D.DianaViewerFragment;
@@ -528,9 +529,6 @@ public class DesignBoxActivity extends BaseActivity {
                 finish();
             }
         });
-
-
-
 
 
     }
