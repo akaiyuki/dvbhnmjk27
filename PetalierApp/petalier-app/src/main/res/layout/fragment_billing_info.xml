@@ -230,36 +230,7 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
 
-
-                <TextView
-                    android:id="@+id/txtcompany"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Company" />
-
-                <EditText
-                    android:id="@+id/edit_company"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/ic_small_box"
-                    android:drawableLeft="@drawable/ic_occupation"
-                    android:drawablePadding="5dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="10dp"
-                    android:singleLine="true"
-                    android:textColor="@color/colorLightGary" />
-
-            </LinearLayout>
 
 
 
@@ -577,6 +548,38 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/ic_small_box"
                     android:drawableLeft="@drawable/ic_location"
+                    android:drawablePadding="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorLightGary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp">
+
+
+                <TextView
+                    android:id="@+id/txtcompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Company" />
+
+                <EditText
+                    android:id="@+id/edit_company"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/ic_small_box"
+                    android:drawableLeft="@drawable/ic_occupation"
                     android:drawablePadding="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"

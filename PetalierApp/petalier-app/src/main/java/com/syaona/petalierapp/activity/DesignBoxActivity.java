@@ -162,56 +162,56 @@ public class DesignBoxActivity extends BaseActivity {
         });
 
 
-        Button mButtonRefresh = (Button) findViewById(R.id.btnrefresh);
-        assert mButtonRefresh != null;
-        mButtonRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-//                getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
-//                        .commit();
-
-                if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")){
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new BeatrizViewerFragment(), BeatrizViewerFragment.TAG)
-                            .commit();
-                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")){
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new LucyViewerFragment(), LucyViewerFragment.TAG)
-                            .commit();
-                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new FriedaViewerFragment(), FriedaViewerFragment.TAG)
-                            .commit();
-                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new ChloeViewerFragment(), ChloeViewerFragment.TAG)
-                            .commit();
-                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")){
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new FelicisimaViewerFragment(), FelicisimaViewerFragment.TAG)
-                            .commit();
-                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new LaurenViewerFragment(), LaurenViewerFragment.TAG)
-                            .commit();
-                }
-                else {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.content_frame, new DianaViewerFragment(), DianaViewerFragment.TAG)
-                            .commit();
-                }
-
-                requestApiGetColors();
-
-                if (color.size() != 0){
-                    color.clear();
-                    Singleton.getMaxColor().clear();
-                }
-
-            }
-        });
+//        Button mButtonRefresh = (Button) findViewById(R.id.btnrefresh);
+//        assert mButtonRefresh != null;
+//        mButtonRefresh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+////                getSupportFragmentManager().beginTransaction()
+////                        .replace(R.id.content_frame, new ModelViewerFragment(), ModelViewerFragment.TAG)
+////                        .commit();
+//
+//                if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("beatriz")){
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.content_frame, new BeatrizViewerFragment(), BeatrizViewerFragment.TAG)
+//                            .commit();
+//                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lucy")){
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.content_frame, new LucyViewerFragment(), LucyViewerFragment.TAG)
+//                            .commit();
+//                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("frieda")){
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.content_frame, new FriedaViewerFragment(), FriedaViewerFragment.TAG)
+//                            .commit();
+//                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("chloe")){
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.content_frame, new ChloeViewerFragment(), ChloeViewerFragment.TAG)
+//                            .commit();
+//                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("felicisima")){
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.content_frame, new FelicisimaViewerFragment(), FelicisimaViewerFragment.TAG)
+//                            .commit();
+//                } else if (PSharedPreferences.getSomeStringValue(AppController.getInstance(), "flower_name").equalsIgnoreCase("lauren")){
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.content_frame, new LaurenViewerFragment(), LaurenViewerFragment.TAG)
+//                            .commit();
+//                }
+//                else {
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.content_frame, new DianaViewerFragment(), DianaViewerFragment.TAG)
+//                            .commit();
+//                }
+//
+//                requestApiGetColors();
+//
+//                if (color.size() != 0){
+//                    color.clear();
+//                    Singleton.getMaxColor().clear();
+//                }
+//
+//            }
+//        });
 
         Button mButtonPreview = (Button) findViewById(R.id.btnpreview);
         assert mButtonPreview != null;

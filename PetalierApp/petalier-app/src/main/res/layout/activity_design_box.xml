@@ -119,23 +119,24 @@
             android:layout_below="@+id/productexcerpt"
             android:id="@+id/linearseven">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginRight="10dp">
+            <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:layout_marginRight="10dp">-->
 
-                <Button
-                    android:id="@+id/btnrefresh"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Reset"
-                    android:textColor="@color/colorTextWhite"
-                    android:background="@drawable/button_background"/>
+                <!--<Button-->
+                    <!--android:id="@+id/btnrefresh"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:text="Reset"-->
+                    <!--android:visibility="gone"-->
+                    <!--android:textColor="@color/colorTextWhite"-->
+                    <!--android:background="@drawable/button_background"/>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -143,8 +144,8 @@
                 android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp">
 
                 <Button
                     android:id="@+id/btnpreview"
