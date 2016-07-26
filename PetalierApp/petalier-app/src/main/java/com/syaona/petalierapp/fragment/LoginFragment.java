@@ -379,7 +379,7 @@ public class LoginFragment extends Fragment {
 
     public void requestApiFbLogin(String accessToken, String fbId, String fName, String lName, String email, String signature) {
 
-        mImageLoading.setVisibility(View.VISIBLE);
+//        mImageLoading.setVisibility(View.VISIBLE);
 
         HashMap<String, String> params = new HashMap<>();
         params.put("fbAccessToken", accessToken);
