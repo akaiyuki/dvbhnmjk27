@@ -91,14 +91,16 @@ public class PDatePicker implements DatePickerDialog.OnDateSetListener{
 
             Singleton.setSelectedDay(1);
 
-        } else if (dayOfWeek == 4) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                mEditText.setBackground(gd);
-            }
-
-            Singleton.setSelectedDay(1);
-
-        } else {
+        }
+//        else if (dayOfWeek == 4) {
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                mEditText.setBackground(gd);
+//            }
+//
+//            Singleton.setSelectedDay(1);
+//
+//        }
+        else {
 
 //            Calendar calendar = Calendar.getInstance();
 //            int day = GregorianCalendar.get(GregorianCalendar.DAY_OF_WEEK);
