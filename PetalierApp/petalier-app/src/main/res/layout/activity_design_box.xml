@@ -269,20 +269,35 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"/>
 
-
+        <View
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/btncolorcalendar"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="@color/colorLightGary"
+            android:id="@+id/divider1"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Choose Color"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textSize="17sp"
+            android:id="@+id/textcolorchoose1"
+            android:layout_below="@+id/divider1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="(Regular)"
-            android:layout_below="@+id/relative4"
+            android:layout_below="@+id/textcolorchoose1"
             android:layout_centerHorizontal="true"
             android:textColor="@color/colorButtonInactive"
             android:textSize="17sp"
             android:layout_marginBottom="20dp"
-            android:id="@+id/regular"
-            android:visibility="gone"/>
+            android:id="@+id/regular"/>
 
 
         <android.support.v7.widget.RecyclerView
@@ -294,18 +309,16 @@
             android:paddingTop="5dp"
             android:layout_below="@+id/regular"
             android:layout_marginLeft="10dp"
-            android:visibility="gone"
             />
 
 
         <View
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/btncolorcalendar"
+            android:layout_below="@+id/listview_color_regular"
             android:layout_width="fill_parent"
             android:layout_height="1dip"
             android:background="@color/colorLightGary"
-            android:id="@+id/divider2"
-            android:visibility="gone"/>
+            android:id="@+id/divider2"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -315,8 +328,7 @@
             android:layout_marginTop="20dp"
             android:textSize="17sp"
             android:id="@+id/textcolorchoose2"
-            android:layout_below="@+id/divider2"
-            android:visibility="gone"/>
+            android:layout_below="@+id/divider2"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -327,8 +339,7 @@
             android:textColor="@color/colorButtonInactive"
             android:textSize="17sp"
             android:layout_marginBottom="20dp"
-            android:id="@+id/special"
-            android:visibility="gone"/>
+            android:id="@+id/special"/>
 
 
         <android.support.v7.widget.RecyclerView
@@ -340,7 +351,6 @@
             android:paddingTop="5dp"
             android:layout_below="@+id/special"
             android:layout_marginLeft="10dp"
-            android:visibility="gone"
             />
 
 
@@ -362,7 +372,7 @@
 
         <View
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/gridview"
+            android:layout_below="@+id/listview_color_special"
             android:layout_width="fill_parent"
             android:layout_height="1dip"
             android:background="@color/colorLightGary"

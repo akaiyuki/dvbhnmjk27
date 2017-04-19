@@ -84,8 +84,8 @@ public class DesignBoxActivity extends BaseActivity {
 
     public CustomScrollView scrollView;
 
-//    private RecyclerView mRecyclerViewRegular;
-//    private RecyclerView mRecyclerViewSpecial;
+    private RecyclerView mRecyclerViewRegular;
+    private RecyclerView mRecyclerViewSpecial;
     private ArrayList<JSONObject> mResultRegular = new ArrayList<>();
     private ArrayList<JSONObject> mResultSpecial = new ArrayList<>();
 
@@ -317,16 +317,16 @@ public class DesignBoxActivity extends BaseActivity {
 
 
 
-//        mRecyclerViewRegular = (RecyclerView) findViewById(R.id.listview_color_regular);
-//        mRecyclerViewSpecial = (RecyclerView) findViewById(R.id.listview_color_special);
-//
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DesignBoxActivity.INSTANCE);
-//        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        mRecyclerViewRegular.setLayoutManager(linearLayoutManager);
-//
-//        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(DesignBoxActivity.INSTANCE);
-//        linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        mRecyclerViewSpecial.setLayoutManager(linearLayoutManager1);
+        mRecyclerViewRegular = (RecyclerView) findViewById(R.id.listview_color_regular);
+        mRecyclerViewSpecial = (RecyclerView) findViewById(R.id.listview_color_special);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DesignBoxActivity.INSTANCE);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRecyclerViewRegular.setLayoutManager(linearLayoutManager);
+
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(DesignBoxActivity.INSTANCE);
+        linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRecyclerViewSpecial.setLayoutManager(linearLayoutManager1);
 
         mTextQuantity = (TextView) findViewById(R.id.txtquantity);
         mButtonAdd = (ImageButton) findViewById(R.id.btnadd);
@@ -668,77 +668,47 @@ public class DesignBoxActivity extends BaseActivity {
                     .into(holder.mImageFlower);
 
 
-//            holder.mImageFlower.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                    try {
-//                        assert data != null;
-//                        Log.i("coloridflower", data.getString("id"));
-//
-//                       PSharedPreferences.setSomeStringValue(AppController.getInstance(),"pick_color",holder.mTextColor.getText().toString());
-//
-//
-//                        Bitmap bitmap = getBitmapFromURL(data.getString("texture_image_link"));
-//
-//                        Bitmap resizeBitmap = Bitmap.createScaledBitmap(bitmap, 32, 32, false);
-//
-//
-//                        Singleton.setChosenColor(bitmap);
-//
-//                        Singleton.setColorId(data.getString("id"));
-//
-//
-////                        int maxColor = Integer.parseInt(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "max_color"));
-//
-//                        if (color.size() >= 1) {
-//                            if (!color.contains(data.getString("id"))) {
-//                                color.add(data.getString("id"));
-////                                holder.mTextColor.setTypeface(Fonts.gothambold);
-////                                holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
-//                            }
-//                        }
-//
-////                        if (color.contains(data.getString("id"))) {
-////                            holder.mTextColor.setTypeface(Fonts.gothambold);
-////                            holder.mTextColor.setTextColor(Color.parseColor("#dbab40"));
-////                        } else {
-////                            holder.mTextColor.setTypeface(Fonts.gothambookregular);
-////                            holder.mTextColor.setTextColor(Color.parseColor("#2D2C2C"));
-////                        }
-//
-//
-////                            if (holder.getAdapterPosition() == position){
-////                                holder.mTextColor.setSelected(true);
-////                                notifyDataSetChanged();
-////
-////                                Log.e("highlightcolor","true");
-////                            }
-//
-//
-////                        if (holder.mTextColor.getText() == data.getString("color_name")){
-////                            holder.mTextColor.setSelected(true);
-////                            notifyDataSetChanged();
-////
-////                            Log.e("highlightcolor","true");
-////                        }
-//
-//                        selected = Integer.parseInt(data.getString("id"));
-//                        notifyDataSetChanged();
-//
-//
-//                        Singleton.setMaxColor(color);
-//
-//
-////                        Log.i("maxcolorselected", String.valueOf(Singleton.getMaxColor()));
-//
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                }
-//            });
+            holder.mImageFlower.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    try {
+                        assert data != null;
+                        Log.i("coloridflower", data.getString("id"));
+
+                        PSharedPreferences.setSomeStringValue(AppController.getInstance(),"pick_color",holder.mTextColor.getText().toString());
+
+
+                        Bitmap bitmap = getBitmapFromURL(data.getString("texture_image_link"));
+
+                        Bitmap resizeBitmap = Bitmap.createScaledBitmap(bitmap, 32, 32, false);
+
+
+                        Singleton.setChosenColor(bitmap);
+
+                        Singleton.setColorId(data.getString("id"));
+
+
+//                            int maxColor = Integer.parseInt(PSharedPreferences.getSomeStringValue(AppController.getInstance(), "max_color"));
+
+                        if (color.size() >= 0) {
+                            if (!color.contains(data.getString("id"))) {
+                                color.add(data.getString("id"));
+                            }
+                        }
+
+                        selected = Integer.parseInt(data.getString("id"));
+                        notifyDataSetChanged();
+
+
+                        Singleton.setMaxColor(color);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
 
 
 
@@ -795,10 +765,18 @@ public class DesignBoxActivity extends BaseActivity {
                                     mResultRegular.add(jsonObject1);
                                 }
 
+                                mAdapter = new RegularFlowerAdapter(mResultRegular);
+                                mAdapter.notifyDataSetChanged();
+                                mRecyclerViewRegular.setAdapter(mAdapter);
+
+                                mAdapterSpecial = new RegularFlowerAdapter(mResultSpecial);
+                                mAdapterSpecial.notifyDataSetChanged();
+                                mRecyclerViewSpecial.setAdapter(mAdapterSpecial);
+
+
 //                                colorListAdapter = new ColorListAdapter(DesignBoxActivity.this, R.layout.custom_row_flowers, mResultRegular);
 //                                colorListAdapter.notifyDataSetChanged();
 //                                mGridView.setAdapter(colorListAdapter);
-
 
                             }
 
