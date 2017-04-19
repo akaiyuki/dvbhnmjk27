@@ -1,10 +1,26 @@
 [
     {
-        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/androidTest/debug/drawable/cwac_cam2_action_bar_bg_translucent.xml",
-        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/bundles/debug/res/drawable/cwac_cam2_action_bar_bg_translucent.xml"
+        "merged": "/Users/smartwavedev/Desktop/AV_projects/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/androidTest/debug/drawable/cwac_cam2_action_bar_bg_transparent.xml",
+        "source": "/Users/smartwavedev/Desktop/AV_projects/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/bundles/debug/res/drawable/cwac_cam2_action_bar_bg_transparent.xml"
+    },
+    {
+        "merged": "/Users/smartwavedev/Desktop/AV_projects/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/androidTest/debug/drawable/cwac_cam2_action_bar_bg_translucent.xml",
+        "source": "/Users/smartwavedev/Desktop/AV_projects/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/bundles/debug/res/drawable/cwac_cam2_action_bar_bg_translucent.xml"
+    },
+    {
+        "merged": "/Users/devsmartwave/Desktop/Trisha/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/androidTest/debug/drawable/cwac_cam2_action_bar_bg_transparent.xml",
+        "source": "/Users/devsmartwave/Desktop/Trisha/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/bundles/debug/res/drawable/cwac_cam2_action_bar_bg_transparent.xml"
+    },
+    {
+        "merged": "/Users/devsmartwave/Desktop/Trisha/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/androidTest/debug/drawable/cwac_cam2_action_bar_bg_translucent.xml",
+        "source": "/Users/devsmartwave/Desktop/Trisha/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/bundles/debug/res/drawable/cwac_cam2_action_bar_bg_translucent.xml"
     },
     {
         "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/androidTest/debug/drawable/cwac_cam2_action_bar_bg_transparent.xml",
         "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/bundles/debug/res/drawable/cwac_cam2_action_bar_bg_transparent.xml"
+    },
+    {
+        "merged": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/res/merged/androidTest/debug/drawable/cwac_cam2_action_bar_bg_translucent.xml",
+        "source": "/Users/smartwavedev/Desktop/AppPetalier/dvbhnmjk27/PetalierApp/cam2/build/intermediates/bundles/debug/res/drawable/cwac_cam2_action_bar_bg_translucent.xml"
     }
 ]

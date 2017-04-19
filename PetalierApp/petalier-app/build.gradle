@@ -20,7 +20,7 @@ android {
         applicationId "com.syaona.petalierapp"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 3
+        versionCode 4
         versionName "1.1"
     }
     buildTypes {
@@ -40,11 +40,10 @@ repositories {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
     compile files('libs/httpclient-android-4.3.3.jar')
     compile files('libs/httpmime-4.1.2.jar')
     compile project(':cam2')
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.6@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.4@aar') {
         transitive = true;
     }
 
@@ -59,7 +58,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    compile 'com.facebook.android:facebook-android-sdk:4.6.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.11.0'
     compile 'com.wang.avi:library:1.0.5'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.citux:datetimepicker:0.1.2'
@@ -72,4 +71,6 @@ dependencies {
     compile 'com.hudomju:swipe-to-dismiss-undo:1.0'
     compile 'com.baoyz.pullrefreshlayout:library:1.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
 }

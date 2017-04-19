@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.facebook.FacebookSdk;
 import com.crashlytics.android.Crashlytics;
+import com.facebook.appevents.AppEventsLogger;
 import com.syaona.petalierapp.BuildConfig;
 
 import io.fabric.sdk.android.Fabric;
@@ -46,8 +47,9 @@ public class AppController extends Application {
         PSharedPreferences.init(mInstance);
         mRequestQueue = new PRequestQueue(getApplicationContext());
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
 
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
     }
 

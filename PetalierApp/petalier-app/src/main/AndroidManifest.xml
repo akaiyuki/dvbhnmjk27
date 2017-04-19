@@ -88,7 +88,8 @@
 
         <activity android:name=".activity.PaypalActivity" />
         <activity android:name=".photo.ImagePreviewActivity" />
-        <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.WebViewActivity" />
+        <activity android:name=".activity.ColorCalendarActivity"></activity>
     </application>
 
 </manifest>

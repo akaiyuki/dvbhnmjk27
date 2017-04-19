@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/datepicker">
+    </DatePicker>
+
+
+       <!--<TextView-->
+           <!--android:layout_width="wrap_content"-->
+           <!--android:layout_height="wrap_content"-->
+           <!--android:text="Choose Color"-->
+           <!--android:layout_marginTop="20dp"-->
+           <!--android:textSize="17sp"-->
+           <!--android:layout_gravity="center_horizontal"-->
+           <!--/>-->
+
+       <!--<TextView-->
+           <!--android:layout_width="wrap_content"-->
+           <!--android:layout_height="wrap_content"-->
+           <!--android:text="(Regular)"-->
+           <!--android:layout_below="@+id/relative4"-->
+           <!--android:textColor="@color/colorButtonInactive"-->
+           <!--android:textSize="17sp"-->
+           <!--android:layout_marginBottom="20dp"-->
+           <!--android:id="@+id/regular"-->
+           <!--android:visibility="visible"-->
+           <!--android:layout_gravity="center_horizontal"/>-->
+
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/listview_color_regular"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--/>-->
+
+
+       <!--<View-->
+           <!--android:layout_marginTop="20dp"-->
+           <!--android:layout_below="@+id/btncolorcalendar"-->
+           <!--android:layout_width="fill_parent"-->
+           <!--android:layout_height="1dip"-->
+           <!--android:background="@color/colorLightGary"-->
+           <!--android:id="@+id/divider2"-->
+           <!--android:visibility="visible"/>-->
+
+       <!--<TextView-->
+           <!--android:layout_width="wrap_content"-->
+           <!--android:layout_height="wrap_content"-->
+           <!--android:text="Choose Color"-->
+           <!--android:layout_marginTop="20dp"-->
+           <!--android:textSize="17sp"-->
+           <!--android:layout_gravity="center_horizontal"-->
+           <!--/>-->
+
+       <!--<TextView-->
+           <!--android:layout_width="wrap_content"-->
+           <!--android:layout_height="wrap_content"-->
+           <!--android:text="(Special)"-->
+           <!--android:textColor="@color/colorButtonInactive"-->
+           <!--android:textSize="17sp"-->
+           <!--android:layout_marginBottom="20dp"-->
+           <!--android:id="@+id/special"-->
+           <!--android:visibility="visible"-->
+           <!--android:layout_gravity="center_horizontal"-->
+           <!--android:layout_marginTop="10dp"/>-->
+
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/listview_color_special"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--/>-->
+
+
+
+        <!--&lt;!&ndash;<com.syaona.petalierapp.view.ExpandableHeightGridView&ndash;&gt;-->
+           <!--&lt;!&ndash;android:id="@+id/gridview"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:gravity="center"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:horizontalSpacing="2dp"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:isScrollContainer="false"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:numColumns="5"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:stretchMode="columnWidth"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:verticalSpacing="20dp"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_below="@+id/divider2"&ndash;&gt;-->
+           <!--&lt;!&ndash;android:layout_marginTop="10dp"&ndash;&gt;-->
+           <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonDone">
+
+        <View
+            android:layout_marginTop="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1dip"
+            android:background="@color/colorLightGary"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DONE"
+            android:layout_marginTop="30dp"
+            android:textSize="17sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

@@ -34,6 +34,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
+import com.facebook.GraphRequestAsyncTask;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
@@ -80,6 +81,10 @@ public class LoginFragment extends Fragment {
     private CallbackManager callbackManager;
     private GraphRequest request;
     private ImageView mImageLoading;
+
+    private String mFirstName;
+    private String mLastName;
+    private String mEmail;
 
 
     public LoginFragment() {
@@ -158,80 +163,121 @@ public class LoginFragment extends Fragment {
 
                 Log.i("fblogin", signature);
 
-                // App code
-                GraphRequest request = GraphRequest.newMeRequest(
-                        loginResult.getAccessToken(),
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(
-                                    JSONObject object,
-                                    GraphResponse response) {
 
-                                Log.e("response: ", response + "");
-                                try {
-
-                                    Profile profile = Profile.getCurrentProfile();
-//                                    String firstName = profile.getFirstName();
-//                                    String lastName = profile.getLastName();
-
-                                    String email = object.optString("email");
+                //sample
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                /* handle the result */
 
 
-                                    AccessToken accessToken = loginResult.getAccessToken();
+                        try {
 
-                                    AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
-                                        @Override
-                                        protected void onCurrentAccessTokenChanged(AccessToken accessToken, AccessToken accessToken1) {
-
-                                        }
-                                    };
-                                    accessTokenTracker.startTracking();
-
-                                    ProfileTracker profileTracker = new ProfileTracker() {
-                                        @Override
-                                        protected void onCurrentProfileChanged(Profile profile, Profile profile1) {
-
-                                        }
-                                    };
-                                    profileTracker.startTracking();
-
-                                    if (profile != null) {
-                                        //get data here
-                                        Log.e("firstnamefb", profile.getFirstName()+" "+email);
-
-                                        /* log out facebook if access token is not null */
-                                        if(accessToken != null){
-                                            LoginManager.getInstance().logOut();
-                                        }
-
-                                        requestApiFbLogin(fbAccesstoken, fbId, profile.getFirstName(), profile.getLastName(), email, signature);
-
-                                    }
+                            Profile profile = Profile.getCurrentProfile();
+                            final String email = object.optString("email");
 
 
+                            AccessToken accessToken = loginResult.getAccessToken();
+
+                            mFirstName = profile.getFirstName();
+                            mLastName = profile.getLastName();
+                            mEmail = email;
 
 
+                            requestApiFbLogin(fbAccesstoken, fbId, profile.getFirstName(), profile.getLastName(), email, signature);
 
-
-
-
-//                                    mImageLoading.setVisibility(View.VISIBLE);
-//                                    requestApiFbLogin(fbAccesstoken, fbId, firstName, lastName, email, signature);
-
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                        } catch (Exception e) {
+                            e.printStackTrace();
 //                                    Log.e("requesterror", e.getMessage());
-                                }
+                        }
 
-                            }
 
-                        });
+                    }
+                });
+
+
+                //end
+
+
+//                // App code
+//                GraphRequest request = GraphRequest.newMeRequest(
+//                        loginResult.getAccessToken(),
+//                        new GraphRequest.GraphJSONObjectCallback() {
+//                            @Override
+//                            public void onCompleted(
+//                                    JSONObject object,
+//                                    GraphResponse response) {
+//
+//                                Log.e("response: ", response + "");
+//                                try {
+//
+//                                    Profile profile = Profile.getCurrentProfile();
+////                                    String firstName = profile.getFirstName();
+////                                    String lastName = profile.getLastName();
+//
+//                                    final String email = object.optString("email");
+//
+//
+//                                    AccessToken accessToken = loginResult.getAccessToken();
+//
+//
+//                                    requestApiFbLogin(fbAccesstoken, fbId, profile.getFirstName(), profile.getLastName(), email, signature);
+//
+//
+//
+//                                    AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+//                                        @Override
+//                                        protected void onCurrentAccessTokenChanged(AccessToken accessToken, AccessToken accessToken1) {
+//
+//                                        }
+//                                    };
+//                                    accessTokenTracker.startTracking();
+//
+//                                    ProfileTracker profileTracker = new ProfileTracker() {
+//                                        @Override
+//                                        protected void onCurrentProfileChanged(Profile profile, Profile profile1) {
+////                                            requestApiFbLogin(fbAccesstoken, fbId, profile.getFirstName(), profile.getLastName(), email, signature);
+//
+//                                        }
+//                                    };
+//                                    profileTracker.startTracking();
+//
+////                                    if (profile != null) {
+////                                        //get data here
+////                                        Log.e("firstnamefb", profile.getFirstName()+" "+email);
+////
+////                                        /* log out facebook if access token is not null */
+//////                                        if(accessToken != null){
+//////                                            LoginManager.getInstance().logOut();
+//////                                        }
+////
+////                                        requestApiFbLogin(fbAccesstoken, fbId, profile.getFirstName(), profile.getLastName(), email, signature);
+////
+////                                    }
+//
+//
+//
+//
+//
+////                                    mImageLoading.setVisibility(View.VISIBLE);
+////                                    requestApiFbLogin(fbAccesstoken, fbId, firstName, lastName, email, signature);
+//
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+////                                    Log.e("requesterror", e.getMessage());
+//                                }
+//
+//                            }
+//
+//                        });
+//                //end
 
                 Bundle parameters = new Bundle();
                 parameters.putString("fields", "id,name,email,gender");
                 request.setParameters(parameters);
                 request.executeAsync();
 
+//                requestApiFbLogin(fbAccesstoken, fbId, mFirstName, mLastName, mEmail, signature);
 
 
             }
