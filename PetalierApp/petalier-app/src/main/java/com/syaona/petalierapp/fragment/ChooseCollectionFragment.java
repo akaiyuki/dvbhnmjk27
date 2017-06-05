@@ -2,6 +2,8 @@ package com.syaona.petalierapp.fragment;
 
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +13,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -36,6 +41,7 @@ import com.syaona.petalierapp.core.PConfiguration;
 import com.syaona.petalierapp.core.PEngine;
 import com.syaona.petalierapp.core.PRequest;
 import com.syaona.petalierapp.core.PSharedPreferences;
+import com.syaona.petalierapp.dialog.PChooseCalendar;
 import com.syaona.petalierapp.enums.Singleton;
 import com.syaona.petalierapp.enums.StatusResponse;
 import com.syaona.petalierapp.activity.DesignBoxActivity;
@@ -46,6 +52,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -171,7 +178,13 @@ public class ChooseCollectionFragment extends Fragment {
 
                 mAdapter.notifyDataSetChanged();
 
-                startActivity(new Intent(getActivity(), DesignBoxActivity.class));
+//                startActivity(new Intent(getActivity(), DesignBoxActivity.class));
+
+
+
+//                PChooseCalendar chooseCalendar = new PChooseCalendar((BaseActivity) getActivity());
+                showDatePicker();
+
 
             }
         });
@@ -476,6 +489,35 @@ public class ChooseCollectionFragment extends Fragment {
     }
 
 
+    private void showDatePicker() {
+        DatePickerFragment date = new DatePickerFragment();
+        /**
+         * Set Up Current Date Into dialog
+         */
+        Calendar calender = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calender.get(Calendar.YEAR));
+        args.putInt("month", calender.get(Calendar.MONTH));
+        args.putInt("day", calender.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+        /**
+         * Set Call back to capture selected date
+         */
+        date.setCallBack(ondate);
+        date.show(getFragmentManager(), "Date Picker");
+    }
+
+    DatePickerDialog.OnDateSetListener ondate = new DatePickerDialog.OnDateSetListener() {
+
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+
+            Log.d("chosen date", String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)
+                    + "-" + String.valueOf(year));
+
+            startActivity(new Intent(getActivity(), DesignBoxActivity.class));
+        }
+    };
 
 
 
