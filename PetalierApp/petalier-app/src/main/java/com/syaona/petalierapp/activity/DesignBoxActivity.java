@@ -765,18 +765,18 @@ public class DesignBoxActivity extends BaseActivity {
                                     mResultRegular.add(jsonObject1);
                                 }
 
-                                mAdapter = new RegularFlowerAdapter(mResultRegular);
-                                mAdapter.notifyDataSetChanged();
-                                mRecyclerViewRegular.setAdapter(mAdapter);
+//                                mAdapter = new RegularFlowerAdapter(mResultRegular);
+//                                mAdapter.notifyDataSetChanged();
+//                                mRecyclerViewRegular.setAdapter(mAdapter);
+//
+//                                mAdapterSpecial = new RegularFlowerAdapter(mResultSpecial);
+//                                mAdapterSpecial.notifyDataSetChanged();
+//                                mRecyclerViewSpecial.setAdapter(mAdapterSpecial);
 
-                                mAdapterSpecial = new RegularFlowerAdapter(mResultSpecial);
-                                mAdapterSpecial.notifyDataSetChanged();
-                                mRecyclerViewSpecial.setAdapter(mAdapterSpecial);
 
-
-//                                colorListAdapter = new ColorListAdapter(DesignBoxActivity.this, R.layout.custom_row_flowers, mResultRegular);
-//                                colorListAdapter.notifyDataSetChanged();
-//                                mGridView.setAdapter(colorListAdapter);
+                                colorListAdapter = new ColorListAdapter(DesignBoxActivity.this, R.layout.custom_row_flowers, mResultRegular);
+                                colorListAdapter.notifyDataSetChanged();
+                                mGridView.setAdapter(colorListAdapter);
 
                             }
 
