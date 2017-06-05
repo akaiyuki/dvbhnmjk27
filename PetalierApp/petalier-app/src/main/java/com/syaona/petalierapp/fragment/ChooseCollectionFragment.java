@@ -515,6 +515,9 @@ public class ChooseCollectionFragment extends Fragment {
             Log.d("chosen date", String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)
                     + "-" + String.valueOf(year));
 
+            PSharedPreferences.setSomeStringValue(AppController.getInstance(),"color_date",String.valueOf(dayOfMonth) + "-" + String.valueOf(monthOfYear+1)
+                    + "-" + String.valueOf(year));
+
             startActivity(new Intent(getActivity(), DesignBoxActivity.class));
         }
     };

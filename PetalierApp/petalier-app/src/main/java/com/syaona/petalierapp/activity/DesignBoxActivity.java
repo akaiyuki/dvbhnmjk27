@@ -34,10 +34,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
@@ -72,6 +75,7 @@ import org.rajawali3d.util.ObjectColorPicker;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -506,7 +510,9 @@ public class DesignBoxActivity extends BaseActivity {
                 .crossFade()
                 .into(mImageLoading);
 
-        requestApiGetColors();
+//        requestApiGetColors("12-6-2017");
+
+        requestApiCheckColor(PSharedPreferences.getSomeStringValue(AppController.getInstance(),"color_date"));
 
 
         if (color.size() != 0){
@@ -734,8 +740,10 @@ public class DesignBoxActivity extends BaseActivity {
     public void requestApiGetColors(){
 
         RequestQueue queue = Volley.newRequestQueue(DesignBoxActivity.INSTANCE);
-        String url = PConfiguration.testURL+ PRequest.apiMethodGetColors;
-        StringRequest postRequest = new StringRequest(Request.Method.GET, url,
+//        String url = PConfiguration.testURL+ PRequest.apiMethodGetColors;
+        String url = "http://192.168.1.4:5900/postColors";
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
                     @Override
@@ -746,24 +754,24 @@ public class DesignBoxActivity extends BaseActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
 
-                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS){
+//                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS){
 
                                 mResultSpecial.clear();
                                 mResultRegular.clear();
 
-                                JSONArray jsonArray = jsonObject.getJSONObject("Data").getJSONObject("colors").getJSONArray("special");
-                                JSONArray jsonArray1 = jsonObject.getJSONObject("Data").getJSONObject("colors").getJSONArray("regular");
+                                JSONArray jsonArray = jsonObject.getJSONObject("colors").getJSONArray("special");
+//                                JSONArray jsonArray1 = jsonObject.getJSONObject("Data").getJSONObject("colors").getJSONArray("regular");
 
                                 for (int i = 0; i < jsonArray.length(); i++){
                                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                                    mResultSpecial.add(jsonObject1);
+//                                    mResultSpecial.add(jsonObject1);
                                     mResultRegular.add(jsonObject1);
                                 }
 
-                                for (int x = 0; x < jsonArray1.length(); x++){
-                                    JSONObject jsonObject1 = jsonArray1.getJSONObject(x);
-                                    mResultRegular.add(jsonObject1);
-                                }
+//                                for (int x = 0; x < jsonArray1.length(); x++){
+//                                    JSONObject jsonObject1 = jsonArray1.getJSONObject(x);
+//                                    mResultRegular.add(jsonObject1);
+//                                }
 
 //                                mAdapter = new RegularFlowerAdapter(mResultRegular);
 //                                mAdapter.notifyDataSetChanged();
@@ -778,7 +786,7 @@ public class DesignBoxActivity extends BaseActivity {
                                 colorListAdapter.notifyDataSetChanged();
                                 mGridView.setAdapter(colorListAdapter);
 
-                            }
+//                            }
 
                             stopAnimation();
 
@@ -974,6 +982,101 @@ public class DesignBoxActivity extends BaseActivity {
 
 
     }
+
+
+
+    public void requestApiCheckColor(final String date){
+
+        RequestQueue queue = Volley.newRequestQueue(DesignBoxActivity.INSTANCE);
+//        String url = PConfiguration.testURL+ PRequest.apiMethodGetColors;
+        String url = "http://192.168.1.4:5900/postColors";
+
+//        HashMap<String, String> params = new HashMap<String, String>();
+//        params.put("date", date);
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("Response", response);
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+//                            if (jsonObject.getInt("Status") == StatusResponse.STATUS_SUCCESS){
+
+                            mResultSpecial.clear();
+                            mResultRegular.clear();
+
+                            JSONArray jsonArray = jsonObject.getJSONObject("colors").getJSONArray("special");
+//                                JSONArray jsonArray1 = jsonObject.getJSONObject("Data").getJSONObject("colors").getJSONArray("regular");
+
+                            for (int i = 0; i < jsonArray.length(); i++){
+                                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+//                                    mResultSpecial.add(jsonObject1);
+                                mResultRegular.add(jsonObject1);
+                            }
+
+//                                for (int x = 0; x < jsonArray1.length(); x++){
+//                                    JSONObject jsonObject1 = jsonArray1.getJSONObject(x);
+//                                    mResultRegular.add(jsonObject1);
+//                                }
+
+//                                mAdapter = new RegularFlowerAdapter(mResultRegular);
+//                                mAdapter.notifyDataSetChanged();
+//                                mRecyclerViewRegular.setAdapter(mAdapter);
+//
+//                                mAdapterSpecial = new RegularFlowerAdapter(mResultSpecial);
+//                                mAdapterSpecial.notifyDataSetChanged();
+//                                mRecyclerViewSpecial.setAdapter(mAdapterSpecial);
+
+
+                            colorListAdapter = new ColorListAdapter(DesignBoxActivity.this, R.layout.custom_row_flowers, mResultRegular);
+                            colorListAdapter.notifyDataSetChanged();
+                            mGridView.setAdapter(colorListAdapter);
+
+//                            }
+
+                            stopAnimation();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            stopAnimation();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        Log.d("ERROR", "error => " + error.toString());
+                        stopAnimation();
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                return params;
+            }
+
+            protected Map<String, String> getParams() throws com.android.volley.AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("date", date);
+                return params;
+            };
+        };
+        queue.add(postRequest);
+
+    }
+
+
+
 
 
 
