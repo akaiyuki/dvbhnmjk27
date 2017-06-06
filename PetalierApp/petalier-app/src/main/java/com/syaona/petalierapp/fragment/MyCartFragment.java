@@ -57,6 +57,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import biz.kasual.materialnumberpicker.MaterialNumberPicker;
+import pl.droidsonroids.gif.GifImageView;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -77,7 +78,7 @@ public class MyCartFragment extends Fragment {
     private static final int timeDeleteItem = 3000;
 
     private int currentPositionSelected;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
     public MyCartFragment() {
         // Required empty public constructor
@@ -98,14 +99,16 @@ public class MyCartFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_cart, container, false);
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading = (GifImageView) view.findViewById(R.id.loading);
 
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
+
+
         requestApiGetCart();
 
         /* Initialize toolbar */
