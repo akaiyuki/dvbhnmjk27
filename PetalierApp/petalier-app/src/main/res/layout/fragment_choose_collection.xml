@@ -64,16 +64,30 @@
     </com.baoyz.widget.PullRefreshLayout>
 
 
-    <ImageView
+    <!--<ImageView-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:id="@+id/loading"-->
+        <!--android:visibility="visible"/>-->
+
+    <pl.droidsonroids.gif.GifImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:src="@drawable/loading"
+        android:scaleType="fitCenter"
+        android:background="@drawable/loading"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:layout_centerInParent="true"
         android:id="@+id/loading"
-        android:visibility="visible"/>
+        />
 
 
     <include

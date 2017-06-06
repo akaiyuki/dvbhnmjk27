@@ -56,6 +56,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -68,7 +70,7 @@ public class ChooseCollectionFragment extends Fragment {
     public String selectedFlower;
 
     private PullRefreshLayout mPullRefresh;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
 
     public ChooseCollectionFragment() {
@@ -205,14 +207,14 @@ public class ChooseCollectionFragment extends Fragment {
         });
 
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading = (GifImageView) view.findViewById(R.id.loading);
 
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
         requestApiGetCollections();
 
