@@ -62,6 +62,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -95,7 +97,7 @@ public class DeliveryDetailsFragment extends Fragment {
     private int orderPlacement;
 
     private String delAddress;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
     public DeliveryDetailsFragment() {
         // Required empty public constructor
@@ -140,15 +142,15 @@ public class DeliveryDetailsFragment extends Fragment {
         mEditInstructions = (EditText) view.findViewById(R.id.edit_instructions);
 
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading = (GifImageView) view.findViewById(R.id.loading);
         mImageLoading.setVisibility(View.GONE);
 
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
 
         Button btnCheckout = (Button) view.findViewById(R.id.next);
