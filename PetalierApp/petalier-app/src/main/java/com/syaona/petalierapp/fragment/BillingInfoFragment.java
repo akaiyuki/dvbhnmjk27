@@ -35,6 +35,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -56,7 +58,7 @@ public class BillingInfoFragment extends Fragment {
     private Button mButtonCheckout;
     private EditText mEditCompany;
     private EditText mEditCountry;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
 
     public BillingInfoFragment() {
@@ -117,14 +119,14 @@ public class BillingInfoFragment extends Fragment {
         mEditCountry = (EditText) view.findViewById(R.id.edit_country);
 
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading = (GifImageView) view.findViewById(R.id.loading);
         mImageLoading.setVisibility(View.GONE);
-        Glide.with(getActivity())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(getActivity())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
 
         mButtonCheckout = (Button) view.findViewById(R.id.btncheckout);

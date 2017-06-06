@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
-import com.felipecsl.gifimageview.library.GifImageView;
 import com.syaona.petalierapp.R;
 import com.syaona.petalierapp.core.AppController;
 import com.syaona.petalierapp.core.BaseActivity;
@@ -33,10 +32,12 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class WebViewActivity extends BaseActivity {
 
     private WebView mWebView;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
     private String mUrl;
 
     @Override
@@ -70,14 +71,14 @@ public class WebViewActivity extends BaseActivity {
         mImageProfile.setVisibility(View.GONE);
 
 
-        mImageLoading = (ImageView) findViewById(R.id.loading);
+        mImageLoading = (GifImageView) findViewById(R.id.loading);
 
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
 
         mWebView = (WebView) findViewById(R.id.default_webview);
