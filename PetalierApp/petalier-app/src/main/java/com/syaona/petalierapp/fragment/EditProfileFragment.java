@@ -41,6 +41,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -49,7 +51,7 @@ public class EditProfileFragment extends Fragment {
     private EditText mFirstName;
     private EditText mLastName;
     private EditText mBirthday;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
 
     public EditProfileFragment() {
@@ -109,14 +111,14 @@ public class EditProfileFragment extends Fragment {
         });
 
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading = (GifImageView) view.findViewById(R.id.loading);
         mImageLoading.setVisibility(View.GONE);
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
 
 
