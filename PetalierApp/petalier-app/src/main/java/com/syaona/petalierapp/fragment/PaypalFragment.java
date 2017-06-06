@@ -40,13 +40,15 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PaypalFragment extends Fragment {
 
     private WebView webView;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
     public PaypalFragment() {
         // Required empty public constructor
@@ -84,14 +86,14 @@ public class PaypalFragment extends Fragment {
 
         webView = (WebView) view.findViewById(R.id.paypal_webview);
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading = (GifImageView) view.findViewById(R.id.loading);
 
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
         loadPaypalUrl();
 
