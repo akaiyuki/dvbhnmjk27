@@ -151,6 +151,8 @@ public class LoginFragment extends Fragment {
             public void onSuccess(final LoginResult loginResult) {
                 // App code
 
+//                Log.d("facebook_login", loginResult.toString());
+
                 Log.i("name user", String.valueOf(loginResult.getAccessToken().getUserId()));
                 final String fbAccesstoken = loginResult.getAccessToken().getToken();
                 final String fbId = loginResult.getAccessToken().getUserId();
