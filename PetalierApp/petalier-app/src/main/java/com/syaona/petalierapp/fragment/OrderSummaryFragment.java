@@ -42,6 +42,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -58,7 +60,7 @@ public class OrderSummaryFragment extends Fragment {
     private TextView txtTotal;
 
     private TextView mTextSubTotal;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
 
     public OrderSummaryFragment() {
@@ -183,14 +185,14 @@ public class OrderSummaryFragment extends Fragment {
 
         mTextSubTotal = (TextView) view.findViewById(R.id.txt_subtotal);
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading = (GifImageView) view.findViewById(R.id.loading);
 
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
         requestApiGetOrdersById();
 
