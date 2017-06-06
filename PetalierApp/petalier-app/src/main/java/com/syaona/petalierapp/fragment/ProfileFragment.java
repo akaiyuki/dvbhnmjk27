@@ -55,6 +55,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -91,7 +93,7 @@ public class ProfileFragment extends Fragment {
     private OrderListAdapter mAdapterCompleted;
 
     private String selectedOrder;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -176,14 +178,14 @@ public class ProfileFragment extends Fragment {
             populateUserInfo();
         }
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading = (GifImageView) view.findViewById(R.id.loading);
         mImageLoading.setVisibility(View.GONE);
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
         requestApiGetProfile();
         requestApiGetPendingOrders();
