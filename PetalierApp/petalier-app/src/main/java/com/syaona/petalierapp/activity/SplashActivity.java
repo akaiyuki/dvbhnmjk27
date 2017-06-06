@@ -29,6 +29,7 @@ import java.io.InputStream;
 public class SplashActivity extends BaseActivity {
 
     public static SplashActivity INSTANCE = null;
+    private GifImageView gifImageView;
 
 
     @Override
@@ -45,23 +46,39 @@ public class SplashActivity extends BaseActivity {
         INSTANCE = this;
 
 
-        final GifImageView gifImageView = (GifImageView) findViewById(R.id.gifImageView);
-        try {
-            InputStream is = getAssets().open("splash.gif");
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] b = new byte[2048];
-            int len = 0;
-            while ((len = is.read(b, 0, 2048)) != -1) {
-                baos.write(b, 0, len);
-            }
-            baos.flush();
-            byte[] bytes = baos.toByteArray();
-            gifImageView.setBytes(bytes);
-            gifImageView.startAnimation();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+//        try {
+//            InputStream is = getAssets().open("splash.gif");
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            byte[] b = new byte[2048];
+//            int len = 0;
+//            while ((len = is.read(b, 0, 2048)) != -1) {
+//                baos.write(b, 0, len);
+//            }
+//            baos.flush();
+//            byte[] bytes = baos.toByteArray();
+//            gifImageView.setBytes(bytes);
+//            gifImageView.startAnimation();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+
+//        gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+//
+//        try {
+//            InputStream is = getAssets().open("splash.gif");
+//            byte[] bytes = new byte[is.available()];
+//            is.read(bytes);
+//            is.close();
+//
+////            gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+//            gifImageView = new GifImageView(SplashActivity.INSTANCE);
+//            gifImageView.setBytes(bytes);
+//            gifImageView.startAnimation();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
         int myTimer = 6000;
@@ -73,8 +90,8 @@ public class SplashActivity extends BaseActivity {
                 startActivity(i);
                 finish(); // close this activity
 
-                assert gifImageView != null;
-                gifImageView.stopAnimation();
+//                assert gifImageView != null;
+//                gifImageView.stopAnimation();
 
             }
         }, myTimer);

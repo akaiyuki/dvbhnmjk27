@@ -82,6 +82,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
+
 public class DesignBoxActivity extends BaseActivity {
 
     public static DesignBoxActivity INSTANCE = null;
@@ -104,7 +107,7 @@ public class DesignBoxActivity extends BaseActivity {
 
     public static String pickedColor;
 
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
     public Button btnWhite;
 
@@ -501,14 +504,14 @@ public class DesignBoxActivity extends BaseActivity {
 
 
 
-        mImageLoading = (ImageView) findViewById(R.id.loading);
+        mImageLoading = (GifImageView) findViewById(R.id.loading);
 
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
 //        requestApiGetColors("12-6-2017");
 

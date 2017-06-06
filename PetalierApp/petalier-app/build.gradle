@@ -36,6 +36,8 @@ repositories {
         url "https://jitpack.io"
     }
     maven { url 'https://maven.fabric.io/public' }
+
+
 }
 
 dependencies {
@@ -65,7 +67,7 @@ dependencies {
     compile 'com.wdullaer:materialdatetimepicker:2.3.0'
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.1.4'
     compile 'org.rajawali3d:rajawali:1.1.337@aar'
-    compile 'com.felipecsl:gifimageview:2.0.0'
+    compile 'com.felipecsl:gifimageview:2.1.0'
     compile 'biz.kasual:materialnumberpicker:1.2.1'
     compile 'com.github.paolorotolo:expandableheightlistview:1.0.0'
     compile 'com.hudomju:swipe-to-dismiss-undo:1.0'
@@ -73,4 +75,7 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
+
 }
