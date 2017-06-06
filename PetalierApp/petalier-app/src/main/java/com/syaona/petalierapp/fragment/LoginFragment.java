@@ -70,6 +70,8 @@ import java.util.Map;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+import pl.droidsonroids.gif.GifImageView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -80,7 +82,7 @@ public class LoginFragment extends Fragment {
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     private GraphRequest request;
-    private ImageView mImageLoading;
+    private GifImageView mImageLoading;
 
     private String mFirstName;
     private String mLastName;
@@ -103,15 +105,15 @@ public class LoginFragment extends Fragment {
         mEditPassword = (EditText) view.findViewById(R.id.edit_password);
 
 
-        mImageLoading = (ImageView) view.findViewById(R.id.loading);
+        mImageLoading = (GifImageView) view.findViewById(R.id.loading);
         mImageLoading.setVisibility(View.GONE);
 
-        Glide.with(AppController.getInstance())
-                .load(R.drawable.loading)
-                .asGif()
-                .placeholder(R.drawable.loading)
-                .crossFade()
-                .into(mImageLoading);
+//        Glide.with(AppController.getInstance())
+//                .load(R.drawable.loading)
+//                .asGif()
+//                .placeholder(R.drawable.loading)
+//                .crossFade()
+//                .into(mImageLoading);
 
 
         Button btnLoginEmail = (Button) view.findViewById(R.id.btnloginemail);
